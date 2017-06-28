@@ -679,6 +679,22 @@ angular.module('app')
                             ]
                         }
                     })
+					
+					.state('app.tables.test', {
+                        url: '/test',
+                        templateUrl: 'partials/Personal/SalesOderTable.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load('smart-table').then(
+                                        function() {
+                                            return $ocLazyLoad.load('js/controllers/table-smart.js');
+                                        }
+                                    );
+                                }
+                            ]
+                        }
+                    })
 
                 .state('app.layout', {
                         url: '/layout',

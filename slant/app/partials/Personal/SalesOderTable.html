@@ -1,0 +1,40 @@
+<div class='content-wrapper' ng-init="app.settings.pagetitle = 'Smart Table';">
+    <div class="col-lg-12" ng-controller="SmartTableCtrl">
+        <section class="box ">
+            <header class="panel_header">
+                <h2 class="title pull-left">The basics</h2>
+                <div class="actions panel_actions pull-right">
+                    <i class="box_toggle material-icons">expand_more</i>
+                    <i class="box_setting material-icons" ng-click="section_modal()">mode_edit</i>
+                    <i class="box_close material-icons">close</i>
+                </div>
+            </header>
+            <div class="content-body padding-bottom-0">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <table st-table="rowCollectionBasic" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>first name</th>
+                                    <th>last name</th>
+                                    <th>birth date</th>
+                                    <th>balance</th>
+                                    <th>email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="row in rowCollectionBasic" st-select-row="row">
+                                    <td>{{row.firstName}}</td>
+                                    <td>{{row.lastName}}</td>
+                                    <td>{{row.birthDate}}</td>
+                                    <td>{{row.balance}}</td>
+                                    <td>{{row.email}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>	

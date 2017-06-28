@@ -22,6 +22,68 @@
   		<!-- <md-datepicker ng-model="DeliveryDate" md-placeholder="Enter date"></md-datepicker> -->
   		 &nbsp;  &nbsp;
   		<button class="btn btn-primary btn-sm" ng-click="postMessage()"   >Call Web Service</button>
+		
+		<br>
+  		<br>
+		
+		<table class="table table-bordered table-striped" >
+  		<tr>
+  		<td>System</td>
+    	<td>Date</td>
+    	
+    	<td>0-4</td>
+    	<td>5</td>
+    	<td>6</td>
+    	<td>7</td>
+    	<td>8</td>
+    	<td>9</td>
+    	<td>10</td>
+    	<td>11</td>
+    	<td>12</td>
+    	<td>13</td>
+    	<td>14</td>
+    	<td>15</td>
+    	<td>16</td>
+    	<td>17</td>
+    	<td>18</td>
+    	<td>19</td>
+    	<td>20</td>
+    	<td>21</td>
+    	<td>22</td>
+    	<td>23</td>
+    	<td>Total</td>
+    	
+  		</tr>
+  		<tr ng-repeat="x in salesOrderArray   " > <!--  | filter:{Var1: idocNumber } | filter: (syncResultBool === true ? filter2 : '')  | groupBy: 'Var1'   / filter: filter2 -->
+    		
+    	<td>{{ x[0] }}</td>
+    	<td>{{ x[1] }}</td>
+    	<td>{{x[2]}}</td>
+    	<td>{{x[3]}}</td>
+    	<td>{{x[4]}}</td>
+    	<td>{{x[5]}}</td>
+    	<td>{{x[6]}}</td>
+    	<td>{{x[7]}}</td>
+    	<td>{{x[8]}}</td>
+    	<td>{{x[9]}}</td>
+    	<td>{{x[10]}}</td>
+    	<td>{{x[11]}}</td>
+    	<td>{{x[12]}}</td>
+    	<td>{{x[13]}}</td>
+    	<td>{{x[14]}}</td>
+    	<td>{{x[15]}}</td>
+    	<td>{{x[16]}}</td>
+    	<td>{{x[17]}}</td>
+    	<td>{{x[18]}}</td>
+    	<td>{{x[19]}}</td>
+    	<td>{{x[20]}}</td>
+    	<td>{{x[21]}}</td>
+    	<td>{{x[22]}}</td>
+    	
+
+  		</tr>
+  		</table>
+		
                     </div>
                 </div>
             </div>

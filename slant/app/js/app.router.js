@@ -690,8 +690,16 @@ angular.module('app')
                                         function() {
                                             return $ocLazyLoad.load('js/controllers/Custom/SalesOrderController.js');
                                         }
-                                    );
+										
+                                    )
+									.then(
+                                          function(){
+                                               return $ocLazyLoad.load('js/controllers/Custom/jsonsql-0.1.js');
+                                            }
+                                          )
+									;
                                 }
+
                             ]
                         }
                     })

@@ -31,7 +31,7 @@ Accordions
 Tabs
 UI Grid
 FULL UI Calendar
-Timeline Centered Style
+Timeline Cente#CC0000 Style
 Pricing Tables 
 jVector Maps
 Tables
@@ -664,7 +664,7 @@ blockquote.pull-right {
 }
 
 blockquote.accent {
-    border-color: red;
+    border-color: #CC0000;
 }
 
 blockquote.background {
@@ -741,7 +741,7 @@ a:focus {
 }
 
 .text-accent {
-    color: red;
+    color: #CC0000;
 }
 
 .text-light {
@@ -808,7 +808,7 @@ a:focus {
 }
 
 .bg-accent {
-    background: red;
+    background: #CC0000;
     padding: 3px 8px;
     color: #ffffff;
 }
@@ -862,7 +862,7 @@ a:focus {
 
 .page-topbar .logo-area {
     width: 200px;
-    background-color: red;
+    background-color: #CC0000;
     display: block;
     min-height: 60px;
     float: left;
@@ -962,7 +962,7 @@ a:focus {
 }
 
 .page-topbar .quick-area .slantit .info-menu {
-    background-color: red;
+    background-color: #CC0000;
     padding: 0 0px 0 0px;
 }
 
@@ -998,7 +998,7 @@ a:focus {
     content: " ";
     width: 40px;
     height: 60px;
-    background-color: red;
+    background-color: #CC0000;
     position: absolute;
     left: -18px;
     -moz-transform: skewX(30deg);
@@ -1016,7 +1016,7 @@ a:focus {
 
 .page-topbar.chat_shift .quick-area .info-menu li.chat-slant,
 .page-topbar.chat_shift .chat-slant:before {
-    background-color: red;
+    background-color: #CC0000;
     padding: 0px;
 }
 
@@ -1048,7 +1048,7 @@ a:focus {
     position: absolute;
     width: 60px;
     height: 3px;
-    background-color: red;
+    background-color: #CC0000;
     content: " ";
     bottom: 0px;
     left: 58px;
@@ -1069,7 +1069,7 @@ a:focus {
     position: absolute;
     width: 60px;
     height: 3px;
-    background-color: red;
+    background-color: #CC0000;
     content: " ";
     top: 15px;
     left: 55px;
@@ -1314,7 +1314,7 @@ a:focus {
 }
 
 .page-topbar li .notifications .idle .notice-icon i {
-    background-color: red;
+    background-color: #CC0000;
 }
 
 .page-topbar li .notifications .offline .notice-icon i {
@@ -1501,7 +1501,7 @@ a:focus {
 }
 
 .page-topbar li.searchform .form-control:focus {
-    border-bottom: 2px solid red;
+    border-bottom: 2px solid #CC0000;
 }
 
 .page-topbar li.searchform input[type="submit"] {
@@ -1510,7 +1510,7 @@ a:focus {
 
 .page-topbar li.searchform.focus i,
 .page-topbar li.searchform .material-icons.primary {
-    color: red;
+    color: #CC0000;
 }
 
 @media (min-width: 992px) and (max-width: 1270px) {
@@ -1902,7 +1902,7 @@ a:focus {
 
 .profile-status.idle,
 .uprofile-status.idle {
-    background-color: red;
+    background-color: #CC0000;
 }
 
 .profile-status.away,
@@ -2231,7 +2231,7 @@ section.accent header.panel_header .title:after,
 section.accent .content-body,
 section.accent .panel_header .actions,
 section.accent .panel_header .actions:before {
-    background-color: red;
+    background-color: #CC0000;
     color: #f5f5f5;
 }
 
@@ -2542,13 +2542,13 @@ fieldset[disabled] .form-control {
 
 .input-group.accent .input-group-addon,
 .input-group.accent .input-group-btn button {
-    border-color: red;
+    border-color: #CC0000;
     background-color: transparent;
-    color: red;
+    color: #CC0000;
 }
 
 .input-group.accent .form-control {
-    border-color: red;
+    border-color: #CC0000;
 }
 
 .input-group-btn .btn {
@@ -2807,8 +2807,8 @@ slider span.pointer.active:after {
 }
 
 .btn.btn-border.btn-accent {
-    border: 1px solid red;
-    color: red;
+    border: 1px solid #CC0000;
+    color: #CC0000;
     background: transparent;
 }
 
@@ -2872,7 +2872,7 @@ slider span.pointer.active:after {
 }
 
 .btn.btn-accent {
-    background: red;
+    background: #CC0000;
     color: #ffffff;
 }
 
@@ -3318,12 +3318,12 @@ fieldset[disabled] .btn {
 }
 
 .alert-accent {
-    background-color: red;
+    background-color: #CC0000;
     color: #ffffff;
 }
 
 .alert-accent.minimal {
-    border-left: 5px solid red;
+    border-left: 5px solid #CC0000;
 }
 
 .notification_btns .btn {
@@ -3646,7 +3646,7 @@ fieldset[disabled] .btn {
 
 .tile-progress .progress.accent .progress-bar,
 .progress.accent .progress-bar {
-    background-color: red;
+    background-color: #CC0000;
 }
 
 .tile-progress .progress.secondary .progress-bar,
@@ -4003,23 +4003,23 @@ fieldset[disabled] .btn {
 }
 
 .tooltip.accent .tooltip-inner {
-    background-color: red;
+    background-color: #CC0000;
 }
 
 .tooltip.accent.top .tooltip-arrow {
-    border-top-color: red;
+    border-top-color: #CC0000;
 }
 
 .tooltip.accent.left .tooltip-arrow {
-    border-left-color: red;
+    border-left-color: #CC0000;
 }
 
 .tooltip.accent.right .tooltip-arrow {
-    border-right-color: red;
+    border-right-color: #CC0000;
 }
 
 .tooltip.accent.bottom .tooltip-arrow {
-    border-bottom-color: red;
+    border-bottom-color: #CC0000;
 }
 
 .tooltip.primary .tooltip-inner {
@@ -4137,7 +4137,7 @@ fieldset[disabled] .btn {
 }
 
 .popover.accent .popover-title {
-    background: red;
+    background: #CC0000;
 }
 
 .popover.primary .popover-title {
@@ -4787,7 +4787,7 @@ fieldset[disabled] .btn {
     -moz-border-radius: 0px 0 0 0;
     border-radius: 0px 0 0 0;
     -webkit-border-radius: 0px 0 0 0;
-    background-color: red;
+    background-color: #CC0000;
 }
 
 .fc-row table td {
@@ -4891,7 +4891,7 @@ fieldset[disabled] .btn {
 }
 
 /*---------------------------------------------
-      Timeline Centered Style
+      Timeline Cente#CC0000 Style
 ----------------------------------------------*/
 
 .timeline {
@@ -4906,7 +4906,7 @@ fieldset[disabled] .btn {
     position: absolute;
     content: " ";
     width: 1px;
-    background-color: red;
+    background-color: #CC0000;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.0), 0 2px 2px rgba(0, 0, 0, 0.1);
     -o-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.0), 0 2px 2px rgba(0, 0, 0, 0.1);
     -ms-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.0), 0 2px 2px rgba(0, 0, 0, 0.1);
@@ -5026,7 +5026,7 @@ fieldset[disabled] .btn {
     top: 20px;
     left: 50%;
     margin-left: -25px;
-    background-color: red;
+    background-color: #CC0000;
     z-index: 10;
     border: 3px solid #FFFFFF;
 }
@@ -5535,7 +5535,7 @@ table.dataTable.no-footer {
 
 .material-icons.icon-xs {
     font-size: 12px;
-    /* Preferred icon size */
+    /* Prefer#CC0000 icon size */
     display: inline;
     width: 12px;
     height: 12px;
@@ -5544,7 +5544,7 @@ table.dataTable.no-footer {
 
 .material-icons.icon-sm {
     font-size: 18px;
-    /* Preferred icon size */
+    /* Prefer#CC0000 icon size */
     display: inline;
     width: 18px;
     height: 18px;
@@ -5553,7 +5553,7 @@ table.dataTable.no-footer {
 
 .material-icons.icon-md {
     font-size: 24px;
-    /* Preferred icon size */
+    /* Prefer#CC0000 icon size */
     display: inline;
     width: 24px;
     height: 24px;
@@ -5562,7 +5562,7 @@ table.dataTable.no-footer {
 
 .material-icons.icon-lg {
     font-size: 48px;
-    /* Preferred icon size */
+    /* Prefer#CC0000 icon size */
     display: inline;
     width: 48px;
     height: 48px;
@@ -5571,7 +5571,7 @@ table.dataTable.no-footer {
 
 .material-icons.icon-xlg {
     font-size: 72px;
-    /* Preferred icon size */
+    /* Prefer#CC0000 icon size */
     display: inline;
     width: 72px;
     height: 72px;
@@ -5587,7 +5587,7 @@ table.dataTable.no-footer {
     color: #ffffff;
 }
 
-.icon-cornered {
+.icon-corne#CC0000 {
     -webkit-border-radius: 10%;
     -moz-border-radius: 10%;
     border-radius: 10%;
@@ -5607,7 +5607,7 @@ table.dataTable.no-footer {
     color: #ffffff;
 }
 
-.icon-bordered {
+.icon-borde#CC0000 {
     border: 1px solid #F5F5F5;
     padding: 15px;
     -webkit-border-radius: 50%;
@@ -5618,42 +5618,42 @@ table.dataTable.no-footer {
 }
 
 .icon-xs.icon-rounded,
-.icon-xs.icon-cornered,
+.icon-xs.icon-corne#CC0000,
 .icon-xs.icon-square,
-.icon-xs.icon-bordered {
+.icon-xs.icon-borde#CC0000 {
     padding: 10px;
 }
 
 .icon-sm.icon-rounded,
-.icon-sm.icon-cornered,
+.icon-sm.icon-corne#CC0000,
 .icon-sm.icon-square,
-.icon-sm.icon-bordered {
+.icon-sm.icon-borde#CC0000 {
     padding: 15px;
 }
 
 .icon-md.icon-rounded,
-.icon-md.icon-cornered,
+.icon-md.icon-corne#CC0000,
 .icon-md.icon-square,
-.icon-md.icon-bordered {
+.icon-md.icon-borde#CC0000 {
     padding: 20px;
 }
 
 .icon-lg.icon-rounded,
-.icon-lg.icon-cornered,
+.icon-lg.icon-corne#CC0000,
 .icon-lg.icon-square,
-.icon-lg.icon-bordered {
+.icon-lg.icon-borde#CC0000 {
     padding: 25px;
 }
 
 .icon-xlg.icon-rounded,
-.icon-xlg.icon-cornered,
+.icon-xlg.icon-corne#CC0000,
 .icon-xlg.icon-square,
-.icon-xlg.icon-bordered {
+.icon-xlg.icon-borde#CC0000 {
     padding: 35px;
 }
 
 .icon-accent {
-    color: red;
+    color: #CC0000;
 }
 
 .icon-primary {
@@ -5685,104 +5685,104 @@ table.dataTable.no-footer {
 }
 
 .icon-accent.icon-rounded,
-.icon-accent.icon-cornered,
+.icon-accent.icon-corne#CC0000,
 .icon-accent.icon-square {
-    background-color: red;
+    background-color: #CC0000;
     color: #ffffff;
 }
 
 .icon-primary.icon-rounded,
-.icon-primary.icon-cornered,
+.icon-primary.icon-corne#CC0000,
 .icon-primary.icon-square {
     background-color: #673AB7;
     color: #ffffff;
 }
 
 .icon-success.icon-rounded,
-.icon-success.icon-cornered,
+.icon-success.icon-corne#CC0000,
 .icon-success.icon-square {
     background-color: #46be8a;
     color: #ffffff;
 }
 
 .icon-info.icon-rounded,
-.icon-info.icon-cornered,
+.icon-info.icon-corne#CC0000,
 .icon-info.icon-square {
     background-color: #26C6DA;
     color: #ffffff;
 }
 
 .icon-warning.icon-rounded,
-.icon-warning.icon-cornered,
+.icon-warning.icon-corne#CC0000,
 .icon-warning.icon-square {
     background-color: #fdb45d;
     color: #ffffff;
 }
 
 .icon-danger.icon-rounded,
-.icon-danger.icon-cornered,
+.icon-danger.icon-corne#CC0000,
 .icon-danger.icon-square {
     background-color: #ef5350;
     color: #ffffff;
 }
 
 .icon-secondary.icon-rounded,
-.icon-secondary.icon-cornered,
+.icon-secondary.icon-corne#CC0000,
 .icon-secondary.icon-square {
     background-color: #9E9E9E;
     color: #ffffff;
 }
 
 .icon-default.icon-rounded,
-.icon-default.icon-cornered,
+.icon-default.icon-corne#CC0000,
 .icon-default.icon-square {
     background-color: #F5F5F5;
     color: #ffffff;
 }
 
-.icon-accent.icon-bordered {
-    border: 1px solid red;
+.icon-accent.icon-borde#CC0000 {
+    border: 1px solid #CC0000;
     background-color: transparent;
-    color: red;
+    color: #CC0000;
 }
 
-.icon-primary.icon-bordered {
+.icon-primary.icon-borde#CC0000 {
     border: 1px solid #673AB7;
     background-color: transparent;
     color: #673AB7;
 }
 
-.icon-success.icon-bordered {
+.icon-success.icon-borde#CC0000 {
     border: 1px solid #46be8a;
     background-color: transparent;
     color: #46be8a;
 }
 
-.icon-info.icon-bordered {
+.icon-info.icon-borde#CC0000 {
     border: 1px solid #26C6DA;
     background-color: transparent;
     color: #26C6DA;
 }
 
-.icon-warning.icon-bordered {
+.icon-warning.icon-borde#CC0000 {
     border: 1px solid #fdb45d;
     background-color: transparent;
     color: #fdb45d;
 }
 
-.icon-danger.icon-bordered {
+.icon-danger.icon-borde#CC0000 {
     border: 1px solid #ef5350;
     background-color: transparent;
     color: #ef5350;
 }
 
-.icon-secondary.icon-bordered {
+.icon-secondary.icon-borde#CC0000 {
     border: 1px solid #9E9E9E;
     background-color: transparent;
     color: #9E9E9E;
 }
 
-.icon-default.icon-bordered {
+.icon-default.icon-borde#CC0000 {
     border: 1px solid #F5F5F5;
     background-color: transparent;
     color: #F5F5F5;
@@ -6471,7 +6471,7 @@ code {
 }
 
 .label-accent {
-    background-color: red;
+    background-color: #CC0000;
 }
 
 .label-info {
@@ -6569,7 +6569,7 @@ code {
 }
 
 .badge-accent {
-    background-color: red;
+    background-color: #CC0000;
     color: #ffffff;
 }
 
@@ -6846,11 +6846,11 @@ code {
 /*collapsed menu and chat open states*/
 
 .page-topbar.sidebar_shift .logo-area {
-    background-color: red;
+    background-color: #CC0000;
 }
 
 .page-topbar.chat_shift .logo-area {
-    background-color: red;
+    background-color: #CC0000;
 }
 
 .chatapi-windows.hideit {
@@ -6954,7 +6954,7 @@ code {
 .page-sidebar.chat_shift #main-menu-wrapper .wraplist .sub-menu li.active .sub-menu .active a,
 .page-sidebar.collapseit #main-menu-wrapper .wraplist .sub-menu li.active .sub-menu .active a {
     background-color: #161e22;
-    border-left: 3px solid red;
+    border-left: 3px solid #CC0000;
 }
 
 .page-sidebar.chat_shift #main-menu-wrapper .wraplist .sub-menu li.active .sub-menu a,
@@ -7253,7 +7253,7 @@ border-left: 3px solid transparent;
     font-size: 18px;
     margin: 0px 0 0px 0;
     color: #ffffff;
-    background-color: red;
+    background-color: #CC0000;
     height: 60px;
     line-height: 60px;
 }
@@ -7338,7 +7338,7 @@ border-left: 3px solid transparent;
 .page-chatapi .group-list .group-status.away i,
 .chatapi-windows .user-window .controlbar .status.away i,
 .page-chatapi .contact-list .user-status.away i {
-    color: red;
+    color: #CC0000;
 }
 
 .page-chatapi .contact-list .user-info {
@@ -7690,7 +7690,7 @@ border-left: 3px solid transparent;
 }
 
 .chatmsg .name .status.away {
-    color: red;
+    color: #CC0000;
 }
 
 .chatmsg .name .status.offline {
@@ -7716,7 +7716,7 @@ border-left: 3px solid transparent;
 }
 
 .typearea i.primary {
-    color: red;
+    color: #CC0000;
 }
 
 .typearea input {
@@ -7734,7 +7734,7 @@ border-left: 3px solid transparent;
     color: #B0BEC5;
     background-color: transparent;
     ;
-    border-bottom: 2px solid red;
+    border-bottom: 2px solid #CC0000;
 }
 
 
@@ -7815,7 +7815,7 @@ border-left: 3px solid transparent;
 
 .mail_tabs li.active a,
 .mail_tabs li a:hover {
-    background-color: red;
+    background-color: #CC0000;
     color: #ffffff;
 }
 
@@ -8123,7 +8123,7 @@ border-left: 3px solid transparent;
 }
 
 .r1_graph4 {
-    background: red;
+    background: #CC0000;
     color: #ffffff;
 }
 
@@ -9096,7 +9096,7 @@ border-left: 3px solid transparent;
 }
 
 .tile-progress.inverted.text-accent .progress .progress-bar {
-    background: red;
+    background: #CC0000;
 }
 
 .tile-progress.inverted.text-secondary .progress .progress-bar {
@@ -9720,7 +9720,7 @@ border-left: 3px solid transparent;
 
 .uprofile-info {
     padding: 25px 40px 15px 40px;
-    background: red;
+    background: #CC0000;
     margin-bottom: 20px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.0), 0 2px 2px rgba(0, 0, 0, 0.1);
     -o-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.0), 0 2px 2px rgba(0, 0, 0, 0.1);
@@ -10694,7 +10694,7 @@ border-left: 3px solid transparent;
 .bg-warning{ background: #fdb45d; padding: 3px 8px; color: #ffffff;}
 .bg-danger{ background: rgba(240,80,80,1.0); padding: 3px 8px; color: #ffffff;} #f05050
 .bg-success{ background: rgba(102,189,120,1.0); padding: 3px 8px; color: #ffffff;} #66bd78
-.bg-accent{ background: red; padding: 3px 8px; color: #ffffff;} red
+.bg-accent{ background: #CC0000; padding: 3px 8px; color: #ffffff;} #CC0000
 .bg-secondary{ background: rgba(169,169,169,1.0); padding: 3px 8px; color: #616161;} #a9a9a9
 
 #fdb45d - #fdb45d
@@ -11226,15 +11226,15 @@ fieldset[disabled] .icheck input + i:before {
 }
 
 .icheck.icheck-accent input:checked + i {
-    border-color: red;
+    border-color: #CC0000;
 }
 
 .icheck.icheck-accent input:checked + i:before {
-    color: red;
+    color: #CC0000;
 }
 
 .icheck.icheck-accent > i {
-    border: 1px solid red;
+    border: 1px solid #CC0000;
 }
 
 .icheck.icheck-success input:checked + i {

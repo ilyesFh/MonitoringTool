@@ -21,6 +21,8 @@ app.controller('SalesOrderController', function($scope, $http, $filter ) {
 	$scope.fieldValue;
 	$scope.jsonArray;
 	$scope.DeliveryDate;
+	$scope.CreationStartDate;
+	$scope.CreationEndDate;
 	$scope.syncResultBool = false;
 	$scope.formattedDate;
 	
@@ -74,11 +76,10 @@ app.controller('SalesOrderController', function($scope, $http, $filter ) {
 		        	 //console.log($scope.SOEbest);
 		        	 $scope.blabla = "18";
 
-		        	 $scope.fixedStartDate = "06/26/2017";
-		        	 $scope.fixedEndDate = "06/28/2017";
+		        	 $scope.fixedStartDate = $filter('date')($scope.CreationStartDate, "yyyy/MM/dd");
+		        	 $scope.fixedEndDate = $filter('date')($scope.CreationEndDate, "yyyy/MM/dd");
 		        	 
-		        	 $scope.fixedDate = $filter('date')($scope.fixedStartDate, "MM/dd/yyyy");
-		        	 //$scope.fixedEndDate = $filter('date')($scope.fixedEndDate, "MM/dd/yyyy");
+		        	 $scope.fixedDate = $filter('date')($scope.fixedStartDate, "yyyy/MM/dd");
 		        	 
 		        	 $scope.fixedRealDate = new Date($scope.fixedDate);
 		        	 $scope.fixedEndDate = new Date($scope.fixedEndDate);
@@ -134,7 +135,8 @@ app.controller('SalesOrderController', function($scope, $http, $filter ) {
 		        			{
 		        			 $scope.monthDate = "0"+$scope.monthDate;
 		        			}
-		        		 $scope.fixedDate = $scope.monthDate+"/"+($scope.fixedDate).getDate()+"/"+($scope.fixedDate).getFullYear();
+							$scope.day = ($scope.fixedDate).getDate().toString().length === 1 ? "0"+($scope.fixedDate).getDate() : ($scope.fixedDate).getDate();
+		        		 $scope.fixedDate = ($scope.fixedDate).getFullYear()+"/"+$scope.monthDate+"/"+$scope.day;
 		        		 console.log($scope.fixedDate);
 		        		 
 		        		 

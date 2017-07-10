@@ -688,7 +688,8 @@ angular.module('app')
                                 function($ocLazyLoad) {
                                     return $ocLazyLoad.load('smart-table').then(
                                         function() {
-                                            return $ocLazyLoad.load('js/controllers/Custom/SalesOrderController.js');
+                                            return $ocLazyLoad.load('js/controllers/Custom/SalesOrderController.js'
+											); 
                                         }
 										
                                     )

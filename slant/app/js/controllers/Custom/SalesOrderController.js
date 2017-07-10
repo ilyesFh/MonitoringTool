@@ -69,7 +69,10 @@ app.controller('SalesOrderController', function($scope, $http, $filter ) {
 		        var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=',msgdata ).
 		        then(function (response) {
 		        	console.log("");
-		        	 console.log(response.data);
+					console.log(response);
+					console.log(response.data);
+		        	console.log(response.data[0][0]);
+					 
 		        	 //$scope.jsonEbestTotal = jsonsql.query("select * from json where (Var2=='Ebest')", response.data);
 		        	 //console.log($scope.jsonEbestTotal);
 		        	 //$scope.SOEbest = $scope.jsonEbest.length;
@@ -87,12 +90,12 @@ app.controller('SalesOrderController', function($scope, $http, $filter ) {
 		        	 $scope.indice = 0;
 		        	 
 		        	 
-		        	 
+		        	 console.log($scope.fixedDate);
 		        	 while ( $scope.fixedRealDate <= $scope.fixedEndDate )
 		        	{	
 		        		 
 		        		 
-		        		 $scope.QueryWithDate = jsonsql.query("select * from json where (delivDate=='"+$scope.fixedDate+"')", response.data);
+		        		 $scope.QueryWithDate = jsonsql.query("select * from json where (Entry2=='"+$scope.fixedDate+"')", response.data[0][0]);
 		        		 console.log($scope.QueryWithDate);
 		        		 $scope.record = new Array(23);
 		        		 $scope.record[0] = "Ebest";
@@ -103,7 +106,7 @@ app.controller('SalesOrderController', function($scope, $http, $filter ) {
 		        		 for (j=0;j<$scope.QueryWithDate.length; j++)
 		        			 {
 		     
-		        			 if ( Number($scope.QueryWithDate[j].sync) < 5)
+		        			 if ( Number($scope.QueryWithDate[j].Hour) < 5)
 		        				 { 
 		        				 if ( $scope.record[2] == null)
 		        					 { $scope.record[2] = 1}
@@ -113,10 +116,10 @@ app.controller('SalesOrderController', function($scope, $http, $filter ) {
 		        				 }
 		        			 else
 		        				 {
-		        				 if ( $scope.record[Number($scope.QueryWithDate[j].sync)-2] == null)
-	        					 { $scope.record[Number($scope.QueryWithDate[j].sync)-2] = 1}
+		        				 if ( $scope.record[Number($scope.QueryWithDate[j].Hour)-2] == null)
+	        					 { $scope.record[Number($scope.QueryWithDate[j].Hour)-2] = 1}
 	        				 else {
-	        					 $scope.record[Number($scope.QueryWithDate[j].sync)-2] = $scope.record[Number($scope.QueryWithDate[j].sync)-2] + 1;
+	        					 $scope.record[Number($scope.QueryWithDate[j].Hour)-2] = $scope.record[Number($scope.QueryWithDate[j].Hour)-2] + 1;
 	        				 	}
 		        				 
 		        				 }
@@ -152,10 +155,14 @@ app.controller('SalesOrderController', function($scope, $http, $filter ) {
 		        	 
 		        	});
 		    }
+			
+			
+			$scope.countTo = 10;
+			$scope.countFrom = 0;
 		  
 		  //Filter For Checkbox
 		  $scope.filter2 = function(x){
-			    if (x.sync == null ){
+			    if (x.Hour == null ){
 			        return true;
 			    } else{
 			        return false;

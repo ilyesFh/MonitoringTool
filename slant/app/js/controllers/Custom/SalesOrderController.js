@@ -69,7 +69,10 @@ app.controller('SalesOrderController', function($scope, $http, $filter ) {
 		        var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=',msgdata ).
 		        then(function (response) {
 		        	console.log("");
-		        	 console.log(response.data);
+					console.log(response);
+					console.log(response.data);
+		        	console.log(response.data[0][0]);
+					 
 		        	 //$scope.jsonEbestTotal = jsonsql.query("select * from json where (Var2=='Ebest')", response.data);
 		        	 //console.log($scope.jsonEbestTotal);
 		        	 //$scope.SOEbest = $scope.jsonEbest.length;
@@ -87,12 +90,12 @@ app.controller('SalesOrderController', function($scope, $http, $filter ) {
 		        	 $scope.indice = 0;
 		        	 
 		        	 
-		        	 
+		        	 console.log($scope.fixedDate);
 		        	 while ( $scope.fixedRealDate <= $scope.fixedEndDate )
 		        	{	
 		        		 
 		        		 
-		        		 $scope.QueryWithDate = jsonsql.query("select * from json where (Entry2=='"+$scope.fixedDate+"')", response.data);
+		        		 $scope.QueryWithDate = jsonsql.query("select * from json where (Entry2=='"+$scope.fixedDate+"')", response.data[0][0]);
 		        		 console.log($scope.QueryWithDate);
 		        		 $scope.record = new Array(23);
 		        		 $scope.record[0] = "Ebest";

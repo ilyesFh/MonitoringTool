@@ -688,7 +688,13 @@ angular.module('app')
                                 function($ocLazyLoad) {
                                     return $ocLazyLoad.load('smart-table').then(
                                         function() {
-                                            return $ocLazyLoad.load('js/controllers/Custom/SalesOrderController.js');
+                                            return $ocLazyLoad.load('js/controllers/Custom/SalesOrderController.js',
+											'countTo',
+                                        'js/controllers/countto.js', 
+                                        'js/controllers/vectormap.js', 
+                                        'js/directives/ui-todowidget.js', 
+                                        'js/controllers/messages-widget.js',
+                                        '../bower_components/font-awesome/css/font-awesome.css');
                                         }
 										
                                     )

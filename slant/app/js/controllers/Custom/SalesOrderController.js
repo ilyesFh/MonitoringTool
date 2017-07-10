@@ -92,7 +92,7 @@ app.controller('SalesOrderController', function($scope, $http, $filter ) {
 		        	{	
 		        		 
 		        		 
-		        		 $scope.QueryWithDate = jsonsql.query("select * from json where (delivDate=='"+$scope.fixedDate+"')", response.data);
+		        		 $scope.QueryWithDate = jsonsql.query("select * from json where (VAR2=='"+$scope.fixedDate+"')", response.data);
 		        		 console.log($scope.QueryWithDate);
 		        		 $scope.record = new Array(23);
 		        		 $scope.record[0] = "Ebest";
@@ -103,7 +103,7 @@ app.controller('SalesOrderController', function($scope, $http, $filter ) {
 		        		 for (j=0;j<$scope.QueryWithDate.length; j++)
 		        			 {
 		     
-		        			 if ( Number($scope.QueryWithDate[j].sync) < 5)
+		        			 if ( Number($scope.QueryWithDate[j].Hour) < 5)
 		        				 { 
 		        				 if ( $scope.record[2] == null)
 		        					 { $scope.record[2] = 1}
@@ -113,10 +113,10 @@ app.controller('SalesOrderController', function($scope, $http, $filter ) {
 		        				 }
 		        			 else
 		        				 {
-		        				 if ( $scope.record[Number($scope.QueryWithDate[j].sync)-2] == null)
-	        					 { $scope.record[Number($scope.QueryWithDate[j].sync)-2] = 1}
+		        				 if ( $scope.record[Number($scope.QueryWithDate[j].Hour)-2] == null)
+	        					 { $scope.record[Number($scope.QueryWithDate[j].Hour)-2] = 1}
 	        				 else {
-	        					 $scope.record[Number($scope.QueryWithDate[j].sync)-2] = $scope.record[Number($scope.QueryWithDate[j].sync)-2] + 1;
+	        					 $scope.record[Number($scope.QueryWithDate[j].Hour)-2] = $scope.record[Number($scope.QueryWithDate[j].Hour)-2] + 1;
 	        				 	}
 		        				 
 		        				 }
@@ -155,7 +155,7 @@ app.controller('SalesOrderController', function($scope, $http, $filter ) {
 		  
 		  //Filter For Checkbox
 		  $scope.filter2 = function(x){
-			    if (x.sync == null ){
+			    if (x.Hour == null ){
 			        return true;
 			    } else{
 			        return false;

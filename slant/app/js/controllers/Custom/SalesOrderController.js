@@ -92,7 +92,7 @@ app.controller('SalesOrderController', function($scope, $http, $filter ) {
 		        	{	
 		        		 
 		        		 
-		        		 $scope.QueryWithDate = jsonsql.query("select * from json where (VAR2=='"+$scope.fixedDate+"')", response.data);
+		        		 $scope.QueryWithDate = jsonsql.query("select * from json where (Entry2=='"+$scope.fixedDate+"')", response.data);
 		        		 console.log($scope.QueryWithDate);
 		        		 $scope.record = new Array(23);
 		        		 $scope.record[0] = "Ebest";

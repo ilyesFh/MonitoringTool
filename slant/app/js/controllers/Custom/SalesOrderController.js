@@ -155,6 +155,10 @@ app.controller('SalesOrderController', function($scope, $http, $filter ) {
 		        	 
 		        	});
 		    }
+			
+			
+			$scope.countTo = 10;
+			$scope.countFrom = 0;
 		  
 		  //Filter For Checkbox
 		  $scope.filter2 = function(x){

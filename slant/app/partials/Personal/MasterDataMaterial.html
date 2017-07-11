@@ -87,25 +87,59 @@
             <div class="content-body padding-bottom-15">
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
-						
-						<table class="table table-bordered " >
-  		<tr>
-  		<td>Idoc Number</td>
-    	<td>Basic Type</td>
-    	<td>Date</td>
-		<td>MATNR</td>
-		<td>Status</td>
-  		</tr>
 		
-  		<tr ng-repeat="x in mdRecordsArray   " |  ng-class="{1 : 'danger', 0 : 'success' } [x.Entry5]" > <!--  | filter:{Var1: idocNumber } | filter: (syncResultBool === true ? filter2 : '')  | groupBy: 'Var1'   / filter: filter2 -->		
-    	<td>{{ x.Entry2 }}</td>
-		<td>{{ x.Entry3 }}</td>
-		<td>{{ x.Entry1 }}</td>
-		<td>{{ x.Entry4 }}</td>
-    	<td ng-class="{'danger' : (x.Entry5 == 1)}" >{{ x.Entry5 == 1 ? "Not Synced !!" : "Ok" }}</td>
-  		</tr>
+		<div class="content-body padding-bottom-0">
+                <div class="row">
+				
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <input id="filter" type="text" class="form-control" placeholder="Search" />
+                    </div>
+					
+                    <div class="clearfix"></div><br>
+					
+                    <div class="col-md-12 col-sm-12 col-xs-12 table-responsive">
+                        <table class="table table-striped" ui-jq="footable" data-filter="#filter" data-page-size="5" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th data-toggle="true">
+                                        Idoc Number
+                                    </th>
+                                    <th>
+                                        Basic Type
+                                    </th>
+                                    <th data-hide="phone,tablet">
+                                        Date
+                                    </th>
+                                    <th data-hide="phone,tablet" >
+                                        MATNR
+                                    </th>
+                                    <th data-hide="phone">
+                                        Status
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="x in mdRecordsArray   " >
+                                    <td>{{ x.Entry2 }}</td>
+									<td>{{ x.Entry3 }}</td>
+									<td>{{ x.Entry1 }}</td>
+									<td>{{ x.Entry4 }}</td>
+									<td><span ng-class="{1 : 'label label-danger', 0 : 'label label-success' } [x.Entry5] " >{{ x.Entry5 == 1 ? "Not Synced" : "Synced" }}</span></td>
+                                </tr>
+                                
+                            </tbody>
+                            <tfoot class="hide-if-no-paging">
+                                <tr>
+                                    <td colspan="5" class="text-center">
+                                        <ul class="pagination"></ul>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
 		
-  		</table>
 						
 						
                     </div>

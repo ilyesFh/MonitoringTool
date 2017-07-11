@@ -38,7 +38,7 @@ app.controller('MasterDataController', function($scope, $http, $filter ) {
 					console.log(response.data);
 					
 					
-				$scope.mdRecordsArray = response.data[0];
+				$scope.mdRecordsArray = response.data[0][0];
 				console.log($scope.mdRecordsArray);
 				
 				$scope.ExpectedRecords = response.data[0][0].length;

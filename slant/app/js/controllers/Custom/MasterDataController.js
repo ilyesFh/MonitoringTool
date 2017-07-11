@@ -26,11 +26,7 @@ app.controller('MasterDataController', function($scope, $http, $filter ) {
 	$scope.syncResultBool = false;
 	$scope.formattedDate;
 	
-		  
-		  // Post Web CALL
-		  $scope.postMessage = function() {
-		        //var msg = document.getElementById('message').value;
-			  	console.log("--1");
+	console.log("--1");
 			    $scope.formattedDate = $filter('date')($scope.DeliveryDate, "yyyy-MM-dd");
 			    console.log($scope.formattedDate);
 		        var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"MDM\"  }";
@@ -40,16 +36,28 @@ app.controller('MasterDataController', function($scope, $http, $filter ) {
 		        	console.log("");
 					console.log(response);
 					console.log(response.data);
-		        	
+				$scope.ExpectedRecords = response.data[0][0].length;
+				
+				$scope.recordSynced = (response.data[0][0].length / 12 ) * 100 ;
+				console.log($scope.recordSynced);
 
 
 		        	 
 		        	});
+	
+	
+	
+	
+		  
+		  // Post Web CALL
+		  $scope.postMessage = function() {
+		        //var msg = document.getElementById('message').value;
+			  	
 		    }
 			
 			
-			$scope.countTo = 10;
-			$scope.countFrom = 0;
+			
+			
 		  
 		  
 		  

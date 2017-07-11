@@ -705,33 +705,22 @@ angular.module('app')
                         }
                     })
 					
+					
 					.state('app.tables.md1', {
                         url: '/md1',
                         templateUrl: 'partials/Personal/MasterDataMaterial.html',
                         resolve: {
                             deps: ['$ocLazyLoad',
                                 function($ocLazyLoad) {
-                                    return $ocLazyLoad.load('smart-table').then(
-                                        function() {
-                                            return $ocLazyLoad.load('js/controllers/Custom/MasterDataController.js',
-											'countTo',
+                                    return $ocLazyLoad.load(['js/controllers/Custom/MasterDataController.js',
+										'countTo',
                                         'js/controllers/countto.js', 
                                         'js/controllers/vectormap.js', 
                                         'js/directives/ui-todowidget.js', 
                                         'js/controllers/messages-widget.js',
                                         '../bower_components/font-awesome/css/font-awesome.css'
-											); 
-                                        }
-										
-                                    )
-									.then(
-                                          function(){
-                                               return $ocLazyLoad.load('js/controllers/Custom/jsonsql-0.1.js');
-                                            }
-                                          )
-									;
+                                    ]);
                                 }
-
                             ]
                         }
                     })

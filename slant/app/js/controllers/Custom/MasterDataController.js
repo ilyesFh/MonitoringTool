@@ -36,11 +36,23 @@ app.controller('MasterDataController', function($scope, $http, $filter ) {
 		        	console.log("");
 					console.log(response);
 					console.log(response.data);
+					
+					
+				$scope.mdRecordsArray = response.data[0];
+				console.log($scope.mdRecordsArray);
+				
 				$scope.ExpectedRecords = response.data[0][0].length;
 				
-				$scope.recordSynced = (response.data[0][0].length / 12 ) * 100 ;
+				
+				$scope.QueryInsertedRow = jsonsql.query("select * from json where (Entry5=='0')", response.data[0][0]);
+				$scope.insertedRow = $scope.QueryInsertedRow.length;
+				
+				
+			
+				
+				$scope.recordSynced =parseFloat( ($scope.insertedRow / $scope.ExpectedRecords ) * 100).toFixed(1) ;
 				console.log($scope.recordSynced);
-
+				
 
 		        	 
 		        	});

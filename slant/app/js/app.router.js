@@ -707,13 +707,19 @@ angular.module('app')
 					
 					.state('app.tables.md1', {
                         url: '/md1',
-                        templateUrl: 'partials/Personal/SalesOderTable.html',
+                        templateUrl: 'partials/Personal/MasterDataMaterial.html',
                         resolve: {
                             deps: ['$ocLazyLoad',
                                 function($ocLazyLoad) {
                                     return $ocLazyLoad.load('smart-table').then(
                                         function() {
-                                            return $ocLazyLoad.load('js/controllers/Custom/SalesOrderController.js'
+                                            return $ocLazyLoad.load('js/controllers/Custom/MasterDataController.js',
+											'countTo',
+                                        'js/controllers/countto.js', 
+                                        'js/controllers/vectormap.js', 
+                                        'js/directives/ui-todowidget.js', 
+                                        'js/controllers/messages-widget.js',
+                                        '../bower_components/font-awesome/css/font-awesome.css'
 											); 
                                         }
 										

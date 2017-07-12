@@ -734,7 +734,7 @@ angular.module('app')
                                 function($ocLazyLoad) {
                                     return $ocLazyLoad.load('chart.js').then(
                                         function() {
-                                            return $ocLazyLoad.load('js/controllers/chartjs.js');
+                                            return $ocLazyLoad.load('js/controllers/Custom/SalesOrderChartController.js');
                                         }
                                     );
                                 }

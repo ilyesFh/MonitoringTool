@@ -67,7 +67,22 @@ app.controller('MasterDataController', function($scope, $http, $filter ) {
 			  	
 		    }
 			
+			$scope.filterResult = '';
 			
+			$scope.FilterOnlySynced = function() {
+		        $scope.filterResult = '0';
+			  	
+		    }
+			
+			$scope.FilterOnlyNotSynced = function() {
+		        $scope.filterResult = '1';
+			  	
+		    }
+			
+			$scope.FilterAll = function() {
+		        $scope.filterResult = '';
+			  	
+		    }
 			
 			
 		  

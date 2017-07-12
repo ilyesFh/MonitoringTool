@@ -88,14 +88,22 @@
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
 		
-		<div class="content-body padding-bottom-0">
+			<div class="content-body padding-bottom-0">
                 <div class="row">
 				
-                    <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-9 col-sm-12 col-xs-12">
                         <input id="filter" type="text" class="form-control" placeholder="Search" />
-                    </div>
+					</div>
 					
-                    <div class="clearfix"></div><br>
+					<div class="btn-group margin-bottom-10 margin-right-15">
+                       <label class="btn btn-primary" ng-click="FilterAll()" >All</label>
+                       <label class="btn btn-success" ng-click="FilterOnlySynced()"  >Synced</label>
+                       <label class="btn btn-danger" ng-click="FilterOnlyNotSynced()" >Not Synced</label>
+                    </div>
+                    
+					
+                    <div class="clearfix"></div>
+					<br>
 					
                     <div class="col-md-12 col-sm-12 col-xs-12 table-responsive">
                         <table class="table table-striped" ui-jq="footable" data-filter="#filter" data-page-size="5" class="table table-striped">
@@ -119,7 +127,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="x in mdRecordsArray   " >
+                                <tr ng-repeat="x in mdRecordsArray | filter:{ Entry5 : filterResult } "   >
                                     <td>{{ x.Entry2 }}</td>
 									<td>{{ x.Entry3 }}</td>
 									<td>{{ x.Entry1 }}</td>
@@ -137,7 +145,7 @@
                             </tfoot>
                         </table>
                     </div>
-                </div>
+            </div>    
             </div>
 		
 						

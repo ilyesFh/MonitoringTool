@@ -20,7 +20,7 @@
                     <i class="box_close material-icons">close</i>
                 </div>
             </header>
-            
+            <!--
 			<div class="content-body">
                 <div class="row">
                     <div class="col-md-8 col-sm-12 col-xs-12 col-md-offset-2" ng-controller="DataTablesCtrl">
@@ -32,12 +32,35 @@
                                 <td ng-repeat="set in dataSet track by $index"><span style="text-align: right;">{{data[$parent.$index][$index]}}</span></td>
                             </tr>
                         </table>
+						
+						
                         <canvas id="tables" class="chart chart-line" chart-data="data" chart-labels="labels" chart-colours="colours"></canvas>
                         <div class="clearfix"></div>
                         <button type="button" class="btn btn-primary pull-left margin-top-15" ng-click="randomize()">Randomize</button>
                     </div>
                 </div>
             </div>
+			-->
+			<div class="content-body">
+                <div class="row">
+                    <div class="input-group" inputgroup>
+                            <select class="form-control input-lg ">
+                                <option>Select Bolton</option>
+                                <option>Ebest</option>
+                                <option>Super Daiwa</option>
+                                <option>EOS</option>
+								<option>NEOS</option>
+								<option>Manual</option>
+                            </select>
+                    </div>
+					
+					<input type="date" ng-model="DeliveryDate" style="height:25px" />
+					<button class="btn btn-primary btn-sm" ng-click="postMessage()"   >Call Web Service</button>
+					
+					
+                </div>
+            </div>
+			
 			
         </section>
     </div>

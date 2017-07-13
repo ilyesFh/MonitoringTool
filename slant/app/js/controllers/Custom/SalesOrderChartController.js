@@ -243,11 +243,38 @@
         ];
     });
 
-    app.controller('DataTablesCtrl', function($scope) {
+    app.controller('DataTablesCtrl', function($scope , $http ,  $filter) {
+		
+		
+		$scope.postMessage = function() {
+		
+		console.log("-- Begin Error Chart");
+		$scope.formattedDate = $filter('date')($scope.DeliveryDate, "yyyy-MM-dd");
+			    console.log($scope.formattedDate);
+		        var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"SalesOrderAll\"  }";		        
+		        console.log(msgdata);
+				
+				
+				
+		        var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=',msgdata ).
+		        then(function (response) {
+					console.log(response.data[0][0]);
+					$scope.resultOfToday = jsonsql.query("select * from json where (Entry8=='3')", response.data[0][0]);
+					console.log($scope.resultOfToday);
+					//console.log($scope.errorSOFromBolton[i].Entry8);
+					
+					
+				});
+		
+		}
+		
         $scope.labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July' , 'Aout'];
         $scope.data = [
             [30, 59, 80, 81, 56, 55, 40 , 100],
             [28, 48, 40, 19, 86, 27, 90 , 100]
+			
+			
+			
         ];
         $scope.colours = [{ // grey
                 fillColor: "rgba(255,110,64,0.5)",

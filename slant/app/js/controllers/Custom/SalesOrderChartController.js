@@ -245,28 +245,33 @@
 
     app.controller('DataTablesCtrl', function($scope , $http ,  $filter) {
 		
+		$scope.selectedSystem = "Select Bolton";
+		
 		
 		$scope.postMessage = function() {
 		
 		console.log("-- Begin Error Chart");
 		$scope.formattedDate = $filter('date')($scope.DeliveryDate, "yyyy-MM-dd");
 			    console.log($scope.formattedDate);
-		        var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"SalesOrderAll\"  }";		        
+		        var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"SalesOrderOfToday\"  }";		        
 		        console.log(msgdata);
-				
-				
-				
+				console.log($scope.selectedSystem);
+
 		        var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=',msgdata ).
 		        then(function (response) {
 					console.log(response.data[0][0]);
-					$scope.resultOfToday = jsonsql.query("select * from json where (Entry8=='3')", response.data[0][0]);
+					$scope.resultOfToday = jsonsql.query("select * from json where (Entry2=='"+$scope.selectedSystem+"')", response.data[0][0]);
 					console.log($scope.resultOfToday);
-					//console.log($scope.errorSOFromBolton[i].Entry8);
+					
+					
 					
 					
 				});
 		
 		}
+		
+		
+		
 		
         $scope.labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July' , 'Aout'];
         $scope.data = [

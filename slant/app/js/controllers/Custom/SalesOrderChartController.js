@@ -243,12 +243,29 @@
         ];
     });
 
-    app.controller('DataTablesCtrl', function($scope , $http ,  $filter) {
+    app.controller('DataTablesCtrl', function($scope , $http ,  $filter , $timeout) {
 		
 		$scope.selectedSystem = "Select Bolton";
+		$scope.showChart = false;
+		$scope.justString = "azezeazez"
 		
+		$scope.st1 = 2
+				$scope.st2 = 6
+				$scope.st3 = 6
+				$scope.st4 = 4
+				$scope.st5 = 5
+				$scope.st6 = 6
+				$scope.st7 = 7
+		
+		
+		
+				
+				
+				
+				
 		
 		$scope.postMessage = function() {
+
 		
 		console.log("-- Begin Error Chart");
 		$scope.formattedDate = $filter('date')($scope.DeliveryDate, "yyyy-MM-dd");
@@ -264,46 +281,48 @@
 					console.log($scope.resultOfToday);
 					
 					
-					
+				$scope.st1 = jsonsql.query("select * from json where (Entry8=='1')", response.data[0][0]).length;
+				$scope.st2 = jsonsql.query("select * from json where (Entry8=='2')", response.data[0][0]).length;
+				$scope.st3 = jsonsql.query("select * from json where (Entry8=='3')", response.data[0][0]).length;
+				$scope.st4 = jsonsql.query("select * from json where (Entry8=='4')", response.data[0][0]).length;
+				$scope.st5 = jsonsql.query("select * from json where (Entry8=='5')", response.data[0][0]).length;
+				$scope.st6 = jsonsql.query("select * from json where (Entry8=='6')", response.data[0][0]).length;
+				$scope.st7 = jsonsql.query("select * from json where (Entry8=='7')", response.data[0][0]).length;
+				console.log($scope.st1 , $scope.st2 ,$scope.st3 , $scope.st4 ,$scope.st5 ,$scope.st6 , $scope.st7);	
+
+				
+				
+				
+				$scope.labels = ['Status 1', 'Status 2', 'Status 3' , 'Status 4', 'Status 5', 'Status 6' , 'Status 7'];
+				$scope.data = [$scope.st1, $scope.st2, $scope.st3 , $scope.st4 ,$scope.st5 , $scope.st6 , $scope.st7];
+				$scope.colours = [{ // grey
+						fillColor: "rgba(255,110,64,1)",
+						strokeColor: "rgba(255,110,64,1.0)",
+						highlightFill: "rgba(255,110,64,1.0)",
+						highlightStroke: "rgba(255,110,64,1)"
+				}, { // dark grey
+						fillColor: "rgba(103,58,183,1.0)",
+						strokeColor: "rgba(103,58,183,1.0)",
+						highlightFill: "rgba(103,58,183,1.0)",
+						highlightStroke: "rgba(103,58,183,1.0)"
+				}, { // dark grey
+						fillColor: "rgba(253,216,53,1.0)",
+						strokeColor: "rgba(253,216,53,1.0)",
+						highlightFill: "rgba(253,216,53,1.0)",
+						highlightStroke: "rgba(253,216,53,1.0)"
+				}];
+				
+				$scope.showChart = true;
 					
 				});
+
 		
 		}
 		
 		
-		
-		
-        $scope.labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July' , 'Aout'];
-        $scope.data = [
-            [30, 59, 80, 81, 56, 55, 40 , 100],
-            [28, 48, 40, 19, 86, 27, 90 , 100]
-			
-			
-			
-        ];
-        $scope.colours = [{ // grey
-                fillColor: "rgba(255,110,64,0.5)",
-                strokeColor: "rgba(255,110,64,1)",
-                pointColor: "rgba(255,110,64,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(255,110,64,1)"
-        }, { // dark grey
-                fillColor: "rgba(103,58,183,0.5)",
-                strokeColor: "rgba(103,58,183,1.0)",
-                pointColor: "rgba(103,58,183,1.0)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(103,58,183,1.0)"
-        }];
-        $scope.randomize = function() {
-            $scope.data = $scope.data.map(function(data) {
-                return data.map(function(y) {
-                    y = y + Math.random() * 10 - 5;
-                    return parseInt(y < 0 ? 0 : y > 100 ? 100 : y);
-                });
-            });
-        };
+
+        
+        
     });
 
     app.controller('TicksCtrl', ['$scope', '$interval', function($scope, $interval) {

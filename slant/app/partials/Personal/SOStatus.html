@@ -57,16 +57,19 @@
 					<input type="date" ng-model="DeliveryDate" style="height:25px" />
 					<button class="btn btn-primary btn-sm" ng-click="postMessage()"   >Call Web Service</button>
 					
-					<canvas id="doughnut" class="chart chart-doughnut" chart-data="data" chart-labels="labels" ng-if="showChart"  ></canvas>
 					
                 </div>
-            </div>
-			
-                <div class="row">
-                    <div class="col-md-8 col-sm-12 col-xs-12 col-md-offset-2" ng-controller="DataTablesCtrl"  >
-                        
+				
+				<div class="row">
+                    <div    >
+                     <canvas id="doughnut" class="chart chart-doughnut" chart-data="data" chart-labels="labels" 
+					 ng-if="showChart" chart-options="myOptions" chart-legend="true"  ></canvas>
                     </div>
                 </div>
+				
+            </div>
+			
+                
             
 			
 			

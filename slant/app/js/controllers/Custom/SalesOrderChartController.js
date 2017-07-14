@@ -12,6 +12,7 @@
         // Configure all doughnut charts
         ChartJsProvider.setOptions('Doughnut', {
             animateScale: true
+
         });
     });
 
@@ -250,18 +251,13 @@
 		$scope.justString = "azezeazez"
 		
 		$scope.st1 = 2
-				$scope.st2 = 6
-				$scope.st3 = 6
-				$scope.st4 = 4
-				$scope.st5 = 5
-				$scope.st6 = 6
-				$scope.st7 = 7
+		$scope.st2 = 6
+		$scope.st3 = 6
+		$scope.st4 = 4
+		$scope.st5 = 5
+		$scope.st6 = 6
+		$scope.st7 = 7
 		
-		
-		
-				
-				
-				
 				
 		
 		$scope.postMessage = function() {
@@ -289,8 +285,16 @@
 				$scope.st6 = jsonsql.query("select * from json where (Entry8=='6')", response.data[0][0]).length;
 				$scope.st7 = jsonsql.query("select * from json where (Entry8=='7')", response.data[0][0]).length;
 				console.log($scope.st1 , $scope.st2 ,$scope.st3 , $scope.st4 ,$scope.st5 ,$scope.st6 , $scope.st7);	
-
+				var totalSalesO = $scope.st1 + $scope.st2 +$scope.st3 + $scope.st4 +$scope.st5 +$scope.st6 + $scope.st7
 				
+				$scope.myOptions = {
+			       options: {
+						title: {
+							display: true,
+							text: 'Custom Chart Title'
+						}
+					}
+			    }
 				
 				
 				$scope.labels = ['Status 1', 'Status 2', 'Status 3' , 'Status 4', 'Status 5', 'Status 6' , 'Status 7'];
@@ -312,6 +316,8 @@
 						highlightStroke: "rgba(253,216,53,1.0)"
 				}];
 				
+				
+				
 				$scope.showChart = true;
 					
 				});
@@ -320,7 +326,6 @@
 		}
 		
 		
-
         
         
     });

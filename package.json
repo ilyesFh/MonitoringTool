@@ -1,0 +1,9 @@
+{
+    "name": "monitoringtool",
+    "version": "0.0.0",
+    "description": "Multiple Buildpacks App",
+    "author": { "name": "Avaxia" },
+    "dependencies": {
+        "express": "~4.9.0"
+    }
+}

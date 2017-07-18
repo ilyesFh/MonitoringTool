@@ -17,13 +17,7 @@ app.config(['$httpProvider', function ($httpProvider) {
 
 app.controller('MasterDataController', function($scope, $http, $filter ) {
 	
-	$scope.message = "Marouen" ; 
-	$scope.fieldValue;
-	$scope.jsonArray;
-	$scope.DeliveryDate;
-	$scope.CreationStartDate;
-	$scope.CreationEndDate;
-	$scope.syncResultBool = false;
+	$scope.MysqlRecords;
 	$scope.formattedDate;
 	
 	console.log("--1");
@@ -35,7 +29,12 @@ app.controller('MasterDataController', function($scope, $http, $filter ) {
 		        then(function (response) {
 					console.log(response.data[0][0]);
 					
-					$scope.mdRecordsArray = response.data[0][0]
+					$scope.mdRecordsArray = response.data[0][0];
+					$scope.MysqlRecords = response.data[0][0].length;
+					$scope.QueryNotMatching = jsonsql.query("select * from json where (Entry2!=Entry3)", response.data[0][0]);
+					$scope.missingRows = $scope.QueryNotMatching.length;
+					console.log($scope.missingRows);
+					
        	 
 		        	});
 	
@@ -74,18 +73,7 @@ app.controller('MasterDataController', function($scope, $http, $filter ) {
 			*/
 			
 			
-		  $scope.CountLine = function() {
-		        
-		        var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"fileToTvoss\"  }";
-		        console.log(msgdata);
-		        var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=',msgdata ).
-		        then(function (response) {
-		        	console.log("");
-					console.log(response);
-					console.log(response.data[0][0].Count);
-				});
-			  	
-		    }
+		 
 		  
 		  
 			

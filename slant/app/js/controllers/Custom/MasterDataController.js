@@ -84,8 +84,26 @@ app.controller('MasterDataController', function($scope, $http, $filter ) {
 			  	
 		    }
 			
+			/*
+			jQuery.get('http://127.0.0.1:8080/app/testText.dat', function(data) {
+				$scope.lines = data.split("\n").length;
+				console.log($scope.lines)
+			});
+			*/
 			
-		  
+			
+		  $scope.CountLine = function() {
+		        
+		        var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"fileToTvoss\"  }";
+		        console.log(msgdata);
+		        var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=',msgdata ).
+		        then(function (response) {
+		        	console.log("");
+					console.log(response);
+					console.log(response.data[0][0].Count);
+				});
+			  	
+		    }
 		  
 		  
 			

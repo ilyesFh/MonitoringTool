@@ -15,7 +15,7 @@ app.config(['$httpProvider', function ($httpProvider) {
 	    
 	}]); 
 
-app.controller('MasterDataController', function($scope, $http, $filter ) {
+app.controller('MasterDataBoltonController', function($scope, $http, $filter ) {
 	
 	$scope.MysqlRecords;
 	$scope.MysqlRecords;

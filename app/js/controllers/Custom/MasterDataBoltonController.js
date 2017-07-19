@@ -50,6 +50,12 @@ app.controller('MasterDataBoltonController', function($scope, $http, $filter ) {
 					$scope.percentage = parseFloat(( $scope.missingRows / $scope.MysqlRecords ) * 100).toFixed(1);
 					console.log($scope.percentage);
 					
+					//console.log($('#aa').get(0).id);
+					
+					//update instance after 5 sec
+						setTimeout(function() {
+							$('.chart').data('easyPieChart').update($scope.percentage);
+						}, 0);
 					
 					
 					
@@ -90,8 +96,8 @@ app.controller('MasterDataBoltonController', function($scope, $http, $filter ) {
 			
 			$scope.FilterAll = function() {
 				
-				//console.log($('#aa').get(0));
-				//$('#aa').get(0).percent = 90;
+				console.log($('#aa').get(0));
+			
 
 		        $scope.mdRecordsArray = $scope.allMdRecords;
 			  	

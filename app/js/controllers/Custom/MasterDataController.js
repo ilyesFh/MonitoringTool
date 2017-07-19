@@ -53,6 +53,10 @@ app.controller('MasterDataController', function($scope, $http, $filter ) {
 				$scope.recordSynced =parseFloat( ($scope.insertedRow / $scope.ExpectedRecords ) * 100).toFixed(1) ;
 				console.log($scope.recordSynced);
 				
+				//update instance after 1 sec
+						setTimeout(function() {
+							$('.chart').data('easyPieChart').update($scope.recordSynced);
+						}, 1000);
 
 		        	 
 		        	});

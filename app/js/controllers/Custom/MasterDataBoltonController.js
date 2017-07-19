@@ -52,7 +52,7 @@ app.controller('MasterDataBoltonController', function($scope, $http, $filter ) {
 					
 					//console.log($('#aa').get(0).id);
 					
-					//update instance after 5 sec
+					//update instance after 1 sec
 						setTimeout(function() {
 							$('.chart').data('easyPieChart').update($scope.percentage);
 						}, 1000);

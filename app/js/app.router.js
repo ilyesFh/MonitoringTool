@@ -728,13 +728,12 @@ angular.module('app')
                     })
 					
 					.state('app.tables.md2', {
-                        url: '/md2',
+                        url: '/CompareWithBolton',
                         templateUrl: 'partials/Personal/MasterDataMaterialBolton.html',
                         resolve: {
                             deps: ['$ocLazyLoad',
                                 function($ocLazyLoad) {
                                     return $ocLazyLoad.load(['js/controllers/Custom/MasterDataBoltonController.js',
-									'js/controllers/Custom/dirPagination.js',
 										'countTo',
                                         'js/controllers/countto.js', 
                                         'js/controllers/vectormap.js', 

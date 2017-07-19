@@ -18,7 +18,11 @@ app.config(['$httpProvider', function ($httpProvider) {
 app.controller('MasterDataController', function($scope, $http, $filter ) {
 	
 	$scope.MysqlRecords;
+	$scope.MysqlRecords;
+	$scope.allMdRecords
 	$scope.formattedDate;
+	$scope.percentage;
+	
 	
 	console.log("--1");
 			    $scope.formattedDate = $filter('date')($scope.DeliveryDate, "yyyy-MM-dd");
@@ -30,14 +34,18 @@ app.controller('MasterDataController', function($scope, $http, $filter ) {
 					console.log(response.data[0][0]);
 					
 					$scope.mdRecordsArray = response.data[0][0];
+					$scope.allMdRecords = response.data[0][0];
 					$scope.MysqlRecords = response.data[0][0].length;
 					$scope.QueryNotMatching = jsonsql.query("select * from json where (Entry2!=Entry3)", response.data[0][0]);
 					$scope.missingRows = $scope.QueryNotMatching.length;
 					console.log($scope.missingRows);
-					
-       	 
+					$scope.percentage = parseFloat(( $scope.missingRows / $scope.MysqlRecords ) * 100).toFixed(1);
+					console.log($scope.percentage);
+
 		        	});
-	
+			
+			
+			$scope.optionsChart = "{ easing: 'easeOutBounce', barColor: 'orange', trackColor: '#f5f5f5', scaleColor: '#eaeaea', lineCap: 'square', lineWidth: 15, size: 130,animate: 1000,percent: 66.7 }"
 	
 	
 	
@@ -51,17 +59,21 @@ app.controller('MasterDataController', function($scope, $http, $filter ) {
 			$scope.filterResult = '';
 			
 			$scope.FilterOnlySynced = function() {
-		        $scope.filterResult = '0';
+				 $scope.mdRecordsArray = $scope.allMdRecords;
+		        $scope.mdRecordsArray = jsonsql.query("select * from json where (Entry2==Entry3)", $scope.mdRecordsArray);
 			  	
 		    }
 			
 			$scope.FilterOnlyNotSynced = function() {
-		        $scope.filterResult = '1';
+				console.log("Filter Not Synced");
+			   $scope.mdRecordsArray = $scope.allMdRecords;
+		       $scope.mdRecordsArray = jsonsql.query("select * from json where (Entry2!=Entry3)", $scope.mdRecordsArray);
 			  	
 		    }
 			
 			$scope.FilterAll = function() {
-		        $scope.filterResult = '';
+
+		        $scope.mdRecordsArray = $scope.allMdRecords;
 			  	
 		    }
 			

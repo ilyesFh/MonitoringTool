@@ -23,9 +23,17 @@ app.controller('MasterDataBoltonController', function($scope, $http, $filter ) {
 	$scope.formattedDate;
 	$scope.percentage;
 	
+	$scope.options = {
+            animate:false,
+            barColor:'#2C3E50',
+            scaleColor:false,
+            lineWidth:20,
+            lineCap:'circle'
+        };
 	
-	console.log("--1");
-			    $scope.formattedDate = $filter('date')($scope.DeliveryDate, "yyyy-MM-dd");
+	$scope.load = function () {
+        console.log("load event detected!");
+		$scope.formattedDate = $filter('date')($scope.DeliveryDate, "yyyy-MM-dd");
 			    console.log($scope.formattedDate);
 		        var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"MDM_Material_Bolton\"  }";
 		        console.log(msgdata);
@@ -41,8 +49,17 @@ app.controller('MasterDataBoltonController', function($scope, $http, $filter ) {
 					console.log($scope.missingRows);
 					$scope.percentage = parseFloat(( $scope.missingRows / $scope.MysqlRecords ) * 100).toFixed(1);
 					console.log($scope.percentage);
-
-		        	});
+					
+					
+					
+					
+					
+					});
+    }
+	
+	
+	
+			    
 			
 			
 			$scope.optionsChart = "{ easing: 'easeOutBounce', barColor: 'orange', trackColor: '#f5f5f5', scaleColor: '#eaeaea', lineCap: 'square', lineWidth: 15, size: 130,animate: 1000,percent: 66.7 }"
@@ -72,6 +89,9 @@ app.controller('MasterDataBoltonController', function($scope, $http, $filter ) {
 		    }
 			
 			$scope.FilterAll = function() {
+				
+				//console.log($('#aa').get(0));
+				//$('#aa').get(0).percent = 90;
 
 		        $scope.mdRecordsArray = $scope.allMdRecords;
 			  	

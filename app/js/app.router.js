@@ -773,7 +773,7 @@ angular.module('app')
                             deps: ['$ocLazyLoad',
                                 function($ocLazyLoad) {
                                     return $ocLazyLoad.load(['js/controllers/Custom/MasterDataController.js',
-									
+										'js/controllers/Custom/dirPagination.js'
 										'countTo',
                                         'js/controllers/countto.js', 
                                         'js/controllers/vectormap.js', 
@@ -795,7 +795,7 @@ angular.module('app')
                             deps: ['$ocLazyLoad',
                                 function($ocLazyLoad) {
                                     return $ocLazyLoad.load(['js/controllers/Custom/MasterDataBoltonController.js',
-									
+										'js/controllers/Custom/dirPagination.js',
 										'countTo',
                                         'js/controllers/countto.js', 
                                         'js/controllers/vectormap.js', 

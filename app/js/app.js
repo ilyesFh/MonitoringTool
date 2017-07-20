@@ -3,6 +3,8 @@
 // Declare app level module which depends on views, and components
 angular.module('app', [
     'ngAnimate',
+//	'dirPagination',
+//	'angularUtils.directives.dirPagination',
 //    'ngCookies',
 //    'ngResource',
     'ngSanitize',

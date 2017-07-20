@@ -44,7 +44,7 @@ app.controller('MasterDataBoltonController', function($scope, $http, $filter ) {
 					$scope.mdRecordsArray = response.data[0][0];
 					$scope.allMdRecords = response.data[0][0];
 					$scope.MysqlRecords = response.data[0][0].length;
-					$scope.QueryNotMatching = jsonsql.query("select * from json where (Entry2!=Entry3)", response.data[0][0]);
+					$scope.QueryNotMatching = jsonsql.query("select * from json where (Entry2==Entry3)", response.data[0][0]);
 					$scope.missingRows = $scope.QueryNotMatching.length;
 					console.log($scope.missingRows);
 					$scope.percentage = parseFloat(( $scope.missingRows / $scope.MysqlRecords ) * 100).toFixed(1);

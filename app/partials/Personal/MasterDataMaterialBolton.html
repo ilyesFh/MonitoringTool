@@ -32,15 +32,15 @@
                                 <i class='fa fa-file-o'></i>
                                 <h2 count-to="{{missingRows}}" value="0" duration="1" class="number_counter"></h2>
                                 <div class="clearfix"></div>
-                                <span>Generated files with completed Records</span>
+                                <span>Generated files with matching count</span>
                             </div>
                         </div>
                     </div>
 					
 					<div class="col-lg-15 col-md-4 col-xs-12 col-sm-6">
 					
-					<div class="col-lg-6 col-xs-12 col-sm-12 col-md-6">
-                                 <div  class="chart"  ui-jq="easyPieChart" ui-options="{ easing: 'easeOutBounce', barColor: 'orange', trackColor: '#f5f5f5', scaleColor: '#eaeaea', lineCap: 'square', lineWidth: 8, size: 130,animate: 1000 }" 
+					<div style="text-align:-webkit-center">
+                                 <div class="chart" ui-jq="easyPieChart" ui-options="{ easing: 'easeOutBounce', barColor: 'orange', trackColor: '#f5f5f5', scaleColor: '#eaeaea', lineCap: 'square', lineWidth: 8, size: 130,animate: 1000 }" 
 										 > 
 										 
 							<!-- <div ui-jq="easyPieChart" class="chart"  ui-options="{ easing: 'easeOutBounce', barColor: 'orange', trackColor: '#f5f5f5', scaleColor: '#eaeaea', lineCap: 'square', lineWidth: 15, size: 130,animate: 1000 }"  data-percent={{percentage}}>{{percentage}}%</div> -->
@@ -49,8 +49,9 @@
                                     <div>
                                         <span class="text-primary percent">{{percentage}}%</span>
                                     </div>
+									
                                 </div>
-                                <h4 class="text-center margin-top-10 margin-bottom-10">Completed Files</h4>
+                                <h4 class="text-center margin-top-10 margin-bottom-10" style  >Matching Count</h4>
                             </div>
 					
                     </div>    

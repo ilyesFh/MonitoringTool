@@ -55,11 +55,16 @@
                     </div>
 					
 					<input type="date" ng-model="DeliveryDate" style="height:25px" />
+					<br></br>
 					<button class="btn btn-primary btn-sm" ng-click="postMessage()"   >Call Web Service</button>
+					<br></br>
+					<br></br>
 					
 					
                 </div>
 				<div class="clearfix"></div>
+				
+				
 				
 				<div style="text-align:-webkit-center">
 				
@@ -70,12 +75,22 @@
                                     <th data-toggle="true">
                                         Source
                                     </th>
+									<th data-toggle="true">
+                                        SO Number
+                                    </th>
                                     <th>
-                                        Sales Order Number
+                                        Plant
                                     </th>
                                     <th data-hide="phone,tablet">
-                                        File Count
+                                        Line Item Number
                                     </th>
+									<th data-hide="phone,tablet">
+                                        Creation Date
+                                    </th>
+									<th data-hide="phone,tablet">
+                                        Boomi Process Time
+                                    </th>
+									
                                     <th data-hide="phone">
                                         Status
                                     </th>
@@ -84,11 +99,15 @@
 							
                             
 							<tbody>
-                                <tr  ng-repeat="x in mdRecordsArray " >
-                                    <td>{{ x.Entry1 }}</td>
-									<td>{{ x.Entry2 }}</td>
+                                <tr  ng-repeat="x in recordsOfToday " >
+                                    <td>{{ x.Entry9 }}</td>
+									<td>{{ x.Entry7 }}</td>
+									<td>{{ x.Entry5 }}</td>
 									<td>{{ x.Entry3 }}</td>
-									<td><span ng-class="{false : 'label label-danger', true : 'label label-success' } [x.Entry2==x.Entry3] " >{{ (x.Entry2!=x.Entry3) ? "Not Synced" : "Synced" }}</span></td>
+									<td>{{ x.Entry2 }}</td>
+									<td>{{ x.Entry1 }}</td>
+									<td>{{ x.Entry8 }}</td>
+									
 
 									
                                 </tr>
@@ -107,7 +126,9 @@
 				
 				
 				</div>
-				
+				<div class="clearfix"></div>
+				<div class="clearfix"></div>
+				<div class="clearfix"></div>
 				<div class="clearfix"></div>
 				<div class="row">
                     <div  class="col-md-8 col-sm-12 col-xs-12 col-md-offset-2"  >

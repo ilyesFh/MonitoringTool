@@ -248,7 +248,7 @@
 		
 		$scope.selectedSystem = "Select Bolton";
 		$scope.showChart = false;
-		$scope.justString = "azezeazez"
+		$scope.recordsOfToday;
 		
 		$scope.st1 = 2
 		$scope.st2 = 6
@@ -273,6 +273,7 @@
 		        var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=',msgdata ).
 		        then(function (response) {
 					console.log(response.data[0][0]);
+					$scope.recordsOfToday = response.data[0][0] ; 
 					$scope.resultOfToday = jsonsql.query("select * from json where (Entry2=='"+$scope.selectedSystem+"')", response.data[0][0]);
 					console.log($scope.resultOfToday);
 					
@@ -297,7 +298,7 @@
 			    }
 				
 				
-				$scope.labels = ['Status 1', 'Status 2', 'Status 3' , 'Status 4', 'Status 5', 'Status 6' , 'Status 7'];
+				$scope.labels = ['In Progress', 'treated', 'Error' , 'Sent successfully to SAP', 'Error idoc', 'Released in SAP' , 'Error After SAP'];
 				$scope.data = [$scope.st1, $scope.st2, $scope.st3 , $scope.st4 ,$scope.st5 , $scope.st6 , $scope.st7];
 				$scope.colours = [{ // grey
 						fillColor: "rgba(255,110,64,1)",

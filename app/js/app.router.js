@@ -705,7 +705,67 @@ angular.module('app')
                         }
                     })
 					
+					.state('app.tables.md1', {
+                        url: '/md1',
+                        templateUrl: 'partials/Personal/MasterDataMaterial.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load('smart-table').then(
+                                        function() {
+                                            return $ocLazyLoad.load('js/controllers/Custom/MasterDataController.js'
+											); 
+                                        }
+										
+                                    )
+									.then(
+                                          function(){
+                                               return $ocLazyLoad.load('js/controllers/Custom/dirPagination.js');
+                                            }
+                                          )
+										  .then(
+                                          function(){
+                                               return $ocLazyLoad.load('countTo');
+                                            }
+                                          )
+									.then(
+                                          function(){
+                                               return $ocLazyLoad.load('js/controllers/countto.js');
+                                            }
+                                          )
+										  .then(
+                                          function(){
+                                               return $ocLazyLoad.load('js/controllers/vectormap.js');
+                                            }
+                                          )
+										  .then(
+                                          function(){
+                                               return $ocLazyLoad.load('js/directives/ui-todowidget.js');
+                                            }
+                                          )
+										  .then(
+                                          function(){
+                                               return $ocLazyLoad.load('js/controllers/messages-widget.js');
+                                            }
+                                          )
+										  .then(
+                                          function(){
+                                               return $ocLazyLoad.load('js/controllers/Custom/jsonsql-0.1.js');
+                                            }
+                                          )
+										  .then(
+                                          function(){
+                                               return $ocLazyLoad.load('../bower_components/font-awesome/css/font-awesome.css');
+                                            }
+                                          )
+									;
+                                }
+
+                            ]
+                        }
+                    })
 					
+					/*
 					.state('app.tables.md1', {
                         url: '/md1',
                         templateUrl: 'partials/Personal/MasterDataMaterial.html',
@@ -713,7 +773,7 @@ angular.module('app')
                             deps: ['$ocLazyLoad',
                                 function($ocLazyLoad) {
                                     return $ocLazyLoad.load(['js/controllers/Custom/MasterDataController.js',
-									'js/controllers/Custom/dirPagination.js',
+									
 										'countTo',
                                         'js/controllers/countto.js', 
                                         'js/controllers/vectormap.js', 
@@ -726,6 +786,7 @@ angular.module('app')
                             ]
                         }
                     })
+					*/
 					
 					.state('app.tables.md2', {
                         url: '/CompareWithBolton',
@@ -734,7 +795,7 @@ angular.module('app')
                             deps: ['$ocLazyLoad',
                                 function($ocLazyLoad) {
                                     return $ocLazyLoad.load(['js/controllers/Custom/MasterDataBoltonController.js',
-									'js/controllers/Custom/dirPagination.js',
+									
 										'countTo',
                                         'js/controllers/countto.js', 
                                         'js/controllers/vectormap.js', 

@@ -1,0 +1,215 @@
+<div class='content-wrapper' ng-init="app.settings.pagetitle = 'Compare MYSQL & Bolton';">
+    <div class="col-lg-12" ng-controller="MasterDataBoltonController" ng-init='load()' >
+        
+					
+					
+					
+					<div class="col-lg-12">
+        <section class="box ">
+            <header class="panel_header">
+                <h2 class="title pull-left">Master Data - MySQL & Bolton</h2>
+                <div class="actions panel_actions pull-right">
+                    <i class="box_toggle material-icons">expand_more</i>
+                    
+                </div>
+            </header>
+            <div class="content-body padding-bottom-0">
+                <div class="col-lg-15 col-md-4 col-xs-12 col-sm-6">
+                        <div class="tile-counter bg-primary">
+                            <div class="content">
+                                <i class='fa fa-database icon-lg'></i>
+                                <h2 count-to="{{MysqlRecords}}" value="0" duration="1" class="number_counter"></h2>
+                                <div class="clearfix"></div>
+                                <span>Number of Interfaces</span>
+                            </div>
+                        </div>
+                    </div>
+					
+					
+                    <div class="col-lg-15 col-md-4 col-xs-2 col-sm-6">
+                        <div class="tile-counter bg-primary">
+                            <div class="content">
+                                <i class='fa fa-file-o'></i>
+                                <h2 count-to="{{missingRows}}" value="0" duration="1" class="number_counter"></h2>
+                                <div class="clearfix"></div>
+                                <span>Generated files with matching count</span>
+                            </div>
+                        </div>
+                    </div>
+					
+					<div class="col-lg-15 col-md-4 col-xs-12 col-sm-6">
+					
+					<div style="text-align:-webkit-center">
+                                 <div class="chart" ui-jq="easyPieChart" ui-options="{ easing: 'easeOutBounce', barColor: 'orange', trackColor: '#f5f5f5', scaleColor: '#eaeaea', lineCap: 'square', lineWidth: 8, size: 130,animate: 1000 }" 
+										 > 
+										 
+							<!-- <div ui-jq="easyPieChart" class="chart"  ui-options="{ easing: 'easeOutBounce', barColor: 'orange', trackColor: '#f5f5f5', scaleColor: '#eaeaea', lineCap: 'square', lineWidth: 15, size: 130,animate: 1000 }"  data-percent={{percentage}}>{{percentage}}%</div> -->
+								<!-- data-percent={{percentage}} -->
+								<!-- ui-options="{ easing: 'easeOutBounce', barColor: 'orange', trackColor: '#f5f5f5', scaleColor: '#eaeaea', lineCap: 'square', lineWidth: 15, size: 130,animate: 1000,percent: {{percentage}} }" -->
+                                    <div>
+                                        <span class="text-primary percent">{{percentage}}%</span>
+                                    </div>
+									
+                                </div>
+                                <h4 class="text-center margin-top-10 margin-bottom-10"  >Matching Count</h4>
+                            </div>
+					
+                    </div>    
+						
+					
+                    <div class="col-lg-6 col-xs-12 col-sm-12 col-md-6">         
+                            </div>
+					
+                    <div class="clearfix"></div>
+                    
+                    
+                </div>
+            </div>
+        </section>
+    
+	
+
+	
+	<div class="col-lg-12">
+        <section class="box ">
+            <header class="panel_header">
+                <h2 class="title pull-left">Master Data</h2>
+                <div class="actions panel_actions pull-right">
+                    <i class="box_toggle material-icons">expand_more</i>
+                    
+                </div>
+            </header>
+            <div class="content-body padding-bottom-15">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+		
+			<div class="content-body padding-bottom-0">
+                <div class="row">
+				
+                    <div class="col-md-9 col-sm-12 col-xs-12">
+                        <input id="filter" type="text" class="form-control" placeholder="Search" />
+						
+						<!-- <input type="text" ng-model="search" class="form-control" placeholder="Search"> -->
+						
+					</div>
+					
+					<div class="btn-group margin-bottom-10 margin-right-15">
+                       <label class="btn btn-primary" ng-click="FilterAll()" >All</label>
+                       <label class="btn btn-success" ng-click="FilterOnlySynced()"  >Synced</label>
+                       <label class="btn btn-danger" ng-click="FilterOnlyNotSynced()" >Not Synced</label>
+                    </div>
+                    
+					
+                    <div class="clearfix"></div>
+					<br>
+					
+                    <div class="col-md-12 col-sm-12 col-xs-12 table-responsive">
+                        
+						<!--
+						<table class="table table-striped" ui-jq="footable" data-filter="#filter" data-page-size="10" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th data-toggle="true">
+                                        Interface Name
+                                    </th>
+                                    <th>
+                                        Records in MYSQL
+                                    </th>
+                                    <th data-hide="phone,tablet">
+                                        File Count
+                                    </th>
+                                    <th data-hide="phone">
+                                        Status
+                                    </th>
+                                </tr>
+                            </thead>
+							
+                            
+							<tbody>
+                                <tr  ng-repeat="x in mdRecordsArray " >
+                                    <td>{{ x.Entry1 }}</td>
+									<td>{{ x.Entry2 }}</td>
+									<td>{{ x.Entry3 }}</td>
+									<td><span ng-class="{false : 'label label-danger', true : 'label label-success' } [x.Entry2==x.Entry3] " >{{ (x.Entry2!=x.Entry3) ? "Not Synced" : "Synced" }}</span></td>
+
+									
+                                </tr>
+                                </tr>
+                                
+                            </tbody>
+							
+                            <tfoot class="hide-if-no-paging">
+                                <tr>
+                                    <td colspan="10" class="text-center">
+                                        <ul class="pagination"></ul>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+						-->
+						
+						<table class="table table-striped" ui-jq="footable" data-filter="#filter" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th data-toggle="true">
+                                        Interface Name
+                                    </th>
+                                    <th>
+                                        Records in MYSQL
+                                    </th>
+                                    <th data-hide="phone,tablet">
+                                        File Count
+                                    </th>
+                                    <th data-hide="phone">
+                                        Status
+                                    </th>
+                                </tr>
+                            </thead>
+							
+                            
+							<tbody>
+                                <tr    dir-paginate="x in mdRecordsArray | itemsPerPage:5" >
+                                    <td>{{ x.Entry1 }}</td>
+									<td>{{ x.Entry2 }}</td>
+									<td>{{ x.Entry3 }}</td>
+									<td><span ng-class="{false : 'label label-danger', true : 'label label-success' } [x.Entry2==x.Entry3] " >{{ (x.Entry2!=x.Entry3) ? "Not Synced" : "Synced" }}</span></td>
+
+									
+                                </tr>
+                                </tr>
+                                
+                            </tbody>
+							
+                            
+                        </table>
+						
+						<div>
+						<dir-pagination-controls
+							   max-size="5"
+							   direction-links="true"
+							   boundary-links="true"
+								 >
+							</dir-pagination-controls>
+						
+						</div>
+                    </div>
+					
+					
+            </div>    
+            </div>
+		
+						
+						
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+	</div>
+</div>
+					
+					
+                    
+             
+</div>
+</div>	

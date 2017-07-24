@@ -30,7 +30,7 @@ app.controller('MasterDataController', function($scope, $http, $filter ) {
 			    $scope.formattedDate = $filter('date')($scope.DeliveryDate, "yyyy-MM-dd");
 			    console.log($scope.formattedDate);
 				$scope.formattedDate = "20170721 000000";
-		        var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate +  "\", \"msgType\":\"/CCEJ/DEPMAS_FULL\"   , \"Prefix\":\"MDM\"  }";
+		        var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate +  "\", \"msgType\":\"/CCEJ/DEBMAS_FULL\"   , \"Prefix\":\"MDM\"  }";
 		        console.log(msgdata);
 		        var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=',msgdata ).
 		        then(function (response) {

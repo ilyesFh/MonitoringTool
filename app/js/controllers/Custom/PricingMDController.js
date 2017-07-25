@@ -33,9 +33,9 @@ app.controller('PricingController', function($scope, $http, $filter ) {
 	
 	$scope.load = function () {
         console.log("load event detected!");
-		$scope.formattedDate = $filter('date')($scope.DeliveryDate, "yyyy-MM-dd");
+		$scope.formattedDate = "20170725 000000";
 			    console.log($scope.formattedDate);
-		        var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"MDM_Material_Bolton\"  }";
+		        var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"Pricing\"  }";
 		        console.log(msgdata);
 		        var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=',msgdata ).
 		        then(function (response) {

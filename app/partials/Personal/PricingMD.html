@@ -155,10 +155,10 @@
                                         Interface Name
                                     </th>
                                     <th>
-                                        Records in MYSQL
+                                        File Count
                                     </th>
                                     <th data-hide="phone,tablet">
-                                        File Count
+                                        Records in MYSQL
                                     </th>
                                     <th data-hide="phone">
                                         Status
@@ -168,7 +168,7 @@
 							
                             
 							<tbody>
-                                <tr    dir-paginate="x in mdRecordsArray | itemsPerPage:7" >
+                                <tr    dir-paginate="x in mdRecordsArray | itemsPerPage:10" >
                                     <td>{{ x.Entry1 }}</td>
 									<td>{{ x.Entry2 }}</td>
 									<td>{{ x.Entry3 }}</td>
@@ -185,7 +185,7 @@
 						
 						<div>
 						<dir-pagination-controls
-							   max-size="7"
+							   max-size="15"
 							   direction-links="true"
 							   boundary-links="true"
 								 >

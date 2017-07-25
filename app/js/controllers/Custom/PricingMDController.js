@@ -64,6 +64,14 @@ app.controller('PricingController', function($scope, $http, $filter ) {
     }
 	
 	
+			$scope.CalculateLasSynch = function () {
+				
+				
+				
+			}
+	
+	
+	
 	
 			    
 			

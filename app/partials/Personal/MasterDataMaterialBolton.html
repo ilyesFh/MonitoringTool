@@ -168,7 +168,7 @@
 							
                             
 							<tbody>
-                                <tr    dir-paginate="x in mdRecordsArray | itemsPerPage:5" >
+                                <tr    dir-paginate="x in mdRecordsArray | itemsPerPage:10" >
                                     <td>{{ x.Entry1 }}</td>
 									<td>{{ x.Entry2 }}</td>
 									<td>{{ x.Entry3 }}</td>
@@ -185,7 +185,7 @@
 						
 						<div>
 						<dir-pagination-controls
-							   max-size="5"
+							   max-size="10"
 							   direction-links="true"
 							   boundary-links="true"
 								 >

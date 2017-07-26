@@ -113,13 +113,13 @@
                                         Idoc Number
                                     </th>
                                     <th>
-                                        Basic Type
+                                        Type
                                     </th>
                                     <th data-hide="phone,tablet">
                                         Date
                                     </th>
                                     <th data-hide="phone,tablet" >
-                                        MATNR
+                                        Customer 
                                     </th>
                                     <th data-hide="phone">
                                         Status
@@ -129,7 +129,7 @@
                             <tbody>
                                 <tr dir-paginate="x in mdRecordsArray|filter:{ Entry5 : filterResult }|itemsPerPage:10" >
                                     <td>{{ x.Entry2 }}</td>
-									<td>{{ x.Entry3 }}</td>
+									<td>{{ x.Entry3 == "/CCEJ/DEBMAS_FULL" ? "Customer" : x.Entry3 }}</td> 
 									<td>{{ x.Entry1 }}</td>
 									<td>{{ x.Entry4 }}</td>
 									<td><span ng-class="{1 : 'label label-danger', 0 : 'label label-success' } [x.Entry5] " >{{ x.Entry5 == 1 ? "Not Synced" : "Synced" }}</span></td>

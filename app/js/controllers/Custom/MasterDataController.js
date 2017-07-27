@@ -114,7 +114,18 @@ app.controller('MasterDataController', function($scope, $http, $filter ) {
 			  	
 		    }
 		  
+		  $scope.exportData = function () {
+				 
+				 $scope.queryExport = '';
+			if($scope.filterResult == '')
+				$scope.queryExport = 'SELECT Entry2 as IDoc_Number, Entry3 as IDoc_Type, Entry1 as Date, case when Entry5 = \'0\' then \'Synced\' else \'Not Synced\' end as Status INTO XLSX("Report_All.xlsx",{}) FROM ?';
+			else
+				$scope.queryExport = 'SELECT Entry2 as IDoc_Number, Entry3 as IDoc_Type, Entry1 as Date, case when Entry5 = \'0\' then \'Synced\' else \'Not Synced\' end as Status INTO XLSX("Report_Filtered.xlsx",{}) FROM ? where Entry5 = \''+$scope.filterResult+'\'';
 		  
+				 
+				 console.log($scope.queryExport);
+      alasql($scope.queryExport,[$scope.mdRecordsArray]);
+  };
 			
 		  
 			

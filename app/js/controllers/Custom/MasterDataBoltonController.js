@@ -112,7 +112,13 @@ app.controller('MasterDataBoltonController', function($scope, $http, $filter ) {
 			
 			
 		 
-		  
+		  $scope.exportData = function () {
+				 
+				$scope.queryExport = 'SELECT Entry1 as Interface_Name, Entry2 as File_Count, Entry3 as Records_in_MYSQL, case when Entry2 = Entry3 then \'Synced\' else \'Not Synced\' end as Status INTO XLSX("Report_All.xlsx",{}) FROM ?';
+			
+				 console.log($scope.queryExport);
+      alasql($scope.queryExport,[$scope.mdRecordsArray]);
+  };
 		  
 			
 		  

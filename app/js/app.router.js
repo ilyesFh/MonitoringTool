@@ -705,6 +705,7 @@ angular.module('app')
                         }
                     })
 					
+					/*
 					.state('app.tables.md1', {
                         url: '/md1',
                         templateUrl: 'partials/Personal/MasterDataMaterial.html',
@@ -765,7 +766,9 @@ angular.module('app')
                         }
                     })
 					
-					/*
+					*/
+					
+					
 					.state('app.tables.md1', {
                         url: '/md1',
                         templateUrl: 'partials/Personal/MasterDataMaterial.html',
@@ -773,7 +776,7 @@ angular.module('app')
                             deps: ['$ocLazyLoad',
                                 function($ocLazyLoad) {
                                     return $ocLazyLoad.load(['js/controllers/Custom/MasterDataController.js',
-										'js/controllers/Custom/dirPagination.js'
+										
 										'countTo',
                                         'js/controllers/countto.js', 
                                         'js/controllers/vectormap.js', 
@@ -786,7 +789,7 @@ angular.module('app')
                             ]
                         }
                     })
-					*/
+					
 					
 					
 					
@@ -799,7 +802,7 @@ angular.module('app')
                             deps: ['$ocLazyLoad',
                                 function($ocLazyLoad) {
                                     return $ocLazyLoad.load(['js/controllers/Custom/MasterDataBoltonController.js',
-										'js/controllers/Custom/dirPagination.js',
+										
 										'countTo',
                                         'js/controllers/countto.js', 
                                         'js/controllers/vectormap.js', 
@@ -820,7 +823,7 @@ angular.module('app')
                             deps: ['$ocLazyLoad',
                                 function($ocLazyLoad) {
                                     return $ocLazyLoad.load(['js/controllers/Custom/CustomerMDController.js',
-										'js/controllers/Custom/dirPagination.js',
+										
 										'countTo',
                                         'js/controllers/countto.js', 
                                         'js/controllers/vectormap.js', 
@@ -841,7 +844,7 @@ angular.module('app')
                             deps: ['$ocLazyLoad',
                                 function($ocLazyLoad) {
                                     return $ocLazyLoad.load(['js/controllers/Custom/CustomerMDBoltonController.js',
-										'js/controllers/Custom/dirPagination.js',
+										
 										'countTo',
                                         'js/controllers/countto.js', 
                                         'js/controllers/vectormap.js', 
@@ -862,7 +865,7 @@ angular.module('app')
                             deps: ['$ocLazyLoad',
                                 function($ocLazyLoad) {
                                     return $ocLazyLoad.load(['js/controllers/Custom/PricingMDController.js',
-										'js/controllers/Custom/dirPagination.js',
+										
 										'countTo',
                                         'js/controllers/countto.js', 
                                         'js/controllers/vectormap.js', 

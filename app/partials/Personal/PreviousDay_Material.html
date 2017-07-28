@@ -26,7 +26,7 @@
                                 <div style="display:inline-block;">
                                     <uib-datepicker ng-model="todayDate" max-date="maxDate" show-weeks="true"  ng-change="CallWebService()" class="well well-sm" custom-class="getDayClass(date, mode)"></uib-datepicker>
                                 </div>
-                                <pre>Selected date is: <em>{{todayDate | date:'fullDate' }}</em></pre>
+                               <!-- <pre>Selected date is: <em>{{todayDate | date:'fullDate' }}</em></pre> -->
                             </div>
              </div>
 			
@@ -54,7 +54,7 @@
                         </div>
                     </div>
 					
-					<div class="col-lg-15 col-md-4 col-xs-12 col-sm-6">
+					<div class="col-lg-15 col-md-8 col-xs-12 col-sm-6">
 					
 					<div style="text-align:-webkit-center">
                                 <div class="chart" ui-jq="easyPieChart" ui-options="{

@@ -27,9 +27,8 @@ app.controller('CustomerController', function($scope, $http, $filter ) {
 	$scope.formattedDate;
 	
 	console.log("--1");
-			    $scope.formattedDate = $filter('date')($scope.DeliveryDate, "yyyy-MM-dd");
-			    console.log($scope.formattedDate);
-				$scope.formattedDate = "20170721 000000";
+			    $scope.todayDate = new Date();
+			    $scope.formattedDate = $filter('date')($scope.todayDate, "yyyyMMdd");
 		        var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate +  "\", \"msgType\":\"/CCEJ/DEBMAS_FULL\"   , \"Prefix\":\"MDM\"  }";
 		        console.log(msgdata);
 		        var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=',msgdata ).

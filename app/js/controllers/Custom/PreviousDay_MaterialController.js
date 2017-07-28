@@ -15,7 +15,7 @@ app.config(['$httpProvider', function ($httpProvider) {
 	    
 	}]); 
 
-app.controller('MasterDataController', function($scope, $http, $filter , uibDateParser ) {
+app.controller('PreviousDayMaterialController', function($scope, $http, $filter , uibDateParser ) {
 	
 	$scope.message = "Marouen" ; 
 	$scope.fieldValue;

@@ -14,7 +14,7 @@ app.config(['$httpProvider', function ($httpProvider) {
 		}
 	]);
 
-app.controller('CustomerController', function ($scope, $http, $filter) {
+app.controller('PreviousDayCustomerController', function ($scope, $http, $filter, uibDateParser) {
 
 	$scope.message = "Marouen";
 	$scope.fieldValue;
@@ -24,39 +24,40 @@ app.controller('CustomerController', function ($scope, $http, $filter) {
 	$scope.CreationEndDate;
 	$scope.syncResultBool = false;
 	$scope.formattedDate;
-
-	console.log("--1");
-	$scope.todayDate = new Date();
-	$scope.formattedDate = $filter('date')($scope.todayDate, "yyyyMMdd");
-	var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"msgType\":\"/CCEJ/DEBMAS_FULL\"   , \"Prefix\":\"MDM\"  }";
-	console.log(msgdata);
-	var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgdata).
-		then(function (response) {
-			console.log("");
-			console.log(response);
-			console.log(response.data);
-
-			$scope.mdRecordsArray = response.data[0][0];
-			console.log($scope.mdRecordsArray);
-
-			$scope.ExpectedRecords = response.data[0][0].length;
-
-			$scope.QueryInsertedRow = jsonsql.query("select * from json where (Entry5=='0')", response.data[0][0]);
-			$scope.insertedRow = $scope.QueryInsertedRow.length;
-
-			$scope.recordSynced = parseFloat(($scope.insertedRow / $scope.ExpectedRecords) * 100).toFixed(1);
-			console.log($scope.recordSynced);
-
-			//update instance after 1 sec
-			setTimeout(function () {
-				$('.chart').data('easyPieChart').update($scope.recordSynced);
-			}, 1000);
-
-		});
+	$scope.showDiv = false;
+	$scope.maxDate = new Date();
 
 	// Post Web CALL
-	$scope.postMessage = function () {
-		//var msg = document.getElementById('message').value;
+	$scope.CallWebService = function () {
+
+		$scope.showDiv = true;
+
+		$scope.formattedDate = $filter('date')($scope.todayDate, "yyyyMMdd");
+		var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"msgType\":\"/CCEJ/DEBMAS_FULL\"   , \"Prefix\":\"MDM\"  }";
+		console.log(msgdata);
+		var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgdata).
+			then(function (response) {
+				console.log("");
+				console.log(response);
+				console.log(response.data);
+
+				$scope.mdRecordsArray = response.data[0][0];
+				console.log($scope.mdRecordsArray);
+
+				$scope.ExpectedRecords = response.data[0][0].length;
+
+				$scope.QueryInsertedRow = jsonsql.query("select * from json where (Entry5=='0')", response.data[0][0]);
+				$scope.insertedRow = $scope.QueryInsertedRow.length;
+
+				$scope.recordSynced = parseFloat(($scope.insertedRow / $scope.ExpectedRecords) * 100).toFixed(1);
+				console.log($scope.recordSynced);
+
+				//update instance after 1 sec
+				setTimeout(function () {
+					$('.chart').data('easyPieChart').update($scope.recordSynced);
+				}, 1000);
+
+			});
 
 	}
 
@@ -76,13 +77,6 @@ app.controller('CustomerController', function ($scope, $http, $filter) {
 		$scope.filterResult = '';
 
 	}
-
-	/*
-	jQuery.get('http://127.0.0.1:8080/app/testText.dat', function(data) {
-	$scope.lines = data.split("\n").length;
-	console.log($scope.lines)
-	});
-	 */
 
 	$scope.exportData = function () {
 

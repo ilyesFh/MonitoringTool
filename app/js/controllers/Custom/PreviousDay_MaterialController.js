@@ -28,16 +28,7 @@ app.controller('PreviousDayMaterialController', function($scope, $http, $filter 
 	$scope.showDiv = false;
 	$scope.maxDate = new Date();
 	
-	
-	
-	
-				   
-				   
-		    
-	
-	
-	
-	
+
 		  
 		  // Post Web CALL
 		  $scope.CallWebService = function() {

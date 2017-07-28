@@ -811,6 +811,27 @@ angular.module('app')
                         }
                     })
 					
+					.state('app.tables.CustomerPreviousDay', {
+                        url: '/archive_Cstomer',
+                        templateUrl: 'partials/Personal/PreviousDay_Customer.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['js/controllers/Custom/PreviousDay_CustomerController.js',
+										
+										'countTo',
+                                        'js/controllers/countto.js', 
+                                        'js/controllers/vectormap.js', 
+                                        'js/directives/ui-todowidget.js', 
+                                        'js/controllers/messages-widget.js',
+										'js/controllers/Custom/jsonsql-0.1.js',
+                                        '../bower_components/font-awesome/css/font-awesome.css'
+                                    ]);
+                                }
+                            ]
+                        }
+                    })
+					
 					
 					
 					

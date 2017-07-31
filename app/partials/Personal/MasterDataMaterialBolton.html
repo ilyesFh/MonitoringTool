@@ -166,19 +166,25 @@
 														<th data-hide="phone">
                                         Status
 														</th>
+														
+														<th data-hide="phone">
+                                        Details
+														</th>
 													</tr>
 												</thead>
 
 
 												<tbody>
-													<tr    dir-paginate="x in mdRecordsArray | itemsPerPage:10" ng-click="openDetails(x)" data-user-id="{{x.Entry1}}">
+													<tr    dir-paginate="x in mdRecordsArray | itemsPerPage:10"  data-user-id="{{x.Entry1}}">
 														<td>{{ x.Entry1 }}</td>
 														<td>{{ x.Entry2 }}</td>
 														<td>{{ x.Entry3 }}</td>
 														<td>
 															<span ng-class="{false : 'label label-danger', true : 'label label-success' } [x.Entry2==x.Entry3] " >{{ (x.Entry2!=x.Entry3) ? "Not Synced" : "Synced" }}</span>
 														</td>
-
+														<td>
+													
+														<a ng-show="x.Entry2!=x.Entry3" class="btn-circle btn-sm pull-right btn-primary" ng-click="openDetails(x)" ><i class='fa fa-search-plus icon-4x' /> </td>
 
 													</tr>
 												</tr>

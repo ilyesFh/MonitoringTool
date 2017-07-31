@@ -835,6 +835,8 @@ angular.module('app')
 					
 					
 					
+					
+					
 					.state('app.tables.md2', {
                         url: '/CompareWithBolton',
                         templateUrl: 'partials/Personal/MasterDataMaterialBolton.html',
@@ -855,6 +857,29 @@ angular.module('app')
                             ]
                         }
                     })
+					
+					.state('app.tables.ErrorDetails', {
+                        url: '/Details/:id',
+                        templateUrl: 'partials/Personal/Error_Bolton.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['js/controllers/Custom/MasterDataBoltonController.js',
+										
+										'countTo',
+                                        'js/controllers/countto.js', 
+                                        'js/controllers/vectormap.js', 
+                                        'js/directives/ui-todowidget.js', 
+                                        'js/controllers/messages-widget.js',
+										'js/controllers/Custom/jsonsql-0.1.js',
+                                        '../bower_components/font-awesome/css/font-awesome.css'
+                                    ]);
+                                }
+                            ]
+                        }
+                    })
+					
+					
 					
 					.state('app.tables.customer1', {
                         url: '/Customer1',

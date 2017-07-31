@@ -173,7 +173,7 @@
 
 
 												<tbody>
-													<tr    dir-paginate="x in mdRecordsArray | itemsPerPage:10 | filter: filterText "  data-user-id="{{x.Entry1}}">
+													<tr    dir-paginate="x in mdRecordsArray | filter: filterText | itemsPerPage:10  "  data-user-id="{{x.Entry1}}">
 														<td>{{ x.Entry1 }}</td>
 														<td>{{ x.Entry2 }}</td>
 														<td>{{ x.Entry3 }}</td>

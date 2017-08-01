@@ -278,15 +278,15 @@
 					console.log($scope.resultOfToday);
 					
 					
+				$scope.st0 = jsonsql.query("select * from json where (Entry8=='0')", response.data[0][0]).length;
 				$scope.st1 = jsonsql.query("select * from json where (Entry8=='1')", response.data[0][0]).length;
 				$scope.st2 = jsonsql.query("select * from json where (Entry8=='2')", response.data[0][0]).length;
 				$scope.st3 = jsonsql.query("select * from json where (Entry8=='3')", response.data[0][0]).length;
 				$scope.st4 = jsonsql.query("select * from json where (Entry8=='4')", response.data[0][0]).length;
 				$scope.st5 = jsonsql.query("select * from json where (Entry8=='5')", response.data[0][0]).length;
 				$scope.st6 = jsonsql.query("select * from json where (Entry8=='6')", response.data[0][0]).length;
-				$scope.st7 = jsonsql.query("select * from json where (Entry8=='7')", response.data[0][0]).length;
-				console.log($scope.st1 , $scope.st2 ,$scope.st3 , $scope.st4 ,$scope.st5 ,$scope.st6 , $scope.st7);	
-				var totalSalesO = $scope.st1 + $scope.st2 +$scope.st3 + $scope.st4 +$scope.st5 +$scope.st6 + $scope.st7
+				console.log($scope.st0 , $scope.st1 ,$scope.st2 , $scope.st3 ,$scope.st4 ,$scope.st5 , $scope.st6);	
+				var totalSalesO = $scope.st0 + $scope.st1 +$scope.st2 + $scope.st3 +$scope.st4 +$scope.st5 + $scope.st6
 				
 				$scope.myOptions = {
 			       options: {
@@ -298,8 +298,8 @@
 			    }
 				
 				
-				$scope.labels = ['In Progress', 'treated', 'Error' , 'Sent successfully to SAP', 'Error idoc', 'Released in SAP' , 'Error After SAP'];
-				$scope.data = [$scope.st1, $scope.st2, $scope.st3 , $scope.st4 ,$scope.st5 , $scope.st6 , $scope.st7];
+				$scope.labels = ['Created In Bolton', 'In Progress', 'Sent To SAP' , 'Error-Sent To SAP', 'Processed', 'Not Processed' , 'Idoc Released'];
+				$scope.data = [$scope.st0, $scope.st1, $scope.st2 , $scope.st3 ,$scope.st4 , $scope.st5 , $scope.st6];
 				$scope.colours = [{ // grey
 						fillColor: "rgba(255,110,64,1)",
 						strokeColor: "rgba(255,110,64,1.0)",

@@ -1,104 +1,189 @@
-(function() {
-    'use strict';
+app.config(['$httpProvider', function ($httpProvider) {
+			//Reset headers to avoid OPTIONS request (aka preflight)
 
-    
+			$httpProvider.defaults.headers.common = {};
+			$httpProvider.defaults.headers.post = {};
+			$httpProvider.defaults.headers.put = {};
+			$httpProvider.defaults.headers.patch = {};
+			$httpProvider.defaults.headers.prototype = {};
 
-    app.controller('DataTablesCtrl', function($scope , $http ,  $filter , $timeout) {
-		
-		
-		
-		
-		
+			//$httpProvider.defaults.headers['Access-Control-Allow-Origin'] = '*'
+			//$httpProvider.defaults.headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS, PUT'
+			//$httpProvider.defaults.headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept'
 
-		$scope.postMessage = function() {
-			
-			console.log("-- Begin Error Chart");
-				$scope.formattedDate = $filter('date')($scope.DeliveryDate, "yyyy-MM-dd");
-			    console.log($scope.formattedDate);
-		        var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"SalesOrderOfToday\"  }";		        
-		        console.log(msgdata);
-				console.log($scope.selectedSystem);
-
-		        var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=',msgdata ).
-		        then(function (response) {
-					console.log(response.data[0][0]);
-					
-					});
-
-		
 		}
+	]);
 
+app.controller('TruckStockController', function ($scope, $http, $filter , $state) {
+
+	$scope.TodayDate = new Date();
+	$scope.maxDate = new Date();
+
+	$scope.options = {
+		animate: false,
+		barColor: '#2C3E50',
+		scaleColor: false,
+		lineWidth: 20,
+		lineCap: 'circle'
+	};
+
+	$scope.load = function () {
+		console.log("load event detected!");
+		$scope.formattedDate = $filter('date')($scope.TodayDate, "yyyyMM");
+		//$scope.formattedDate = 201705;
+		console.log($scope.formattedDate);
+		var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"TruckStock\"  }";
+		console.log(msgdata);
+		var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgdata).
+			then(function (response) {
+				console.log(response.data[0][0]);
+
+				$scope.allMdRecords = response.data[0][0];
+				$scope.truckStockList = response.data[0][0];
+				
+
+			});
+	}
+
+	$scope.optionsChart = "{ easing: 'easeOutBounce', barColor: 'orange', trackColor: '#f5f5f5', scaleColor: '#eaeaea', lineCap: 'square', lineWidth: 15, size: 130,animate: 1000,percent: 66.7 }"
+
+		// Post Web CALL
+		$scope.postMessage = function () {
+		//var msg = document.getElementById('message').value;
+
+	}
+
+	$scope.filterResult = '';
+
+	$scope.FilterOnlyCorrected = function () {
+		$scope.truckStockList = $scope.allMdRecords;
+		$scope.truckStockList = jsonsql.query("select * from json where (Entry6>0)", $scope.truckStockList);
+
+	}
+
+	$scope.FilterOnlyNotCorrected = function () {
+		$scope.truckStockList = $scope.allMdRecords;
+		$scope.truckStockList = jsonsql.query("select * from json where (Entry6==0)", $scope.truckStockList);
+
+	}
+
+	$scope.FilterAll = function () {
+		$scope.truckStockList = $scope.allMdRecords;
+
+	}
+
+	/*
+	jQuery.get('http://127.0.0.1:8080/app/testText.dat', function(data) {
+	$scope.lines = data.split("\n").length;
+	console.log($scope.lines)
+	});
+	 */
+
+	$scope.exportData = function () {
+
+		$scope.queryExport = 'SELECT Entry1 as Date, Entry2 as Plant_JW71, Entry3 as File_JW64, case when Entry6 = 0 then \'No Correction\' else \'Corrected\' end as Status INTO XLSX("Report_All.xlsx",{}) FROM ?';
+
+		console.log($scope.queryExport);
+		alasql($scope.queryExport, [$scope.truckStockList]);
+	};
+	
+	
+	$scope.getMonth = function () {
+
+		console.log($scope.dt);
+		$scope.formattedDate = $filter('date')($scope.dt, "yyyyMM");
+		console.log($scope.formattedDate);
+		var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"TruckStock\"  }";
+		console.log(msgdata);
+		var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgdata).
+			then(function (response) {
+				console.log(response.data[0][0]);
+
+				$scope.allMdRecords = response.data[0][0];
+				$scope.truckStockList = response.data[0][0];
+				
+
+			});
 		
-		console.log("-- Begin Error Chart");
-		$scope.formattedDate = $filter('date')($scope.DeliveryDate, "yyyy-MM-dd");
-			    console.log($scope.formattedDate);
-		        var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"SalesOrderOfToday\"  }";		        
-		        console.log(msgdata);
-				console.log($scope.selectedSystem);
+	}
+	
+	
 
-		        var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=',msgdata ).
-		        then(function (response) {
-					console.log(response.data[0][0]);
-					$scope.recordsOfToday = response.data[0][0] ; 
-					$scope.resultOfToday = jsonsql.query("select * from json where (Entry2=='"+$scope.selectedSystem+"')", response.data[0][0]);
-					console.log($scope.resultOfToday);
-					
-					
-				$scope.st0 = jsonsql.query("select * from json where (Entry8=='0')", response.data[0][0]).length;
-				$scope.st1 = jsonsql.query("select * from json where (Entry8=='1')", response.data[0][0]).length;
-				$scope.st2 = jsonsql.query("select * from json where (Entry8=='2')", response.data[0][0]).length;
-				$scope.st3 = jsonsql.query("select * from json where (Entry8=='3')", response.data[0][0]).length;
-				$scope.st4 = jsonsql.query("select * from json where (Entry8=='4')", response.data[0][0]).length;
-				$scope.st5 = jsonsql.query("select * from json where (Entry8=='5')", response.data[0][0]).length;
-				$scope.st6 = jsonsql.query("select * from json where (Entry8=='6')", response.data[0][0]).length;
-				console.log($scope.st0 , $scope.st1 ,$scope.st2 , $scope.st3 ,$scope.st4 ,$scope.st5 , $scope.st6);	
-				var totalSalesO = $scope.st0 + $scope.st1 +$scope.st2 + $scope.st3 +$scope.st4 +$scope.st5 + $scope.st6
-				
-				$scope.myOptions = {
-			       options: {
-						title: {
-							display: true,
-							text: 'Custom Chart Title'
-						}
-					}
-			    }
-				
-				
-				$scope.labels = ['Created In Bolton', 'In Progress', 'Sent To SAP' , 'Error-Sent To SAP', 'Processed', 'Not Processed' , 'Idoc Released'];
-				$scope.data = [$scope.st0, $scope.st1, $scope.st2 , $scope.st3 ,$scope.st4 , $scope.st5 , $scope.st6];
-				$scope.colours = [{ // grey
-						fillColor: "rgba(255,110,64,1)",
-						strokeColor: "rgba(255,110,64,1.0)",
-						highlightFill: "rgba(255,110,64,1.0)",
-						highlightStroke: "rgba(255,110,64,1)"
-				}, { // dark grey
-						fillColor: "rgba(103,58,183,1.0)",
-						strokeColor: "rgba(103,58,183,1.0)",
-						highlightFill: "rgba(103,58,183,1.0)",
-						highlightStroke: "rgba(103,58,183,1.0)"
-				}, { // dark grey
-						fillColor: "rgba(253,216,53,1.0)",
-						strokeColor: "rgba(253,216,53,1.0)",
-						highlightFill: "rgba(253,216,53,1.0)",
-						highlightStroke: "rgba(253,216,53,1.0)"
-				}];
-				
-				
-				
-				$scope.showChart = true;
-					
-				});
+	// Calendar
+	
+$scope.today = function() {
+    $scope.dt = new Date();
+  };
+  $scope.today();
 
-		
-		}
-		
-		
-        
-        
-    });
+  $scope.clear = function () {
+    $scope.dt = null;
+  };
 
-    
+  // Disable weekend selection
+  $scope.disabled = function(date, mode) {
+    return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+  };
 
-    
+  $scope.toggleMin = function() {
+    $scope.minDate = $scope.minDate ? null : new Date();
+  };
+  $scope.toggleMin();
 
-})();
+$scope.dtpick = {
+        opened: false,
+        opened2: false
+      }
+
+  $scope.open = function($event,type) {
+    $event.preventDefault();
+    $event.stopPropagation();
+
+    $scope.dtpick[type] = true;
+  };
+
+  $scope.dateOptions = {
+    datepickerMode : 'month',
+    startingDay: 1
+  };
+
+  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+  $scope.format = $scope.formats[0];
+
+  var tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  var afterTomorrow = new Date();
+  afterTomorrow.setDate(tomorrow.getDate() + 2);
+  $scope.events =
+    [
+      {
+        date: tomorrow,
+        status: 'full'
+      },
+      {
+        date: afterTomorrow,
+        status: 'partially'
+      }
+    ];
+
+  $scope.getDayClass = function(date, mode) {
+    if (mode === 'day') {
+      var dayToCheck = new Date(date).setHours(0,0,0,0);
+
+      for (var i=0;i<$scope.events.length;i++){
+        var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
+
+        if (dayToCheck === currentDay) {
+          return $scope.events[i].status;
+        }
+      }
+    }
+
+    return '';
+  };
+	
+
+});
+
+
+

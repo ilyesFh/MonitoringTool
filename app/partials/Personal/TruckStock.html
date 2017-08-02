@@ -27,7 +27,8 @@
 					
 					
 					<label class="form-label" for="field-1">Select Date</label>
-                            <div class="input-group" inputgroup>
+                            <div style="width:10%" class="input-group" >
+							
                                 <input type="text" class="form-control datepicker" max-date="maxDate" datepicker-popup="yyyy/MM" ng-model="dt" is-open="dtpick.opened" datepicker-mode="'month'" ng-required="true" close-text="Close" ng-click="open($event,'opened')" 
 								ng-change="getMonth()" />
                                 <span class="input-group-addon" ng-click="open($event,'opened')"><i class="fa fa-calendar" style="color: #999;"></i></span>
@@ -58,13 +59,13 @@
 
 									<div class="btn-group margin-bottom-10 margin-right-15">
 										<label class="btn btn-primary" ng-click="FilterAll()" >All</label>
-										<label class="btn btn-success" ng-click="FilterOnlyCorrected()"  >No Correction</label>
-										<label class="btn btn-warning" ng-click="FilterOnlyNotCorrected()" >Corrected</label>
+										<label class="btn btn-success" ng-click="FilterOnlyNotCorrected()"  >No Correction</label>
+										<label class="btn btn-warning" ng-click="FilterOnlyCorrected()" >Corrected</label>
 									</div>
-									<div class="btn-group margin-bottom-10 margin-left-15">
-										<label class="btn btn-primary" ng-click="FilterAll()" >All</label>
-										<label class="btn btn-success" ng-click="FilterOnlyCorrected()"  >No Correction</label>
-										<label class="btn btn-warning" ng-click="FilterOnlyNotCorrected()" >Corrected</label>
+									<div class="btn-group margin-bottom-10" style="float:right" >
+										<label class="btn btn-primary" ng-click="FilterAllStatus()" >All</label>
+										<label class="btn btn-success" ng-click="FilterOnlySent()"  >Sent</label>
+										<label class="btn btn-danger" ng-click="FilterOnlyNotSent()" >Not Sent</label>
 									</div>
 
 
@@ -129,7 +130,7 @@
                                         Plant JW71
 														</th>
 														<th >
-                                        File JW64
+                                        Plant JW64
 														</th>
 														<th >
                                         To New Hokan
@@ -145,7 +146,7 @@
 
 
 												<tbody>
-													<tr    dir-paginate="x in truckStockList | filter:{ Entry6 : filterResult } | itemsPerPage:10  "  data-user-id="{{x.Entry1}}">
+													<tr    dir-paginate="x in truckStockList  | filter:{ Entry4 : filterStatus } | itemsPerPage:10  "  data-user-id="{{x.Entry1}}">
 														<td>{{ x.Entry1 }}</td>
 														<td>{{ (x.Entry2==1) ? "Received" : "Not Received" }}</td>
 														<td>{{ (x.Entry3==1) ? "Received" : "Not Received" }}</td>

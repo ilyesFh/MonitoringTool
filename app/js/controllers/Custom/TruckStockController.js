@@ -18,6 +18,7 @@ app.controller('TruckStockController', function ($scope, $http, $filter , $state
 
 	$scope.TodayDate = new Date();
 	$scope.maxDate = new Date();
+	
 
 	$scope.options = {
 		animate: false,
@@ -72,12 +73,22 @@ app.controller('TruckStockController', function ($scope, $http, $filter , $state
 
 	}
 
-	/*
-	jQuery.get('http://127.0.0.1:8080/app/testText.dat', function(data) {
-	$scope.lines = data.split("\n").length;
-	console.log($scope.lines)
-	});
-	 */
+	//Sent to Hokan Filter
+	
+	
+	$scope.FilterOnlyNotSent = function () {
+		$scope.filterStatus = "0";
+	}
+	
+	$scope.FilterOnlySent = function () {
+		$scope.filterStatus = "1";
+	}
+	
+	$scope.FilterAllStatus = function () {
+		$scope.filterStatus = "";
+	}
+	
+	
 
 	$scope.exportData = function () {
 

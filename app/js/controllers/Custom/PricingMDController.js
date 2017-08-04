@@ -22,6 +22,9 @@ app.controller('PricingController', function($scope, $http, $filter ) {
 	$scope.allMdRecords
 	$scope.formattedDate;
 	$scope.percentage;
+	$scope.todayDate = new Date();
+	
+	
 	
 	$scope.options = {
             animate:false,
@@ -33,7 +36,9 @@ app.controller('PricingController', function($scope, $http, $filter ) {
 	
 	$scope.load = function () {
         console.log("load event detected!");
-		$scope.formattedDate = "20170725 000000";
+		
+		$scope.formattedDate = $filter('date')($scope.todayDate, "yyyyMMdd");
+		
 			    console.log($scope.formattedDate);
 		        var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"Pricing\"  }";
 		        console.log(msgdata);
@@ -136,4 +141,87 @@ app.controller('PricingController', function($scope, $http, $filter ) {
 		  
 			
 		
+});
+
+
+app.controller('PreviousDayPricingController', function ($scope, $http, $filter, uibDateParser) {
+
+	$scope.showDiv = false;
+	$scope.maxDate = new Date();
+
+	// Post Web CALL
+	$scope.CallWebService = function () {
+
+		$scope.showDiv = true;
+
+		console.log("load event detected!");
+		
+		$scope.formattedDate = $filter('date')($scope.todayDate, "yyyyMMdd");
+		
+			    console.log($scope.formattedDate);
+		        var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"Pricing\"  }";
+		        console.log(msgdata);
+		        var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=',msgdata ).
+		        then(function (response) {
+					console.log(response.data[0][0]);
+					
+					$scope.mdRecordsArray = response.data[0][0];
+					$scope.allMdRecords = response.data[0][0];
+					$scope.MysqlRecords = response.data[0][0].length;
+					$scope.QueryNotMatching = jsonsql.query("select * from json where (Entry2==Entry3)", response.data[0][0]);
+					$scope.missingRows = $scope.QueryNotMatching.length;
+					console.log($scope.missingRows);
+					$scope.percentage = parseFloat(( $scope.missingRows / $scope.MysqlRecords ) * 100).toFixed(1);
+					console.log($scope.percentage);
+					
+					//console.log($('#aa').get(0).id);
+					
+					//update instance after 1 sec
+						setTimeout(function() {
+							$('.chart').data('easyPieChart').update($scope.percentage);
+						}, 1000);
+					
+					
+					
+					
+					});
+
+	}
+
+	$scope.filterResult = '';
+			
+			$scope.FilterOnlySynced = function() {
+				 $scope.mdRecordsArray = $scope.allMdRecords;
+		        $scope.mdRecordsArray = jsonsql.query("select * from json where (Entry2==Entry3)", $scope.mdRecordsArray);
+			  	
+		    }
+			
+			$scope.FilterOnlyNotSynced = function() {
+				console.log("Filter Not Synced");
+			   $scope.mdRecordsArray = $scope.allMdRecords;
+		       $scope.mdRecordsArray = jsonsql.query("select * from json where (Entry2!=Entry3)", $scope.mdRecordsArray);
+			  	
+		    }
+			
+			$scope.FilterAll = function() {
+				
+				console.log($('#aa').get(0));
+			
+
+		        $scope.mdRecordsArray = $scope.allMdRecords;
+			  	
+		    }
+
+	$scope.exportData = function () {
+
+		$scope.queryExport = '';
+		if ($scope.filterResult == '')
+			$scope.queryExport = 'SELECT Entry2 as IDoc_Number, Entry3 as IDoc_Type, Entry1 as Date, case when Entry5 = \'0\' then \'Synced\' else \'Not Synced\' end as Status INTO XLSX("Report_All.xlsx",{}) FROM ?';
+		else
+			$scope.queryExport = 'SELECT Entry2 as IDoc_Number, Entry3 as IDoc_Type, Entry1 as Date, case when Entry5 = \'0\' then \'Synced\' else \'Not Synced\' end as Status INTO XLSX("Report_Filtered.xlsx",{}) FROM ? where Entry5 = \'' + $scope.filterResult + '\'';
+
+		console.log($scope.queryExport);
+		alasql($scope.queryExport, [$scope.mdRecordsArray]);
+	};
+
 });

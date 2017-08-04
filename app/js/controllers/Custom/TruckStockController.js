@@ -92,7 +92,7 @@ app.controller('TruckStockController', function ($scope, $http, $filter , $state
 
 	$scope.exportData = function () {
 
-		$scope.queryExport = 'SELECT Entry1 as Date, Entry2 as Plant_JW71, Entry3 as File_JW64, case when Entry6 = 0 then \'No Correction\' else \'Corrected\' end as Status INTO XLSX("Report_All.xlsx",{}) FROM ?';
+		$scope.queryExport = 'SELECT Entry1 as Date, case when Entry2 = \'1\' then \'Received\' else \'Not_Received\' end as Plant_JW71, case when Entry3 = \'1\' then \'Received\' else \'Not_Received\' end as Plant_JW64, case when Entry4 = \'1\' then \'Sent\' else \'Not_Sent\' end as Sent_To_New_Hokan ,case when Entry6 = \'0\' then \'No Correction\' else \'Corrected\' end as Status INTO XLSX("Report_All.xlsx",{}) FROM ?';
 
 		console.log($scope.queryExport);
 		alasql($scope.queryExport, [$scope.truckStockList]);

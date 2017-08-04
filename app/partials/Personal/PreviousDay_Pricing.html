@@ -1,5 +1,5 @@
 <div class='content-wrapper' ng-init="app.settings.pagetitle = 'Compare MYSQL & Bolton';">
-    <div class="col-lg-12" ng-controller="PricingController" ng-init='load()' >
+    <div class="col-lg-12" ng-controller="PreviousDayPricingController" >
         
 					
 					
@@ -7,13 +7,22 @@
 					<div class="col-lg-12">
         <section class="box ">
             <header class="panel_header">
-                <h2 class="title pull-left">Master Data - Pricing ( Date : {{ todayDate | date }})</h2>
+                <h2 class="title pull-left">Master Data - Pricing  </h2>
                 <div class="actions panel_actions pull-right">
                     <i class="box_toggle material-icons">expand_more</i>
                     
                 </div>
             </header>
 			
+			<div class="col-lg-15 col-md-4 col-xs-12 col-sm-6">
+						
+						<div class="controls">
+							<div style="display:inline-block;">
+								<uib-datepicker ng-model="todayDate" max-date="maxDate" show-weeks="true"  ng-change="CallWebService()" class="well well-sm" custom-class="getDayClass(date, mode)"/>
+							</div>
+							<!-- <pre>Selected date is: <em>{{todayDate | date:'fullDate' }}</em></pre> -->
+						</div>
+					</div>
 			
 			
             <div class="content-body padding-bottom-0">
@@ -40,7 +49,7 @@
                         </div>
                     </div>
 					
-					<div class="col-lg-15 col-md-4 col-xs-12 col-sm-6">
+					<div class="col-lg-15 col-md-8 col-xs-12 col-sm-6">
 					
 					<div style="text-align:-webkit-center">
                                  <div class="chart" ui-jq="easyPieChart" ui-options="{ easing: 'easeOutBounce', barColor: 'orange', trackColor: '#f5f5f5', scaleColor: '#eaeaea', lineCap: 'square', lineWidth: 8, size: 130,animate: 1000 }" 
@@ -73,7 +82,7 @@
 	
 
 	
-	<div class="col-lg-12">
+	<div class="col-lg-12" ng-show="showDiv">
         <section class="box ">
             <header class="panel_header">
                 <h2 class="title pull-left">Details</h2>

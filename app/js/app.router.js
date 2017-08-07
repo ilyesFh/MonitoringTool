@@ -988,6 +988,48 @@ angular.module('app')
                         }
                     })
 					
+					.state('app.tables.shipmentIdocs', {
+                        url: '/Shipment',
+                        templateUrl: 'partials/Personal/ShipmentIdocs.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['js/controllers/Custom/ShipmentController.js',
+										
+										'countTo',
+                                        'js/controllers/countto.js', 
+                                        'js/controllers/vectormap.js', 
+                                        'js/directives/ui-todowidget.js', 
+                                        'js/controllers/messages-widget.js',
+										'js/controllers/Custom/jsonsql-0.1.js',
+                                        '../bower_components/font-awesome/css/font-awesome.css'
+                                    ]);
+                                }
+                            ]
+                        }
+                    })
+					
+					.state('app.tables.shipmentDetails', {
+                        url: '/Details',
+                        templateUrl: 'partials/Personal/ShipmentDetails.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['js/controllers/Custom/ShipmentController.js',
+										
+										'countTo',
+                                        'js/controllers/countto.js', 
+                                        'js/controllers/vectormap.js', 
+                                        'js/directives/ui-todowidget.js', 
+                                        'js/controllers/messages-widget.js',
+										'js/controllers/Custom/jsonsql-0.1.js',
+                                        '../bower_components/font-awesome/css/font-awesome.css'
+                                    ]);
+                                }
+                            ]
+                        }
+                    })
+					
 					
 					.state('app.tables.salesOrderStatus', {
                         url: '/chartjs',

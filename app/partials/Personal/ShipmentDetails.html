@@ -35,14 +35,6 @@
                             </div>
 							
 							
-							
-							
-							
-							<!--
-							<div style="display:inline-block;">
-								<uib-datepicker ng-model="todayDate" max-date="maxDate" show-weeks="true" datepicker-mode="'month'" ng-change="CallWebService()" class="well well-sm"  />
-							</div>
-							-->
 					
 					
 						<div class="col-md-12 col-sm-12 col-xs-12">
@@ -53,11 +45,13 @@
 									<div class="col-md-9 col-sm-12 col-xs-12">
 										
 
-										<!-- <input type="text" ng-model="search" class="form-control" placeholder="Search"> -->
+										 <input type="text" ng-model="search" class="form-control" placeholder="Search"> 
 
 									</div>
+									<div class="clearfix"/>
+									<br>
 
-									<div class="btn-group margin-bottom-10 margin-right-15">
+									<div class="btn-group margin-bottom-10 margin-right-15" style="float:left">
 										<label class="btn btn-primary" ng-click="FilterAll()" >All</label>
 										<label class="btn btn-warning" ng-click="FilterRushOrder()"  >Rush Order</label>
 										<label class="btn btn-success" ng-click="FilterNormalOrder()" >Normal Order</label>
@@ -154,7 +148,7 @@
 
 
 												<tbody>
-													<tr    dir-paginate="x in truckStockList | filter:{ Entry5 : filterRush } | filter:{ Entry6 : filterStatus } |itemsPerPage:10  "  data-user-id="{{x.Entry1}}">
+													<tr    dir-paginate="x in truckStockList | filter:search | filter:{ Entry5 : filterRush } | filter:{ Entry6 : filterStatus } |itemsPerPage:10  "  data-user-id="{{x.Entry1}}">
 														<td>{{ x.Entry1 }}</td>
 														<td>{{ x.Entry2 }}</td>
 														<td>{{ x.Entry3 }}</td>

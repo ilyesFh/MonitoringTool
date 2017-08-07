@@ -56,13 +56,13 @@
 										<!-- <input type="text" ng-model="search" class="form-control" placeholder="Search"> -->
 
 									</div>
-<!--
+
 									<div class="btn-group margin-bottom-10 margin-right-15">
 										<label class="btn btn-primary" ng-click="FilterAll()" >All</label>
-										<label class="btn btn-success" ng-click="FilterOnlyNotCorrected()"  >No Correction</label>
-										<label class="btn btn-warning" ng-click="FilterOnlyCorrected()" >Corrected</label>
+										<label class="btn btn-warning" ng-click="FilterRushOrder()"  >Rush Order</label>
+										<label class="btn btn-success" ng-click="FilterNormalOrder()" >Normal Order</label>
 									</div>
-									-->
+									
 									<div class="btn-group margin-bottom-10" style="float:right" >
 										<label class="btn btn-primary" ng-click="FilterAllStatus()" >All</label>
 										<label class="btn btn-success" ng-click="FilterOnlySent()"  >Sent</label>
@@ -140,11 +140,12 @@
                                         Delivery Date
 														</th>
 														<th >
-                                        Synced
+                                        Type
 														</th>
 														<th >
-                                        Sent
+                                        Status
 														</th>
+														
 														
 														
 														
@@ -153,7 +154,7 @@
 
 
 												<tbody>
-													<tr    dir-paginate="x in truckStockList | itemsPerPage:10  "  data-user-id="{{x.Entry1}}">
+													<tr    dir-paginate="x in truckStockList | filter:{ Entry5 : filterRush } | filter:{ Entry6 : filterStatus } |itemsPerPage:10  "  data-user-id="{{x.Entry1}}">
 														<td>{{ x.Entry1 }}</td>
 														<td>{{ x.Entry2 }}</td>
 														<td>{{ x.Entry3 }}</td>
@@ -161,13 +162,15 @@
 														<td>{{ x.Entry7 }}</td>
 
 														<td>
-															<span ng-class="{false : 'label label-danger', true : 'label label-success' } [x.Entry5==1] " >
-														{{ (x.Entry5==1) ? "Synced" : "Not Synced" }}
+															<span ng-class="{false : 'label label-warning', true : 'label label-success' } [x.Entry5=='N'] " >
+														{{ (x.Entry5=='N') ? "Normal Order" : "Rush Order" }}
 														</td>
 														<td>
 															<span ng-class="{false : 'label label-danger', true : 'label label-success' } [x.Entry6==1] " >
 														{{ (x.Entry6==1) ? "Sent" : "Not Sent" }}
 														</td>
+														<!--
+														<td>{{ x.Entry8 | date }}</td> -->
 														
 														
 														

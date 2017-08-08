@@ -29,7 +29,8 @@ app.controller('PreviousDayCustomerController', function ($scope, $http, $filter
 
 	// Post Web CALL
 	$scope.CallWebService = function () {
-
+		
+		$scope.mdRecordsArray = [];
 		$scope.showDiv = true;
 
 		$scope.formattedDate = $filter('date')($scope.todayDate, "yyyyMMdd");

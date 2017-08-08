@@ -157,6 +157,11 @@
 									<td>{{ x.Entry4 }}</td>
 									<td><span ng-class="{1 : 'label label-danger', 0 : 'label label-success' } [x.Entry5] " >{{ x.Entry5 == 1 ? "Not Synced" : "Synced" }}</span></td>
                                 </tr>
+								<tr >
+													<td ng-show="mdRecordsArray.length==0" colspan="20" style="text-align:center">
+														   No Data             
+													</td>
+												</tr>
                                 
                             </tbody>
 							<tfoot class="hide-if-no-paging">
@@ -171,7 +176,8 @@
 							   max-size="10"
 							   direction-links="true"
 							   boundary-links="true"
-								> <!-- auto-hide="true" --> 
+							   
+								  > <!-- auto-hide="true" --> 
 							</dir-pagination-controls>
 							</div>
                     </div>

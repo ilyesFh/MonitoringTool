@@ -33,6 +33,7 @@ app.controller('PreviousDayMaterialController', function($scope, $http, $filter 
 		  // Post Web CALL
 		  $scope.CallWebService = function() {
 		        
+				$scope.mdRecordsArray = [];
 				$scope.showDiv = true;
 				
 				$scope.formattedDate = $filter('date')($scope.todayDate, "yyyyMMdd");
@@ -45,7 +46,7 @@ app.controller('PreviousDayMaterialController', function($scope, $http, $filter 
 					console.log(response);
 					console.log(response.data);
 					
-					
+				if (response.data.length != 0) {	
 				$scope.mdRecordsArray = response.data[0][0];
 				console.log($scope.mdRecordsArray);
 				
@@ -61,11 +62,13 @@ app.controller('PreviousDayMaterialController', function($scope, $http, $filter 
 				$scope.recordSynced =parseFloat( ($scope.insertedRow / $scope.ExpectedRecords ) * 100).toFixed(1) ;
 				console.log($scope.recordSynced);
 				
+				
+				
 				//update instance after 1 sec
 						setTimeout(function() {
 							$('.chart').data('easyPieChart').update($scope.recordSynced);
 						}, 1000);
-
+					}
 		        	 
 		        	});
 				

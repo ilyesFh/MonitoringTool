@@ -98,6 +98,8 @@ app.controller('SettlementController', function ($scope, $http, $filter , $state
 	
 	$scope.getdate = function () {
 
+	    
+		$scope.SettlementList = null;
 		console.log($scope.dt);
 		$scope.formattedDate = $filter('date')($scope.dt, "yyyyMMdd");
 		console.log($scope.formattedDate);
@@ -112,6 +114,8 @@ app.controller('SettlementController', function ($scope, $http, $filter , $state
 				
 
 			});
+			
+		
 		
 	}
 	

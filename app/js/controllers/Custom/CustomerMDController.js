@@ -7,9 +7,9 @@ app.config(['$httpProvider', function ($httpProvider) {
 			$httpProvider.defaults.headers.patch = {};
 			$httpProvider.defaults.headers.prototype = {};
 
-			//$httpProvider.defaults.headers['Access-Control-Allow-Origin'] = '*'
-			//$httpProvider.defaults.headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS, PUT'
-			//$httpProvider.defaults.headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept'
+			$httpProvider.defaults.headers['Access-Control-Allow-Origin'] = '*'
+			$httpProvider.defaults.headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS, PUT'
+			$httpProvider.defaults.headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept'
 
 		}
 	]);

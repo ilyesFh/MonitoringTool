@@ -1,4 +1,4 @@
-<div class='content-wrapper' ng-init="app.settings.pagetitle = 'Shipment Details';">
+<div class='content-wrapper' ng-init="app.settings.pagetitle = 'Settlement Details';">
 	<div class="col-lg-12" ng-controller="SettlementController" ng-init='load()' >
 
 
@@ -13,7 +13,7 @@
 		<div class="col-lg-12">
 			<section class="box ">
 				<header class="panel_header">
-					<h2 class="title pull-left">Truck Stock</h2>
+					<h2 class="title pull-left">Settlement</h2>
 					<div class="actions panel_actions pull-right">
 						<i class="box_toggle material-icons">expand_more</i>
 
@@ -150,8 +150,8 @@
 												<tbody>
 													<tr    dir-paginate="x in SettlementList | filter:search | filter:{ Entry6 : filterCorrection } |itemsPerPage:10  "  data-user-id="{{x.Entry1}}">
 														<td>{{ x.Entry1 }}</td>
-														<td>{{ x.Entry2 }}</td>
 														<td>{{ x.Entry3 }}</td>
+														<td>{{ x.Entry2 }}</td>
 														<td>{{ x.Entry4 }}</td>
 														<td>{{ x.Entry7 }}</td>
 

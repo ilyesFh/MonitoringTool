@@ -17,13 +17,7 @@ app.config(['$httpProvider', function ($httpProvider) {
 
 app.controller('ShipmentController', function($scope, $http, $filter ) {
 	
-	$scope.message = "Marouen" ; 
-	$scope.fieldValue;
-	$scope.jsonArray;
-	$scope.DeliveryDate;
-	$scope.CreationStartDate;
-	$scope.CreationEndDate;
-	$scope.syncResultBool = false;
+	
 	$scope.formattedDate;
 	
 	

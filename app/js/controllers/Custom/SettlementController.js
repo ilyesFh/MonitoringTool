@@ -28,6 +28,8 @@ app.controller('SettlementController', function ($scope, $http, $filter , $state
 		//Reset Filter
 		$scope.filterRush = "";
 		$scope.filterStatus = "";
+		$scope.SettlementList = [];
+		console.log($scope.SettlementList.length);
 		
 		console.log("load event detected!");
 		$scope.formattedDate = $filter('date')($scope.TodayDate, "yyyyMMdd");

@@ -21,7 +21,8 @@ app.controller('ShipmentController', function($scope, $http, $filter ) {
 	$scope.formattedDate;
 	
 	
-	
+				$scope.mdRecordsArray = [];
+				
 				$scope.todayDate = new Date();
 			    $scope.formattedDate = $filter('date')($scope.todayDate, "yyyyMMdd");
 			    console.log($scope.formattedDate);

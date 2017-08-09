@@ -24,6 +24,7 @@ app.controller('CustomerController', function ($scope, $http, $filter) {
 	$scope.CreationEndDate;
 	$scope.syncResultBool = false;
 	$scope.formattedDate;
+	$scope.mdRecordsArray = [];
 
 	console.log("--1");
 	$scope.todayDate = new Date();

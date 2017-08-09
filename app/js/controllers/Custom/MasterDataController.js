@@ -26,6 +26,8 @@ app.controller('MasterDataController', function($scope, $http, $filter ) {
 	$scope.syncResultBool = false;
 	$scope.formattedDate;
 	
+	$scope.mdRecordsArray = [];
+	
 	
 	
 				$scope.todayDate = new Date();

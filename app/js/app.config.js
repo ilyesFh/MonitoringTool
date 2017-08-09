@@ -3,6 +3,11 @@ var app =  angular.module('app')
     [        '$controllerProvider', '$compileProvider', '$filterProvider', '$provide','$httpProvider',
     function ($controllerProvider,   $compileProvider,   $filterProvider,   $provide , $httpProvider) {
         
+		$httpProvider.defaults.headers['Access-Control-Allow-Origin'] = '*'
+		$httpProvider.defaults.headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS, PUT'
+		$httpProvider.defaults.headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept'
+		
+		
         // lazy controller, directive and service
         app.controller = $controllerProvider.register;
         app.directive  = $compileProvider.directive;

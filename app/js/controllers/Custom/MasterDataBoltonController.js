@@ -159,3 +159,191 @@ app.controller('ErrorDetailsController', function($scope , $http, $filter , $sta
 	   
 	   
     });
+	
+	
+	app.controller('PricingBoltonCompare', function ($scope, $http, $filter , $state) {
+
+	$scope.MysqlRecords;
+	$scope.MysqlRecords;
+	$scope.allMdRecords
+	$scope.formattedDate;
+	$scope.percentage;
+	
+	$scope.mdRecordsArray = [];
+
+	
+
+	$scope.load = function () {
+		
+		
+		
+		$scope.formattedDate = "20170814"
+		var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"Pricing_Bolton\"  }";
+		console.log(msgdata);
+		var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgdata).
+			then(function (response) {
+				console.log(response.data[0][0]);
+
+				$scope.mdRecordsArray = response.data[0][0];
+				$scope.allMdRecords = response.data[0][0];
+				$scope.MysqlRecords = response.data[0][0].length;
+				$scope.QueryNotMatching = jsonsql.query("select * from json where (Entry2==Entry3)", response.data[0][0]);
+				$scope.missingRows = $scope.QueryNotMatching.length;
+				console.log($scope.missingRows);
+				$scope.percentage = parseFloat(($scope.missingRows / $scope.MysqlRecords) * 100).toFixed(1);
+				console.log($scope.percentage);
+
+				
+
+			});
+	}
+
+
+	$scope.filterResult = '';
+
+	$scope.FilterOnlySynced = function () {
+		$scope.mdRecordsArray = $scope.allMdRecords;
+		$scope.mdRecordsArray = jsonsql.query("select * from json where (Entry2==Entry3)", $scope.mdRecordsArray);
+
+	}
+
+	$scope.FilterOnlyNotSynced = function () {
+		console.log("Filter Not Synced");
+		$scope.mdRecordsArray = $scope.allMdRecords;
+		$scope.mdRecordsArray = jsonsql.query("select * from json where (Entry2!=Entry3)", $scope.mdRecordsArray);
+
+	}
+
+	$scope.FilterAll = function () {
+
+		console.log($('#aa').get(0));
+		$scope.mdRecordsArray = $scope.allMdRecords;
+
+	}
+
+
+	$scope.exportData = function () {
+
+		$scope.queryExport = 'SELECT Entry1 as Interface_Name, Entry2 as File_Count, Entry3 as Records_in_MYSQL, case when Entry2 = Entry3 then \'Synced\' else \'Not Synced\' end as Status INTO XLSX("Report_All.xlsx",{}) FROM ?';
+
+		console.log($scope.queryExport);
+		alasql($scope.queryExport, [$scope.mdRecordsArray]);
+	};
+
+	$scope.openDetails = function (x) {
+
+		//alert("DETAILS  "+ x.Entry1);
+		$state.go("app.tables.ErrorDetails", { "id": x.Entry1})
+		
+		
+	};
+	
+	$scope.getMonth = function () {
+		
+		$scope.mdRecordsArray = [];
+
+		console.log($scope.dt);
+		$scope.formattedDate = $filter('date')($scope.dt, "yyyyMMdd");
+		console.log($scope.formattedDate);
+		
+		
+		var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"Pricing_Bolton\"  }";
+		console.log(msgdata);
+		var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgdata).
+			then(function (response) {
+				console.log(response.data[0][0]);
+
+				$scope.mdRecordsArray = response.data[0][0];
+				$scope.allMdRecords = response.data[0][0];
+				$scope.MysqlRecords = response.data[0][0].length;
+				$scope.QueryNotMatching = jsonsql.query("select * from json where (Entry2==Entry3)", response.data[0][0]);
+				$scope.missingRows = $scope.QueryNotMatching.length;
+				console.log($scope.missingRows);
+				$scope.percentage = parseFloat(($scope.missingRows / $scope.MysqlRecords) * 100).toFixed(1);
+				console.log($scope.percentage);
+
+				
+
+			});
+		
+	}
+	
+	
+	
+	// Calendar	
+$scope.today = function() {
+    $scope.dt = new Date();
+  };
+  $scope.today();
+
+  $scope.clear = function () {
+    $scope.dt = null;
+  };
+
+  // Disable weekend selection
+  $scope.disabled = function(date, mode) {
+    return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+  };
+
+  $scope.toggleMin = function() {
+    $scope.minDate = $scope.minDate ? null : new Date();
+  };
+  $scope.toggleMin();
+
+$scope.dtpick = {
+        opened: false,
+        opened2: false
+      }
+
+  $scope.open = function($event,type) {
+    $event.preventDefault();
+    $event.stopPropagation();
+
+    $scope.dtpick[type] = true;
+  };
+
+  $scope.dateOptions = {
+    datepickerMode : 'month',
+    startingDay: 1
+  };
+
+  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+  $scope.format = $scope.formats[0];
+
+  var tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  var afterTomorrow = new Date();
+  afterTomorrow.setDate(tomorrow.getDate() + 2);
+  $scope.events =
+    [
+      {
+        date: tomorrow,
+        status: 'full'
+      },
+      {
+        date: afterTomorrow,
+        status: 'partially'
+      }
+    ];
+
+  $scope.getDayClass = function(date, mode) {
+    if (mode === 'day') {
+      var dayToCheck = new Date(date).setHours(0,0,0,0);
+
+      for (var i=0;i<$scope.events.length;i++){
+        var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
+
+        if (dayToCheck === currentDay) {
+          return $scope.events[i].status;
+        }
+      }
+    }
+
+    return '';
+  };
+	
+	
+
+});
+	
+	

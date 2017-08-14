@@ -120,8 +120,7 @@ app.controller('TruckStockController', function ($scope, $http, $filter , $state
 	
 	
 
-	// Calendar
-	
+	// Calendar	
 $scope.today = function() {
     $scope.dt = new Date();
   };

@@ -239,6 +239,9 @@ app.controller('ShipmentDetailsController', function ($scope, $http, $filter , $
 	
 	
 	$scope.getMonth = function () {
+		
+		$scope.filterRush = "";
+		$scope.filterStatus = "";
 
 		console.log($scope.dt);
 		$scope.formattedDate = $filter('date')($scope.dt, "yyyyMMdd");

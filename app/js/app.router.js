@@ -858,6 +858,29 @@ angular.module('app')
                         }
                     })
 					
+					.state('app.tables.pricingBolton', {
+                        url: '/PricingCompareWithBolton',
+                        templateUrl: 'partials/Personal/PricingBolton.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['js/controllers/Custom/MasterDataBoltonController.js',
+										
+										'countTo',
+                                        'js/controllers/countto.js', 
+                                        'js/controllers/vectormap.js', 
+                                        'js/directives/ui-todowidget.js', 
+                                        'js/controllers/messages-widget.js',
+										'js/controllers/Custom/jsonsql-0.1.js',
+                                        '../bower_components/font-awesome/css/font-awesome.css'
+                                    ]);
+                                }
+                            ]
+                        }
+                    })
+					
+					
+					
 					.state('app.tables.ErrorDetails', {
                         url: '/Details/:id',
                         templateUrl: 'partials/Personal/Error_Bolton.html',
@@ -902,26 +925,9 @@ angular.module('app')
                         }
                     })
 					
-					.state('app.tables.customer2', {
-                        url: '/Customer2',
-                        templateUrl: 'partials/Personal/CustomerMDBolton.html',
-                        resolve: {
-                            deps: ['$ocLazyLoad',
-                                function($ocLazyLoad) {
-                                    return $ocLazyLoad.load(['js/controllers/Custom/CustomerMDBoltonController.js',
-										
-										'countTo',
-                                        'js/controllers/countto.js', 
-                                        'js/controllers/vectormap.js', 
-                                        'js/directives/ui-todowidget.js', 
-                                        'js/controllers/messages-widget.js',
-										'js/controllers/Custom/jsonsql-0.1.js',
-                                        '../bower_components/font-awesome/css/font-awesome.css'
-                                    ]);
-                                }
-                            ]
-                        }
-                    })
+					
+					
+					
 					
 					
 					.state('app.tables.TruckStock', {

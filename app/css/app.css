@@ -11952,3 +11952,5 @@ top: -5px;
         display: none;      
     }
 }
+
+.angular-google-map-container { height: 400px; }

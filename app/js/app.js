@@ -17,5 +17,7 @@ angular.module('app', [
     'oc.lazyLoad',
     'perfect_scrollbar',
     'angular-inview',
-    'angular-loading-bar'
+    'angular-loading-bar',
+	'uiGmapgoogle-maps'
+	
 ]);

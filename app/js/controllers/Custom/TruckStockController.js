@@ -19,6 +19,62 @@ app.controller('TruckStockController', function ($scope, $http, $filter , $state
 	$scope.TodayDate = new Date();
 	$scope.maxDate = new Date();
 	
+	$scope.map = { center: { latitude: 35.652832, longitude: 139.839478 }, zoom: 10 };
+	//$scope.bounds = { northeast : { latitude: 71.7593, longitude: -26.5791 }, southwest : { latitude: -0.6621, longitude: -158.4150 } };
+	
+	// Map
+  
+  var Markers = [
+    {
+      "id": "0",
+      "coords": {
+        "latitude": "35.628738",
+        "longitude": "139.690000"
+      },
+      "window": {
+        "title": "JW71"
+      }
+    },
+    {
+      "id": "1",
+      "coords": {
+        "latitude": "35.698793",
+        "longitude": "139.623785"
+      },
+      "window" : {
+        "title": "JW64"
+      }
+    }
+  ];
+	
+	$scope.markers = Markers;
+	
+	$scope.circles = [
+            {
+                id: 1,
+                center: {
+                    latitude: 35.6868793,
+                    longitude: 139.738811
+                },
+                radius: 15000,
+                stroke: {
+                    color: '#08B21F',
+                    weight: 2,
+                    opacity: 0.2
+                },
+                fill: {
+                    color: 'red',
+                    opacity: 0.1
+                },
+                geodesic: true, // optional: defaults to false
+                draggable: false, // optional: defaults to false
+                clickable: false, // optional: defaults to true
+                editable: false, // optional: defaults to false
+                visible: true, // optional: defaults to true
+                control: {}
+            }
+        ];
+	
 
 	$scope.options = {
 		animate: false,
@@ -191,7 +247,9 @@ $scope.dtpick = {
 
     return '';
   };
-	
+  
+  
+  
 
 });
 

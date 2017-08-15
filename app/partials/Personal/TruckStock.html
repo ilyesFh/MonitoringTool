@@ -34,7 +34,7 @@
 					</ui-gmap-circle>
 					
 					<ui-gmap-marker ng-repeat="marker in markers"
-						  coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
+						  coords="marker.coords" options="marker.options" fit="false"  events="marker.events" idkey="marker.id">
 						  <ui-gmap-window>
 							<div>{{marker.window.title}}</div>
 					</ui-gmap-window>

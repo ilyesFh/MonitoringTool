@@ -881,7 +881,7 @@ angular.module('app')
 					
 					.state('app.tables.priceValidation', {
                         url: '/PriceValidation',
-                        templateUrl: 'partials/Personal/priceValidation.html',
+                        templateUrl: 'partials/Personal/PriceValidation.html',
                         resolve: {
                             deps: ['$ocLazyLoad',
                                 function($ocLazyLoad) {

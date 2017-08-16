@@ -68,7 +68,7 @@ app.controller('TruckStockController', function ($scope, $http, $filter , $state
                     opacity: 0.2
                 },
                 fill: {
-                    color: 'red',
+                    color: 'black',
                     opacity: 0.1
                 },
                 geodesic: true, // optional: defaults to false

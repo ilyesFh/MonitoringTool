@@ -86,7 +86,7 @@
                             
 							<tbody>
                                 <tr    dir-paginate="x in mdRecordsArray | filter: filterText | itemsPerPage:10" >
-                                    <td>{{ x.Entry4 }}</td>
+                                    <td>{{ x.Entry1 }}</td>
 									<td>{{ x.Entry2 }}</td>
 									<td>{{ x.Entry3 }}</td>
 									<td><span ng-class="{false : 'label label-danger', true : 'label label-success' } [x.Entry2==x.Entry3] " >{{ (x.Entry2!=x.Entry3) ? "Not Synced" : "Synced" }}</span></td>

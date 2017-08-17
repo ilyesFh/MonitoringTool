@@ -5,74 +5,147 @@
 
 
 		<div class="col-lg-12">
-			
-
-
-
-
-		<div class="col-lg-12">
 			<section class="box ">
 				<header class="panel_header">
-					<h2 class="title pull-left">Shipment Details</h2>
+					<h2 class="title pull-left">Statistics</h2>
 					<div class="actions panel_actions pull-right">
 						<i class="box_toggle material-icons">expand_more</i>
-
+						<i class="box_setting material-icons" ng-click="section_modal()">mode_edit</i>
+						<i class="box_close material-icons">close</i>
 					</div>
 				</header>
-				
-				
-				
-				<div class="content-body padding-bottom-15">
-					<div class="row">
-					
-					
-					<label class="form-label" for="field-1">Select Date</label>
-                            <div style="width:10%" class="input-group" >
-							
-                                <input type="text" class="form-control datepicker" max-date="maxDate" datepicker-popup="yyyy/MM/dd" ng-model="dt" is-open="dtpick.opened"  ng-required="true" close-text="Close" ng-click="open($event,'opened')" 
+				<div class="content-body padding-bottom-0">
+					<div class="row" >
+						<div class="col-lg-3 col-md-4 col-xs-12 col-sm-6">
+							<div class="tile-counter bg-primary">
+								<div class="content">
+									<i class='fa fa-file-o icon-lg'/>
+									<h2 count-to="{{totalNumberOfIdocs}}" value="0" duration="1" class="number_counter"/>
+									<div class="clearfix"/>
+									<span>Total Number Of Idocs</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-xs-12 col-sm-6">
+							<div class="tile-counter bg-warning">
+								<div class="content">
+									<i class='fa fa-exclamation icon-lg'/>
+									<h2 count-to="{{rushOrderNumber}}" value="0" duration="1" class="number_counter"/>
+									<div class="clearfix"/>
+									<span>Rush Order</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-xs-12 col-sm-6">
+							<div class="tile-counter bg-success">
+								<div class="content">
+									<i class='fa fa-share icon-lg'/>
+									<h2 count-to="{{sentNumber}}" value="0" duration="1" class="number_counter"/>
+									<div class="clearfix"/>
+									<span>Shipment Sent</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-xs-12 col-sm-6">
+							<div class="tile-counter bg-accent">
+								<div class="content">
+									<i class='fa fa-ban icon-lg'/>
+									<h2 count-to="{{notSentNumber}}" value="0" duration="8" class="number_counter"/>
+									<div class="clearfix"/>
+									<span>Shipment Not Sent</span>
+								</div>
+							</div>
+						</div>
+						<div class="clearfix"/>
+
+
+
+
+					</div>
+				</div>
+			</section>
+
+
+
+
+			<div class="col-lg-12">
+				<section class="box ">
+					<header class="panel_header">
+						<h2 class="title pull-left">Shipment Details</h2>
+						<div class="actions panel_actions pull-right">
+							<i class="box_toggle material-icons">expand_more</i>
+
+						</div>
+					</header>
+
+
+
+					<div class="content-body padding-bottom-15">
+						<div class="row">
+
+
+							<label class="form-label" for="field-1">Select Date</label>
+							<div style="width:10%" class="input-group" >
+
+								<input type="text" class="form-control datepicker" max-date="maxDate" datepicker-popup="yyyy/MM/dd" ng-model="dt" is-open="dtpick.opened"  ng-required="true" close-text="Close" ng-click="open($event,'opened')" 
 								ng-change="getMonth()" />
-                                <span class="input-group-addon" ng-click="open($event,'opened')"><i class="fa fa-calendar" style="color: #999;"></i></span>
-                            </div>
-							
-							
-					
-					
-						<div class="col-md-12 col-sm-12 col-xs-12">
-
-							<div class="content-body padding-bottom-0">
-								<div class="row">
-
-									<div class="col-md-9 col-sm-12 col-xs-12">
-										
-
-										 <input type="text" ng-model="search" class="form-control" placeholder="Search"> 
-
-									</div>
-									<div class="clearfix"/>
-									<br>
-
-									<div class="btn-group margin-bottom-10 margin-right-15" style="float:left">
-										<label class="btn btn-primary" ng-click="FilterAll()" >All</label>
-										<label class="btn btn-warning" ng-click="FilterRushOrder()"  >Rush Order</label>
-										<label class="btn btn-success" ng-click="FilterNormalOrder()" >Normal Order</label>
-									</div>
-									
-									<div class="btn-group margin-bottom-10" style="float:right" >
-										<label class="btn btn-primary" ng-click="FilterAllStatus()" >All</label>
-										<label class="btn btn-success" ng-click="FilterOnlySent()"  >Sent</label>
-										<label class="btn btn-danger" ng-click="FilterOnlyNotSent()" >Not Sent</label>
-									</div>
+								<span class="input-group-addon" ng-click="open($event,'opened')">
+									<i class="fa fa-calendar" style="color: #999;"/>
+								</span>
+							</div>
 
 
-									<div class="clearfix"/>
-									<br>
 
-										<a class="btn btn-circle btn-lg pull-right btn-success" ng-click="exportData()" >CSV    <i class='fa fa-file-excel-o icon-4x' />
-										</a>
 
-										<div class="col-md-12 col-sm-12 col-xs-12 table-responsive">
+							<div class="col-md-12 col-sm-12 col-xs-12">
 
-											<!--
+								<div class="content-body padding-bottom-0">
+									<div class="row">
+
+										<div class="col-md-9 col-md-9 col-sm-12 col-xs-12">
+
+
+											<input type="text" ng-model="search" class="form-control" placeholder="Search"> 
+
+											</div>
+											<div class="clearfix"/>
+											<br>
+											
+												<div class="col-lg-3 col-md-3 col-xs-12 col-sm-6">
+												<div class="btn-group margin-bottom-10 margin-right-15" style="float:left">
+													<label class="btn btn-primary" ng-click="FilterAll()" >All</label>
+													<label class="btn btn-warning" ng-click="FilterRushOrder()"  >Rush Order</label>
+													<label class="btn btn-success" ng-click="FilterNormalOrder()" >Normal Order</label>
+												</div>
+												</div>
+												
+
+												<div class="col-lg-3 col-md-3 col-xs-12 col-sm-6">
+													<select class="form-control input-lg ">
+														<option>Choose Plant Filter</option>
+														<option>JW64</option>
+														<option>JW71</option>
+														
+													</select>
+												</div>
+												
+												<div class="col-lg-3 col-md-3 col-xs-12 col-sm-6">
+												<div class="btn-group margin-bottom-10" style="float:right" >
+													<label class="btn btn-primary" ng-click="FilterAllStatus()" >All</label>
+													<label class="btn btn-success" ng-click="FilterOnlySent()"  >Sent</label>
+													<label class="btn btn-danger" ng-click="FilterOnlyNotSent()" >Not Sent</label>
+												</div>
+												</div>
+
+												<div class="clearfix"/>
+												<br>
+
+													<a class="btn btn-circle btn-lg pull-right btn-success" ng-click="exportData()" >CSV    <i class='fa fa-file-excel-o icon-4x' />
+													</a>
+
+													<div class="col-md-12 col-sm-12 col-xs-12 table-responsive">
+
+														<!--
 						<table class="table table-striped" ui-jq="footable" data-filter="#filter" data-page-size="10" class="table table-striped">
                             <thead>
                                 <tr>
@@ -115,98 +188,129 @@
                         </table>
 						-->
 
-											<table class="table table-striped" data-filter="#filter" class="table table-striped">
-												<thead>
-													<tr>
-														<th data-toggle="true">
+														<table class="table table-striped" data-filter="#filter" class="table table-striped">
+															<thead>
+																<tr>
+																	<th data-toggle="true">
                                         Idoc Number
-														</th>
+																	</th>
+																	<!--
 														<th>
                                         Sales Order Number
 														</th>
-														<th >
+														-->
+																	<th >
                                         Line Item Count
-														</th>
-														<th >
-                                        Slip Number
-														</th>
-														<th >
+																	</th>
+																	<th >
+                                        Proformat Number
+																	</th>
+
+																	<th>
                                         Delivery Date
-														</th>
-														<th >
+																	</th>	
+																	<th>
+                                        Plant
+																	</th>
+																	<th>
+                                        Route Code
+																	</th>
+
+																	<th>
+                                        CMCRC_PLNT
+																	</th>
+																	<th>
+										CMCRC_RT
+																	</th>
+																	<th>
+                                        Driver
+																	</th>
+																	<th>
+                                        sales Order NO
+																	</th>
+
+
+																	<th >
                                         Type
-														</th>
-														<th >
+																	</th>
+																	<th >
                                         Status
-														</th>
-														
-														
-														
-														
-													</tr>
-												</thead>
+																	</th>
 
 
-												<tbody>
-													<tr    dir-paginate="x in truckStockList | filter:search | filter:{ Entry5 : filterRush } | filter:{ Entry6 : filterStatus } |itemsPerPage:10  "  data-user-id="{{x.Entry1}}">
-														<td>{{ x.Entry1 }}</td>
-														<td>{{ x.Entry2 }}</td>
-														<td>{{ x.Entry3 }}</td>
-														<td>{{ x.Entry4 }}</td>
-														<td>{{ x.Entry7 }}</td>
 
-														<td>
-															<span ng-class="{false : 'label label-warning', true : 'label label-success' } [x.Entry5=='N'] " >
+
+																</tr>
+															</thead>
+
+
+															<tbody>
+																<tr    dir-paginate="x in truckStockList | filter:search | filter:{ Entry5 : filterRush } | filter:{ Entry6 : filterStatus } |itemsPerPage:10  "  data-user-id="{{x.Entry1}}">
+																	<td>{{ x.Entry1 }}</td>
+																	<!-- <td>{{ x.Entry2 }}</td> -->
+																	<td>{{ x.Entry3 }}</td>
+																	<td>{{ x.Entry4 }}</td>
+																	<td>{{ x.Entry7 }}</td>
+
+																	<td>{{ x.Entry12 }}</td>
+																	<td>{{ x.Entry13 }}</td>
+																	<td>{{ x.Entry8 }}</td>
+																	<td>{{ x.Entry9 }}</td>
+																	<td>{{ x.Entry10 }}</td>
+																	<td>{{ x.Entry11 }}</td>
+
+																	<td>
+																		<span ng-class="{false : 'label label-warning', true : 'label label-success' } [x.Entry5=='N'] " >
 														{{ (x.Entry5=='N') ? "Normal Order" : "Rush Order" }}
-														</td>
-														<td>
-															<span ng-class="{false : 'label label-danger', true : 'label label-success' } [x.Entry6==1] " >
-														{{ (x.Entry6==1) ? "Sent" : "Not Sent" }}
-														</td>
-														<!--
+																		</td>
+																		<td>
+																			<span ng-class="{false : 'label label-danger', true : 'label label-success' } [x.Entry6==1] " >
+														{{ (x.Entry6=='1') ? "Sent" : "Not Sent" }}
+																			</td>
+																			<!--
 														<td>{{ x.Entry8 | date }}</td> -->
-														
-														
-														
-													
-														 
-
-													</tr>
-												</tr>
-
-											</tbody>
 
 
-										</table>
 
-										<div>
-											<dir-pagination-controls
+
+
+
+																		</tr>
+																	</tr>
+
+																</tbody>
+
+
+															</table>
+
+															<div>
+																<dir-pagination-controls
 							   max-size="10"
 							   direction-links="true"
 							   boundary-links="true"
 								 >
-											</dir-pagination-controls>
+																</dir-pagination-controls>
 
+															</div>
+														</div>
+
+
+
+													</div>    
+												</div>
+
+
+
+											</div>
 										</div>
 									</div>
-
-								
-									
-								</div>    
+								</section>
 							</div>
-
-
-
 						</div>
 					</div>
+
+
+
+
 				</div>
-			</section>
-		</div>
-	</div>
-</div>
-
-
-
-
-</div>
-</div>	
+			</div>	

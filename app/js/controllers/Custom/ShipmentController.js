@@ -159,8 +159,16 @@ app.controller('ShipmentDetailsController', function ($scope, $http, $filter , $
 			then(function (response) {
 				console.log(response.data[0][0]);
 
+				$scope.forCount = response.data[0][0];
 				$scope.allMdRecords = response.data[0][0];
 				$scope.truckStockList = response.data[0][0];
+				
+				//Count
+				$scope.totalNumberOfIdocs = response.data[0][0].length;
+				$scope.rushOrderNumber = (jsonsql.query("select * from json where (Entry5=='Y')", $scope.forCount)).length;
+				$scope.notSentNumber = (jsonsql.query("select * from json where (Entry6==0)", $scope.forCount)).length;
+				$scope.sentNumber = (jsonsql.query("select * from json where (Entry6==1)", $scope.forCount)).length;
+				
 				
 
 			});
@@ -175,25 +183,7 @@ app.controller('ShipmentDetailsController', function ($scope, $http, $filter , $
 	}
 
 	$scope.filterResult = '';
-/*
-	$scope.FilterOnlyCorrected = function () {
-		$scope.truckStockList = $scope.allMdRecords;
-		$scope.truckStockList = jsonsql.query("select * from json where (Entry6>0)", $scope.truckStockList);
 
-	}
-
-	$scope.FilterOnlyNotCorrected = function () {
-		$scope.truckStockList = $scope.allMdRecords;
-		$scope.truckStockList = jsonsql.query("select * from json where (Entry6==0)", $scope.truckStockList);
-
-	}
-
-	$scope.FilterAll = function () {
-		$scope.truckStockList = $scope.allMdRecords;
-
-	}
-	*/
-	
 	
 	//Filter RushOrder
 	$scope.filterRush = "";
@@ -252,8 +242,15 @@ app.controller('ShipmentDetailsController', function ($scope, $http, $filter , $
 			then(function (response) {
 				console.log(response.data[0][0]);
 
+				$scope.forCount = response.data[0][0];
 				$scope.allMdRecords = response.data[0][0];
 				$scope.truckStockList = response.data[0][0];
+				
+				//Count
+				$scope.totalNumberOfIdocs = response.data[0][0].length;
+				$scope.rushOrderNumber = (jsonsql.query("select * from json where (Entry5=='Y')", $scope.forCount)).length;
+				$scope.notSentNumber = (jsonsql.query("select * from json where (Entry6==0)", $scope.forCount)).length;
+				$scope.sentNumber = (jsonsql.query("select * from json where (Entry6==1)", $scope.forCount)).length;
 				
 
 			});

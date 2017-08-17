@@ -146,14 +146,13 @@
 													</tr>
 												</thead>
 
-
 												<tbody>
-													<tr    dir-paginate="x in SettlementList | filter:search | filter:{ Entry6 : filterCorrection } |itemsPerPage:10  "  data-user-id="{{x.Entry1}}">
+													<tr    dir-paginate="x in SettlementList | filter:search | filter:{ Entry10 : filterCorrection } |itemsPerPage:10  "  data-user-id="{{x.Entry1}}">
 														<td>{{ x.Entry1 }}</td>
-														<td>{{ x.Entry3 }}</td>
 														<td>{{ x.Entry2 }}</td>
+														<td>{{ x.Entry3 }}</td>
 														<td>{{ x.Entry4 }}</td>
-														<td>{{ x.Entry7 }}</td>
+														<td>{{ x.Entry11 }}</td>
 
 														<td>
 															<span ng-class="{'1' : 'label label-danger', '2' : 'label label-success' , 
@@ -165,8 +164,8 @@
 														   }}
 														</td>
 														<td>
-															<span ng-class="{ true : 'label label-warning' } [x.Entry6==1] " >
-														{{ (x.Entry6==1) ? "Corrected" : "--" }}
+															<span ng-class="{ true : 'label label-warning' } [x.Entry10==1] " >
+														{{ (x.Entry10==1) ? "Corrected" : "--" }}
 														</td>
 														<!--
 														<td>{{ x.Entry8 | date }}</td> -->

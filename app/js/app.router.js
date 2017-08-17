@@ -1079,6 +1079,27 @@ angular.module('app')
                         }
                     })
 					
+					.state('app.tables.LoadInboundDetails', {
+                        url: '/LoadInboundDetails',
+                        templateUrl: 'partials/Personal/LoadInbound.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['js/controllers/Custom/SettlementController.js',
+										
+										'countTo',
+                                        'js/controllers/countto.js', 
+                                        'js/controllers/vectormap.js', 
+                                        'js/directives/ui-todowidget.js', 
+                                        'js/controllers/messages-widget.js',
+										'js/controllers/Custom/jsonsql-0.1.js',
+                                        '../bower_components/font-awesome/css/font-awesome.css'
+                                    ]);
+                                }
+                            ]
+                        }
+                    })
+					
 					.state('app.tables.salesOrderStatus', {
                         url: '/chartjs',
                         templateUrl: 'partials/Personal/SOStatus.html',

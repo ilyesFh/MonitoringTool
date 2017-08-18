@@ -273,7 +273,7 @@ app.controller('PriceValidationController', function ($scope, $http, $filter , $
 
 	$scope.exportData = function () {
 
-		$scope.queryExport = 'SELECT Entry17 as Transaction_Id, Entry6 as Item_No , Entry5 as Delivery_Date , Entry15 as Sold_To_JS,  Entry14 as Sold_To_C1, Entry13 as Ship_To_JS , Entry12 as Ship_To_C1 , Entry10 as Material_JS , Entry9 as Material_C1, Entry11 as Sales_Unit , Entry4 as Customer_Type , Entry8 as Unit_Price_JS , Entry7 as Unit_Price_C1 ,   case when Entry16 = "2" then \'Synced\' else \'Not Synced\' end as Status INTO XLSX("Report_Price_Validation.xlsx",{}) FROM ?';
+		$scope.queryExport = 'SELECT Entry17 as Transaction_Id, Entry6 as Item_No , Entry5 as Delivery_Date , Entry15 as Sold_To_JS,  Entry14 as Sold_To_C1, Entry13 as Ship_To_JS , Entry12 as Ship_To_C1 , Entry10 as Material_JS , Entry9 as Material_C1, Entry11 as Sales_Unit , Entry4 as Customer_Type , Entry8 as Unit_Price_JS , Entry7 as Unit_Price_C1 ,   case when Entry16 = "2" then \'Price Match\' else \'Not Match\' end as Status INTO XLSX("Report_Price_Validation.xlsx",{}) FROM ?';
 
 		console.log($scope.queryExport);
 		alasql($scope.queryExport, [$scope.mdRecordsArray]);

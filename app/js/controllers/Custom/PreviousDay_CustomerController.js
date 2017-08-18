@@ -51,6 +51,11 @@ app.controller('PreviousDayCustomerController', function ($scope, $http, $filter
 				$scope.insertedRow = $scope.QueryInsertedRow.length;
 
 				$scope.recordSynced = parseFloat(($scope.insertedRow / $scope.ExpectedRecords) * 100).toFixed(1);
+				$scope.tofixed2 = parseFloat(($scope.insertedRow / $scope.ExpectedRecords) * 100).toFixed(3);
+			
+			if ( $scope.recordSynced ==100 && $scope.tofixed2 < 100) {
+				$scope.recordSynced = 99.9
+			}
 				console.log($scope.recordSynced);
 
 				//update instance after 1 sec

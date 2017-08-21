@@ -108,7 +108,7 @@
 									<td>{{ x.Entry2 }}</td>
 									<td>{{ x.Entry3 }}</td>
 									<td>{{ x.Entry5 }}</td>
-									<td><span ng-class="{false : 'label label-danger', true : 'label label-success' } [x.Entry2==x.Entry3] " >{{ (x.Entry2!=x.Entry3) ? "Not Synced" : "Synced" }}</span>
+									<td width="15%" ><span ng-class="{false : 'label label-danger', true : 'label label-success' } [x.Entry2==x.Entry3] " >{{ (x.Entry2!=x.Entry3) ? "Not Synced" : "Synced" }}</span>
 									<a ng-show="x.Entry2!=x.Entry3" style="cursor:pointer;" class="btn-circle btn-sm  btn-primary" ng-click="openDetails(x)" ><i class='fa fa-search-plus icon-4x' />
 									</td>
 

@@ -112,7 +112,9 @@
 									<td>{{ x.Entry4 }}</td>
 									<td>{{ x.Entry8 }}</td>
 									<td>{{ x.Entry7 }}</td>
-									<td><span ng-class="{3 : 'label label-danger', 2 : 'label label-success' } [x.Entry16] " >{{ x.Entry16 == 3 ? "Not Match" : "Match" }}</span></td>
+									<td width="15%" ><span ng-class="{3 : 'label label-danger', 2 : 'label label-success' } [x.Entry16] " >{{ x.Entry16 == 3 ? "Not Match" : "Match" }}</span>
+									<a ng-show="x.Entry16==3" style="cursor:pointer;" class="btn-circle btn-sm  btn-primary" ng-click="" ><i class='fa fa-refresh' />
+									</td>
                                 </tr>
 								
 												<tr>

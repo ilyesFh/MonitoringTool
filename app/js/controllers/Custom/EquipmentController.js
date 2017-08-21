@@ -15,15 +15,8 @@ app.config(['$httpProvider', function ($httpProvider) {
 	    
 	}]); 
 
-app.controller('MasterDataController', function($scope, $http, $filter ) {
+app.controller('EquipmentController', function($scope, $http, $filter ) {
 	
-	$scope.message = "Marouen" ; 
-	$scope.fieldValue;
-	$scope.jsonArray;
-	$scope.DeliveryDate;
-	$scope.CreationStartDate;
-	$scope.CreationEndDate;
-	$scope.syncResultBool = false;
 	$scope.formattedDate;
 	
 	$scope.mdRecordsArray = [];
@@ -34,14 +27,13 @@ app.controller('MasterDataController', function($scope, $http, $filter ) {
 			    $scope.formattedDate = $filter('date')($scope.todayDate, "yyyyMMdd");
 			    console.log($scope.formattedDate);
 				
-		        var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate +  "\", \"msgType\":\"/CCEJ/MATMAS\"   , \"Prefix\":\"MDM\"  }";
+		        var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate +  "\", \"msgType\":\"/CCEJ/EQUIPMENT\"   , \"Prefix\":\"Equipment\"  }";
 		        console.log(msgdata);
 		        var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=',msgdata ).
 		        then(function (response) {
 		        	console.log("");
 					console.log(response);
 					console.log(response.data);
-					//console.log(response.data[0][0][0].Entry2);
 					
 					
 				$scope.mdRecordsArray = response.data[0][0];
@@ -50,8 +42,8 @@ app.controller('MasterDataController', function($scope, $http, $filter ) {
 				$scope.ExpectedRecords = response.data[0][0].length;
 				
 				
-				$scope.QueryInsertedRow = jsonsql.query("select * from json where (Entry5=='0')", response.data[0][0]);
-				$scope.insertedRow = $scope.QueryInsertedRow.length;
+				//$scope.QueryInsertedRow = jsonsql.query("select * from json where (Entry5=='0')", response.data[0][0]);
+				$scope.insertedRow = response.data[0][0][0].Entry7;
 				
 				
 			
@@ -102,22 +94,7 @@ app.controller('MasterDataController', function($scope, $http, $filter ) {
 			*/
 			
 			
-		  $scope.CountLine = function() {
-		        
-				$scope.formattedDate = "20170721 000000";
-		        var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate +  " \", \"msgType\":\"MATMAS\"  " + "\", \"Prefix\":\"fileToTvoss\"  }";
-				
-				
-				
-		        console.log(msgdata);
-		        var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=',msgdata ).
-		        then(function (response) {
-		        	console.log("");
-					console.log(response);
-					console.log(response.data[0][0].Count);
-				});
-			  	
-		    }
+		  
 		  
 		  $scope.exportData = function () {
 				 

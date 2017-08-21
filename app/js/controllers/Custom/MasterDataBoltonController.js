@@ -182,7 +182,7 @@ app.controller('ErrorDetailsController', function($scope , $http, $filter , $sta
 		
 		
 		$scope.formattedDate = $filter('date')($scope.TodayDate, "yyyyMMdd");
-		var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"Pricing_Bolton\"  }";
+		var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"MDM_Bolton\"  }";
 		console.log(msgdata);
 		var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgdata).
 			then(function (response) {
@@ -251,7 +251,7 @@ app.controller('ErrorDetailsController', function($scope , $http, $filter , $sta
 		console.log($scope.formattedDate);
 		
 		
-		var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"Pricing_Bolton\"  }";
+		var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"MDM_Bolton\"  }";
 		console.log(msgdata);
 		var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgdata).
 			then(function (response) {

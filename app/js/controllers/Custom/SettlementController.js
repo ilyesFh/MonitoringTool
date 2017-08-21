@@ -70,12 +70,12 @@ app.controller('SettlementController', function ($scope, $http, $filter , $state
 	//Status Filter
 	$scope.FilterError = function () {
 		$scope.SettlementList = $scope.allRecords;
-		$scope.SettlementList = jsonsql.query("select * from json where (Entry5=='1' || Entry5=='3')", $scope.allRecords);
+		$scope.SettlementList = jsonsql.query("select * from json where (Entry8=='1' || Entry8=='3')", $scope.allRecords);
 	}
 	
 	$scope.FilterSuccess = function () {
 		$scope.SettlementList = $scope.allRecords;
-		$scope.SettlementList = jsonsql.query("select * from json where (Entry5=='2' || Entry5=='4')", $scope.allRecords);
+		$scope.SettlementList = jsonsql.query("select * from json where (Entry8=='2' || Entry8=='4')", $scope.allRecords);
 	}
 	
 	$scope.FilterAllStatus = function () {

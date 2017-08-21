@@ -38,18 +38,33 @@
 			<div class="content-body padding-bottom-0">
                 <div class="row">
 				
-                    <div class="col-md-9 col-sm-12 col-xs-12">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+					
+						<div class="col-lg-4 col-md-3 col-xs-12 col-sm-6">
                          <input id="filter" type="text" class="form-control" placeholder="Search" ng-model="filterText" />
-						
+						</div>
 						<!-- <input type="text" ng-model="search" class="form-control" placeholder="Search"> -->
 						
-					</div>
-					
-					<div class="btn-group margin-bottom-10 margin-right-15">
+						<div class="col-lg-4 col-md-3 col-xs-12 col-sm-6">
+													<select class="form-control input-lg" ng-model="typeSearch" >
+													<option value="">Choose MD Type For Filter</option>
+														<option>Pricing</option>
+														<option>Material</option>
+														<option>Customer</option>
+													</select>
+												</div>
+						
+						
+						
+						<div class="col-lg-4 col-md-3 col-xs-12 col-sm-6">
                        <label class="btn btn-primary" ng-click="FilterAll()" >All</label>
                        <label class="btn btn-success" ng-click="FilterOnlySynced()"  >Synced</label>
                        <label class="btn btn-danger" ng-click="FilterOnlyNotSynced()" >Not Synced</label>
                     </div>
+						
+					</div>
+					
+					
 					
 					<div class="clearfix"></div>
 					<br>
@@ -74,8 +89,11 @@
                                     <th>
                                         Records in MYSQL
                                     </th>
-                                    <th data-hide="phone,tablet">
+                                    <th >
                                         File Count
+                                    </th>
+									<th >
+                                        Type
                                     </th>
                                     <th data-hide="phone">
                                         Status
@@ -85,11 +103,14 @@
 							
                             
 							<tbody>
-                                <tr    dir-paginate="x in mdRecordsArray | filter: filterText | itemsPerPage:10" >
+                                <tr    dir-paginate="x in mdRecordsArray | filter: filterText | filter:{ Entry5 : typeSearch } | itemsPerPage:10" >
                                     <td>{{ x.Entry4 }}</td>
 									<td>{{ x.Entry2 }}</td>
 									<td>{{ x.Entry3 }}</td>
-									<td><span ng-class="{false : 'label label-danger', true : 'label label-success' } [x.Entry2==x.Entry3] " >{{ (x.Entry2!=x.Entry3) ? "Not Synced" : "Synced" }}</span></td>
+									<td>{{ x.Entry5 }}</td>
+									<td><span ng-class="{false : 'label label-danger', true : 'label label-success' } [x.Entry2==x.Entry3] " >{{ (x.Entry2!=x.Entry3) ? "Not Synced" : "Synced" }}</span>
+									<a ng-show="x.Entry2!=x.Entry3" style="cursor:pointer;" class="btn-circle btn-sm  btn-primary" ng-click="openDetails(x)" ><i class='fa fa-search-plus icon-4x' />
+									</td>
 
 									
                                 </tr>

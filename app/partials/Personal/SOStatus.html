@@ -160,7 +160,7 @@
 							</thead>
 
 							<tbody>
-								<tr dir-paginate="x in recordsOfToday | filter : filterText | itemsPerPage:10  ">
+								<tr dir-paginate="x in recordsOfToday | filter : filterText | filter : { Entry14 : typeSearch } | itemsPerPage:10  ">
 									<td>{{ x.Entry14 }}</td>
 									<td>{{ x.Entry13 }}</td>
 									<td>{{ x.Entry4 }}</td>

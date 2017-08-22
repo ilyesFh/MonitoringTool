@@ -270,6 +270,14 @@ app.controller('PriceValidationController', function ($scope, $http, $filter , $
 		$scope.mdRecordsArray = $scope.allMdRecords;
 
 	}
+	
+	$scope.FilterMissingBridgeTable = function () {
+		$scope.mdRecordsArray = $scope.allMdRecords;
+		$scope.mdRecordsArray = jsonsql.query("select * from json where (Entry16==0)", $scope.mdRecordsArray);
+
+	}
+	
+	
 
 	$scope.exportData = function () {
 

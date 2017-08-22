@@ -33,8 +33,9 @@
 					
 					<div class="btn-group margin-bottom-10 margin-right-15">
                        <label class="btn btn-primary" ng-click="FilterAll()" >All</label>
-                       <label class="btn btn-success" ng-click="FilterOnlySynced()"  >Synced</label>
-                       <label class="btn btn-danger" ng-click="FilterOnlyNotSynced()" >Not Synced</label>
+                       <label class="btn btn-success" ng-click="FilterOnlySynced()"  >Match</label>
+                       <label class="btn btn-danger" ng-click="FilterOnlyNotSynced()" >Not Match</label>
+					   <label class="btn" ng-click="FilterMissingBridgeTable()" >Error</label>
                     </div>
                     
 					
@@ -112,7 +113,9 @@
 									<td>{{ x.Entry4 }}</td>
 									<td>{{ x.Entry8 }}</td>
 									<td>{{ x.Entry7 }}</td>
-									<td width="15%" ><span ng-class="{3 : 'label label-danger', 2 : 'label label-success' } [x.Entry16] " >{{ x.Entry16 == 3 ? "Not Match" : "Match" }}</span>
+									<td width="15%" ><span ng-class="{3 : 'label label-danger', 2 : 'label label-success'  } [x.Entry16] " >{{ x.Entry16 == 3 ? "Not Match" : 
+									x.Entry16 == 2 ? "Match" :
+									"Error"					}}</span>
 									<a ng-show="x.Entry16==3" style="cursor:pointer;" class="btn-circle btn-sm  btn-primary" ng-click="" ><i class='fa fa-refresh' />
 									</td>
                                 </tr>

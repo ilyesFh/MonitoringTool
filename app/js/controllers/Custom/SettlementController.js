@@ -21,6 +21,7 @@ app.controller('SettlementController', function ($scope, $http, $filter , $state
 
 	$scope.TodayDate = new Date();
 	$scope.maxDate = new Date();
+	$scope.HokanFilesCount = 0;
 	
 
 	$scope.load = function () {

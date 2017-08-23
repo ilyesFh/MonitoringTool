@@ -21,6 +21,8 @@ app.controller('MasterDataBoltonController', function ($scope, $http, $filter , 
 	$scope.allMdRecords
 	$scope.formattedDate;
 	$scope.percentage;
+	
+	
 
 	$scope.options = {
 		animate: false,
@@ -173,7 +175,7 @@ app.controller('ErrorDetailsController', function($scope , $http, $filter , $sta
 	$scope.maxDate = new Date();
 	
 	$scope.mdRecordsArray = [];
-	
+	$scope.typeSearch = "Pricing";
 	
 
 	

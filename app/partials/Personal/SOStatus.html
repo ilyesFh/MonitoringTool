@@ -43,9 +43,9 @@
 			-->
 				<div class="content-body">
 					<div class="row">
-					
-					
-					<!--
+
+
+						<!--
 						<div class="input-group" inputgroup>
 							<select ng-model="selectedSystem" class="form-control input-lg ">
 								<option>Select Bolton</option>
@@ -60,74 +60,85 @@
 						-->
 
 						<label class="form-label" for="field-1">Select Date</label>
-							<div style="width:10%" class="input-group" >
+						<div style="width:10%" class="input-group" >
 
-								<input type="text" class="form-control datepicker" max-date="maxDate" datepicker-popup="yyyy/MM/dd" ng-model="dt" is-open="dtpick.opened"  ng-required="true" close-text="Close" ng-click="open($event,'opened')" 
-								ng-change="getMonth()" />
-								<span class="input-group-addon" ng-click="open($event,'opened')">
-									<i class="fa fa-calendar" style="color: #999;"/>
-								</span>
-							</div>
-						
-						
+							<input type="text" class="form-control datepicker" max-date="maxDate" datepicker-popup="yyyy/MM/dd" ng-model="dt" is-open="dtpick.opened"  ng-required="true" close-text="Close" ng-click="open($event,'opened')" 
+								ng-change="changeDate()" />
+							<span class="input-group-addon" ng-click="open($event,'opened')">
+								<i class="fa fa-calendar" style="color: #999;"/>
+							</span>
+						</div>
+
+
 
 						<!-- <input type="date" ng-model="DeliveryDate" style="height:25px" /> -->
-						
+
 						<br/>
 
 
 
 					</div>
 					<div class="clearfix"/>
-					
-					
-					
+
+
+
 
 
 					<div  class="col-md-6  col-md-offset-3"  >
 						<canvas id="doughnut" class="chart chart-doughnut" chart-data="data" chart-labels="labels" 
-					 ng-if="showChart" chart-options="myOptions" chart-legend="true"  />
-					 
-					 <br></br>
-					
-					
-					 
-					</div>
-					
-					
-					<div class="col-md-12 col-sm-12 col-xs-12">
-					
-						<div class="col-lg-4 col-md-3 col-xs-12 col-sm-6">
-                         <input id="filter" type="text" class="form-control" placeholder="Search" ng-model="filterText" />
-						</div>
-						<!-- <input type="text" ng-model="search" class="form-control" placeholder="Search"> -->
-						
-						<div class="col-lg-4 col-md-3 col-xs-12 col-sm-6">
-													<select class="form-control input-lg" ng-model="typeSearch" >
-													<option value="">Choose MD Type For Filter</option>
-														<option>Ebest</option>
-														<option>SUPERDAIWA</option>
-														<option>EOS</option>
-														<option>NEOS</option>
-														<option>Manual</option>
-													</select>
-												</div>
-						
-						
-						
-						<div class="col-lg-4 col-md-3 col-xs-12 col-sm-6">
-                       <label class="btn btn-primary" ng-click="FilterAll()" >All</label>
-                       <label class="btn btn-success" ng-click="FilterOnlySynced()"  >Synced</label>
-                       <label class="btn btn-danger" ng-click="FilterOnlyNotSynced()" >Not Synced</label>
-                    </div>
-						
+					 ng-if="showChart" chart-options="myOptions" chart-legend="true" chart-colours="colours" />
+
+						<br/>
+
+
+
 					</div>
 
-					<br></br>
-					<br></br>
-					
-					
-					
+
+					<div class="col-md-12 col-sm-12 col-xs-12">
+
+						<div class="col-lg-4 col-md-4 col-xs-12 col-sm-6">
+							<input id="filter" type="text" class="form-control" placeholder="Search" ng-model="filterText" />
+						</div>
+						<!-- <input type="text" ng-model="search" class="form-control" placeholder="Search"> -->
+
+						<div class="col-lg-4 col-md-4 col-xs-12 col-sm-6">
+							<select class="form-control input-lg" ng-model="typeSearch" >
+								<option value="">Choose MD Type For Filter</option>
+								<option>Ebest</option>
+								<option>SUPERDAIWA</option>
+								<option>EOS</option>
+								<option>NEOS</option>
+								<option>Manual</option>
+							</select>
+						</div>
+
+
+
+						<div class="col-lg-4 col-md-4 col-xs-12 col-sm-6">
+							
+								<select class="form-control input-lg" ng-model="StatusSearch" >
+									<option value="">Status : All</option>
+									<option value="0" >Created In Bolton</option>
+									<option value="1">In Progress</option>
+									<option value="2">Sent To SAP</option>
+									<option value="3">Error-Sent To SAP</option>
+									<option value="4">Processed</option>
+									<option value="5">Not Processed</option>
+									<option value="6">Idoc Released</option>
+								</select>
+							
+
+
+						</div>
+
+					</div>
+
+					<br/>
+					<br/>
+
+
+
 					<div style="text-align:-webkit-center">
 
 						<table class="table table-striped" data-filter="#filter" class="table table-striped">
@@ -160,7 +171,7 @@
 							</thead>
 
 							<tbody>
-								<tr dir-paginate="x in recordsOfToday | filter : filterText | filter : { Entry14 : typeSearch } | itemsPerPage:10  ">
+								<tr dir-paginate="x in recordsOfToday | filter : filterText | filter : { Entry14 : typeSearch } | filter : { Entry8 : StatusSearch } | itemsPerPage:10  ">
 									<td>{{ x.Entry14 }}</td>
 									<td>{{ x.Entry13 }}</td>
 									<td>{{ x.Entry4 }}</td>

@@ -881,7 +881,7 @@ angular.module('app')
 					
 					.state('app.tables.EquipmentPreviousDay', {
                         url: '/archive_Equipment',
-                        templateUrl: 'partials/Personal/PreviousDay_Material.html',
+                        templateUrl: 'partials/Personal/PreviousDay_Equipment.html',
                         resolve: {
                             deps: ['$ocLazyLoad',
                                 function($ocLazyLoad) {

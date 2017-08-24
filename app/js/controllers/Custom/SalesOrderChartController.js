@@ -447,7 +447,7 @@
 			
 			console.log("Filter Empty");
 			
-			$scope.queryExport = 'SELECT Entry14 as System_Source, Entry13 as So_Number, Entry12 as Plant, Entry4 as Delivery_Date , Entry6 as Sold_To , Entry10 as Creation_Time_WorkTable, Entry2 as Boomi_Process_Time ,   case when Entry8 = \'0\' then \'Created In Bolton\' else ( case when Entry8 = \'1\' then \'In Progress\' else  ( case when Entry8 = \'2\' then \'Sent To SAP\' else \'Error-Sent To SAP\'  end )  end ) end as Type  INTO XLSX("Report_SalesOrders.xlsx",{}) FROM ? ' ;
+			$scope.queryExport = 'SELECT Entry14 as System_Source, Entry13 as So_Number, Entry12 as Plant, Entry4 as Delivery_Date , Entry6 as Sold_To , Entry9 as Creation_Date_System ,  Entry10 as Creation_Time_WorkTable, Entry2 as Boomi_Process_Time ,   case when Entry8 = \'0\' then \'Created In Bolton\' else ( case when Entry8 = \'1\' then \'In Progress\' else  ( case when Entry8 = \'2\' then \'Sent To SAP\' else \'Error-Sent To SAP\'  end )  end ) end as Type  INTO XLSX("Report_SalesOrders.xlsx",{}) FROM ? ' ;
 			
 			
 		}
@@ -456,7 +456,7 @@
 			
 			console.log("Filter Activiated");
 			
-			$scope.queryExport = 'SELECT Entry14 as System_Source, Entry13 as So_Number, Entry12 as Plant, Entry4 as Delivery_Date , Entry6 as Sold_To , Entry10 as Creation_Time_WorkTable, Entry2 as Boomi_Process_Time ,   case when Entry8 = \'0\' then \'Created In Bolton\' else ( case when Entry8 = \'1\' then \'In Progress\' else  ( case when Entry8 = \'2\' then \'Sent To SAP\' else \'Error-Sent To SAP\'  end )  end ) end as Type  INTO XLSX("Report_SalesOrders.xlsx",{}) FROM ? where Entry14 = \'' + $scope.typeSearch + '\' AND Entry8 = \''+ $scope.StatusSearch + '\'   ' ;
+			$scope.queryExport = 'SELECT Entry14 as System_Source, Entry13 as So_Number, Entry12 as Plant, Entry4 as Delivery_Date , Entry6 as Sold_To , Entry9 as Creation_Date_System ,  Entry10 as Creation_Time_WorkTable, Entry2 as Boomi_Process_Time ,   case when Entry8 = \'0\' then \'Created In Bolton\' else ( case when Entry8 = \'1\' then \'In Progress\' else  ( case when Entry8 = \'2\' then \'Sent To SAP\' else \'Error-Sent To SAP\'  end )  end ) end as Type  INTO XLSX("Report_SalesOrders.xlsx",{}) FROM ? where Entry14 = \'' + $scope.typeSearch + '\' AND Entry8 = \''+ $scope.StatusSearch + '\'   ' ;
 		}	
 
 		console.log($scope.queryExport);

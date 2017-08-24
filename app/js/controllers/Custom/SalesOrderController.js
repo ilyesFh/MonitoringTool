@@ -62,9 +62,17 @@ app.controller('SalesOrderController', function($scope, $http, $filter ) {
 		  $scope.postMessage = function() {
 		        //var msg = document.getElementById('message').value;
 			  	console.log("--1");
-			    $scope.formattedDate = $filter('date')($scope.DeliveryDate, "yyyy-MM-dd");
-			    console.log($scope.formattedDate);
-		        var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"SalesOrderAll\"  }";
+				
+				
+			    $scope.formattedDateD1 = $filter('date')($scope.CreationStartDate, "yyyyMMdd");
+				$scope.formattedDateD2 = $filter('date')($scope.CreationEndDate, "yyyyMMdd");
+				
+				
+			    console.log($scope.formattedDateD1);
+				console.log($scope.formattedDateD2);
+				
+				
+		        var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDateD1 +  "\", \"msgType\":\"" + $scope.formattedDateD2 + "\"  , \"Prefix\":\"SalesOrderAll\"  }";
 		        console.log(msgdata);
 		        var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=',msgdata ).
 		        then(function (response) {
@@ -98,7 +106,7 @@ app.controller('SalesOrderController', function($scope, $http, $filter ) {
 		        		 $scope.QueryWithDate = jsonsql.query("select * from json where (Entry2=='"+$scope.fixedDate+"')", response.data[0][0]);
 		        		 console.log($scope.QueryWithDate);
 		        		 $scope.record = new Array(23);
-		        		 $scope.record[0] = "Ebest";
+		        		 $scope.record[0] = "All Systems";
 		        		 $scope.record[1] = $scope.fixedDate;
 		        		 $scope.record[22] = $scope.QueryWithDate.length;
 		        		 

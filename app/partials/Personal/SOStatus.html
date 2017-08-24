@@ -60,129 +60,144 @@
 						-->
 
 						<label class="form-label" for="field-1">Select Date</label>
-						<div style="width:10%" class="input-group" >
+						<div>
+							<div style="width:10%" class="input-group" >
 
-							<input type="text" class="form-control datepicker" max-date="maxDate" datepicker-popup="yyyy/MM/dd" ng-model="dt" is-open="dtpick.opened"  ng-required="true" close-text="Close" ng-click="open($event,'opened')" 
+								<input type="text" class="form-control datepicker" max-date="maxDate" datepicker-popup="yyyy/MM/dd" ng-model="dt" is-open="dtpick.opened"  ng-required="true" close-text="Close" ng-click="open($event,'opened')" 
 								ng-change="changeDate()" />
-							<span class="input-group-addon" ng-click="open($event,'opened')">
-								<i class="fa fa-calendar" style="color: #999;"/>
-							</span>
+								<span class="input-group-addon" ng-click="open($event,'opened')">
+									<i class="fa fa-calendar" style="color: #999;"/>
+								</span>
+							</div>
+
+
+
+
+							<!-- <input type="date" ng-model="DeliveryDate" style="height:25px" /> -->
+
+							<br/>
+
+
+
 						</div>
-
-
-
-						<!-- <input type="date" ng-model="DeliveryDate" style="height:25px" /> -->
-
-						<br/>
-
-
-
-					</div>
-					<div class="clearfix"/>
+						<div class="clearfix"/>
 
 
 
 
 
-					<div  class="col-md-6  col-md-offset-3"  >
-						<canvas id="doughnut" class="chart chart-doughnut" chart-data="data" chart-labels="labels" 
+						<div  class="col-md-6  col-md-offset-3"  >
+							<canvas id="doughnut" class="chart chart-doughnut" chart-data="data" chart-labels="labels" 
 					 ng-if="showChart" chart-options="myOptions" chart-legend="true" chart-colours="colours" />
 
-						<br/>
+							<br/>
 
 
 
-					</div>
-
-					<div class="col-lg-6 col-md-6 col-xs-12 col-sm-6">
-							<input id="filter" type="text" class="form-control" placeholder="Filter Search" ng-model="filterText" />
-							
-							<br><br/>
-					
 						</div>
 
-					<div class="col-md-12 col-sm-12 col-xs-12">
-
-						
-						<!-- <input type="text" ng-model="search" class="form-control" placeholder="Search"> -->
 
 						
 
+						</div>
 
-						
-
-					</div>
-
-					
+						<div class="col-md-12 col-sm-12 col-xs-12">
 
 
+							<!-- <input type="text" ng-model="search" class="form-control" placeholder="Search"> -->
 
-					<div style="text-align:-webkit-center">
+							<div class="col-lg-6 col-md-6 col-xs-12 col-sm-6">
+								<input id="filter" type="text" class="form-control" placeholder="Filter Search" ng-model="filterText" />
+							</div>
 
-						<table class="table table-striped" data-filter="#filter" class="table table-striped">
-							<thead>
-								<tr>
-									<th data-toggle="true">
+							<div class="col-lg-6 col-md-6 col-xs-12 col-sm-6">
+							<a class="btn btn-circle btn-lg pull-right btn-success"  style="float: right" ng-click="exportData()" >
+							CSV    <i class='fa fa-file-excel-o icon-4x' />
+							</a>
+							</div>
+							<br><br/>
+							<br><br/>
+							
+							
 
-										<select class="form-control input-xs" ng-model="typeSearch" >
-											<option value="">Source</option>
-											<option>Ebest</option>
-											<option>SUPERDAIWA</option>
-											<option>EOS</option>
-											<option>NEOS</option>
-											<option>Manual</option>
-										</select>
-									</th>
-									<th>
+							
+							
+						</div>
+
+
+
+
+
+						<div style="text-align:-webkit-center">
+
+							<table class="table table-striped" data-filter="#filter" class="table table-striped">
+								<thead>
+									<tr>
+										<th data-toggle="true">
+
+											<select class="form-control input-xs" ng-model="typeSearch" >
+												<option value="">Source</option>
+												<option>Ebest</option>
+												<option>SUPERDAIWA</option>
+												<option>EOS</option>
+												<option>NEOS</option>
+												<option>Manual</option>
+											</select>
+										</th>
+										<th>
                                         SO Number
-									</th>
-									<th >
+										</th>
+										<th>
+                                        Plant
+										</th>
+										<th >
                                         Delivery Date
-									</th>
-									<th >
+										</th>
+										<th >
                                         Sold To
-									</th>
-									<th >
-                                       Creation Date WK
-									</th>
-									<th >
-                                        Boomi Process Date
-									</th>
+										</th>
+										<th >
+                                       Creation Time WK
+										</th>
+										<th >
+                                        Boomi Process Time
+										</th>
 
 
 
-									<th >
-                                        <select class="form-control input-xs" ng-model="StatusSearch" >
-								<option value="">Status : All</option>
-								<option value="0" >Created In Bolton</option>
-								<option value="1">In Progress</option>
-								<option value="2">Sent To SAP</option>
-								<option value="3">Error-Sent To SAP</option>
-								<option value="4">Processed</option>
-								<option value="5">Not Processed</option>
-								<option value="6">Idoc Released</option>
-							</select>
-									</th>
+										<th >
+											<select class="form-control input-xs" ng-model="StatusSearch" >
+												<option value="">Status : All</option>
+												<option value="0" >Created In Bolton</option>
+												<option value="1">In Progress</option>
+												<option value="2">Sent To SAP</option>
+												<option value="3">Error-Sent To SAP</option>
+												<option value="4">Processed</option>
+												<option value="5">Not Processed</option>
+												<option value="6">Idoc Released</option>
+											</select>
+										</th>
 
 
 
 
 
-								</tr>
-							</thead>
+									</tr>
+								</thead>
 
-							<tbody>
-								<tr dir-paginate="x in recordsOfToday | filter : filterText | filter : { Entry14 : typeSearch } | filter : { Entry8 : StatusSearch } | itemsPerPage:10  ">
-									<td>{{ x.Entry14 }}</td>
-									<td>{{ x.Entry13 }}</td>
-									<td>{{ x.Entry4 }}</td>
-									<td>{{ x.Entry6 }}</td>
-									<td>{{ x.Entry10 }}</td>
-									<td>{{ x.Entry2 }}</td>
+								<tbody>
+									<tr dir-paginate="x in recordsOfToday | filter : filterText | filter : { Entry14 : typeSearch } | filter : { Entry8 : StatusSearch } | itemsPerPage:10  ">
+										<td>{{ x.Entry14 }}</td>
+										<td>{{ x.Entry13 }}</td>
+										<td>{{ x.Entry12 }}</td>
+										<td>{{ x.Entry4 }}</td>
+										<td>{{ x.Entry6 }}</td>
+										<td>{{ x.Entry10 }}</td>
+										<td>{{ x.Entry2 }}</td>
 
 
-									<td>
-										<span ng-class="{0 : 'label label-success', 1 : 'label label-warning' , 2 : 'label label-success' , 
+										<td>
+											<span ng-class="{0 : 'label label-warning', 1 : 'label label-warning' , 2 : 'label label-success' , 
 											3 : 'label label-danger' , 4 : 'label label-success' , 5 : 'label label-danger' , 6 : 'label label-success' } [x.Entry8] " >
 										{{  x.Entry8 == 0 ? "Created In Bolton" : 
 											x.Entry8 == 1 ? "In Progress" :
@@ -192,9 +207,9 @@
 											x.Entry8 == 5 ? "Not Processed" :
 											"Idoc Released" 
 										}}
-										</td>
+											</td>
 
-										<!--
+											<!--
 														<td>{{ x.Entry8 | date }}</td> -->
 
 
@@ -203,32 +218,32 @@
 
 
 
-									</tr>
-									<tr >
-										<td ng-show="recordsOfToday.length == 0" colspan="20" style="text-align:center">
+										</tr>
+										<tr >
+											<td ng-show="recordsOfToday.length == 0" colspan="20" style="text-align:center">
 														   No Data             
-										</td>
-									</tr>
+											</td>
+										</tr>
 
-								</tbody>
+									</tbody>
 
 
-							</table>
+								</table>
 
-							<div>
-								<dir-pagination-controls
+								<div>
+									<dir-pagination-controls
 							   max-size="10"
 							   direction-links="true"
 							   boundary-links="true"
 								 >
-								</dir-pagination-controls>
+									</dir-pagination-controls>
 
-							</div>
-
-
+								</div>
 
 
-							<!--
+
+
+								<!--
 				<table class="table table-striped" ui-jq="footable" data-filter="#filter" data-page-size="10" class="table table-striped">
                             <thead>
                                 <tr>
@@ -291,14 +306,14 @@
 
 
 
+							</div>
+							<div class="clearfix"/>
+							<div class="clearfix"/>
+							<div class="clearfix"/>
+							<div class="clearfix"/>
+
+
 						</div>
-						<div class="clearfix"/>
-						<div class="clearfix"/>
-						<div class="clearfix"/>
-						<div class="clearfix"/>
-
-
-					</div>
 
 
 
@@ -306,14 +321,14 @@
 
 
 
-				</section>
+					</section>
+				</div>
+
+
+
+
+
+
+
 			</div>
-
-
-
-
-
-
-
-		</div>
-	</div>	
+		</div>	

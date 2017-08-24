@@ -266,6 +266,11 @@
 		$scope.st6 = 6
 		$scope.st7 = 7
 		
+		$scope.typeSearch = '';
+		$scope.StatusSearch = '';
+		
+		
+		
 		$scope.load = function () {
 		
 		console.log("-- Begin Chart");
@@ -308,26 +313,50 @@
 				$scope.labels = ['Created In Bolton', 'In Progress', 'Sent To SAP' , 'Error-Sent To SAP', 'Processed', 'Not Processed' , 'Idoc Released'];
 				$scope.data = [$scope.st0, $scope.st1, $scope.st2 , $scope.st3 ,$scope.st4 , $scope.st5 , $scope.st6];
 				$scope.colours = [{ // grey
-						fillColor: "rgba(255,110,64,1)",
-						strokeColor: "rgba(255,110,64,1.0)",
-						highlightFill: "rgba(255,110,64,1.0)",
-						highlightStroke: "rgba(255,110,64,1)"
-				}, { // dark grey
 						fillColor: "rgba(103,58,183,1.0)",
 						strokeColor: "rgba(103,58,183,1.0)",
 						highlightFill: "rgba(103,58,183,1.0)",
 						highlightStroke: "rgba(103,58,183,1.0)"
-				}, { // dark grey
-						fillColor: "rgba(253,216,53,1.0)",
-						strokeColor: "rgba(253,216,53,1.0)",
-						highlightFill: "rgba(253,216,53,1.0)",
-						highlightStroke: "rgba(253,216,53,1.0)"
-				}];
+						
+				}, { // Orange : in progress
+						fillColor: "rgba(255,110,64,1)",
+						strokeColor: "rgba(255,110,64,1.0)",
+						highlightFill: "rgba(255,110,64,1.0)",
+						highlightStroke: "rgba(255,110,64,1)"
+				}, { // Green
+						fillColor: "rgba(102,204,0,1.0)",
+						strokeColor: "rgba(102,204,0,1.0)",
+						highlightFill: "rgba(102,204,0,1.0)",
+						highlightStroke: "rgba(102,204,0,1.0)"
+				}, { // RED
+						fillColor: "rgba(255,0,0,1.0)",
+						strokeColor: "rgba(255,0,0,1.0)",
+						highlightFill: "rgba(255,0,0,1.0)",
+						highlightStroke: "rgba(255,0,0,1.0)"
+				},
+				{ // Green 2 
+						fillColor: "#B2FF66",
+						strokeColor: "#B2FF66",
+						highlightFill: "#B2FF66",
+						highlightStroke: "#B2FF66"
+				},
+				{ // RED 2
+						fillColor: "rgba(204,50,0,1.0)",
+						strokeColor: "rgba(204,50,0,1.0)",
+						highlightFill: "rgba(204,50,0,1.0)",
+						highlightStroke: "rgba(204,50,0,1.0)"
+				},
+				{ // Released
+						fillColor: "#3399FF",
+						strokeColor: "#3399FF",
+						highlightFill: "#3399FF",
+						highlightStroke: "#3399FF"
+				}
 				
 				
 				
 				
-				
+				];
 				
 				
 				
@@ -400,17 +429,40 @@
 				
 				
 				
-				
-				
-				
-				
-				
 				$scope.showChart = true;
 					
 				});
 		
 		
 	}		
+		
+		
+		$scope.exportData = function () {
+		
+		$scope.queryExport = '';
+		console.log($scope.typeSearch);
+		
+		if( $scope.typeSearch == '' && $scope.StatusSearch == '' )
+		{
+			
+			console.log("Filter Empty");
+			
+			$scope.queryExport = 'SELECT Entry14 as System_Source, Entry13 as So_Number, Entry12 as Plant, Entry4 as Delivery_Date , Entry6 as Sold_To , Entry10 as Creation_Time_WorkTable, Entry2 as Boomi_Process_Time ,   case when Entry8 = \'0\' then \'Created In Bolton\' else ( case when Entry8 = \'1\' then \'In Progress\' else  ( case when Entry8 = \'2\' then \'Sent To SAP\' else \'Error-Sent To SAP\'  end )  end ) end as Type  INTO XLSX("Report_SalesOrders.xlsx",{}) FROM ? ' ;
+			
+			
+		}
+		else
+		{
+			
+			console.log("Filter Activiated");
+			
+			$scope.queryExport = 'SELECT Entry14 as System_Source, Entry13 as So_Number, Entry12 as Plant, Entry4 as Delivery_Date , Entry6 as Sold_To , Entry10 as Creation_Time_WorkTable, Entry2 as Boomi_Process_Time ,   case when Entry8 = \'0\' then \'Created In Bolton\' else ( case when Entry8 = \'1\' then \'In Progress\' else  ( case when Entry8 = \'2\' then \'Sent To SAP\' else \'Error-Sent To SAP\'  end )  end ) end as Type  INTO XLSX("Report_SalesOrders.xlsx",{}) FROM ? where Entry14 = \'' + $scope.typeSearch + '\' AND Entry8 = \''+ $scope.StatusSearch + '\'   ' ;
+		}	
+
+		console.log($scope.queryExport);
+		alasql($scope.queryExport, [$scope.recordsOfToday]);
+	};
+		
 		
 		
 		

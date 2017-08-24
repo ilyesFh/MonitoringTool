@@ -1156,7 +1156,9 @@ angular.module('app')
                                         }
                                     ).then(
                                           function(){
-                                               return $ocLazyLoad.load('js/controllers/Custom/jsonsql-0.1.js');
+                                               return $ocLazyLoad.load(['js/controllers/Custom/jsonsql-0.1.js',
+											                           '../bower_components/font-awesome/css/font-awesome.css'
+																	   ]);
                                             }
                                           )
 									;

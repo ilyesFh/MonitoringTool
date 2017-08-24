@@ -20,10 +20,15 @@ app.controller('EquipmentController', function($scope, $http, $filter ) {
 	$scope.formattedDate;	
 	$scope.mdRecordsArray = [];
 	
+	$scope.dateYesterday = new Date();
+	console.log($scope.dateYesterday)
+	$scope.dateYesterday.setDate($scope.dateYesterday.getDate() - 1);
+	console.log($scope.dateYesterday)
+	
 	
 	
 				$scope.todayDate = new Date();
-			    $scope.formattedDate = $filter('date')($scope.todayDate, "yyyyMMdd");
+			    $scope.formattedDate = $filter('date')($scope.dateYesterday, "yyyyMMdd");
 			    console.log($scope.formattedDate);
 				
 		        var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate +  "\", \"msgType\":\"/CCEJ/EQUIPMENT\"   , \"Prefix\":\"Equipment\"  }";
@@ -121,6 +126,15 @@ app.controller('EquipmentPreviousController', function($scope, $http, $filter ) 
 	$scope.mdRecordsArray = [];
 	$scope.showDiv = false;
 	$scope.maxDate = new Date();
+	/*
+	$scope.dateYesterday = new Date();
+	console.log($scope.dateYesterday)
+	$scope.dateYesterday.setDate($scope.dateYesterday.getDate() - 1);
+	console.log($scope.dateYesterday)
+	*/
+	
+	$scope.dateYesterday = new Date();
+	
 	
 	// Post Web CALL
 	$scope.CallWebService = function () {
@@ -128,7 +142,9 @@ app.controller('EquipmentPreviousController', function($scope, $http, $filter ) 
 		$scope.mdRecordsArray = [];
 		$scope.showDiv = true;
 
-			    $scope.formattedDate = $filter('date')($scope.todayDate, "yyyyMMdd");
+				console.log($scope.todayDate);
+				$scope.dateYesterday.setDate($scope.todayDate.getDate() - 1);
+			    $scope.formattedDate = $filter('date')($scope.dateYesterday, "yyyyMMdd");
 			    console.log($scope.formattedDate);
 				
 		        var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate +  "\", \"msgType\":\"/CCEJ/EQUIPMENT\"   , \"Prefix\":\"Equipment\"  }";
@@ -143,11 +159,11 @@ app.controller('EquipmentPreviousController', function($scope, $http, $filter ) 
 				$scope.mdRecordsArray = response.data[0][0];
 				console.log($scope.mdRecordsArray);
 				
-				$scope.ExpectedRecords = response.data[0][0].length;
+				$scope.insertedRow = response.data[0][0].length;
 				
 				
 				//$scope.QueryInsertedRow = jsonsql.query("select * from json where (Entry5=='0')", response.data[0][0]);
-				$scope.insertedRow = response.data[0][0][0].Entry7;
+				$scope.ExpectedRecords = response.data[0][0][0].Entry7;
 				
 				
 			

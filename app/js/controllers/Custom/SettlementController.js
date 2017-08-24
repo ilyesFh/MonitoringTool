@@ -32,20 +32,31 @@ app.controller('SettlementController', function ($scope, $http, $filter , $state
 		$scope.SettlementList = [];
 		console.log($scope.SettlementList.length);
 		
-		console.log("load event detected!");
 		$scope.formattedDate = $filter('date')($scope.TodayDate, "yyyyMMdd");
-		console.log($scope.formattedDate);
+		
+		//get Hokan Files
+		var msgHokan = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"HokanFiles\"  }";
+		console.log(msgHokan);
+		var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgHokan).
+			then(function (response) {
+				console.log(response.data[0][0]);
+				$scope.HokanFilesCount = response.data[0][0].length;
+				
+
+			});
+		
+		
+		console.log("load event detected!");
 		var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"Settlement\"  }";
 		console.log(msgdata);
 		var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgdata).
 			then(function (response) {
 				console.log(response.data[0][0]);
-
 				$scope.allRecords = response.data[0][0];
 				$scope.SettlementList = response.data[0][0];
 				
 
-			});
+			}); 
 	}
 
 
@@ -106,6 +117,18 @@ app.controller('SettlementController', function ($scope, $http, $filter , $state
 		console.log($scope.dt);
 		$scope.formattedDate = $filter('date')($scope.dt, "yyyyMMdd");
 		console.log($scope.formattedDate);
+		
+		//get Hokan Files
+		var msgHokan = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"HokanFiles\"  }";
+		console.log(msgHokan);
+		var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgHokan).
+			then(function (response) {
+				console.log(response.data[0][0]);
+				$scope.HokanFilesCount = response.data[0][0].length;
+				
+
+			});
+		
 		var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"Settlement\"  }";
 		console.log(msgdata);
 		var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgdata).
@@ -206,6 +229,8 @@ app.controller('LoadInboundController', function ($scope, $http, $filter , $stat
 	$scope.TodayDate = new Date();
 	$scope.maxDate = new Date();
 	
+	$scope.HokanFilesCount = 0;
+	
 
 	$scope.load = function () {
 		
@@ -218,6 +243,18 @@ app.controller('LoadInboundController', function ($scope, $http, $filter , $stat
 		console.log("load event detected!");
 		$scope.formattedDate = $filter('date')($scope.TodayDate, "yyyyMMdd");
 		console.log($scope.formattedDate);
+		
+		//get Hokan Files
+		var msgHokan = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"HokanFiles\"  }";
+		console.log(msgHokan);
+		var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgHokan).
+			then(function (response) {
+				console.log(response.data[0][0]);
+				$scope.HokanFilesCount = response.data[0][0].length;
+				
+
+			});
+		
 		var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"Load\"  }";
 		console.log(msgdata);
 		var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgdata).
@@ -289,6 +326,18 @@ app.controller('LoadInboundController', function ($scope, $http, $filter , $stat
 		console.log($scope.dt);
 		$scope.formattedDate = $filter('date')($scope.dt, "yyyyMMdd");
 		console.log($scope.formattedDate);
+		
+		//get Hokan Files
+		var msgHokan = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"HokanFiles\"  }";
+		console.log(msgHokan);
+		var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgHokan).
+			then(function (response) {
+				console.log(response.data[0][0]);
+				$scope.HokanFilesCount = response.data[0][0].length;
+				
+
+			});
+		
 		var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"Load\"  }";
 		console.log(msgdata);
 		var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgdata).

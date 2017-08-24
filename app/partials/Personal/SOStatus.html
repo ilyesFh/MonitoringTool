@@ -94,48 +94,26 @@
 
 					</div>
 
+					<div class="col-lg-6 col-md-6 col-xs-12 col-sm-6">
+							<input id="filter" type="text" class="form-control" placeholder="Filter Search" ng-model="filterText" />
+							
+							<br><br/>
+					
+						</div>
 
 					<div class="col-md-12 col-sm-12 col-xs-12">
 
-						<div class="col-lg-4 col-md-4 col-xs-12 col-sm-6">
-							<input id="filter" type="text" class="form-control" placeholder="Search" ng-model="filterText" />
-						</div>
+						
 						<!-- <input type="text" ng-model="search" class="form-control" placeholder="Search"> -->
 
-						<div class="col-lg-4 col-md-4 col-xs-12 col-sm-6">
-							<select class="form-control input-lg" ng-model="typeSearch" >
-								<option value="">All System</option>
-								<option>Ebest</option>
-								<option>SUPERDAIWA</option>
-								<option>EOS</option>
-								<option>NEOS</option>
-								<option>Manual</option>
-							</select>
-						</div>
+						
 
 
-
-						<div class="col-lg-4 col-md-4 col-xs-12 col-sm-6">
-							
-								<select class="form-control input-lg" ng-model="StatusSearch" >
-									<option value="">Status : All</option>
-									<option value="0" >Created In Bolton</option>
-									<option value="1">In Progress</option>
-									<option value="2">Sent To SAP</option>
-									<option value="3">Error-Sent To SAP</option>
-									<option value="4">Processed</option>
-									<option value="5">Not Processed</option>
-									<option value="6">Idoc Released</option>
-								</select>
-							
-
-
-						</div>
+						
 
 					</div>
 
-					<br/>
-					<br/>
+					
 
 
 
@@ -145,7 +123,15 @@
 							<thead>
 								<tr>
 									<th data-toggle="true">
-                                        Source
+
+										<select class="form-control input-xs" ng-model="typeSearch" >
+											<option value="">Source</option>
+											<option>Ebest</option>
+											<option>SUPERDAIWA</option>
+											<option>EOS</option>
+											<option>NEOS</option>
+											<option>Manual</option>
+										</select>
 									</th>
 									<th>
                                         SO Number
@@ -157,10 +143,25 @@
                                         Sold To
 									</th>
 									<th >
-                                        Ship To
+                                       Creation Date WK
 									</th>
 									<th >
-                                        Status
+                                        Boomi Process Date
+									</th>
+
+
+
+									<th >
+                                        <select class="form-control input-xs" ng-model="StatusSearch" >
+								<option value="">Status : All</option>
+								<option value="0" >Created In Bolton</option>
+								<option value="1">In Progress</option>
+								<option value="2">Sent To SAP</option>
+								<option value="3">Error-Sent To SAP</option>
+								<option value="4">Processed</option>
+								<option value="5">Not Processed</option>
+								<option value="6">Idoc Released</option>
+							</select>
 									</th>
 
 
@@ -175,8 +176,10 @@
 									<td>{{ x.Entry14 }}</td>
 									<td>{{ x.Entry13 }}</td>
 									<td>{{ x.Entry4 }}</td>
-									<td>{{ x.Entry7 }}</td>
 									<td>{{ x.Entry6 }}</td>
+									<td>{{ x.Entry10 }}</td>
+									<td>{{ x.Entry2 }}</td>
+
 
 									<td>
 										<span ng-class="{0 : 'label label-success', 1 : 'label label-warning' , 2 : 'label label-success' , 

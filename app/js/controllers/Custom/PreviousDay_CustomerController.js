@@ -26,12 +26,14 @@ app.controller('PreviousDayCustomerController', function ($scope, $http, $filter
 	$scope.formattedDate;
 	$scope.showDiv = false;
 	$scope.maxDate = new Date();
+	$scope.loadingStatus = true;
 
 	// Post Web CALL
 	$scope.CallWebService = function () {
 		
 		$scope.mdRecordsArray = [];
 		$scope.showDiv = true;
+		$scope.loadingStatus = true;
 
 		$scope.formattedDate = $filter('date')($scope.todayDate, "yyyyMMdd");
 		var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"msgType\":\"/CCEJ/DEBMAS_FULL\"   , \"Prefix\":\"MDM\"  }";
@@ -41,6 +43,7 @@ app.controller('PreviousDayCustomerController', function ($scope, $http, $filter
 				console.log("");
 				console.log(response);
 				console.log(response.data);
+				$scope.loadingStatus = false;
 
 				$scope.mdRecordsArray = response.data[0][0];
 				console.log($scope.mdRecordsArray);

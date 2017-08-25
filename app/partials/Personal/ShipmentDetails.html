@@ -1,10 +1,59 @@
 <div class='content-wrapper' ng-init="app.settings.pagetitle = 'Shipment Details';">
 	<div class="col-lg-12" ng-controller="ShipmentDetailsController" ng-init='load()' >
 
-
+		<div class="col-md-12 col-sm-12 col-xs-12 padding-right-30 padding-left-20">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+                    <div class="r4_counter wid-stats db_box">
+                        <div class='stats-data'>
+                            
+                            <i class="material-icons icon-primary pull-left">check_box_outline_blank</i>
+                            <div class="stats">
+                                <h3 count-to="{{totalNumberOfIdocs}}" value="0" duration="1" />
+                                <span>Total Count Of Idocs</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+                    <div class="r4_counter wid-stats db_box">
+                        <div class='stats-data'>
+                            <i class="material-icons icon-warning pull-left">forward</i>
+                            <div class="stats">
+                                <h3 count-to="{{rushOrderNumber}}" value="0" duration="1" class="number_counter" ></h3>
+                                <span>Rush Order</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+                    <div class="r4_counter wid-stats db_box">
+                        <div class='stats-data'>
+                            <i class="material-icons icon-success pull-left">check_circle</i>
+                            <div class="stats">
+                                <h3 count-to="{{sentNumber}}" value="0" duration="1" class="number_counter"></h3>
+                                <span>Shipment Sent</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+                    <div class="r4_counter wid-stats db_box">
+                        <div class='stats-data'>
+                            
+                            <i class="material-icons icon-danger pull-left">error</i>
+                            <div class="stats">
+                                <h3 count-to="{{notSentNumber}}" value="0" duration="1" class="number_counter" ></h3>
+                                <span>Shipment Not Sent</span>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        
 
 
 		<div class="col-lg-12">
+		<!--
 			<section class="box ">
 				<header class="panel_header">
 					<h2 class="title pull-left">Statistics</h2>
@@ -21,7 +70,8 @@
 									<i class='fa fa-file-o icon-lg'/>
 									<h2 count-to="{{totalNumberOfIdocs}}" value="0" duration="1" class="number_counter"/>
 									<div class="clearfix"/>
-									<span>Total Number Of Idocs</span>
+									<span>Total Count Of Idocs</span>
+                            </div></span>
 								</div>
 							</div>
 						</div>
@@ -63,7 +113,7 @@
 					</div>
 				</div>
 			</section>
-
+			-->
 
 
 

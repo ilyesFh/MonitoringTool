@@ -1145,7 +1145,7 @@ angular.module('app')
                     })
 					
 					.state('app.tables.salesOrderStatus', {
-                        url: '/chartjs',
+                        url: '/SalesOrderStatus',
                         templateUrl: 'partials/Personal/SOStatus.html',
                         resolve: {
                             deps: ['$ocLazyLoad',

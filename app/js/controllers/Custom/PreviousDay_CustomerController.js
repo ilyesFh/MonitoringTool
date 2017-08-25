@@ -40,13 +40,11 @@ app.controller('PreviousDayCustomerController', function ($scope, $http, $filter
 		console.log(msgdata);
 		var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgdata).
 			then(function (response) {
-				console.log("");
-				console.log(response);
-				console.log(response.data);
+				
 				$scope.loadingStatus = false;
 
 				$scope.mdRecordsArray = response.data[0][0];
-				console.log($scope.mdRecordsArray);
+				
 
 				$scope.ExpectedRecords = response.data[0][0].length;
 

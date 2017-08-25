@@ -6490,6 +6490,14 @@ code {
     background-color: #46be8a;
 }
 
+.label-created {
+    background-color: #673ab7;
+}
+
+.label-released {
+    background-color: #3399FF;
+}
+
 .uilabels .label {
     display: inline-block;
     margin: 5px 5px 0 0;

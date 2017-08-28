@@ -5,8 +5,8 @@
  */
 angular.module('app')
     .config(
-        ['$stateProvider', '$urlRouterProvider', 'JQ_CONFIG',
-            function($stateProvider, $urlRouterProvider, JQ_CONFIG) {
+        ['$stateProvider', '$urlRouterProvider', 'JQ_CONFIG', 'angularAuth0Provider' , 
+            function($stateProvider, $urlRouterProvider, JQ_CONFIG , angularAuth0Provider) {
 
                 $urlRouterProvider
                     .otherwise('/app/dashboard');
@@ -1170,6 +1170,23 @@ angular.module('app')
 					
 					
 					
+					.state('app.tables.login', {
+                        url: '/Login',
+                        templateUrl: 'partials/Personal/Login.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['js/controllers/Custom/loginController.js'
+										
+										
+                                    ]);
+                                }
+                            ]
+                        }
+                    })
+					
+					
+					
 					
 
                 .state('app.layout', {
@@ -1223,6 +1240,23 @@ angular.module('app')
                         }
 
                     })
+					
+					
+					// Initialization for the angular-auth0 library
+					angularAuth0Provider.init({
+					  clientID: 'KTigzCtzemcm7Ls737BVe5G-9w2n_DRn',
+					  domain: 'walid-bargaoui.auth0.com',
+					  responseType: 'token id_token',
+					  audience: 'https://walid-bargaoui.auth0.com/userinfo',
+					  redirectUri: 'http://monitoringtest.herokuapp.com/app/#/app/dashboard',
+					  scope: 'openid'
+					  
+					});
+					
+					
+					
+					
+					
             }
         ]
     );

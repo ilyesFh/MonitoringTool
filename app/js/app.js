@@ -18,6 +18,11 @@ angular.module('app', [
     'perfect_scrollbar',
     'angular-inview',
     'angular-loading-bar',
-	'uiGmapgoogle-maps'
+	'uiGmapgoogle-maps',
+	'auth0.auth0',
+	'ui.router'
 	
-]);
+])
+
+
+;

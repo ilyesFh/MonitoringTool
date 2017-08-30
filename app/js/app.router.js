@@ -1184,7 +1184,13 @@ angular.module('app')
                                     ).then(
                                           function(){
                                                return $ocLazyLoad.load(['js/controllers/Custom/jsonsql-0.1.js',
-											                           '../bower_components/font-awesome/css/font-awesome.css'
+											                           '../bower_components/font-awesome/css/font-awesome.css',
+																	   'countTo',
+																		'js/controllers/countto.js', 
+																		'js/controllers/vectormap.js', 
+																		'js/directives/ui-todowidget.js', 
+																		'js/controllers/messages-widget.js',
+																		'js/controllers/Custom/jsonsql-0.1.js',
 																	   
 																	   
 																	   ]);

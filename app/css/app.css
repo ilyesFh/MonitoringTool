@@ -3085,6 +3085,11 @@ fieldset[disabled] .btn {
     color: #ffffff !important;
 }
 
+.persoWidget {
+    background-color: white !important;
+    color: #ffffff !important;
+}
+
 .twitter {
     background-color: #049bca !important;
     color: #ffffff !important;
@@ -5868,7 +5873,7 @@ table.dataTable.no-footer {
 }
 
 .team-member .social-icons i {
-    font-size: 14px;
+    font-size: 50px;
     width: 30px;
     height: 30px;
     padding: 7px !important;

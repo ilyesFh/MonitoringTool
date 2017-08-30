@@ -69,11 +69,42 @@
 				console.log(response.data[0]);
 				$scope.mdRecordsArray = response.data[0];
 				
+				//By System
+				$scope.superD = jsonsql.query("select * from json where (Entry1=='SUPERDAIWA' )", response.data[0]);
+				$scope.DaiwaWarning = jsonsql.query("select * from json where (Entry3=='1' )", $scope.superD).length;
+				$scope.DaiwaOk = jsonsql.query("select * from json where (Entry3=='2' || Entry3=='4' || Entry3=='6' )", $scope.superD).length;
+				$scope.DaiwaError = jsonsql.query("select * from json where (Entry3=='3' || Entry3=='5' )", $scope.superD).length;
+				console.log("Warning =" + $scope.DaiwaWarning , "Error" + $scope.DaiwaError , "Good" + $scope.DaiwaOk );
+				
+				$scope.ebest = jsonsql.query("select * from json where (Entry1=='EBEST' )", response.data[0]);
+				$scope.ebestWarning = jsonsql.query("select * from json where (Entry3=='1' )", $scope.ebest).length;
+				$scope.ebestOk = jsonsql.query("select * from json where (Entry3=='2' || Entry3=='4' || Entry3=='6' )", $scope.ebest).length;
+				$scope.ebestError = jsonsql.query("select * from json where (Entry3=='3' || Entry3=='5' )", $scope.ebest).length;
+				
+				$scope.manual = jsonsql.query("select * from json where (Entry1=='Manual' )", response.data[0]);
+				$scope.manualWarning = jsonsql.query("select * from json where (Entry3=='1' )", $scope.manual).length;
+				$scope.manualOk = jsonsql.query("select * from json where (Entry3=='2' || Entry3=='4' || Entry3=='6' )", $scope.manual).length;
+				$scope.manualError = jsonsql.query("select * from json where (Entry3=='3' || Entry3=='5' )", $scope.manual).length;
+				
+				$scope.eos = jsonsql.query("select * from json where (Entry1=='Manual' )", response.data[0]);
+				$scope.eosWarning = jsonsql.query("select * from json where (Entry3=='1' )", $scope.eos).length;
+				$scope.eosOk = jsonsql.query("select * from json where (Entry3=='2' || Entry3=='4' || Entry3=='6' )", $scope.eos).length;
+				$scope.eosError = jsonsql.query("select * from json where (Entry3=='3' || Entry3=='5' )", $scope.eos).length;
+				
+				$scope.neos = jsonsql.query("select * from json where (Entry1=='Manual' )", response.data[0]);
+				$scope.neosWarning = jsonsql.query("select * from json where (Entry3=='1' )", $scope.neos).length;
+				$scope.neosOk = jsonsql.query("select * from json where (Entry3=='2' || Entry3=='4' || Entry3=='6' )", $scope.neos).length;
+				$scope.neosError = jsonsql.query("select * from json where (Entry3=='3' || Entry3=='5' )", $scope.neos).length;
+				
+				
+				/*
+				//Error
 				$scope.superdaiwaError = jsonsql.query("select * from json where (Entry1=='SUPERDAIWA')", response.data[0]).length;
-				$scope.ebestError = jsonsql.query("select * from json where (Entry1=='EBEST')", response.data[0]).length;
+				$scope.ebestError = jsonsql.query("select * from json where (Entry1=='ebest')", response.data[0]).length;
 				$scope.eosError = jsonsql.query("select * from json where (Entry1=='EOS')", response.data[0]).length;
 				$scope.neosError = jsonsql.query("select * from json where (Entry1=='NEOS')", response.data[0]).length;
 				$scope.manualError = jsonsql.query("select * from json where (Entry1=='MANUAL')", response.data[0]).length;
+				*/
 
 		        	});
 	
@@ -92,8 +123,8 @@
 			
 			
 			
-			$scope.intrvl = $interval($scope.refresh , 100000);
-			$scope.intrvl = $interval($scope.countProgressBar , 1000);
+			$scope.intrvl = $interval($scope.refresh , 600000);
+			$scope.intrvl = $interval($scope.countProgressBar , 6000);
 			
 			
 		  

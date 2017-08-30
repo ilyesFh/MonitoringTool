@@ -1144,6 +1144,10 @@ angular.module('app')
                         }
                     })
 					
+					
+					
+
+					
 					.state('app.tables.salesOrderStatus', {
                         url: '/SalesOrderStatus',
                         templateUrl: 'partials/Personal/SOStatus.html',
@@ -1166,6 +1170,33 @@ angular.module('app')
                             ]
                         }
                     })
+					
+					.state('app.tables.salesOrderDashboard', {
+                        url: '/SalesOrderDashboard',
+                        templateUrl: 'partials/Personal/SalesOrderDashboard.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load('chart.js').then(
+                                        function() {
+                                            return $ocLazyLoad.load('js/controllers/Custom/SalesOrderChartController.js');
+                                        }
+                                    ).then(
+                                          function(){
+                                               return $ocLazyLoad.load(['js/controllers/Custom/jsonsql-0.1.js',
+											                           '../bower_components/font-awesome/css/font-awesome.css'
+																	   
+																	   
+																	   ]);
+                                            }
+                                          )
+									;
+                                }
+                            ]
+                        }
+                    })
+					
+					
 					
 					
 					

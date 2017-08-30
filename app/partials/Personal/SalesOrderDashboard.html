@@ -1,0 +1,309 @@
+<div class='content-wrapper' ng-init="app.settings.pagetitle = 'Sales Order Dashboard';">
+	<div class="col-lg-12" ng-controller="SoDashboardController" ng-init='refresh()' >
+
+
+
+
+<!--
+    <div class="col-lg-12">
+        <section class="box ">
+            <header class="panel_header">
+                <h2 class="title pull-left">Sales Order - Dashboard ( Date : {{ todayDate | date }})</h2>
+                <div class="actions panel_actions pull-right">
+                    <i class="box_toggle material-icons">expand_more</i>
+                    
+                </div>
+            </header>
+			
+			
+			
+            <div class="content-body padding-bottom-0">
+                <div class="col-lg-4 col-md-4 col-xs-12 col-sm-6">
+                        <div class="tile-counter bg-success">
+                            <div class="content">
+                                <i class='fa fa-database icon-lg'></i>
+                                <h2 count-to="{{MysqlRecords}}" value="0" duration="1" class="number_counter"></h2>
+                                <div class="clearfix"></div>
+                                <span>SUPERDAIWA</span>
+                            </div>
+                        </div>
+                    </div>
+					
+					
+                    <div class="col-lg-4 col-md-4 col-xs-2 col-sm-6">
+                        <div  ng-class="{ true : 'tile-counter bg-success' , false : 'tile-counter bg-danger' } [ExpectedRecords==insertedRow] ">
+                            <div class="content">
+                                <i class='fa fa-file-o'></i>
+                                <h2 count-to="{{missingRows}}" value="0" duration="1" class="number_counter"></h2>
+                                <div class="clearfix"></div>
+                                <span>EBEST</span>
+                            </div>
+                        </div>
+                    </div>
+					
+					<div class="col-lg-4 col-md-4 col-xs-2 col-sm-6">
+                        <div  ng-class="{ true : 'tile-counter bg-success' , false : 'tile-counter bg-danger' } [ExpectedRecords==insertedRow] ">
+                            <div class="content">
+                                <i class='fa fa-file-o'></i>
+                                <h2 count-to="{{missingRows}}" value="0" duration="1" class="number_counter"></h2>
+                                <div class="clearfix"></div>
+                                <span>EOS</span>
+                            </div>
+                        </div>
+                    </div>
+					
+					<div class="col-lg-4 col-md-4 col-xs-2 col-sm-6">
+                        <div  ng-class="{ true : 'tile-counter bg-success' , false : 'tile-counter bg-danger' } [ExpectedRecords==insertedRow] ">
+                            <div class="content">
+                                <i class='fa fa-file-o'></i>
+                                <h2 count-to="{{missingRows}}" value="0" duration="1" class="number_counter"></h2>
+                                <div class="clearfix"></div>
+                                <span>NEOS</span>
+                            </div>
+                        </div>
+                    </div>
+					
+					<div class="col-lg-4 col-md-4 col-xs-2 col-sm-6">
+                        <div  ng-class="{ true : 'tile-counter bg-success' , false : 'tile-counter bg-danger' } [ExpectedRecords==insertedRow] ">
+                            <div class="content">
+                                <i class='fa fa-file-o'></i>
+                                <h2 count-to="{{missingRows}}" value="0" duration="1" class="number_counter"></h2>
+                                <div class="clearfix"></div>
+                                <span>MANUAL</span>
+                            </div>
+                        </div>
+                    </div>
+					
+					
+					
+                   
+					
+                    <div class="clearfix"></div>
+                    
+                    
+                </div>
+            </div>
+        </section>
+
+		-->
+		
+		
+		<h3>Sales Order Dashboard - Last Update {{ refreshedDate }} </h3>
+		
+		
+		<uib-progressbar value="counter" class="progress-striped active" value="dynamic" type="warning">   </uib-progressbar>
+		
+		
+		
+		<div class="col-md-12 col-sm-12 col-xs-12 padding-right-30 padding-left-20">
+			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+				<div class="r4_counter wid-stats db_box"  >
+					<div class='stats-data'>
+
+						<i ng-class="{ true : 'material-icons icon-danger pull-left' , false : 'material-icons icon-success pull-left' } [superdaiwaError>0] "  >{{  (superdaiwaError>0) ? "report_problem" : "check_circle" }}</i>
+
+						<div class="stats">
+							<h3>{{superdaiwaError}} </h3>
+							<span>SUPERDAIWA Sales Order ( Not Sent ) </span>
+
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+				<div class="r4_counter wid-stats db_box"  >
+					<div class='stats-data'>
+
+						<i ng-class="{ true : 'material-icons icon-danger pull-left' , false : 'material-icons icon-success pull-left' } [ebestError>0] "  >{{  (ebestError>0) ? "report_problem" : "check_circle" }}</i>
+
+						<div class="stats">
+							<h3>{{ebestError}} </h3>
+							<span>Ebest Sales Order ( Not Sent )</span>
+
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		
+			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+				<div class="r4_counter wid-stats db_box"  >
+					<div class='stats-data'>
+
+						<i ng-class="{ true : 'material-icons icon-danger pull-left' , false : 'material-icons icon-success pull-left' } [manualError>0] "  >{{  (manualError>0) ? "report_problem" : "check_circle" }}</i>
+
+						<div class="stats">
+							<h3>{{manualError}} </h3>
+							<span>Manual Sales Order (Not Sent) </span>
+
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+                
+              
+                
+                
+        </div>
+		
+		<div class="col-md-12 col-sm-12 col-xs-12 padding-right-30 padding-left-20">
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+				<div class="r4_counter wid-stats db_box"  >
+					<div class='stats-data'>
+
+						<i ng-class="{ true : 'material-icons icon-danger pull-left' , false : 'material-icons icon-success pull-left' } [eosError>0] "  >{{  (eosError>0) ? "report_problem" : "check_circle" }}</i>
+
+						<div class="stats">
+							<h3>{{eosError}} </h3>
+							<span>"EOS Normal" Sales Order ( Not Sent ) </span>
+
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+				<div class="r4_counter wid-stats db_box"  >
+					<div class='stats-data'>
+
+						<i ng-class="{ true : 'material-icons icon-danger pull-left' , false : 'material-icons icon-success pull-left' } [eosError>0] "  >{{  (eosError>0) ? "report_problem" : "check_circle" }}</i>
+
+						<div class="stats">
+							<h3>{{eosError}} </h3>
+							<span>"EOS Sales" Sales Order ( Not Sent )</span>
+
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+				<div class="r4_counter wid-stats db_box"  >
+					<div class='stats-data'>
+
+						<i ng-class="{ true : 'material-icons icon-danger pull-left' , false : 'material-icons icon-success pull-left' } [eosError>0] "  >{{  (eosError>0) ? "report_problem" : "check_circle" }}</i>
+
+						<div class="stats">
+							<h3>{{eosError}} </h3>
+							<span>"EOS Though" Sales Order (Not Sent) </span>
+
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+				<div class="r4_counter wid-stats db_box"  >
+					<div class='stats-data'>
+
+						<i ng-class="{ true : 'material-icons icon-danger pull-left' , false : 'material-icons icon-success pull-left' } [eosError>0] "  >{{  (eosError>0) ? "report_problem" : "check_circle" }}</i>
+
+						<div class="stats">
+							<h3>{{eosError}} </h3>
+							<span>"EOS JDC" Sales Order (Not Sent) </span>
+
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+                
+              
+                
+                
+        </div>
+		
+		<div class="col-md-12 col-sm-12 col-xs-12 padding-right-30 padding-left-20">
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+				<div class="r4_counter wid-stats db_box"  >
+					<div class='stats-data'>
+
+						<i ng-class="{ true : 'material-icons icon-danger pull-left' , false : 'material-icons icon-success pull-left' } [neosError>0] "  >{{  (neosError>0) ? "report_problem" : "check_circle" }}</i>
+
+						<div class="stats">
+							<h3>{{neosError}} </h3>
+							<span>"NEOS Normal" Sales Order ( Not Sent ) </span>
+
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+				<div class="r4_counter wid-stats db_box"  >
+					<div class='stats-data'>
+
+						<i ng-class="{ true : 'material-icons icon-danger pull-left' , false : 'material-icons icon-success pull-left' } [neosError>0] "  >{{  (neosError>0) ? "report_problem" : "check_circle" }}</i>
+
+						<div class="stats">
+							<h3>{{neosError}} </h3>
+							<span>"NEOS Sales" Sales Order ( Not Sent )</span>
+
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+				<div class="r4_counter wid-stats db_box"  >
+					<div class='stats-data'>
+
+						<i ng-class="{ true : 'material-icons icon-danger pull-left' , false : 'material-icons icon-success pull-left' } [neosError>0] "  >{{  (neosError>0) ? "report_problem" : "check_circle" }}</i>
+
+						<div class="stats">
+							<h3>{{neosError}} </h3>
+							<span>"NEOS Though" Sales Order (Not Sent) </span>
+
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+				<div class="r4_counter wid-stats db_box"  >
+					<div class='stats-data'>
+
+						<i ng-class="{ true : 'material-icons icon-danger pull-left' , false : 'material-icons icon-success pull-left' } [neosError>0] "  >{{  (neosError>0) ? "report_problem" : "check_circle" }}</i>
+
+						<div class="stats">
+							<h3>{{neosError}} </h3>
+							<span>"NEOS JDC" Sales Order (Not Sent) </span>
+
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+                
+              
+                
+                
+        </div>
+		
+		
+
+
+		</div>	

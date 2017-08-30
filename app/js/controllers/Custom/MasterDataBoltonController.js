@@ -124,6 +124,7 @@ app.controller('ErrorDetailsController', function($scope , $http, $filter , $sta
 	   console.log("Error Load");
 	   console.log($state.params.id);
 	   $scope.ifName = $state.params.id;
+	   console.log("GET " + $scope.ifName);
 	   $scope.errorList;
 	   
 	   

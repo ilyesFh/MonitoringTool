@@ -1149,7 +1149,7 @@ angular.module('app')
 
 					
 					.state('app.tables.salesOrderStatus', {
-                        url: '/SalesOrderStatus',
+                        url: '/SalesOrderStatus/:id',
                         templateUrl: 'partials/Personal/SOStatus.html',
                         resolve: {
                             deps: ['$ocLazyLoad',

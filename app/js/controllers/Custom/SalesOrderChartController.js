@@ -22,8 +22,96 @@
     });
 
 
+	app.controller('SoDashboardController', function($scope, $http, $filter , $interval , $state , $stateParams ) {
+	
+	
+	$scope.formattedDate;
+	$scope.mdRecordsArray = [];
+	$scope.superdaiwaError = 0;
+	$scope.ebestError = 0;
+	$scope.eosError = 0;
+	$scope.neosError = 0;
+	$scope.manualError = 0;
+	$scope.refreshedDate;
+	
+	
+	$scope.counter = 1;
+	/*
+			setInterval(function () {
+			++$scope.counter;
+			console.log($scope.counter);
+		}, 1000);
+	*/	
+	
+	$scope.countProgressBar = function() {
+		++$scope.counter;
+		
+		if ( $scope.counter == 100)
+		{ $scope.counter = 0; }
+		
+	}
+	
+  
+		  // Post Web CALL
+		  $scope.refresh = function() {
+			  
+			  
+				$scope.todayDate = new Date();
+			    $scope.formattedDate = $filter('date')($scope.todayDate, "yyyyMMdd");
+				$scope.refreshedDate = $filter('date')($scope.todayDate, "yyyy/MM/dd HH:mm:ss");
+				console.log($scope.refreshedDate);
+				
+			    console.log($scope.formattedDate);
+				var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate +  "\", \"msgType\":\"/CCEJ/SD_BL_PROF\"   , \"Prefix\":\"SalesOrder\"  }"
+		        console.log(msgdata);
+		        var res = $http.post('http://117.55.209.110:9080/ws/simple/getMoniDashboard;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=',msgdata ).
+		        then(function (response) {
+				console.log(response.data[0]);
+				$scope.mdRecordsArray = response.data[0];
+				
+				$scope.superdaiwaError = jsonsql.query("select * from json where (Entry1=='SUPERDAIWA')", response.data[0]).length;
+				$scope.ebestError = jsonsql.query("select * from json where (Entry1=='EBEST')", response.data[0]).length;
+				$scope.eosError = jsonsql.query("select * from json where (Entry1=='EOS')", response.data[0]).length;
+				$scope.neosError = jsonsql.query("select * from json where (Entry1=='NEOS')", response.data[0]).length;
+				$scope.manualError = jsonsql.query("select * from json where (Entry1=='MANUAL')", response.data[0]).length;
 
-    app.controller('DataTablesCtrl', function($scope , $http ,  $filter , $timeout) {
+		        	});
+	
+
+		    }
+			
+			
+			$scope.RedirectToSoStatus = function(systemName) {
+				
+				console.log("Next Page");
+				console.log(systemName);
+				$state.go("app.tables.salesOrderStatus", { "id": systemName})
+				
+				
+			}
+			
+			
+			
+			$scope.intrvl = $interval($scope.refresh , 100000);
+			$scope.intrvl = $interval($scope.countProgressBar , 1000);
+			
+			
+		  
+			$scope.$on('$destroy',function(){
+				$interval.cancel($scope.intrvl);
+			});
+			
+			
+			
+		
+});
+
+    app.controller('DataTablesCtrl', function($scope , $http ,  $filter , $timeout , $state ) {
+		
+	
+	
+	   console.log("Param = " + $state.params.id);
+	   $scope.typeSearch = $state.params.id;
 		
 	
 		$scope.recordsOfToday = [];
@@ -42,7 +130,7 @@
 		$scope.st6 = 6
 		$scope.st7 = 7
 		
-		$scope.typeSearch = '';
+		
 		$scope.StatusSearch = '';
 		
 		
@@ -187,21 +275,50 @@
 				$scope.labels = ['Created In Bolton', 'In Progress', 'Sent To SAP' , 'Error-Sent To SAP', 'Processed', 'Not Processed' , 'Idoc Released'];
 				$scope.data = [$scope.st0, $scope.st1, $scope.st2 , $scope.st3 ,$scope.st4 , $scope.st5 , $scope.st6];
 				$scope.colours = [{ // grey
-						fillColor: "rgba(255,110,64,1)",
-						strokeColor: "rgba(255,110,64,1.0)",
-						highlightFill: "rgba(255,110,64,1.0)",
-						highlightStroke: "rgba(255,110,64,1)"
-				}, { // dark grey
 						fillColor: "rgba(103,58,183,1.0)",
 						strokeColor: "rgba(103,58,183,1.0)",
 						highlightFill: "rgba(103,58,183,1.0)",
 						highlightStroke: "rgba(103,58,183,1.0)"
-				}, { // dark grey
-						fillColor: "rgba(253,216,53,1.0)",
-						strokeColor: "rgba(253,216,53,1.0)",
-						highlightFill: "rgba(253,216,53,1.0)",
-						highlightStroke: "rgba(253,216,53,1.0)"
-				}];
+						
+				}, { // Orange : in progress
+						fillColor: "rgba(255,110,64,1)",
+						strokeColor: "rgba(255,110,64,1.0)",
+						highlightFill: "rgba(255,110,64,1.0)",
+						highlightStroke: "rgba(255,110,64,1)"
+				}, { // Green
+						fillColor: "rgba(102,204,0,1.0)",
+						strokeColor: "rgba(102,204,0,1.0)",
+						highlightFill: "rgba(102,204,0,1.0)",
+						highlightStroke: "rgba(102,204,0,1.0)"
+				}, { // RED
+						fillColor: "rgba(255,0,0,1.0)",
+						strokeColor: "rgba(255,0,0,1.0)",
+						highlightFill: "rgba(255,0,0,1.0)",
+						highlightStroke: "rgba(255,0,0,1.0)"
+				},
+				{ // Green 2 
+						fillColor: "#B2FF66",
+						strokeColor: "#B2FF66",
+						highlightFill: "#B2FF66",
+						highlightStroke: "#B2FF66"
+				},
+				{ // RED 2
+						fillColor: "rgba(204,50,0,1.0)",
+						strokeColor: "rgba(204,50,0,1.0)",
+						highlightFill: "rgba(204,50,0,1.0)",
+						highlightStroke: "rgba(204,50,0,1.0)"
+				},
+				{ // Released
+						fillColor: "#3399FF",
+						strokeColor: "#3399FF",
+						highlightFill: "#3399FF",
+						highlightStroke: "#3399FF"
+				}
+				
+				
+				
+				
+				];
 				
 				
 				
@@ -324,97 +441,11 @@ $scope.dtpick = {
 	
 	
 	
-	app.controller('SoDashboardController', function($scope, $http, $filter , $interval ) {
 	
-	
-	$scope.formattedDate;
-	$scope.mdRecordsArray = [];
-	$scope.superdaiwaError = 0;
-	$scope.ebestError = 0;
-	$scope.eosError = 0;
-	$scope.neosError = 0;
-	$scope.manualError = 0;
-	$scope.refreshedDate;
-	
-	$scope.counter = 0;
-			setInterval(function () {
-			++$scope.counter;
-			console.log($scope.counter);
-		}, 1000);
-		
-		
-	
-  
-		  // Post Web CALL
-		  $scope.refresh = function() {
-			  
-				$scope.todayDate = new Date();
-			    $scope.formattedDate = $filter('date')($scope.todayDate, "yyyyMMdd");
-				$scope.refreshedDate = $filter('date')($scope.todayDate, "yyyy/MM/dd HH:mm:ss");
-				console.log($scope.refreshedDate);
-				
-			    console.log($scope.formattedDate);
-				var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate +  "\", \"msgType\":\"/CCEJ/SD_BL_PROF\"   , \"Prefix\":\"SalesOrder\"  }"
-		        console.log(msgdata);
-		        var res = $http.post('http://117.55.209.110:9080/ws/simple/getMoniDashboard;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=',msgdata ).
-		        then(function (response) {
-				console.log(response.data[0]);
-				$scope.mdRecordsArray = response.data[0];
-				
-				$scope.superdaiwaError = jsonsql.query("select * from json where (Entry1=='SUPERDAIWA')", response.data[0]).length;
-				$scope.ebestError = jsonsql.query("select * from json where (Entry1=='EBEST')", response.data[0]).length;
-				$scope.eosError = jsonsql.query("select * from json where (Entry1=='EOS')", response.data[0]).length;
-				$scope.neosError = jsonsql.query("select * from json where (Entry1=='NEOS')", response.data[0]).length;
-				$scope.manualError = jsonsql.query("select * from json where (Entry1=='MANUAL')", response.data[0]).length;
-
-		        	});
-	
-
-		    }
-			
-			
-			$scope.intrvl = $interval($scope.refresh , 900000);
-		  
-			$scope.$on('$destroy',function(){
-				$interval.cancel($scope.intrvl);
-			});
-			
-		
-});
 	
 	
 
-    app.controller('TicksCtrl', ['$scope', '$interval', function($scope, $interval) {
-        var maximum = document.getElementById('container').clientWidth / 2 || 300;
-        $scope.data = [
-            []
-        ];
-        $scope.labels = [];
-        $scope.options = {
-            animation: false,
-            showScale: false,
-            showTooltips: false,
-            pointDot: false,
-            datasetStrokeWidth: 0.5
-        };
-
-        // Update the dataset at 25FPS for a smoothly-animating chart
-        $interval(function() {
-            getLiveChartData();
-        }, 40);
-
-        function getLiveChartData() {
-            if ($scope.data[0].length) {
-                $scope.labels = $scope.labels.slice(1);
-                $scope.data[0] = $scope.data[0].slice(1);
-            }
-
-            while ($scope.data[0].length < maximum) {
-                $scope.labels.push('');
-                $scope.data[0].push(getRandomValue($scope.data[0]));
-            }
-        }
-    }]);
+    
 
     function getRandomValue(data) {
         var l = data.length,

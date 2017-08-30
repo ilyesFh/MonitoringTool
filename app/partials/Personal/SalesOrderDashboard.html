@@ -1,7 +1,33 @@
 <div class='content-wrapper' ng-init="app.settings.pagetitle = 'Sales Order Dashboard';">
 	<div class="col-lg-12" ng-controller="SoDashboardController" ng-init='refresh()' >
 
-
+<div class="col-lg-12">
+        <section class="box ">
+            <header class="panel_header">
+                <h2 class="title pull-left">Sales Order Dashboard ( Date : {{ todayDate | date }})</h2>
+                <div class="actions panel_actions pull-right">
+                    <i class="box_toggle material-icons">expand_more</i>
+                    
+                </div>
+            </header>
+			
+			
+			
+            <div class="content-body padding-bottom-20">
+                
+				
+					<h3 style="text-align:center" >Sales Order Dashboard - Last Update {{ refreshedDate }} </h3>
+				
+		
+				
+					<uib-progressbar value="counter" class="progress-striped active" value="dynamic" type="info">Next Refresh...   </uib-progressbar>
+						
+                    
+                    
+            </div>
+            </div>
+        </section>
+	
 
 
 <!--
@@ -87,17 +113,17 @@
 
 		-->
 		
+		<section class="box ">
+		</section>
 		
-		<h3>Sales Order Dashboard - Last Update {{ refreshedDate }} </h3>
+		<div class="col-md-12 col-sm-12 col-xs-12 padding-right-30 padding-left-20">
 		
-		
-		<uib-progressbar value="counter" class="progress-striped active" value="dynamic" type="warning">   </uib-progressbar>
-		
+		</div>
 		
 		
 		<div class="col-md-12 col-sm-12 col-xs-12 padding-right-30 padding-left-20">
-			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
-				<div class="r4_counter wid-stats db_box"  >
+			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 padding-right-0 padding-left-0" ng-click="RedirectToSoStatus('SUPERDAIWA')" >
+				<div class="r4_counter wid-stats db_box" >
 					<div class='stats-data'>
 
 						<i ng-class="{ true : 'material-icons icon-danger pull-left' , false : 'material-icons icon-success pull-left' } [superdaiwaError>0] "  >{{  (superdaiwaError>0) ? "report_problem" : "check_circle" }}</i>
@@ -114,7 +140,7 @@
 			</div>
 			
 			
-			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 padding-right-0 padding-left-0" ng-click="RedirectToSoStatus('Ebest')" >
 				<div class="r4_counter wid-stats db_box"  >
 					<div class='stats-data'>
 
@@ -131,7 +157,7 @@
 				</div>
 			</div>
 		
-			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 padding-right-0 padding-left-0" ng-click="RedirectToSoStatus('Manual')">
 				<div class="r4_counter wid-stats db_box"  >
 					<div class='stats-data'>
 
@@ -153,7 +179,7 @@
                 
         </div>
 		
-		<div class="col-md-12 col-sm-12 col-xs-12 padding-right-30 padding-left-20">
+		<div class="col-md-12 col-sm-12 col-xs-12 padding-right-30 padding-left-20" ng-click="RedirectToSoStatus('EOS')" >
 			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
 				<div class="r4_counter wid-stats db_box"  >
 					<div class='stats-data'>
@@ -172,7 +198,7 @@
 			</div>
 			
 			
-			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padding-right-0 padding-left-0" ng-click="RedirectToSoStatus('EOS')">
 				<div class="r4_counter wid-stats db_box"  >
 					<div class='stats-data'>
 
@@ -189,7 +215,7 @@
 				</div>
 			</div>
 		
-			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padding-right-0 padding-left-0" ng-click="RedirectToSoStatus('EOS')" >
 				<div class="r4_counter wid-stats db_box"  >
 					<div class='stats-data'>
 
@@ -206,7 +232,7 @@
 				</div>
 			</div>
 			
-			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padding-right-0 padding-left-0" ng-click="RedirectToSoStatus('EOS')">
 				<div class="r4_counter wid-stats db_box"  >
 					<div class='stats-data'>
 
@@ -228,7 +254,7 @@
                 
         </div>
 		
-		<div class="col-md-12 col-sm-12 col-xs-12 padding-right-30 padding-left-20">
+		<div class="col-md-12 col-sm-12 col-xs-12 padding-right-30 padding-left-20" ng-click="RedirectToSoStatus('NEOS')" >
 			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
 				<div class="r4_counter wid-stats db_box"  >
 					<div class='stats-data'>
@@ -247,7 +273,7 @@
 			</div>
 			
 			
-			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padding-right-0 padding-left-0" ng-click="RedirectToSoStatus('NEOS')">
 				<div class="r4_counter wid-stats db_box"  >
 					<div class='stats-data'>
 
@@ -264,7 +290,7 @@
 				</div>
 			</div>
 		
-			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padding-right-0 padding-left-0" ng-click="RedirectToSoStatus('NEOS')">
 				<div class="r4_counter wid-stats db_box"  >
 					<div class='stats-data'>
 
@@ -281,7 +307,7 @@
 				</div>
 			</div>
 			
-			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padding-right-0 padding-left-0" ng-click="RedirectToSoStatus('NEOS')">
 				<div class="r4_counter wid-stats db_box"  >
 					<div class='stats-data'>
 

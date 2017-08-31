@@ -1,0 +1,327 @@
+<div class='content-wrapper' ng-init="app.settings.pagetitle = 'Shipment Details';">
+	<div class="col-lg-12" ng-controller="GuardrailErrorController" ng-init='load()' >
+
+		<div class="col-md-12 col-sm-12 col-xs-12 padding-right-30 padding-left-20">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+                    <div class="r4_counter wid-stats db_box">
+                        <div class='stats-data'>
+                            
+                            <i class="material-icons icon-primary pull-left">check_box_outline_blank</i>
+                            <div class="stats">
+                                <h3 count-to="{{totalNumberOfIdocs}}" value="0" duration="1" />
+                                <span>Total Count Of Idocs</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+                    <div class="r4_counter wid-stats db_box">
+                        <div class='stats-data'>
+                            <i class="material-icons icon-warning pull-left">forward</i>
+                            <div class="stats">
+                                <h3 count-to="{{rushOrderNumber}}" value="0" duration="1" class="number_counter" ></h3>
+                                <span>Rush Order</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+                    <div class="r4_counter wid-stats db_box">
+                        <div class='stats-data'>
+                            <i class="material-icons icon-success pull-left">check_circle</i>
+                            <div class="stats">
+                                <h3 count-to="{{sentNumber}}" value="0" duration="1" class="number_counter"></h3>
+                                <span>Shipment Sent</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+                    <div class="r4_counter wid-stats db_box">
+                        <div class='stats-data'>
+                            
+                            <i class="material-icons icon-danger pull-left">error</i>
+                            <div class="stats">
+                                <h3 count-to="{{notSentNumber}}" value="0" duration="1" class="number_counter" ></h3>
+                                <span>Shipment Not Sent</span>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        
+
+
+		<div class="col-lg-12">
+		<!--
+			<section class="box ">
+				<header class="panel_header">
+					<h2 class="title pull-left">Statistics</h2>
+					<div class="actions panel_actions pull-right">
+						<i class="box_toggle material-icons">expand_more</i>
+						
+					</div>
+				</header>
+				<div class="content-body padding-bottom-0">
+					<div class="row" >
+						<div class="col-lg-3 col-md-4 col-xs-12 col-sm-6">
+							<div class="tile-counter bg-primary">
+								<div class="content">
+									<i class='fa fa-file-o icon-lg'/>
+									<h2 count-to="{{totalNumberOfIdocs}}" value="0" duration="1" class="number_counter"/>
+									<div class="clearfix"/>
+									<span>Total Count Of Idocs</span>
+                            </div></span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-xs-12 col-sm-6">
+							<div class="tile-counter bg-warning">
+								<div class="content">
+									<i class='fa fa-exclamation icon-lg'/>
+									<h2 count-to="{{rushOrderNumber}}" value="0" duration="1" class="number_counter"/>
+									<div class="clearfix"/>
+									<span>Rush Order</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-xs-12 col-sm-6">
+							<div class="tile-counter bg-success">
+								<div class="content">
+									<i class='fa fa-share icon-lg'/>
+									<h2 count-to="{{sentNumber}}" value="0" duration="1" class="number_counter"/>
+									<div class="clearfix"/>
+									<span>Shipment Sent</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-xs-12 col-sm-6">
+							<div class="tile-counter bg-accent">
+								<div class="content">
+									<i class='fa fa-ban icon-lg'/>
+									<h2 count-to="{{notSentNumber}}" value="0" duration="1" class="number_counter"/>
+									<div class="clearfix"/>
+									<span>Shipment Not Sent</span>
+								</div>
+							</div>
+						</div>
+						<div class="clearfix"/>
+
+
+
+
+					</div>
+				</div>
+			</section>
+			-->
+
+
+
+			<div class="col-lg-12">
+				<section class="box ">
+					<header class="panel_header">
+						<h2 class="title pull-left">Shipment Details</h2>
+						<div class="actions panel_actions pull-right">
+							<i class="box_toggle material-icons">expand_more</i>
+
+						</div>
+					</header>
+
+
+
+					<div class="content-body padding-bottom-15">
+						<div class="row">
+
+
+							<label class="form-label" for="field-1">Select Date</label>
+							<div style="width:10%" class="input-group" >
+
+								<input type="text" class="form-control datepicker" max-date="maxDate" datepicker-popup="yyyy/MM/dd" ng-model="dt" is-open="dtpick.opened"  ng-required="true" close-text="Close" ng-click="open($event,'opened')" 
+								ng-change="getMonth()" />
+								<span class="input-group-addon" ng-click="open($event,'opened')">
+									<i class="fa fa-calendar" style="color: #999;"/>
+								</span>
+							</div>
+
+
+
+
+							<div class="col-md-12 col-sm-12 col-xs-12">
+
+								<div class="content-body padding-bottom-0">
+									<div class="row">
+										<input type="text" ng-model="search" class="form-control" placeholder="Search">
+										
+										<div class="col-md-9 col-sm-12 col-xs-12">
+
+											</div>
+											<div class="clearfix"/>
+											<br>
+											
+												<div class="col-lg-4 col-md-3 col-xs-12 col-sm-6">
+												<div class="btn-group margin-bottom-10 margin-right-15" style="float:left">
+													<label class="btn btn-primary" ng-click="FilterAll()" >All</label>
+													<label class="btn btn-warning" ng-click="FilterRushOrder()"  >Rush Order</label>
+													<label class="btn btn-success" ng-click="FilterNormalOrder()" >Normal Order</label>
+												</div>
+												</div>
+												
+
+												<div class="col-lg-4 col-md-3 col-xs-12 col-sm-6">
+													<select class="form-control input-lg" ng-model="plantSearch" >
+													<option value="">Choose Plant For Filter</option>
+														<option>JW64</option>
+														<option>JW71</option>
+													</select>
+												</div>
+												
+												<div class="col-lg-4 col-md-3 col-xs-12 col-sm-6">
+												<div class="btn-group margin-bottom-10" style="float:right" >
+													<label class="btn btn-primary" ng-click="FilterAllStatus()" >All</label>
+													<label class="btn btn-success" ng-click="FilterOnlySent()"  >Sent</label>
+													<label class="btn btn-danger" ng-click="FilterOnlyNotSent()" >Not Sent</label>
+												</div>
+												</div>
+
+												<div class="clearfix"/>
+												<br>
+
+													<a class="btn btn-circle btn-lg pull-right btn-success" ng-click="exportData()" >CSV    <i class='fa fa-file-excel-o icon-4x' />
+													</a>
+
+													<div class="col-md-12 col-sm-12 col-xs-12 table-responsive">
+
+														<!--
+						<table class="table table-striped" ui-jq="footable" data-filter="#filter" data-page-size="10" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th data-toggle="true">
+                                        Interface Name
+                                    </th>
+                                    <th>
+                                        Records in MYSQL
+                                    </th>
+                                    <th data-hide="phone,tablet">
+                                        File Count
+                                    </th>
+                                    <th data-hide="phone">
+                                        Status
+                                    </th>
+                                </tr>
+                            </thead>
+							
+                            
+							<tbody>
+                                <tr  ng-repeat="x in mdRecordsArray " >
+                                    <td>{{ x.Entry1 }}</td>
+									<td>{{ x.Entry2 }}</td>
+									<td>{{ x.Entry3 }}</td>
+									<td><span ng-class="{false : 'label label-danger', true : 'label label-success' } [x.Entry2==x.Entry3] " >{{ (x.Entry2!=x.Entry3) ? "Not Synced" : "Synced" }}</span></td>
+
+									
+                                </tr>
+                                </tr>
+                                
+                            </tbody>
+							
+                            <tfoot class="hide-if-no-paging">
+                                <tr>
+                                    <td colspan="10" class="text-center">
+                                        <ul class="pagination"></ul>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+						-->
+
+														<table class="table table-striped" data-filter="#filter" class="table table-striped">
+															<thead>
+																<tr>
+																	<th data-toggle="true">
+																	MATNR
+																	</th>
+																	
+																	<th>
+																	CCEJ_CPG
+																	</th>
+
+																	<th>
+																	VRKME_Case
+																	</th>
+																	
+																	<th>
+																	VRKME_Loose
+																	</th>
+																	
+
+
+
+
+																</tr>
+															</thead>
+
+
+															<tbody>
+																<tr    dir-paginate="x in pricingList |itemsPerPage:10  "  data-user-id="{{x.Entry1}}">
+																
+																<td>
+																		<span ng-class="{true : 'label label-danger'} [x.Entry6=='E'] " >
+																		{{ (x.Entry6=='E') ? "Error" :  x.Entry2 }}
+																		</td>
+																	<td>{{ x.Entry2 }}</td>
+																	
+																	<td>{{ x.Entry1 }}</td>
+																	
+
+																	
+																		<td>
+																			<span ng-class="{false : 'label label-danger', true : 'label label-success' } [x.Entry6==1] " >
+														{{ (x.Entry6=='1') ? "Sent" : "Not Sent" }}
+																			</td>
+																			<!--
+														<td>{{ x.Entry8 | date }}</td> -->
+
+
+
+
+
+
+																		</tr>
+																	</tr>
+
+																</tbody>
+
+
+															</table>
+
+															<div>
+																<dir-pagination-controls
+							   max-size="10"
+							   direction-links="true"
+							   boundary-links="true"
+								 >
+																</dir-pagination-controls>
+
+															</div>
+														</div>
+
+
+
+													</div>    
+												</div>
+
+
+
+											</div>
+										</div>
+									</div>
+								</section>
+							</div>
+						</div>
+					</div>
+
+
+
+
+				</div>
+			</div>	

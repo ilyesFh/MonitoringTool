@@ -70,7 +70,8 @@
 								</span>
 							</div>
 
-
+						
+						
 
 
 							<!-- <input type="date" ng-model="DeliveryDate" style="height:25px" /> -->
@@ -194,7 +195,7 @@
 								<tbody>
 									<tr dir-paginate="x in recordsOfToday | filter : filterText | filter : { Entry14 : typeSearch } | filter : { Entry8 : StatusSearch } | itemsPerPage:10  ">
 										<td>{{ x.Entry14 }}</td>
-										<td>{{ x.Entry1 }}</td>
+										<td ng-click="open('','animated fadeInUp', x.Entry1)" >{{ x.Entry1 }}</td>
 										<td>{{ x.Entry13 }}</td>
 										<td>{{ x.Entry12 }}</td>
 										<td>{{ x.Entry4 }}</td>
@@ -323,7 +324,7 @@
 
 						</div>
 
-
+						
 
 
 

@@ -23,8 +23,8 @@
 
 
 	app.controller('SoDashboardController', function($scope, $http, $filter , $interval , $state , $stateParams ) {
-	
-	
+
+
 	$scope.formattedDate;
 	$scope.mdRecordsArray = [];
 	$scope.superdaiwaError = 0;
@@ -33,8 +33,8 @@
 	$scope.neosError = 0;
 	$scope.manualError = 0;
 	$scope.refreshedDate;
-	
-	
+
+
 	$scope.counter = 1;
 	/*
 			setInterval(function () {
@@ -42,25 +42,25 @@
 			console.log($scope.counter);
 		}, 1000);
 	*/	
-	
+
 	$scope.countProgressBar = function() {
 		++$scope.counter;
-		
+
 		if ( $scope.counter == 100)
 		{ $scope.counter = 0; }
-		
+
 	}
-	
-  
+
+
 		  // Post Web CALL
 		  $scope.refresh = function() {
-			  
-			  
+
+
 				$scope.todayDate = new Date();
 			    $scope.formattedDate = $filter('date')($scope.todayDate, "yyyyMMdd");
 				$scope.refreshedDate = $filter('date')($scope.todayDate, "yyyy/MM/dd HH:mm:ss");
 				console.log($scope.refreshedDate);
-				
+
 			    console.log($scope.formattedDate);
 				var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate +  "\", \"msgType\":\"/CCEJ/SD_BL_PROF\"   , \"Prefix\":\"SalesOrder\"  }"
 		        console.log(msgdata);
@@ -68,37 +68,37 @@
 		        then(function (response) {
 				console.log(response.data[0]);
 				$scope.mdRecordsArray = response.data[0];
-				
+
 				//By System
 				$scope.superD = jsonsql.query("select * from json where (Entry1=='SUPERDAIWA' )", response.data[0]);
 				$scope.DaiwaWarning = jsonsql.query("select * from json where (Entry3=='1' )", $scope.superD).length;
 				$scope.DaiwaOk = jsonsql.query("select * from json where (Entry3=='2' || Entry3=='4' || Entry3=='6' )", $scope.superD).length;
 				$scope.DaiwaError = jsonsql.query("select * from json where (Entry3=='3' || Entry3=='5' )", $scope.superD).length;
 				console.log("Warning =" + $scope.DaiwaWarning , "Error" + $scope.DaiwaError , "Good" + $scope.DaiwaOk );
-				
+
 				$scope.ebest = jsonsql.query("select * from json where (Entry1=='EBEST' )", response.data[0]);
 				$scope.ebestWarning = jsonsql.query("select * from json where (Entry3=='1' )", $scope.ebest).length;
 				$scope.ebestOk = jsonsql.query("select * from json where (Entry3=='2' || Entry3=='4' || Entry3=='6' )", $scope.ebest).length;
 				$scope.ebestError = jsonsql.query("select * from json where (Entry3=='3' || Entry3=='5' )", $scope.ebest).length;
 				//$scope.ebestError = 6;
 				//$scope.ebestWarning = 3;
-				
+
 				$scope.manual = jsonsql.query("select * from json where (Entry1=='Manual' )", response.data[0]);
 				$scope.manualWarning = jsonsql.query("select * from json where (Entry3=='1' )", $scope.manual).length;
 				$scope.manualOk = jsonsql.query("select * from json where (Entry3=='2' || Entry3=='4' || Entry3=='6' )", $scope.manual).length;
 				$scope.manualError = jsonsql.query("select * from json where (Entry3=='3' || Entry3=='5' )", $scope.manual).length;
-				
+
 				$scope.eos = jsonsql.query("select * from json where (Entry1=='Manual' )", response.data[0]);
 				$scope.eosWarning = jsonsql.query("select * from json where (Entry3=='1' )", $scope.eos).length;
 				$scope.eosOk = jsonsql.query("select * from json where (Entry3=='2' || Entry3=='4' || Entry3=='6' )", $scope.eos).length;
 				$scope.eosError = jsonsql.query("select * from json where (Entry3=='3' || Entry3=='5' )", $scope.eos).length;
-				
+
 				$scope.neos = jsonsql.query("select * from json where (Entry1=='Manual' )", response.data[0]);
 				$scope.neosWarning = jsonsql.query("select * from json where (Entry3=='1' )", $scope.neos).length;
 				$scope.neosOk = jsonsql.query("select * from json where (Entry3=='2' || Entry3=='4' || Entry3=='6' )", $scope.neos).length;
 				$scope.neosError = jsonsql.query("select * from json where (Entry3=='3' || Entry3=='5' )", $scope.neos).length;
-				
-				
+
+
 				/*
 				//Error
 				$scope.superdaiwaError = jsonsql.query("select * from json where (Entry1=='SUPERDAIWA')", response.data[0]).length;
@@ -109,56 +109,56 @@
 				*/
 
 		        	});
-	
+
 
 		    }
-			
-			
+
+
 			$scope.RedirectToSoStatus = function(systemName) {
-				
+
 				console.log("Next Page");
 				console.log(systemName);
 				$state.go("app.tables.salesOrderStatus", { "id": systemName})
-				
-				
+
+
 			}
-			
-			
-			
+
+
+
 			$scope.intrvl = $interval($scope.refresh , 300000);
 			$scope.intrvl2 = $interval($scope.countProgressBar , 3000);
-			
-			
-		  
+
+
+
 			$scope.$on('$destroy',function(){
 				$interval.cancel($scope.intrvl);
 			});
-			
+
 			$scope.$on('$destroy',function(){
 				$interval.cancel($scope.intrvl2);
 			});
-			
-			
-			
-		
+
+
+
+
 });
 
-    app.controller('DataTablesCtrl', function($scope , $http ,  $filter , $timeout , $state ) {
-		
-	
-	
+    app.controller('DataTablesCtrl',  function($scope , $http ,  $filter , $timeout , $state , $modal, $log  ) {  
+
+
+
 	   console.log("Param = " + $state.params.id);
 	   $scope.typeSearch = $state.params.id;
-		
-	
+
+
 		$scope.recordsOfToday = [];
 		$scope.selectedSystem = "Select Bolton";
 		$scope.showChart = false;
 		$scope.recordsOfToday;
-		
+
 		$scope.TodayDate = new Date();
 		$scope.maxDate = new Date();
-		
+
 		$scope.st1 = 2
 		$scope.st2 = 6
 		$scope.st3 = 6
@@ -166,18 +166,18 @@
 		$scope.st5 = 5
 		$scope.st6 = 6
 		$scope.st7 = 7
-		
-		
+
+
 		$scope.StatusSearch = '';
-		
-		
-		
+
+
+
 		$scope.load = function () {
-		
+
 		console.log("-- Begin Chart");
 		$scope.formattedDate = $filter('date')($scope.TodayDate, "yyyyMMdd");
 		console.log($scope.formattedDate);
-		
+
 			    console.log($scope.formattedDate);
 		        var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"SalesOrderOfToday\"  }";		        
 		        console.log(msgdata);
@@ -189,8 +189,8 @@
 					$scope.recordsOfToday = response.data[0][0] ; 
 					//$scope.resultOfToday = jsonsql.query("select * from json where (Entry2=='"+$scope.selectedSystem+"')", response.data[0][0]);
 					console.log($scope.resultOfToday);
-					
-					
+
+
 				$scope.st0 = jsonsql.query("select * from json where (Entry8=='0')", response.data[0][0]).length;
 				$scope.st1 = jsonsql.query("select * from json where (Entry8=='1')", response.data[0][0]).length;
 				$scope.st2 = jsonsql.query("select * from json where (Entry8=='2')", response.data[0][0]).length;
@@ -200,7 +200,7 @@
 				$scope.st6 = jsonsql.query("select * from json where (Entry8=='6')", response.data[0][0]).length;
 				console.log($scope.st0 , $scope.st1 ,$scope.st2 , $scope.st3 ,$scope.st4 ,$scope.st5 , $scope.st6);	
 				var totalSalesO = $scope.st0 + $scope.st1 +$scope.st2 + $scope.st3 +$scope.st4 +$scope.st5 + $scope.st6
-				
+
 				$scope.myOptions = {
 			       options: {
 						title: {
@@ -209,8 +209,8 @@
 						}
 					}
 			    }
-				
-				
+
+
 				$scope.labels = ['Created In Bolton', 'In Progress', 'Sent To SAP' , 'Error-Sent To SAP', 'Processed', 'Not Processed' , 'Idoc Released'];
 				$scope.data = [$scope.st0, $scope.st1, $scope.st2 , $scope.st3 ,$scope.st4 , $scope.st5 , $scope.st6];
 				$scope.colours = [{ // grey
@@ -218,7 +218,7 @@
 						strokeColor: "rgba(103,58,183,1.0)",
 						highlightFill: "rgba(103,58,183,1.0)",
 						highlightStroke: "rgba(103,58,183,1.0)"
-						
+
 				}, { // Orange : in progress
 						fillColor: "rgba(255,110,64,1)",
 						strokeColor: "rgba(255,110,64,1.0)",
@@ -253,29 +253,29 @@
 						highlightFill: "#3399FF",
 						highlightStroke: "#3399FF"
 				}
-				
-				
-				
-				
+
+
+
+
 				];
-				
-				
-				
+
+
+
 				$scope.showChart = true;
-					
+
 				});
-		
-		
+
+
 	}
-	
-	
+
+
 
 		$scope.changeDate = function () {
-		
+
 		console.log("-- Begin Chart");
 		$scope.formattedDate = $filter('date')($scope.dt, "yyyyMMdd");
 		console.log($scope.formattedDate);
-		
+
 			    console.log($scope.formattedDate);
 		        var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"SalesOrderOfToday\"  }";		        
 		        console.log(msgdata);
@@ -287,8 +287,8 @@
 					$scope.recordsOfToday = response.data[0][0] ; 
 					//$scope.resultOfToday = jsonsql.query("select * from json where (Entry2=='"+$scope.selectedSystem+"')", response.data[0][0]);
 					console.log($scope.resultOfToday);
-					
-					
+
+
 				$scope.st0 = jsonsql.query("select * from json where (Entry8=='0')", response.data[0][0]).length;
 				$scope.st1 = jsonsql.query("select * from json where (Entry8=='1')", response.data[0][0]).length;
 				$scope.st2 = jsonsql.query("select * from json where (Entry8=='2')", response.data[0][0]).length;
@@ -298,7 +298,7 @@
 				$scope.st6 = jsonsql.query("select * from json where (Entry8=='6')", response.data[0][0]).length;
 				console.log($scope.st0 , $scope.st1 ,$scope.st2 , $scope.st3 ,$scope.st4 ,$scope.st5 , $scope.st6);	
 				var totalSalesO = $scope.st0 + $scope.st1 +$scope.st2 + $scope.st3 +$scope.st4 +$scope.st5 + $scope.st6
-				
+
 				$scope.myOptions = {
 			       options: {
 						title: {
@@ -307,8 +307,8 @@
 						}
 					}
 			    }
-				
-				
+
+
 				$scope.labels = ['Created In Bolton', 'In Progress', 'Sent To SAP' , 'Error-Sent To SAP', 'Processed', 'Not Processed' , 'Idoc Released'];
 				$scope.data = [$scope.st0, $scope.st1, $scope.st2 , $scope.st3 ,$scope.st4 , $scope.st5 , $scope.st6];
 				$scope.colours = [{ // grey
@@ -316,7 +316,7 @@
 						strokeColor: "rgba(103,58,183,1.0)",
 						highlightFill: "rgba(103,58,183,1.0)",
 						highlightStroke: "rgba(103,58,183,1.0)"
-						
+
 				}, { // Orange : in progress
 						fillColor: "rgba(255,110,64,1)",
 						strokeColor: "rgba(255,110,64,1.0)",
@@ -351,53 +351,53 @@
 						highlightFill: "#3399FF",
 						highlightStroke: "#3399FF"
 				}
-				
-				
-				
-				
+
+
+
+
 				];
-				
-				
-				
+
+
+
 				$scope.showChart = true;
-					
+
 				});
-		
-		
+
+
 	}		
-		
-		
+
+
 		$scope.exportData = function () {
-		
+
 		$scope.queryExport = '';
 		console.log($scope.typeSearch);
-		
+
 		if( $scope.typeSearch == '' && $scope.StatusSearch == '' )
 		{
-			
+
 			console.log("Filter Empty");
-			
+
 			$scope.queryExport = 'SELECT Entry14 as System_Source, Entry13 as So_Number, Entry12 as Plant, Entry4 as Delivery_Date , Entry6 as Sold_To , Entry9 as Creation_Date_System ,  Entry10 as Creation_Time_WorkTable, Entry2 as Boomi_Process_Time ,   case when Entry8 = \'0\' then \'Created In Bolton\' else ( case when Entry8 = \'1\' then \'In Progress\' else  ( case when Entry8 = \'2\' then \'Sent To SAP\' else \'Error-Sent To SAP\'  end )  end ) end as Type  INTO XLSX("Report_SalesOrders.xlsx",{}) FROM ? ' ;
-			
-			
+
+
 		}
 		else
 		{
-			
+
 			console.log("Filter Activiated");
-			
+
 			$scope.queryExport = 'SELECT Entry14 as System_Source, Entry13 as So_Number, Entry12 as Plant, Entry4 as Delivery_Date , Entry6 as Sold_To , Entry9 as Creation_Date_System ,  Entry10 as Creation_Time_WorkTable, Entry2 as Boomi_Process_Time ,   case when Entry8 = \'0\' then \'Created In Bolton\' else ( case when Entry8 = \'1\' then \'In Progress\' else  ( case when Entry8 = \'2\' then \'Sent To SAP\' else \'Error-Sent To SAP\'  end )  end ) end as Type  INTO XLSX("Report_SalesOrders.xlsx",{}) FROM ? where Entry14 = \'' + $scope.typeSearch + '\' AND Entry8 = \''+ $scope.StatusSearch + '\'   ' ;
 		}	
 
 		console.log($scope.queryExport);
 		alasql($scope.queryExport, [$scope.recordsOfToday]);
 	};
-		
-		
-		
-		
+
+
+
+
 		// Calendar
-	
+
 $scope.today = function() {
     $scope.dt = new Date();
   };
@@ -468,22 +468,68 @@ $scope.dtpick = {
 
     return '';
   };
+
+
+		$scope.open = function (size,windowClass , msg) {
+      var modalInstance = $modal.open({
+        templateUrl: 'partials/Personal/TransactionIdDetail.html',
+        controller: 'TransactionInstanceCtrl',
+        windowClass: windowClass,
+        size: size,
+        resolve: {
+          func : function () {
+			  console.log("*********----  "+ msg);
+			  $scope.transactionId = msg;
+			  
+			  return $scope.transactionId;
+
+
+          }
+        }
 		
 		
 		
+      });
+
+
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
+
+
 		
-        
-        
+
+
     });
-	
-	
-	
-	
-	
-	
 
-    
 
+
+	app.controller('TransactionInstanceCtrl', ['$scope', '$uibModalInstance', 'func', function($scope, $modalInstance, func) {
+
+		//console.log("*********---- "+ msg);
+		$scope.transactionId = func;
+		console.log("***   "+ $scope.transactionId);
+		
+		
+
+    $scope.cancel = function () {
+		console.log("--CANCEL--");
+      $modalInstance.dismiss('cancel');
+    };
+
+
+
+  }])
+  ; 
+
+
+
+
+    //Random Value
     function getRandomValue(data) {
         var l = data.length,
             previous = l ? data[l - 1] : 50;
@@ -492,3 +538,4 @@ $scope.dtpick = {
     }
 
 })();
+			

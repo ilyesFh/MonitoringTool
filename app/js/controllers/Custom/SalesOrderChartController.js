@@ -80,6 +80,8 @@
 				$scope.ebestWarning = jsonsql.query("select * from json where (Entry3=='1' )", $scope.ebest).length;
 				$scope.ebestOk = jsonsql.query("select * from json where (Entry3=='2' || Entry3=='4' || Entry3=='6' )", $scope.ebest).length;
 				$scope.ebestError = jsonsql.query("select * from json where (Entry3=='3' || Entry3=='5' )", $scope.ebest).length;
+				//$scope.ebestError = 6;
+				//$scope.ebestWarning = 3;
 				
 				$scope.manual = jsonsql.query("select * from json where (Entry1=='Manual' )", response.data[0]);
 				$scope.manualWarning = jsonsql.query("select * from json where (Entry3=='1' )", $scope.manual).length;
@@ -123,13 +125,17 @@
 			
 			
 			
-			$scope.intrvl = $interval($scope.refresh , 600000);
-			$scope.intrvl = $interval($scope.countProgressBar , 6000);
+			$scope.intrvl = $interval($scope.refresh , 300000);
+			$scope.intrvl2 = $interval($scope.countProgressBar , 3000);
 			
 			
 		  
 			$scope.$on('$destroy',function(){
 				$interval.cancel($scope.intrvl);
+			});
+			
+			$scope.$on('$destroy',function(){
+				$interval.cancel($scope.intrvl2);
 			});
 			
 			

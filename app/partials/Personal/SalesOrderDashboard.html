@@ -62,8 +62,15 @@
 			
 			
 			<div class="col-lg-3 col-md-4 col-xs-12 col-sm-6">
-                        <div class="wid-social persoWidget" ng-click="RedirectToSoStatus('Ebest')" >						
-								<i ng-class="{ true : 'material-icons icon-lg icon-danger pull-right' , false : 'material-icons icon-lg icon-success pull-right' } [ebestError>0] " style="" >{{  (ebestError>0) ? "report_problem" : "check_circle" }}</i>
+                        <div class="wid-social persoWidget" ng-click="RedirectToSoStatus('Ebest')" >	
+									<!--					
+								<i ng-class="{ true : 'material-icons icon-lg icon-warning pull-right' , false : 'material-icons icon-lg icon-success pull-right' } [ebestWarning>0] " style="" >{{  (ebestError>0) ? "report_problem" : (  (ebestWarning>0) ? "sms_failed" : "check_circle" ) }}</i>
+								-->
+								
+								
+								<i ng-class="{ true : 'material-icons icon-lg icon-danger pull-right' , false : 'material-icons icon-lg icon-success pull-right' } [ebestError>0] " style="" >{{  (ebestError>0) ? "report_problem" :  "check_circle"  }}</i>
+								
+								
                             <div class="social-info">
 								<h3 class="bold"> EBEST</h3>
 								</br>

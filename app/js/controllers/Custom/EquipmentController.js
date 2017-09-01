@@ -142,8 +142,9 @@ app.controller('EquipmentPreviousController', function($scope, $http, $filter ) 
 		$scope.mdRecordsArray = [];
 		$scope.showDiv = true;
 
-				console.log($scope.todayDate);
+				console.log("Calendar seleced = " + $scope.todayDate);
 				$scope.dateYesterday.setDate($scope.todayDate.getDate() - 1);
+				console.log("Calendar yesterday = " + $scope.dateYesterday);
 			    $scope.formattedDate = $filter('date')($scope.dateYesterday, "yyyyMMdd");
 			    console.log($scope.formattedDate);
 				

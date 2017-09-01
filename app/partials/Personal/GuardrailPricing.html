@@ -1,126 +1,81 @@
-<div class='content-wrapper' ng-init="app.settings.pagetitle = 'Shipment Details';">
+<div class='content-wrapper' ng-init="app.settings.pagetitle = 'Pricing GuardRail';">
 	<div class="col-lg-12" ng-controller="GuardrailErrorController" ng-init='load()' >
 
 		<div class="col-md-12 col-sm-12 col-xs-12 padding-right-30 padding-left-20">
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12 padding-right-0 padding-left-0 col-md-offset-1">
                     <div class="r4_counter wid-stats db_box">
                         <div class='stats-data'>
                             
-                            <i class="material-icons icon-primary pull-left">check_box_outline_blank</i>
+                            <i ng-class="{ true : 'material-icons icon-danger pull-left' , false : 'material-icons icon-success pull-left' } [matnrCount > 0] " >{{ (matnrCount > 0) ? "error" :  "check_circle"  }}</i>
                             <div class="stats">
-                                <h3 count-to="{{totalNumberOfIdocs}}" value="0" duration="1" />
-                                <span>Total Count Of Idocs</span>
+                                <h3 count-to="{{matnrCount}}" value="0" duration="1" />
+                                <span>MATNR</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
                     <div class="r4_counter wid-stats db_box">
                         <div class='stats-data'>
-                            <i class="material-icons icon-warning pull-left">forward</i>
+                           <i ng-class="{ true : 'material-icons icon-danger pull-left' , false : 'material-icons icon-success pull-left' } [cpgCount > 0] " >{{ (cpgCount > 0) ? "error" :  "check_circle"  }}</i>
                             <div class="stats">
-                                <h3 count-to="{{rushOrderNumber}}" value="0" duration="1" class="number_counter" ></h3>
-                                <span>Rush Order</span>
+                                <h3 count-to="{{cpgCount}}" value="0" duration="1" class="number_counter" ></h3>
+                                <span>CCEJ_CPG</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
                     <div class="r4_counter wid-stats db_box">
                         <div class='stats-data'>
-                            <i class="material-icons icon-success pull-left">check_circle</i>
+                            <i ng-class="{ true : 'material-icons icon-danger pull-left' , false : 'material-icons icon-success pull-left' } [caseCount > 0] " >{{ (caseCount > 0) ? "error" :  "check_circle"  }}</i>
                             <div class="stats">
-                                <h3 count-to="{{sentNumber}}" value="0" duration="1" class="number_counter"></h3>
-                                <span>Shipment Sent</span>
+                                <h3 count-to="{{caseCount}}" value="0" duration="1" class="number_counter"></h3>
+                                <span>VRKME_Case</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
                     <div class="r4_counter wid-stats db_box">
                         <div class='stats-data'>
                             
-                            <i class="material-icons icon-danger pull-left">error</i>
+                            <i ng-class="{ true : 'material-icons icon-danger pull-left' , false : 'material-icons icon-success pull-left' } [looseCount > 0] " >{{ (looseCount > 0) ? "error" :  "check_circle"  }}</i>
                             <div class="stats">
-                                <h3 count-to="{{notSentNumber}}" value="0" duration="1" class="number_counter" ></h3>
-                                <span>Shipment Not Sent</span>
+                                <h3 count-to="{{looseCount}}" value="0" duration="1" class="number_counter" ></h3>
+                                <span>VRKME_Loose</span>
                             </div>
                         </div>
                     </div>
                 </div> 
+				
+				<div class="col-lg-2 col-md-6 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+                    <div class="r4_counter wid-stats db_box">
+                        <div class='stats-data'>
+                            
+                            <i ng-class="{ true : 'material-icons icon-danger pull-left' , false : 'material-icons icon-success pull-left' } [sapCount > 0] " >{{ (sapCount > 0) ? "error" :  "check_circle"  }}</i>
+                            <div class="stats">
+                                <h3 count-to="{{sapCount}}" value="0" duration="1" class="number_counter" ></h3>
+                                <span>SAP</span>
+								
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+				
             </div>
         
 
 
 		<div class="col-lg-12">
-		<!--
-			<section class="box ">
-				<header class="panel_header">
-					<h2 class="title pull-left">Statistics</h2>
-					<div class="actions panel_actions pull-right">
-						<i class="box_toggle material-icons">expand_more</i>
-						
-					</div>
-				</header>
-				<div class="content-body padding-bottom-0">
-					<div class="row" >
-						<div class="col-lg-3 col-md-4 col-xs-12 col-sm-6">
-							<div class="tile-counter bg-primary">
-								<div class="content">
-									<i class='fa fa-file-o icon-lg'/>
-									<h2 count-to="{{totalNumberOfIdocs}}" value="0" duration="1" class="number_counter"/>
-									<div class="clearfix"/>
-									<span>Total Count Of Idocs</span>
-                            </div></span>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-4 col-xs-12 col-sm-6">
-							<div class="tile-counter bg-warning">
-								<div class="content">
-									<i class='fa fa-exclamation icon-lg'/>
-									<h2 count-to="{{rushOrderNumber}}" value="0" duration="1" class="number_counter"/>
-									<div class="clearfix"/>
-									<span>Rush Order</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-4 col-xs-12 col-sm-6">
-							<div class="tile-counter bg-success">
-								<div class="content">
-									<i class='fa fa-share icon-lg'/>
-									<h2 count-to="{{sentNumber}}" value="0" duration="1" class="number_counter"/>
-									<div class="clearfix"/>
-									<span>Shipment Sent</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-4 col-xs-12 col-sm-6">
-							<div class="tile-counter bg-accent">
-								<div class="content">
-									<i class='fa fa-ban icon-lg'/>
-									<h2 count-to="{{notSentNumber}}" value="0" duration="1" class="number_counter"/>
-									<div class="clearfix"/>
-									<span>Shipment Not Sent</span>
-								</div>
-							</div>
-						</div>
-						<div class="clearfix"/>
-
-
-
-
-					</div>
-				</div>
-			</section>
-			-->
+		
 
 
 
 			<div class="col-lg-12">
 				<section class="box ">
 					<header class="panel_header">
-						<h2 class="title pull-left">Shipment Details</h2>
+						<h2 class="title pull-left">Pricing GuardRail Details</h2>
 						<div class="actions panel_actions pull-right">
 							<i class="box_toggle material-icons">expand_more</i>
 
@@ -150,89 +105,38 @@
 
 								<div class="content-body padding-bottom-0">
 									<div class="row">
-										<input type="text" ng-model="search" class="form-control" placeholder="Search">
 										
-										<div class="col-md-9 col-sm-12 col-xs-12">
+										
+										<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+											<input type="text" ng-model="search" class="form-control" placeholder="Search">
 
 											</div>
+											
+											<div class="col-lg-3 col-md-3 col-xs-12 col-sm-12">
+													<select class="form-control input-lg" ng-model="errorTypeSearch" ng-change="filterError()" >
+													<option value="">All Error Filter</option>
+														<option>MATNR</option>
+														<option>CCEJ_CPG</option>
+														<option>VRKME_Case</option>
+														<option>VRKME_Loose</option>
+														<option>SAP</option>
+													</select>
+												</div>
+											
 											<div class="clearfix"/>
 											<br>
 											
-												<div class="col-lg-4 col-md-3 col-xs-12 col-sm-6">
-												<div class="btn-group margin-bottom-10 margin-right-15" style="float:left">
-													<label class="btn btn-primary" ng-click="FilterAll()" >All</label>
-													<label class="btn btn-warning" ng-click="FilterRushOrder()"  >Rush Order</label>
-													<label class="btn btn-success" ng-click="FilterNormalOrder()" >Normal Order</label>
-												</div>
-												</div>
+
+					
 												
-
-												<div class="col-lg-4 col-md-3 col-xs-12 col-sm-6">
-													<select class="form-control input-lg" ng-model="plantSearch" >
-													<option value="">Choose Plant For Filter</option>
-														<option>JW64</option>
-														<option>JW71</option>
-													</select>
-												</div>
 												
-												<div class="col-lg-4 col-md-3 col-xs-12 col-sm-6">
-												<div class="btn-group margin-bottom-10" style="float:right" >
-													<label class="btn btn-primary" ng-click="FilterAllStatus()" >All</label>
-													<label class="btn btn-success" ng-click="FilterOnlySent()"  >Sent</label>
-													<label class="btn btn-danger" ng-click="FilterOnlyNotSent()" >Not Sent</label>
-												</div>
-												</div>
-
-												<div class="clearfix"/>
-												<br>
-
 													<a class="btn btn-circle btn-lg pull-right btn-success" ng-click="exportData()" >CSV    <i class='fa fa-file-excel-o icon-4x' />
 													</a>
 
 													<div class="col-md-12 col-sm-12 col-xs-12 table-responsive">
 
-														<!--
-						<table class="table table-striped" ui-jq="footable" data-filter="#filter" data-page-size="10" class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th data-toggle="true">
-                                        Interface Name
-                                    </th>
-                                    <th>
-                                        Records in MYSQL
-                                    </th>
-                                    <th data-hide="phone,tablet">
-                                        File Count
-                                    </th>
-                                    <th data-hide="phone">
-                                        Status
-                                    </th>
-                                </tr>
-                            </thead>
-							
-                            
-							<tbody>
-                                <tr  ng-repeat="x in mdRecordsArray " >
-                                    <td>{{ x.Entry1 }}</td>
-									<td>{{ x.Entry2 }}</td>
-									<td>{{ x.Entry3 }}</td>
-									<td><span ng-class="{false : 'label label-danger', true : 'label label-success' } [x.Entry2==x.Entry3] " >{{ (x.Entry2!=x.Entry3) ? "Not Synced" : "Synced" }}</span></td>
-
-									
-                                </tr>
-                                </tr>
-                                
-                            </tbody>
-							
-                            <tfoot class="hide-if-no-paging">
-                                <tr>
-                                    <td colspan="10" class="text-center">
-                                        <ul class="pagination"></ul>
-                                    </td>
-                                </tr>
-                            </tfoot>
-                        </table>
-						-->
+														
+						
 
 														<table class="table table-striped" data-filter="#filter" class="table table-striped">
 															<thead>
@@ -253,6 +157,9 @@
 																	VRKME_Loose
 																	</th>
 																	
+																	<th>
+																	SAP Error
+																	</th>
 
 
 
@@ -262,30 +169,38 @@
 
 
 															<tbody>
-																<tr    dir-paginate="x in pricingList |itemsPerPage:10  "  data-user-id="{{x.Entry1}}">
+																<tr    dir-paginate="x in pricingList | filter : search | itemsPerPage:10  "  >
 																
-																<td>
+																		<td>
 																		<span ng-class="{true : 'label label-danger'} [x.Entry6=='E'] " >
 																		{{ (x.Entry6=='E') ? "Error" :  x.Entry2 }}
 																		</td>
-																	<td>{{ x.Entry2 }}</td>
-																	
-																	<td>{{ x.Entry1 }}</td>
-																	
-
-																	
+																		
 																		<td>
-																			<span ng-class="{false : 'label label-danger', true : 'label label-success' } [x.Entry6==1] " >
-														{{ (x.Entry6=='1') ? "Sent" : "Not Sent" }}
-																			</td>
-																			<!--
-														<td>{{ x.Entry8 | date }}</td> -->
-
-
-
-
-
-
+																		<span ng-class="{true : 'label label-danger'} [x.Entry5=='E'] " >
+																		{{ (x.Entry5=='E') ? "Error" :  x.Entry1 }}
+																		</td>
+																		
+																		<td>
+																		<span ng-class="{true : 'label label-danger'} [x.Entry7=='E'] " >
+																		{{ (x.Entry7=='E') ? "Error" :  x.Entry3 }}
+																		</td>
+																		
+																		<td>
+																		<span ng-class="{true : 'label label-danger'} [x.Entry8=='E'] " >
+																		{{ (x.Entry8=='E') ? "Error" :  x.Entry4 }}
+																		</td>
+																		
+																		<td>
+																		<span ng-class="{true : 'label label-danger'} [x.Entry9=='E'] " ng-click="open('','', x)" style="cursor:pointer">
+																		{{ (x.Entry9=='E') ? "SAP Error" :  "No Error" }}
+																		</span>
+																		<span class="badge badge-primary" ng-click="open('','', x)" style="cursor:pointer" ><i class="fa fa-info"  ></i></span>
+																		
+																		
+																		
+																		</td>
+																	
 																		</tr>
 																	</tr>
 

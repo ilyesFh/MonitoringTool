@@ -1,10 +1,13 @@
 
 
 
-app.controller('GuardrailErrorController', function ($scope, $http, $filter , $state) {
+app.controller('GuardrailErrorController', function ( $scope , $http ,  $filter , $timeout , $state , $modal, $log   ) {
 
 	$scope.TodayDate = new Date();
 	$scope.maxDate = new Date();
+	
+	$scope.pricingList;
+	$scope.allRecords;
 
 	$scope.options = {
 		animate: false,
@@ -20,7 +23,7 @@ app.controller('GuardrailErrorController', function ($scope, $http, $filter , $s
 		$scope.filterRush = "";
 		$scope.filterStatus = "";
 		
-		$scope.pricingList = "";
+		
 		
 		console.log("load event detected!");
 		$scope.formattedDate = $filter('date')($scope.TodayDate, "yyyyMMdd");
@@ -31,54 +34,64 @@ app.controller('GuardrailErrorController', function ($scope, $http, $filter , $s
 		var res = $http.post('http://117.55.209.110:9080/ws/simple/getMoniPricingTool;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgdata).
 			then(function (response) {
 				console.log(response.data[0]);
+				$scope.allRecords = response.data[0];
 				$scope.pricingList = response.data[0];
+				
+				//count For each Type
+				$scope.matnrCount = (jsonsql.query("select * from json where (Entry6=='E')", $scope.allRecords)).length;
+				$scope.cpgCount = (jsonsql.query("select * from json where (Entry5=='E')", $scope.allRecords)).length;
+				$scope.sapCount = (jsonsql.query("select * from json where (Entry9=='E')", $scope.allRecords)).length;
+				$scope.caseCount = (jsonsql.query("select * from json where (Entry7=='E')", $scope.allRecords)).length;
+				$scope.looseCount = (jsonsql.query("select * from json where (Entry8=='E')", $scope.allRecords)).length;
 				
 
 			});
 	}
+	
+	// Filter By Type Error
+	
+	$scope.filterError = function() {
+		
+		console.log($scope.errorTypeSearch);
+		
+		if ( $scope.errorTypeSearch == 'MATNR' )
+		{
+			
+			$scope.pricingList = (jsonsql.query("select * from json where (Entry6=='E')", $scope.allRecords));
+		};
+		
+		if ( $scope.errorTypeSearch == 'CCEJ_CPG' )
+		{
+			
+			$scope.pricingList = (jsonsql.query("select * from json where (Entry5=='E')", $scope.allRecords));
+		};
+		
+		if ( $scope.errorTypeSearch == 'VRKME_Case' )
+		{
+			
+			$scope.pricingList = (jsonsql.query("select * from json where (Entry7=='E')", $scope.allRecords));
+		};
+		
+		if ( $scope.errorTypeSearch == 'VRKME_Loose' )
+		{
+			
+			$scope.pricingList = (jsonsql.query("select * from json where (Entry8=='E')", $scope.allRecords));
+		};
+		
+		if ( $scope.errorTypeSearch == 'SAP' )
+		{
+			
+			$scope.pricingList = (jsonsql.query("select * from json where (Entry9=='E')", $scope.allRecords));
+		};
+		
+		if ( $scope.errorTypeSearch == '' )
+		{
+			$scope.pricingList = $scope.allRecords;
+		};
 
-	
-
-		// Post Web CALL
-		$scope.postMessage = function () {
-		//var msg = document.getElementById('message').value;
-
-	}
-
-	$scope.filterResult = '';
-
-	
-	//Filter RushOrder
-	$scope.filterRush = "";
-	
-	$scope.FilterRushOrder = function () {
-		$scope.filterRush = "Y";
+		
 	}
 	
-	$scope.FilterNormalOrder = function () {
-		$scope.filterRush = "N";
-	}
-	
-	$scope.FilterAll = function () {
-		$scope.filterRush = "";
-	}
-	
-	
-
-	//Sent to Hokan Filter
-	
-	
-	$scope.FilterOnlyNotSent = function () {
-		$scope.filterStatus = "0";
-	}
-	
-	$scope.FilterOnlySent = function () {
-		$scope.filterStatus = "1";
-	}
-	
-	$scope.FilterAllStatus = function () {
-		$scope.filterStatus = "";
-	}
 	
 	
 
@@ -196,4 +209,56 @@ $scope.dtpick = {
   };
 	
 
+	$scope.open = function (size,windowClass , msg) {
+      var modalInstance = $modal.open({
+        templateUrl: 'partials/Personal/SapErrorDetail.html',
+        controller: 'SapErrorInstanceCtrl',
+        windowClass: windowClass,
+        size: size,
+        resolve: {
+          func : function () {
+			  console.log("*********----  "+ msg);
+			  $scope.sapErrorObject = msg;
+			  
+			  return $scope.sapErrorObject;
+
+
+          }
+        }
+		
+		
+		
+      });
+
+
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
+	
+	
+	
+	
 });
+
+
+app.controller('SapErrorInstanceCtrl', ['$scope', '$uibModalInstance', 'func', function($scope, $modalInstance, func) {
+
+		//console.log("*********---- "+ msg);
+		$scope.x = func;
+		console.log("***   "+ $scope.x);
+		
+		
+
+    $scope.ok = function () {
+		console.log("--Ok--");
+		$modalInstance.dismiss('ok');
+    };
+
+
+
+  }])
+  ; 

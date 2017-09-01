@@ -470,7 +470,7 @@ $scope.dtpick = {
   };
 
 
-		$scope.open = function (size,windowClass , msg) {
+		$scope.openTransaction = function (size,windowClass , msg) {
       var modalInstance = $modal.open({
         templateUrl: 'partials/Personal/TransactionIdDetail.html',
         controller: 'TransactionInstanceCtrl',

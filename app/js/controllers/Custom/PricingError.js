@@ -209,7 +209,7 @@ $scope.dtpick = {
   };
 	
 
-	$scope.open = function (size,windowClass , msg) {
+	$scope.openDetail = function (size,windowClass , msg) {
       var modalInstance = $modal.open({
         templateUrl: 'partials/Personal/SapErrorDetail.html',
         controller: 'SapErrorInstanceCtrl',

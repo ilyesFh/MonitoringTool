@@ -1,8 +1,8 @@
-<div class='content-wrapper' ng-init="app.settings.pagetitle = 'Pricing GuardRail';">
-	<div class="col-lg-12" ng-controller="GuardrailErrorController" ng-init='load()' >
+<div class='content-wrapper' ng-init="app.settings.pagetitle = 'Pricing Emergency';">
+	<div class="col-lg-12" ng-controller="EmergencyErrorController" ng-init='load()' >
 
 		<div class="col-md-12 col-sm-12 col-xs-12 padding-right-30 padding-left-20">
-                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12 padding-right-0 padding-left-0 col-md-offset-1">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
                     <div class="r4_counter wid-stats db_box">
                         <div class='stats-data'>
                             
@@ -14,7 +14,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
                     <div class="r4_counter wid-stats db_box">
                         <div class='stats-data'>
                            <i ng-class="{ true : 'material-icons icon-danger pull-left' , false : 'material-icons icon-success pull-left' } [cpgCount > 0] " >{{ (cpgCount > 0) ? "error" :  "check_circle"  }}</i>
@@ -25,31 +25,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
                     <div class="r4_counter wid-stats db_box">
                         <div class='stats-data'>
-                            <i ng-class="{ true : 'material-icons icon-danger pull-left' , false : 'material-icons icon-success pull-left' } [caseCount > 0] " >{{ (caseCount > 0) ? "error" :  "check_circle"  }}</i>
+                            <i ng-class="{ true : 'material-icons icon-danger pull-left' , false : 'material-icons icon-success pull-left' } [vrkmeCount > 0] " >{{ (vrkmeCount > 0) ? "error" :  "check_circle"  }}</i>
                             <div class="stats">
-                                <h3 count-to="{{caseCount}}" value="0" duration="1" class="number_counter"></h3>
-                                <span>VRKME_Case</span>
+                                <h3 count-to="{{vrkmeCount}}" value="0" duration="1" class="number_counter"></h3>
+                                <span>VRKME</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
-                    <div class="r4_counter wid-stats db_box">
-                        <div class='stats-data'>
-                            
-                            <i ng-class="{ true : 'material-icons icon-danger pull-left' , false : 'material-icons icon-success pull-left' } [looseCount > 0] " >{{ (looseCount > 0) ? "error" :  "check_circle"  }}</i>
-                            <div class="stats">
-                                <h3 count-to="{{looseCount}}" value="0" duration="1" class="number_counter" ></h3>
-                                <span>VRKME_Loose</span>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
+                 
 				
-				<div class="col-lg-2 col-md-6 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+				<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
                     <div class="r4_counter wid-stats db_box">
                         <div class='stats-data'>
                             
@@ -117,8 +106,7 @@
 													<option value="">All Error Filter</option>
 														<option>MATNR</option>
 														<option>CCEJ_CPG</option>
-														<option>VRKME_Case</option>
-														<option>VRKME_Loose</option>
+														<option>VRKME</option>
 														<option>SAP</option>
 													</select>
 												</div>
@@ -150,12 +138,10 @@
 																	</th>
 
 																	<th>
-																	VRKME_Case
+																	VRKME
 																	</th>
 																	
-																	<th>
-																	VRKME_Loose
-																	</th>
+																	
 																	
 																	<th>
 																	SAP Error
@@ -173,29 +159,26 @@
 																
 																		<td>
 																		<span ng-class="{true : 'label label-danger'} [x.Entry6=='E'] " >
-																		{{ (x.Entry6=='E') ? "Error" :  x.Entry2 }}
+																		{{ (x.Entry6=='E') ? "Error" :  x.Entry1 }}
 																		</td>
 																		
 																		<td>
 																		<span ng-class="{true : 'label label-danger'} [x.Entry5=='E'] " >
-																		{{ (x.Entry5=='E') ? "Error" :  x.Entry1 }}
+																		{{ (x.Entry5=='E') ? "Error" :  x.Entry2 }}
 																		</td>
 																		
 																		<td>
-																		<span ng-class="{true : 'label label-danger'} [x.Entry7=='E'] " >
-																		{{ (x.Entry7=='E') ? "Error" :  x.Entry3 }}
+																		<span ng-class="{true : 'label label-danger'} [x.Entry4=='E'] " >
+																		{{ (x.Entry4=='E') ? "Error" :  x.Entry3 }}
 																		</td>
 																		
-																		<td>
-																		<span ng-class="{true : 'label label-danger'} [x.Entry8=='E'] " >
-																		{{ (x.Entry8=='E') ? "Error" :  x.Entry4 }}
-																		</td>
+																		
 																		
 																		<td>
-																		<span ng-class="{true : 'label label-danger'} [x.Entry9=='E'] " ng-click="openDetail('','', x)" style="cursor:pointer">
-																		{{ (x.Entry9=='E') ? "SAP Error" :  "No Error" }}
+																		<span ng-class="{true : 'label label-danger'} [x.Entry7=='E'] " ng-click="openDetail('','', x)" style="cursor:pointer">
+																		{{ (x.Entry7=='E') ? "SAP Error" :  "No Error" }}
 																		</span>
-																		<span ng-show="x.Entry9=='E'" class="badge badge-primary" ng-click="openDetail('','', x)" style="cursor:pointer" ><i class="fa fa-info"  ></i></span>
+																		<span ng-show="x.Entry7=='E'" class="badge badge-primary" ng-click="openDetail('','', x)" style="cursor:pointer" ><i class="fa fa-info"  ></i></span>
 																		
 																		
 																		

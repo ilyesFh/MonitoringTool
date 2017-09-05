@@ -159,13 +159,13 @@
 		$scope.TodayDate = new Date();
 		$scope.maxDate = new Date();
 
-		$scope.st1 = 2
-		$scope.st2 = 6
-		$scope.st3 = 6
-		$scope.st4 = 4
-		$scope.st5 = 5
-		$scope.st6 = 6
-		$scope.st7 = 7
+		$scope.st1 = 0
+		$scope.st2 = 0
+		$scope.st3 = 0
+		$scope.st4 = 0
+		$scope.st5 = 0
+		$scope.st6 = 0
+		$scope.st0 = 0
 
 
 		$scope.StatusSearch = '';
@@ -259,7 +259,17 @@
 
 				];
 
-
+				$scope.labelsBar = ['Today 05 SEP 2017'];
+				$scope.seriesBar = ['Created In Bolton', 'In Progress', 'Sent To SAP' , 'Error-Sent To SAP', 'Processed', 'Not Processed' , 'Idoc Released'];
+				$scope.dataBar = [
+					[$scope.st0],
+					[$scope.st1],
+					[$scope.st2],
+					[$scope.st3],
+					[$scope.st4],
+					[$scope.st5],
+					[$scope.st6],
+				];
 
 				$scope.showChart = true;
 

@@ -86,15 +86,32 @@
 
 
 
-
-						<div  class="col-md-6  col-md-offset-3"  >
+						<div  class="col-md-3  "  >
+						
+						<h4>Created In Bolton : {{st0}} </h4>
+						<h4>In Progress : {{st1}} </h4>
+						<h4>Sent To SAP : {{st2}} </h4>
+						<h4>Error-Sent To SAP : {{st3}} </h4>
+						<h4>Processed : {{st4}} </h4>
+						<h4>Not Processed : {{st5}} </h4>
+						<h4>Idoc Released : {{st6}} </h4>
+						
+						
+						
+						</div>
+						
+						<div  class="col-md-9  "  >
+						
+						<!--
 							<canvas id="doughnut" class="chart chart-doughnut" chart-data="data" chart-labels="labels" 
-					 ng-if="showChart" chart-options="myOptions" chart-legend="true" chart-colours="colours" />
+							ng-if="showChart" chart-options="myOptions" chart-legend="true" chart-colours="colours" />
+							
+							-->
+							
+							<canvas id="bar" class="chart chart-bar" data="dataBar" labels="labelsBar" chart-dataset-override="datasetOverride" options="myOptions" chart-colours="colours" chart-legend="true" chart-series="seriesBar" >
+							</canvas>
 
-							<br/>
-
-
-
+						<br/>
 						</div>
 
 

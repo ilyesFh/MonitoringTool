@@ -14,10 +14,32 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         
 						
+						<div style="width:10%" class="input-group" >
+
+								<input type="text" class="form-control datepicker" max-date="maxDate" datepicker-popup="yyyy/MM/dd" ng-model="CreationStartDate" is-open="dtpick.opened"  ng-required="true" close-text="Close" ng-click="open($event,'opened')" 
+								ng-change="changeDate()" />
+								<span class="input-group-addon" ng-click="open($event,'opened')">
+									<i class="fa fa-calendar" style="color: #999;"/>
+								</span>
+						</div>
+							
+							
+						
 						 
 						 
 						 <b>Start Date</b> <input type="date" ng-model="CreationStartDate" style="height:25px" />&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;
 						 <b>End Date</b> <input type="date" ng-model="CreationEndDate" style="height:25px" />&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;&nbsp;  &nbsp;
+						 
+						 
+						 
+						<div style="width:10%" class="input-group" >
+
+								<input type="text" class="form-control datepicker" max-date="maxDate" datepicker-popup="yyyy/MM/dd" ng-model="CreationEndDate" is-open="dtpick.opened2"  ng-required="true" close-text="Close" ng-click="open($event,'opened2')" 
+								ng-change="changeDate()" />
+								<span class="input-group-addon" ng-click="open2($event,'opened2')">
+									<i class="fa fa-calendar" style="color: #999;"/>
+								</span>
+						</div>
   		
   		<!-- <md-datepicker ng-model="DeliveryDate" md-placeholder="Enter date"></md-datepicker> -->
   		 &nbsp;  &nbsp;

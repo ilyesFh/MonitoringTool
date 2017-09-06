@@ -87,15 +87,53 @@
 
 
 						<div  class="col-md-3  "  >
+						<!--
+						<h4>Created In Bolton : {{st0}}</h4>
+						<h4>Boomi In Progress : {{st1}} </h4>
+						<h4>IDoc Sent To SAP : {{st2}} </h4>
+						<h4>Error Sending IDoc To SAP : {{st3}} </h4>
+						<h4>SO Posted in SAP : {{st4}} </h4>
+						<h4>SO Failed in SAP : {{st5}} </h4>
+						<h4>SO Received from SAP : {{st6}} </h4>
+						-->
 						
-						<h4>Created In Bolton : {{st0}} </h4>
-						<h4>In Progress : {{st1}} </h4>
-						<h4>Sent To SAP : {{st2}} </h4>
-						<h4>Error-Sent To SAP : {{st3}} </h4>
-						<h4>Processed : {{st4}} </h4>
-						<h4>Not Processed : {{st5}} </h4>
-						<h4>Idoc Released : {{st6}} </h4>
-						
+						<table class="table table-striped">
+						<thead>
+							<tr>
+							<th>Status</th>
+							<th>Count</th>
+							</tr>
+						</thead>								
+						<tbody>
+							<tr>
+							<td>Created In Bolton</td>
+							<td>{{st0}}</td>
+							</tr>
+							<tr>
+							<td>Boomi In Progress </td>
+							<td>{{st1}}</td>
+							</tr>
+							<tr>
+							<td>IDoc Sent To SAP</td>
+							<td>{{st2}}</td>
+							</tr>
+							<tr>
+							<td>Error Sending IDoc To SAP</td>
+							<td>{{st3}}</td>
+							</tr>
+							<tr>
+							<td>SO Posted in SAP</td>
+							<td>{{st4}}</td>
+							</tr>
+							<tr>
+							<td>SO Failed in SAP</td>
+							<td>{{st5}}</td>
+							</tr>
+							<tr>
+							<td>SO Received from SAP</td>
+							<td>{{st6}}</td>
+							</tr>			
+						</table>
 						
 						
 						</div>
@@ -193,12 +231,12 @@
 											<select class="form-control input-xs" ng-model="StatusSearch" >
 												<option value="">Status : All</option>
 												<option value="0" >Created In Bolton</option>
-												<option value="1">In Progress</option>
-												<option value="2">Sent To SAP</option>
-												<option value="3">Error-Sent To SAP</option>
-												<option value="4">Processed</option>
-												<option value="5">Not Processed</option>
-												<option value="6">Idoc Released</option>
+												<option value="1">Boomi In Progress</option>
+												<option value="2">IDoc Sent To SAP</option>
+												<option value="3">Error Sending IDoc To SAP</option>
+												<option value="4">SO Posted in SAP</option>
+												<option value="5">SO Failed in SAP</option>
+												<option value="6">SO Received from SAP</option>
 											</select>
 										</th>
 
@@ -212,7 +250,7 @@
 								<tbody>
 									<tr dir-paginate="x in recordsOfToday | filter : filterText | filter : { Entry14 : typeSearch } | filter : { Entry8 : StatusSearch } | itemsPerPage:10  ">
 										<td>{{ x.Entry14 }}</td>
-										<td ng-click="openTransaction('','', x.Entry1)" >{{ x.Entry1 }}</td>
+										<td ng-click="openTransaction('','', x)" >{{ x.Entry1 }}</td>
 										<td>{{ x.Entry13 }}</td>
 										<td>{{ x.Entry12 }}</td>
 										<td>{{ x.Entry4 }}</td>

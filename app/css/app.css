@@ -3090,6 +3090,11 @@ fieldset[disabled] .btn {
     color: #ffffff !important;
 }
 
+.persoWidget:hover {
+    background-color: #F1F1F1 !important;
+    
+}
+
 .twitter {
     background-color: #049bca !important;
     color: #ffffff !important;

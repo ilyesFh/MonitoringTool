@@ -1,9 +1,13 @@
 <div class="modal-header">
-    <h3 class="modal-title">Transactin ID : {{ transactionId }}</h3>
+    <h3 class="modal-title">Transactin ID : {{ soObject.Entry1 }}</h3>
 </div>
 <div class="modal-body">
 
-		TEST
+		{{Records.Entry1}}
+		{{Records.Entry2}}
+		{{Records.Entry3}}
+		
+		
 		<!--
     <ul>
         <li ng-repeat="item in items">
@@ -15,6 +19,6 @@
 		-->
 </div>
 <div class="modal-footer">                  
-    <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+    
     <button class="btn btn-primary" ng-click="ok()">OK</button>
 </div>

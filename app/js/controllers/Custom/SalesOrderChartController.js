@@ -157,6 +157,7 @@
 		$scope.recordsOfToday;
 
 		$scope.TodayDate = new Date();
+		$scope.refreshedDate;
 		$scope.maxDate = new Date();
 
 		$scope.st1 = 0
@@ -176,6 +177,7 @@
 
 		console.log("-- Begin Chart");
 		$scope.formattedDate = $filter('date')($scope.TodayDate, "yyyyMMdd");
+		$scope.refreshedDate = $filter('date')($scope.TodayDate, "yyyy/MM/dd HH:mm:ss");
 		console.log($scope.formattedDate);
 
 			    console.log($scope.formattedDate);
@@ -211,7 +213,7 @@
 			    }
 
 
-				$scope.labels = ['Created In Bolton', 'In Progress', 'Sent To SAP' , 'Error-Sent To SAP', 'Processed', 'Not Processed' , 'Idoc Released'];
+				$scope.labels = ['Created In Bolton', 'Boomi In Progress', 'IDoc Sent To SAP' , 'Error Sending IDoc To SAP', 'SO Posted in SAP', 'SO Failed in SAP' , 'SO Received from SAP'];
 				$scope.data = [$scope.st0, $scope.st1, $scope.st2 , $scope.st3 ,$scope.st4 , $scope.st5 , $scope.st6];
 				$scope.colours = [{ // grey
 						fillColor: "rgba(103,58,183,1.0)",
@@ -259,8 +261,8 @@
 
 				];
 
-				$scope.labelsBar = ['Today 05 SEP 2017'];
-				$scope.seriesBar = ['Created In Bolton', 'In Progress', 'Sent To SAP' , 'Error-Sent To SAP', 'Processed', 'Not Processed' , 'Idoc Released'];
+				$scope.labelsBar = ['Last Update : '+$scope.refreshedDate];
+				$scope.seriesBar = ['Created In Bolton', 'Boomi In Progress', 'IDoc Sent To SAP' , 'Error Sending IDoc To SAP', 'SO Posted in SAP', 'SO Failed in SAP' , 'SO Received from SAP'];
 				$scope.dataBar = [
 					[$scope.st0],
 					[$scope.st1],
@@ -518,18 +520,30 @@ $scope.dtpick = {
 
 
 
-	app.controller('TransactionInstanceCtrl', ['$scope', '$uibModalInstance', 'func', function($scope, $modalInstance, func) {
+	app.controller('TransactionInstanceCtrl', ['$scope', '$http' , '$uibModalInstance', 'func', function($scope, $http , $modalInstance, func) {
+		
+		$scope.ok = function () {
+		console.log("--Ok--");
+      $modalInstance.dismiss('ok');
+    };
 
 		//console.log("*********---- "+ msg);
-		$scope.transactionId = func;
-		console.log("***   "+ $scope.transactionId);
+		$scope.soObject = func;
+		console.log("***   "+ $scope.soObject);
+		var msgdata = "{\"Input1\": \"GetTransactionInfo\"  , \"Input2\":\""+ $scope.soObject.Entry1 +"\"  , \"Input3\":\""+ $scope.soObject.Entry14 +"\" }"
+		        console.log(msgdata);
+		        var res = $http.post('http://117.55.209.112:9090/ws/simple/getOrderInformation;boomi_auth=Y2Nlai1LQUtBOU86NmMxZWVhMDMtNzY5MC00NGQ1LTllNjItMTBmNTdhNTA2Njg1',msgdata ).
+		        then(function (response) {
+				console.log(response.data);
+				$scope.Records = response.data;
+				
+				
+		});
+		
 		
 		
 
-    $scope.cancel = function () {
-		console.log("--CANCEL--");
-      $modalInstance.dismiss('cancel');
-    };
+    
 
 
 

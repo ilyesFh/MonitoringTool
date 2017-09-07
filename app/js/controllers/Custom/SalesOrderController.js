@@ -27,6 +27,18 @@ app.controller('SalesOrderController', function($scope, $http, $filter ) {
 	$scope.formattedDate;
 	
 	$scope.maxDate = new Date();
+	$scope.salesOrderArray = [];
+	
+	$scope.labels = ['00-04', '05', '06', '07', '08', '09', '10','11', '12', '13', '14', '15', '16', '17','18', '19', '20', '21', '22', '23'];
+	
+	$scope.showChart = false;
+	
+	$scope.optionsChart = {
+            
+        };
+		
+		$scope.seriesChart = ['SuperDaiwa','Ebest'];
+
 
 
 	/*
@@ -64,6 +76,7 @@ app.controller('SalesOrderController', function($scope, $http, $filter ) {
 		  $scope.postMessage = function() {
 		        //var msg = document.getElementById('message').value;
 			  	console.log("--1");
+				$scope.showChart = true;
 
 
 			    $scope.formattedDateD1 = $filter('date')($scope.CreationStartDate, "yyyyMMdd");
@@ -111,14 +124,30 @@ app.controller('SalesOrderController', function($scope, $http, $filter ) {
 		        		 $scope.record[0] = "All Systems";
 		        		 $scope.record[1] = $scope.fixedDate;
 		        		 $scope.record[22] = $scope.QueryWithDate.length;
-
+						 
+						 for (k=2;k<22; k++)
+						 {
+							$scope.record[k] = 0 
+						 }
+						 
+						 
+						 
+						 console.log($scope.record[2]);
+						 
+						 /*
+						 $scope.data = [
+											[$scope.record[2], $scope.record[3], $scope.record[4], $scope.record[5], $scope.record[6], $scope.record[7], $scope.record[8]]
+            
+										];
+						 */
+						 
 
 		        		 for (j=0;j<$scope.QueryWithDate.length; j++)
 		        			 {
 
 		        			 if ( Number($scope.QueryWithDate[j].Hour) < 5)
 		        				 { 
-		        				 if ( $scope.record[2] == null)
+		        				 if ( $scope.record[2] == 0)
 		        					 { $scope.record[2] = 1}
 		        				 else {
 		        					 $scope.record[2] = $scope.record[2] + 1;
@@ -126,13 +155,21 @@ app.controller('SalesOrderController', function($scope, $http, $filter ) {
 		        				 }
 		        			 else
 		        				 {
-		        				 if ( $scope.record[Number($scope.QueryWithDate[j].Hour)-2] == null)
+		        				 if ( $scope.record[Number($scope.QueryWithDate[j].Hour)-2] == 0)
 	        					 { $scope.record[Number($scope.QueryWithDate[j].Hour)-2] = 1}
 	        				 else {
 	        					 $scope.record[Number($scope.QueryWithDate[j].Hour)-2] = $scope.record[Number($scope.QueryWithDate[j].Hour)-2] + 1;
 	        				 	}
 
 		        				 }
+								 
+								 $scope.data = [
+											[$scope.record[2], $scope.record[3], $scope.record[4], $scope.record[5], $scope.record[6], $scope.record[7], $scope.record[8] , $scope.record[9] , $scope.record[10] , $scope.record[11] , $scope.record[12], $scope.record[13] ,$scope.record[14] , $scope.record[15] , $scope.record[16] , $scope.record[17], $scope.record[18] ,$scope.record[19] , $scope.record[20] , 
+											$scope.record[21] ],
+											[$scope.record[5], $scope.record[3], $scope.record[4], $scope.record[5], $scope.record[6], $scope.record[7], $scope.record[17] , $scope.record[19] , $scope.record[10] , $scope.record[11] , $scope.record[12], $scope.record[13] ,$scope.record[14] , $scope.record[15] , $scope.record[16] , $scope.record[8], $scope.record[3] ,$scope.record[5] , $scope.record[20] , 
+											$scope.record[21] ]
+            
+										];
 
 		        			 }
 
@@ -165,6 +202,25 @@ app.controller('SalesOrderController', function($scope, $http, $filter ) {
 
 		        	});
 		    }
+			
+			
+        
+        $scope.colours = [{ // grey
+                fillColor: "rgba(255,110,64,0.5)",
+                strokeColor: "rgba(255,110,64,1)",
+                pointColor: "rgba(255,110,64,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(255,110,64,1)"
+        }, { // dark grey
+                fillColor: "rgba(103,58,183,0.5)",
+                strokeColor: "rgba(103,58,183,1.0)",
+                pointColor: "rgba(103,58,183,1.0)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(103,58,183,1.0)"
+        }];
+        
 
 
 			$scope.countTo = 10;
@@ -269,3 +325,8 @@ $scope.dtpick = {
 
 
 });
+
+
+app.controller('DataTablesCtrl', function($scope) {
+        
+    });

@@ -681,7 +681,7 @@ angular.module('app')
                     })
 					
 					.state('app.tables.test', {
-                        url: '/test',
+                        url: '/SoPerHour',
                         templateUrl: 'partials/Personal/SalesOderTable.html',
                         resolve: {
                             deps: ['$ocLazyLoad',
@@ -695,7 +695,7 @@ angular.module('app')
                                     )
 									.then(
                                           function(){
-                                               return $ocLazyLoad.load('js/controllers/Custom/jsonsql-0.1.js');
+                                               return $ocLazyLoad.load('chart.js');
                                             }
                                           )
 									;

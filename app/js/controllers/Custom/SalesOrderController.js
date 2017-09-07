@@ -165,8 +165,6 @@ app.controller('SalesOrderController', function($scope, $http, $filter ) {
 								 
 								 $scope.data = [
 											[$scope.record[2], $scope.record[3], $scope.record[4], $scope.record[5], $scope.record[6], $scope.record[7], $scope.record[8] , $scope.record[9] , $scope.record[10] , $scope.record[11] , $scope.record[12], $scope.record[13] ,$scope.record[14] , $scope.record[15] , $scope.record[16] , $scope.record[17], $scope.record[18] ,$scope.record[19] , $scope.record[20] , 
-											$scope.record[21] ],
-											[$scope.record[5], $scope.record[3], $scope.record[4], $scope.record[5], $scope.record[6], $scope.record[7], $scope.record[17] , $scope.record[19] , $scope.record[10] , $scope.record[11] , $scope.record[12], $scope.record[13] ,$scope.record[14] , $scope.record[15] , $scope.record[16] , $scope.record[8], $scope.record[3] ,$scope.record[5] , $scope.record[20] , 
 											$scope.record[21] ]
             
 										];

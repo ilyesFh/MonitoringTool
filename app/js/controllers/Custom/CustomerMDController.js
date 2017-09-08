@@ -25,6 +25,11 @@ app.controller('CustomerController', function ($scope, $http, $filter) {
 	$scope.syncResultBool = false;
 	$scope.formattedDate;
 	$scope.mdRecordsArray = [];
+	
+	$scope.countAll = 0;
+	$scope.countSynced = 0;
+	$scope.countNotSynced = 0;
+	$scope.countPending = 0;
 
 	console.log("--1");
 	$scope.todayDate = new Date();
@@ -52,6 +57,11 @@ app.controller('CustomerController', function ($scope, $http, $filter) {
 				$scope.recordSynced = 99.9
 			}
 			
+			$scope.countAll = $scope.mdRecordsArray.length;
+			$scope.countSynced = $scope.QueryInsertedRow.length;
+			$scope.countNotSynced = jsonsql.query("select * from json where (Entry5=='1')", response.data[0][0]).length;
+			$scope.countPending = jsonsql.query("select * from json where (Entry5=='3')", response.data[0][0]).length;
+			
 			console.log($scope.recordSynced);
 
 			//update instance after 1 sec
@@ -78,6 +88,11 @@ app.controller('CustomerController', function ($scope, $http, $filter) {
 		$scope.filterResult = '1';
 
 	}
+	
+	$scope.FilterOnlyBoomiPending = function() {
+		        $scope.filterResult = '3';
+			  	
+		    }
 
 	$scope.FilterAll = function () {
 		$scope.filterResult = '';
@@ -95,9 +110,9 @@ app.controller('CustomerController', function ($scope, $http, $filter) {
 
 		$scope.queryExport = '';
 		if ($scope.filterResult == '')
-			$scope.queryExport = 'SELECT Entry2 as IDoc_Number, Entry3 as IDoc_Type, Entry1 as Date, case when Entry5 = \'0\' then \'Synced\' else \'Not Synced\' end as Status INTO XLSX("Report_All.xlsx",{}) FROM ?';
+			$scope.queryExport = 'SELECT Entry2 as IDoc_Number, Entry3 as IDoc_Type, Entry1 as Date, Entry4 as Customer_Number , case when Entry5 = \'0\' then \'Synced\' else   ( case when Entry5 = \'1\' then \'Not_Synced\' else \'Pending\' end ) end as Status , Entry6 as Cause , Entry7 as Error_Details  INTO XLSX("Report_Customers_All.xlsx",{}) FROM ?';
 		else
-			$scope.queryExport = 'SELECT Entry2 as IDoc_Number, Entry3 as IDoc_Type, Entry1 as Date, case when Entry5 = \'0\' then \'Synced\' else \'Not Synced\' end as Status INTO XLSX("Report_Filtered.xlsx",{}) FROM ? where Entry5 = \'' + $scope.filterResult + '\'';
+			$scope.queryExport = 'SELECT Entry2 as IDoc_Number, Entry3 as IDoc_Type, Entry1 as Date, Entry4 as Customer_Number ,case when Entry5 = \'0\' then \'Synced\' else ( case when Entry5 = \'1\' then \'Not_Synced\' else \'Pending\' end ) end as Status , Entry6 as Cause , Entry7 as Error_Details INTO XLSX("Report_Customers_Filtered.xlsx",{}) FROM ? where Entry5 = \'' + $scope.filterResult + '\'';
 
 		console.log($scope.queryExport);
 		alasql($scope.queryExport, [$scope.mdRecordsArray]);

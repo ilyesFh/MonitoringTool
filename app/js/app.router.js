@@ -770,7 +770,7 @@ angular.module('app')
 					
 					
 					.state('app.tables.md1', {
-                        url: '/md1',
+                        url: '/TodayMaterials',
                         templateUrl: 'partials/Personal/MasterDataMaterial.html',
                         resolve: {
                             deps: ['$ocLazyLoad',
@@ -1033,7 +1033,7 @@ angular.module('app')
 					
 					
 					.state('app.tables.customer1', {
-                        url: '/Customer1',
+                        url: '/TodayCustomers',
                         templateUrl: 'partials/Personal/CustomerMD.html',
                         resolve: {
                             deps: ['$ocLazyLoad',

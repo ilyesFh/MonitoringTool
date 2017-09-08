@@ -146,10 +146,13 @@
     app.controller('DataTablesCtrl',  function($scope , $http ,  $filter , $timeout , $state , $modal, $log  ) {  
 
 
-
-	   console.log("Param = " + $state.params.id);
-	   $scope.typeSearch = $state.params.id;
-
+       $scope.SystemSelectedDisplay = "All"
+		
+		if($state.params.id != "") {
+			console.log("Param = " + $state.params.id);
+			$scope.typeSearch = $state.params.id;
+			$scope.SystemSelectedDisplay = $state.params.id;
+		}
 
 		$scope.recordsOfToday = [];
 		$scope.selectedSystem = "Select Bolton";
@@ -170,6 +173,10 @@
 
 
 		$scope.StatusSearch = '';
+		
+		
+		$scope.serchBySystemSource = function (system) {			
+		}
 
 
 
@@ -188,18 +195,30 @@
 		        var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=',msgdata ).
 		        then(function (response) {
 					console.log(response.data[0][0]);
+					
+					//Check if we have param or not
+					if($state.params.id != "") {
+						console.log("Param = " + $state.params.id);
+						$scope.recordsOfToday = jsonsql.query("select * from json where (Entry14=='"+$state.params.id+"')", response.data[0][0]);
+						$scope.allRecords = response.data[0][0];
+						
+					}
+					
+					else {
 					$scope.recordsOfToday = response.data[0][0] ; 
+					
+					}
 					//$scope.resultOfToday = jsonsql.query("select * from json where (Entry2=='"+$scope.selectedSystem+"')", response.data[0][0]);
 					console.log($scope.resultOfToday);
 
 
-				$scope.st0 = jsonsql.query("select * from json where (Entry8=='0')", response.data[0][0]).length;
-				$scope.st1 = jsonsql.query("select * from json where (Entry8=='1')", response.data[0][0]).length;
-				$scope.st2 = jsonsql.query("select * from json where (Entry8=='2')", response.data[0][0]).length;
-				$scope.st3 = jsonsql.query("select * from json where (Entry8=='3')", response.data[0][0]).length;
-				$scope.st4 = jsonsql.query("select * from json where (Entry8=='4')", response.data[0][0]).length;
-				$scope.st5 = jsonsql.query("select * from json where (Entry8=='5')", response.data[0][0]).length;
-				$scope.st6 = jsonsql.query("select * from json where (Entry8=='6')", response.data[0][0]).length;
+				$scope.st0 = jsonsql.query("select * from json where (Entry8=='0')", $scope.recordsOfToday).length;
+				$scope.st1 = jsonsql.query("select * from json where (Entry8=='1')", $scope.recordsOfToday).length;
+				$scope.st2 = jsonsql.query("select * from json where (Entry8=='2')", $scope.recordsOfToday).length;
+				$scope.st3 = jsonsql.query("select * from json where (Entry8=='3')", $scope.recordsOfToday).length;
+				$scope.st4 = jsonsql.query("select * from json where (Entry8=='4')", $scope.recordsOfToday).length;
+				$scope.st5 = jsonsql.query("select * from json where (Entry8=='5')", $scope.recordsOfToday).length;
+				$scope.st6 = jsonsql.query("select * from json where (Entry8=='6')", $scope.recordsOfToday).length;
 				console.log($scope.st0 , $scope.st1 ,$scope.st2 , $scope.st3 ,$scope.st4 ,$scope.st5 , $scope.st6);	
 				var totalSalesO = $scope.st0 + $scope.st1 +$scope.st2 + $scope.st3 +$scope.st4 +$scope.st5 + $scope.st6
 
@@ -369,7 +388,17 @@
 
 				];
 
-
+				$scope.labelsBar = ['Last Update : '+$scope.refreshedDate];
+				$scope.seriesBar = ['Created In Bolton', 'Boomi In Progress', 'IDoc Sent To SAP' , 'Error Sending IDoc To SAP', 'SO Posted in SAP', 'SO Failed in SAP' , 'SO Received from SAP'];
+				$scope.dataBar = [
+					[$scope.st0],
+					[$scope.st1],
+					[$scope.st2],
+					[$scope.st3],
+					[$scope.st4],
+					[$scope.st5],
+					[$scope.st6],
+				];
 
 				$scope.showChart = true;
 

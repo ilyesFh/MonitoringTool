@@ -270,7 +270,7 @@ app.controller('SapErrorInstanceCtrl', ['$scope', '$uibModalInstance', 'func', f
 	$scope.TodayDate = new Date();
 	$scope.maxDate = new Date();
 	
-	$scope.pricingList;
+	$scope.pricingList = [];
 	$scope.allRecords;
 
 	$scope.options = {
@@ -286,6 +286,8 @@ app.controller('SapErrorInstanceCtrl', ['$scope', '$uibModalInstance', 'func', f
 		//Reset Filter
 		$scope.filterRush = "";
 		$scope.filterStatus = "";
+		console.log($scope.pricingList);
+		
 		
 		
 		

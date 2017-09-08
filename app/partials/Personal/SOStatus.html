@@ -58,10 +58,10 @@
 						</div>
 						
 						-->
-
+						<div  class="col-md-4 "  >
 						<label class="form-label" for="field-1">Select Date</label>
-						<div>
-							<div style="width:10%" class="input-group" >
+						
+							<div style="width:70%" class="input-group" >
 
 								<input type="text" class="form-control datepicker" max-date="maxDate" datepicker-popup="yyyy/MM/dd" ng-model="dt" is-open="dtpick.opened"  ng-required="true" close-text="Close" ng-click="open($event,'opened')" 
 								ng-change="changeDate()" />
@@ -69,9 +69,11 @@
 									<i class="fa fa-calendar" style="color: #999;"/>
 								</span>
 							</div>
-
+						</div>
 						
-						
+						<div  class="col-md-8"  >
+						<h1 class="">Selected System : {{SystemSelectedDisplay}} </h1>
+						</div>
 
 
 							<!-- <input type="date" ng-model="DeliveryDate" style="height:25px" /> -->
@@ -80,13 +82,13 @@
 
 
 
-						</div>
+						
 						<div class="clearfix"/>
 
 
 
 
-						<div  class="col-md-3  "  >
+						<div  class="col-md-3 col-md-offset-1"  >
 						<!--
 						<h4>Created In Bolton : {{st0}}</h4>
 						<h4>Boomi In Progress : {{st1}} </h4>
@@ -97,7 +99,7 @@
 						<h4>SO Received from SAP : {{st6}} </h4>
 						-->
 						
-						<table class="table table-striped">
+						<table class="table table-striped ">
 						<thead>
 							<tr>
 							<th>Status</th>
@@ -138,7 +140,7 @@
 						
 						</div>
 						
-						<div  class="col-md-9  "  >
+						<div  class="col-md-8"  >
 						
 						<!--
 							<canvas id="doughnut" class="chart chart-doughnut" chart-data="data" chart-labels="labels" 
@@ -249,12 +251,12 @@
 
 								<tbody>
 									<tr dir-paginate="x in recordsOfToday | filter : filterText | filter : { Entry14 : typeSearch } | filter : { Entry8 : StatusSearch } | itemsPerPage:10  ">
-										<td>{{ x.Entry14 }}</td>
-										<td ng-click="openTransaction('','', x)" >{{ x.Entry1 }}</td>
+										<td >{{ x.Entry14 }}</td>
+										<td ng-click="openTransaction('','', x)" style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" >{{ x.Entry1 }}</td>
 										<td>{{ x.Entry13 }}</td>
 										<td>{{ x.Entry12 }}</td>
 										<td>{{ x.Entry4 }}</td>
-										<td>{{ x.Entry6 }}</td>
+										<td>{{ x.Entry7 }}</td>
 										<td>{{ x.Entry9 }}</td>
 										<td>{{ x.Entry10 }}</td>
 										<td>{{ x.Entry2 }}</td>
@@ -264,12 +266,12 @@
 											<span ng-class="{0 : 'label label-created', 1 : 'label label-warning' , 2 : 'label label-success' , 
 											3 : 'label label-danger' , 4 : 'label label-success' , 5 : 'label label-danger' , 6 : 'label label-released' } [x.Entry8] " >
 										{{  x.Entry8 == 0 ? "Created In Bolton" : 
-											x.Entry8 == 1 ? "In Progress" :
-											x.Entry8 == 2 ? "Sent To SAP" :
-											x.Entry8 == 3 ? "Error-Sent To SAP" :
-											x.Entry8 == 4 ? "Processed" :
-											x.Entry8 == 5 ? "Not Processed" :
-											"Idoc Released" 
+											x.Entry8 == 1 ? "Boomi In Progress" :
+											x.Entry8 == 2 ? "IDoc Sent To SAP" :
+											x.Entry8 == 3 ? "Error Sending IDoc To SAP" :
+											x.Entry8 == 4 ? "SO Posted in SAP" :
+											x.Entry8 == 5 ? "SO Failed in SAP" :
+											"SO Received from SAP" 
 										}}
 											</td>
 

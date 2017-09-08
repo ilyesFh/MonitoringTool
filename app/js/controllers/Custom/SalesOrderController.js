@@ -41,36 +41,7 @@ app.controller('SalesOrderController', function($scope, $http, $filter ) {
 
 
 
-	/*
-	$scope.todos = [
-	                'Learn Sketch', 
-	                'Look at Dribbble and feel inferior',
-	                'Actually learn how to use the Pen tool'
-	              ];
-
-	$scope.done = function(todo) {
-	    var indexOf = $scope.todos.indexOf(todo);
-	    if (indexOf !== -1) {
-	      $scope.todos.splice(indexOf, 1);
-	    }
-	  };
-
-	  $scope.add = function(e) {
-		    if (e.which && e.which === 13) {
-		    	console.log(e.which);
-		      $scope.todos.push($scope.newTodo);
-		      $scope.newTodo = '';
-		    }
-		  };
-
-		  // Get Web Call (Consume)
-		  $http.get('http://services.groupkt.com/country/get/all').
-	        then(function(response) {
-	            $scope.greeting = response.data;
-	            console.log(response.data);
-	        });
-
-		 */
+	
 
 		  // Post Web CALL
 		  $scope.postMessage = function() {

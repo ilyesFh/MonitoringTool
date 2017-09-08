@@ -27,6 +27,11 @@ app.controller('MasterDataController', function($scope, $http, $filter ) {
 	$scope.syncResultBool = false;
 	$scope.formattedDate;
 	
+	$scope.countAll = 0;
+	$scope.countSynced = 0;
+	$scope.countNotSynced = 0;
+	$scope.countPending = 0;
+	
 	$scope.mdRecordsArray = [];
 	
 	
@@ -53,6 +58,11 @@ app.controller('MasterDataController', function($scope, $http, $filter ) {
 				
 				$scope.QueryInsertedRow = jsonsql.query("select * from json where (Entry5=='0')", response.data[0][0]);
 				$scope.insertedRow = $scope.QueryInsertedRow.length;
+				
+				$scope.countAll = $scope.mdRecordsArray.length;
+				$scope.countSynced = $scope.QueryInsertedRow.length;
+				$scope.countNotSynced = jsonsql.query("select * from json where (Entry5=='1')", response.data[0][0]).length;
+				$scope.countPending = jsonsql.query("select * from json where (Entry5=='3')", response.data[0][0]).length;
 				
 				
 			
@@ -87,6 +97,11 @@ app.controller('MasterDataController', function($scope, $http, $filter ) {
 			
 			$scope.FilterOnlyNotSynced = function() {
 		        $scope.filterResult = '1';
+			  	
+		    }
+			
+			$scope.FilterOnlyBoomiPending = function() {
+		        $scope.filterResult = '3';
 			  	
 		    }
 			

@@ -14,7 +14,7 @@
                 </div>
             </header>
             <div class="content-body padding-bottom-0">
-                <div class="col-lg-15 col-md-4 col-xs-12 col-sm-6">
+                <div class="col-lg-3 col-md-4 col-xs-12 col-sm-6">
                         <div class="tile-counter bg-primary">
                             <div class="content">
                                 <i class='fa fa-laptop icon-lg'></i>
@@ -25,7 +25,7 @@
                         </div>
                     </div>
 					
-                    <div class="col-lg-15 col-md-4 col-xs-2 col-sm-6">
+                    <div class="col-lg-3 col-md-4 col-xs-2 col-sm-6">
                         <div  ng-class="{ true : 'tile-counter bg-primary' , false : 'tile-counter bg-danger' } [ExpectedRecords==insertedRow] ">
                             <div class="content">
                                 <i class='fa fa-database icon-lg'></i>
@@ -36,7 +36,7 @@
                         </div>
                     </div>
 					
-					<div class="col-lg-15 col-md-4 col-xs-12 col-sm-6">
+					<div class="col-lg-3 col-md-4 col-xs-12 col-sm-6">
 					
 					<div style="text-align:-webkit-center">
                                 <div class="chart" ui-jq="easyPieChart" ui-options="{
@@ -58,9 +58,37 @@
 					
                     </div>    
 						
-					
-                    <div class="col-lg-6 col-xs-12 col-sm-12 col-md-6">         
-                            </div>
+					<div class="col-lg-3 col-md-4 col-xs-12 col-sm-6">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+							<th>Status</th>
+							<th>Count</th>
+							</tr>
+						</thead>								
+						<tbody>
+							<tr>
+							<td>All idocs</td>
+							<td>{{countAll}}</td>
+							</tr>
+							<tr>
+							<td>Synced</td>
+							<td>{{countSynced}}</td>
+							</tr>
+							<tr>
+							<td>Not Synced</td>
+							<td>{{countNotSynced}}</td>
+							</tr>
+							<tr>
+							<td>Pending</td>
+							<td>{{countPending}}</td>
+							</tr>		
+						</table>
+						
+						
+						
+					</div>
+                    
 					
                     <div class="clearfix"></div>
                     
@@ -88,18 +116,24 @@
 			<div class="content-body padding-bottom-0">
                 <div class="row">
 				
-                    <div class="col-md-9 col-sm-12 col-xs-12">
+				
+				<div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-8 col-sm-12 col-xs-12">
                         <input id="filter" type="text" class="form-control" placeholder="Search" ng-model="filterText" />
 						
 						<!-- <input type="text" ng-model="search" class="form-control" placeholder="Search"> -->
-						
 					</div>
-					
-					<div class="btn-group margin-bottom-10 margin-right-15">
+					<div class="col-md-4 col-sm-4 col-xs-4">
+					<div class="btn-group margin-bottom-10">
                        <label class="btn btn-primary" ng-click="FilterAll()" >All</label>
                        <label class="btn btn-success" ng-click="FilterOnlySynced()"  >Synced</label>
                        <label class="btn btn-danger" ng-click="FilterOnlyNotSynced()" >Not Synced</label>
+					   <label class="btn btn-warning" ng-click="FilterOnlyBoomiPending()" >Pending</label>
                     </div>
+					</div>
+				</div>
+					
+					
                     
 					
                     <div class="clearfix"></div>
@@ -148,7 +182,9 @@
 									<td>{{ x.Entry1 }}</td>
 									<td>{{ x.Entry4 }}</td>
 									
-									<td><span ng-class="{1 : 'label label-danger', 0 : 'label label-success' } [x.Entry5] " >{{ x.Entry5 == 1 ? "Not Synced" : "Synced" }}</span></td>
+									<td><span ng-class="{1 : 'label label-danger', 0 : 'label label-success' , 3 : 'label label-warning' } [x.Entry5] " >{{ x.Entry5 == 1 ? "Not Synced" :
+										 x.Entry5 == 0 ? "synced" :
+										 "Pending in Boomi" }}</span></td>
 									<td>{{ x.Entry6 }}</td>
 									<td>{{ x.Entry7 }}</td>
 									

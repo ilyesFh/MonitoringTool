@@ -191,9 +191,8 @@
 							<table class="table table-striped" data-filter="#filter" class="table table-striped">
 								<thead>
 									<tr>
-										<th data-toggle="true">
-
-											<select class="form-control input-xs" ng-model="typeSearch" >
+										<th data-toggle="true" ng-show="showSelect" >
+											<select class="form-control input-xs" ng-model="typeSearch"  >
 												<option value="">Source</option>
 												<option>Ebest</option>
 												<option>SUPERDAIWA</option>
@@ -202,6 +201,11 @@
 												<option>Manual</option>
 											</select>
 										</th>
+										
+										<th ng-show="showSourceHeader" >
+                                        Source
+										</th>
+										
 										<th>
                                         Transaction Id
 										</th>
@@ -251,7 +255,8 @@
 
 								<tbody>
 									<tr dir-paginate="x in recordsOfToday | filter : filterText | filter : { Entry14 : typeSearch } | filter : { Entry8 : StatusSearch } | itemsPerPage:10  ">
-										<td >{{ x.Entry14 }}</td>
+										<td ng-model="typeSearch" ng-show="showSelect" >{{ x.Entry14 }}</td>
+										<td ng-show="showSourceHeader" >{{ x.Entry14 }}</td>
 										<td ng-click="openTransaction('','', x)" style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" >{{ x.Entry1 }}</td>
 										<td>{{ x.Entry13 }}</td>
 										<td>{{ x.Entry12 }}</td>

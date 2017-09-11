@@ -4,8 +4,15 @@
 					
 					
 					
+		
+		
+					<div class="text-center" ng-show="showLoading">
+					<i class="fa fa-spinner fa-pulse fa-3x"></i>
+					</div>
+				
+					
 					<div class="col-lg-12">
-        
+				
    
 	
 	<div class="col-lg-12">
@@ -24,20 +31,21 @@
 			<div class="content-body padding-bottom-0">
                 <div class="row">
 				
-                    <div class="col-md-9 col-sm-12 col-xs-12">
+                    <div class="col-md-6 col-sm-6 col-xs-6">
                         <input id="filter" type="text" class="form-control" placeholder="Search" ng-model="filterText" />
 						
 						<!-- <input type="text" ng-model="search" class="form-control" placeholder="Search"> -->
 						
 					</div>
 					
+					<div class="col-md-6 col-sm-6 col-xs-6 text-right" >
 					<div class="btn-group margin-bottom-10 margin-right-15">
                        <label class="btn btn-primary" ng-click="FilterAll()" >All</label>
                        <label class="btn btn-success" ng-click="FilterOnlySynced()"  >Match</label>
                        <label class="btn btn-danger" ng-click="FilterOnlyNotSynced()" >Not Match</label>
 					   <label class="btn" ng-click="FilterMissingBridgeTable()" >Error</label>
                     </div>
-                    
+                    </div>
 					
                     <div class="clearfix"></div>
 					<br></br>
@@ -81,7 +89,10 @@
                                         Material C1
                                     </th>
 									<th >
-                                        Sales Unit
+                                        Sales Unit JS
+                                    </th>
+									<th >
+                                        Sales Unit C1
                                     </th>
 									<th >
                                         Customer Type
@@ -108,6 +119,7 @@
 									<td>{{ x.Entry12 }}</td>
 									<td>{{ x.Entry10 }}</td>
 									<td>{{ x.Entry9 }}</td>
+									<td>{{ x.Entry19 }}</td>
 									<td>{{ x.Entry11 }}</td>
 									
 									<td>{{ x.Entry4 }}</td>
@@ -122,7 +134,7 @@
 								
 												<tr>
 													<td ng-show="mdRecordsArray.length == 0" colspan="20" style="text-align:center">
-														   No Data             
+														  No data            
 													</td>
 												</tr>
                                 

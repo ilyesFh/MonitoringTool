@@ -29,7 +29,7 @@ app.controller('SalesOrderController', function($scope, $http, $filter ) {
 	$scope.maxDate = new Date();
 	$scope.salesOrderArray = [];
 	
-	$scope.labels = ['00-04', '05', '06', '07', '08', '09', '10','11', '12', '13', '14', '15', '16', '17','18', '19', '20', '21', '22', '23'];
+	$scope.labels = ['00-04H', '05H', '06H', '07H', '08H', '09H', '10H','11H', '12H', '13H', '14H', '15H', '16H', '17H','18H', '19H', '20H', '21H', '22H', '23H'];
 	
 	$scope.showChart = false;
 	
@@ -37,7 +37,7 @@ app.controller('SalesOrderController', function($scope, $http, $filter ) {
             
         };
 		
-		$scope.seriesChart = ['SuperDaiwa','Ebest'];
+		$scope.seriesChart = [];
 
 
 
@@ -82,13 +82,16 @@ app.controller('SalesOrderController', function($scope, $http, $filter ) {
 		        	 $scope.fixedEndDate = new Date($scope.fixedEndDate);
 		        	 $scope.salesOrderArray = new Array();
 		        	 $scope.indice = 0;
+					 
+					 $scope.data = [];
 
 
 		        	 console.log($scope.fixedDate);
 		        	 while ( $scope.fixedRealDate <= $scope.fixedEndDate )
 		        	{	
 
-
+						
+						 $scope.seriesChart.push($scope.fixedDate);
 		        		 $scope.QueryWithDate = jsonsql.query("select * from json where (Entry2=='"+$scope.fixedDate+"')", response.data[0][0]);
 		        		 console.log($scope.QueryWithDate);
 		        		 $scope.record = new Array(23);
@@ -134,14 +137,19 @@ app.controller('SalesOrderController', function($scope, $http, $filter ) {
 
 		        				 }
 								 
-								 $scope.data = [
-											[$scope.record[2], $scope.record[3], $scope.record[4], $scope.record[5], $scope.record[6], $scope.record[7], $scope.record[8] , $scope.record[9] , $scope.record[10] , $scope.record[11] , $scope.record[12], $scope.record[13] ,$scope.record[14] , $scope.record[15] , $scope.record[16] , $scope.record[17], $scope.record[18] ,$scope.record[19] , $scope.record[20] , 
+								 
+								 
+								 $scope.dataToInsert = [$scope.record[2], $scope.record[3], $scope.record[4], $scope.record[5], $scope.record[6], $scope.record[7], $scope.record[8] , $scope.record[9] , $scope.record[10] , $scope.record[11] , $scope.record[12], $scope.record[13] ,$scope.record[14] , $scope.record[15] , $scope.record[16] , $scope.record[17], $scope.record[18] ,$scope.record[19] , $scope.record[20] , 
 											$scope.record[21] ]
-            
-										];
+								 
+								 
 
 		        			 }
 
+							 
+							 $scope.data.push($scope.dataToInsert);
+							 
+							 
 		        		 console.log($scope.record);
 
 		        		 $scope.fixedDate = new Date($scope.fixedDate);

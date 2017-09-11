@@ -148,6 +148,8 @@ app.controller('PreviousDayPricingController', function ($scope, $http, $filter,
 
 	$scope.showDiv = false;
 	$scope.maxDate = new Date();
+	
+	
 
 	// Post Web CALL
 	$scope.CallWebService = function () {
@@ -163,6 +165,7 @@ app.controller('PreviousDayPricingController', function ($scope, $http, $filter,
 		        console.log(msgdata);
 		        var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=',msgdata ).
 		        then(function (response) {
+					//$scope.showLoading = false;
 					console.log(response.data[0][0]);
 
 					$scope.mdRecordsArray = response.data[0][0];
@@ -232,6 +235,7 @@ app.controller('PriceValidationController', function ($scope, $http, $filter , $
 	$scope.maxDate = new Date();
 	$scope.mdRecordsArray = [];
 
+	$scope.showLoading = true;
 
 	$scope.load = function () {
 
@@ -241,6 +245,7 @@ app.controller('PriceValidationController', function ($scope, $http, $filter , $
 		console.log(msgdata);
 		var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgdata).
 			then(function (response) {
+				$scope.showLoading = false;
 				console.log(response.data[0][0]);
 
 				$scope.mdRecordsArray = response.data[0][0];
@@ -281,7 +286,7 @@ app.controller('PriceValidationController', function ($scope, $http, $filter , $
 
 	$scope.exportData = function () {
 
-		$scope.queryExport = 'SELECT Entry17 as Transaction_Id, Entry6 as Item_No , Entry5 as Delivery_Date , Entry15 as Sold_To_JS,  Entry14 as Sold_To_C1, Entry13 as Ship_To_JS , Entry12 as Ship_To_C1 , Entry10 as Material_JS , Entry9 as Material_C1, Entry11 as Sales_Unit , Entry4 as Customer_Type , Entry8 as Unit_Price_JS , Entry7 as Unit_Price_C1 ,   case when Entry16 = "2" then \'Price Match\' else \'Not Match\' end as Status INTO XLSX("Report_Price_Validation.xlsx",{}) FROM ?';
+		$scope.queryExport = 'SELECT Entry17 as Transaction_Id, Entry6 as Item_No , Entry5 as Delivery_Date , Entry15 as Sold_To_JS,  Entry14 as Sold_To_C1, Entry13 as Ship_To_JS , Entry12 as Ship_To_C1 , Entry10 as Material_JS , Entry9 as Material_C1, Entry19 as Sales_Unit_JS , Entry11 as Sales_Unit_C1 ,Entry4 as Customer_Type , Entry8 as Unit_Price_JS , Entry7 as Unit_Price_C1 ,   case when Entry16 = "2" then \'Price Match\' else \'Not Match\' end as Status INTO XLSX("Report_Price_Validation.xlsx",{}) FROM ?';
 
 		console.log($scope.queryExport);
 		alasql($scope.queryExport, [$scope.mdRecordsArray]);

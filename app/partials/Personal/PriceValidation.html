@@ -3,7 +3,55 @@
         
 					
 					
-					
+					<div class="col-md-12 col-sm-12 col-xs-12 padding-right-30 padding-left-20">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+                    <div class="r4_counter wid-stats db_box">
+                        <div class='stats-data'>
+                            
+                            <i class="material-icons icon-success pull-left">check_circle</i>
+                            <div class="stats">
+                                <h3 count-to="{{matchCount}}" value="0" duration="1" />
+                                <span>Matching</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+                    <div class="r4_counter wid-stats db_box">
+                        <div class='stats-data'>
+                            <i class="material-icons icon-danger pull-left">error</i>
+                            <div class="stats">
+                                <h3 count-to="{{notMatchCount}}" value="0" duration="1" class="number_counter" ></h3>
+                                <span>Not Matching</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+                    <div class="r4_counter wid-stats db_box">
+                        <div class='stats-data'>
+                            <i class="material-icons icon-warning pull-left">warning</i>
+                            <div class="stats">
+                                <h3 count-to="{{errorSapCount}}" value="0" duration="1" class="number_counter"></h3>
+                                <span>Missing SAP Info</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				
+				<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
+                    <div class="r4_counter wid-stats db_box">
+                        <div class='stats-data'>
+                            <i class="material-icons icon-warning pull-left">warning</i>
+                            <div class="stats">
+                                <h3 count-to="{{errorBridgeCount}}" value="0" duration="1" class="number_counter"></h3>
+                                <span>Missing Bridge Tables Info</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
 		
 		
 					<div class="text-center" ng-show="showLoading">
@@ -41,9 +89,10 @@
 					<div class="col-md-6 col-sm-6 col-xs-6 text-right" >
 					<div class="btn-group margin-bottom-10 margin-right-15">
                        <label class="btn btn-primary" ng-click="FilterAll()" >All</label>
-                       <label class="btn btn-success" ng-click="FilterOnlySynced()"  >Match</label>
+                       <!--<label class="btn btn-success" ng-click="FilterOnlySynced()"  >Match</label>-->
                        <label class="btn btn-danger" ng-click="FilterOnlyNotSynced()" >Not Match</label>
-					   <label class="btn" ng-click="FilterMissingBridgeTable()" >Error</label>
+					   <label class="btn btn-warning" ng-click="FilterErrorSAP()" >SAP Error</label>
+					   <label class="btn" ng-click="FilterMissingBridgeTable()" >BT Error</label>
                     </div>
                     </div>
 					
@@ -125,10 +174,11 @@
 									<td>{{ x.Entry4 }}</td>
 									<td>{{ x.Entry8 }}</td>
 									<td>{{ x.Entry7 }}</td>
-									<td width="15%" ><span ng-class="{3 : 'label label-danger', 2 : 'label label-success'  } [x.Entry16] " >{{ x.Entry16 == 3 ? "Not Match" : 
+									<td width="15%" ><span ng-class="{3 : 'label label-danger', 2 : 'label label-success' , E : 'label label-warning'  } [x.Entry16] " >{{ x.Entry16 == 3 ? "Not Match" : 
 									x.Entry16 == 2 ? "Match" :
-									"Error"					}}</span>
-									<a ng-show="x.Entry16==3" style="cursor:pointer;" class="btn-circle btn-sm  btn-primary" ng-click="" ><i class='fa fa-refresh' />
+									x.Entry16 == 0 ? "BT Error" :
+									"SAP Error"					}}</span>
+									
 									</td>
                                 </tr>
 								

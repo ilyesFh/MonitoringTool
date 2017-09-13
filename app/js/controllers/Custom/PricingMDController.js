@@ -236,6 +236,13 @@ app.controller('PriceValidationController', function ($scope, $http, $filter , $
 	$scope.mdRecordsArray = [];
 
 	$scope.showLoading = true;
+	
+	$scope.matchCount = 0;
+	$scope.notMatchCount = 0;
+	$scope.errorSapCount = 0;
+	$scope.errorBridgeCount = 0;
+	
+	
 
 	$scope.load = function () {
 
@@ -247,9 +254,14 @@ app.controller('PriceValidationController', function ($scope, $http, $filter , $
 			then(function (response) {
 				$scope.showLoading = false;
 				console.log(response.data[0][0]);
-
 				$scope.mdRecordsArray = response.data[0][0];
 				$scope.allMdRecords = response.data[0][0];
+				
+				$scope.matchCount = response.data[0][0][0].Entry20;
+				$scope.notMatchCount = jsonsql.query("select * from json where (Entry16==3)", $scope.mdRecordsArray).length;
+				$scope.errorSapCount = jsonsql.query("select * from json where (Entry16=='E')", $scope.mdRecordsArray).length;
+				$scope.errorBridgeCount = jsonsql.query("select * from json where (Entry16==0)", $scope.mdRecordsArray).length;
+	
 				
 			});
 	}
@@ -277,6 +289,12 @@ app.controller('PriceValidationController', function ($scope, $http, $filter , $
 	}
 	
 	$scope.FilterMissingBridgeTable = function () {
+		$scope.mdRecordsArray = $scope.allMdRecords;
+		$scope.mdRecordsArray = jsonsql.query("select * from json where (Entry16=='0')", $scope.mdRecordsArray);
+
+	}
+	
+	$scope.FilterErrorSAP = function () {
 		$scope.mdRecordsArray = $scope.allMdRecords;
 		$scope.mdRecordsArray = jsonsql.query("select * from json where (Entry16=='E')", $scope.mdRecordsArray);
 

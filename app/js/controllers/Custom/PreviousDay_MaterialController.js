@@ -28,6 +28,11 @@ app.controller('PreviousDayMaterialController', function($scope, $http, $filter 
 	$scope.showDiv = false;
 	$scope.maxDate = new Date();
 	
+	$scope.countAll = 0;
+	$scope.countSynced = 0;
+	$scope.countNotSynced = 0;
+	$scope.countPending = 0;
+	
 
 		  
 		  // Post Web CALL
@@ -55,7 +60,11 @@ app.controller('PreviousDayMaterialController', function($scope, $http, $filter 
 				
 				$scope.QueryInsertedRow = jsonsql.query("select * from json where (Entry5=='0')", response.data[0][0]);
 				$scope.insertedRow = $scope.QueryInsertedRow.length;
-				
+				// Count Number By Type
+				$scope.countAll = $scope.mdRecordsArray.length;
+				$scope.countSynced = $scope.QueryInsertedRow.length;
+				$scope.countNotSynced = jsonsql.query("select * from json where (Entry5=='1')", response.data[0][0]).length;
+				$scope.countPending = jsonsql.query("select * from json where (Entry5=='3')", response.data[0][0]).length;
 				
 			
 				
@@ -93,14 +102,19 @@ app.controller('PreviousDayMaterialController', function($scope, $http, $filter 
 			  	
 		    }
 			
+			$scope.FilterOnlyBoomiPending = function() {
+		        $scope.filterResult = '3';
+			  	
+		    }
+			
 		  
 		  $scope.exportData = function () {
 				 
 				 $scope.queryExport = '';
 			if($scope.filterResult == '')
-				$scope.queryExport = 'SELECT Entry2 as IDoc_Number, Entry3 as IDoc_Type, Entry1 as Date, case when Entry5 = \'0\' then \'Synced\' else \'Not Synced\' end as Status INTO XLSX("Report_All.xlsx",{}) FROM ?';
+				$scope.queryExport = 'SELECT Entry2 as IDoc_Number, Entry3 as IDoc_Type, Entry1 as Date, Entry4 as Material_Number ,  case when Entry5 = \'0\' then \'Synced\' else ( case when Entry5 = \'1\' then \'Not_Synced\' else \'Pending In Boomi\' end ) end as Status , Entry6 as Cause , Entry7 as Error_Details INTO XLSX("Report_Materials_All.xlsx",{}) FROM ?';
 			else
-				$scope.queryExport = 'SELECT Entry2 as IDoc_Number, Entry3 as IDoc_Type, Entry1 as Date, case when Entry5 = \'0\' then \'Synced\' else \'Not Synced\' end as Status INTO XLSX("Report_Filtered.xlsx",{}) FROM ? where Entry5 = \''+$scope.filterResult+'\'';
+				$scope.queryExport = 'SELECT Entry2 as IDoc_Number, Entry3 as IDoc_Type, Entry1 as Date, Entry4 as Material_Number , case when Entry5 = \'0\' then \'Synced\' else ( case when Entry5 = \'1\' then \'Not_Synced\' else \'Pending In Boomi\' end ) end as Status , Entry6 as Cause , Entry7 as Error_Details INTO XLSX("Report_Materials_Filtered.xlsx",{}) FROM ? where Entry5 = \''+$scope.filterResult+'\'';
 		  
 				 
 				 console.log($scope.queryExport);

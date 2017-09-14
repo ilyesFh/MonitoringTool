@@ -150,23 +150,6 @@
 	   $scope.showSelect = true;
 	   $scope.showSourceHeader = false;
 	   
-	   
-		
-		if($state.params.id != "") {
-			console.log("Param = " + $state.params.id);
-			$scope.typeSearch = $state.params.id;
-			$scope.SystemSelectedDisplay = $state.params.id;
-			$scope.showSelect = false;
-			$scope.showSourceHeader = true;
-			
-		}
-		else{
-			$scope.typeSearch = '';
-			
-		}
-		
-		
-
 		$scope.recordsOfToday = [];
 		$scope.selectedSystem = "Select Bolton";
 		$scope.showChart = false;
@@ -194,6 +177,20 @@
 
 
 		$scope.load = function () {
+			
+			if($state.params.id != "") {
+			console.log("Param = " + $state.params.id);
+			$scope.typeSearch = $state.params.id;
+			$scope.SystemSelectedDisplay = $state.params.id;
+			$scope.showSelect = false;
+			$scope.showSourceHeader = true;
+			
+		}
+		else{
+			console.log("No PARAM");
+			$scope.typeSearch = '';
+			
+		}
 
 		console.log("-- Begin Chart");
 		$scope.formattedDate = $filter('date')($scope.TodayDate, "yyyyMMdd");

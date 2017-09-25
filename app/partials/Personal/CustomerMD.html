@@ -172,11 +172,12 @@
 									<td>{{ x.Entry3 == "/CCEJ/DEBMAS_FULL" ? "Customer" : x.Entry3 }}</td> 
 									<td>{{ x.Entry1 }}</td>
 									<td>{{ x.Entry4 }}</td>
-									<td>{{ x.Entry6 }}</td>
-									<td>{{ x.Entry7 }}</td>
+									
 									<td><span ng-class="{1 : 'label label-danger', 0 : 'label label-success' } [x.Entry5] " >{{ x.Entry5 == 1 ? "Not Synced" :
 									x.Entry5 == 0 ? "synced" :
 								    "Pending in Boomi" }}</span></td>
+									<td>{{ x.Entry6 }}</td>
+									<td>{{ x.Entry7 }}</td>
                                 </tr>
 								<tr >
 													<td ng-show="mdRecordsArray.length == 0" colspan="20" style="text-align:center">

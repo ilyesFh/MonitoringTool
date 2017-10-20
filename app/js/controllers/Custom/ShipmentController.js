@@ -221,7 +221,7 @@ app.controller('ShipmentDetailsController', function ($scope, $http, $filter , $
 
 	$scope.exportData = function () {
 
-		$scope.queryExport = 'SELECT Entry1 as IDoc_Number, Entry2 as Sales_Order_Number, Entry3 as Line_Item_Count, Entry4 as Slip_Number , Entry7 as Delivery_Date , case when Entry5 = \'N\' then \'Normal Order\' else \'Rush Order\' end as Type , case when Entry6 = \'1\' then \'Sent\' else \'Not Sent\' end as Status INTO XLSX("Report_Shipment.xlsx",{}) FROM ?';
+		$scope.queryExport = 'SELECT Entry1 as IDoc_Number, Entry11 as Sales_Order_Number, Entry4 as Proformat_Number , Entry3 as Line_Item_Count , Entry7 as Delivery_Date , Entry12 as Plant, Entry13 as Route_Code , Entry8 as CMCRC_PLNT, Entry9 as CMCRC_RT, Entry10 as Driver , case when Entry5 = \'N\' then \'Normal Order\' else \'Rush Order\' end as Type , case when Entry6 = \'1\' then \'Sent\' else \'Not Sent\' end as Status INTO XLSX("Report_Shipment.xlsx",{}) FROM ?';
 
 		console.log($scope.queryExport);
 		alasql($scope.queryExport, [$scope.truckStockList]);
@@ -236,7 +236,7 @@ app.controller('ShipmentDetailsController', function ($scope, $http, $filter , $
 		console.log($scope.dt);
 		$scope.formattedDate = $filter('date')($scope.dt, "yyyyMMdd");
 		console.log($scope.formattedDate);
-		var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"Proformat\"  }";
+		var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"ProformatInterval\"  }";
 		console.log(msgdata);
 		var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgdata).
 			then(function (response) {

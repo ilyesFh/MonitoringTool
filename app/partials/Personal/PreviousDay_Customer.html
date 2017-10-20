@@ -49,7 +49,7 @@
 						</div>
 					</div>
 
-					<div class="col-lg-15 col-md-8 col-xs-12 col-sm-6">
+					<div class="col-lg-15 col-md-4 col-xs-12 col-sm-6">
 
 						<div style="text-align:-webkit-center">
 							<div class="chart" ui-jq="easyPieChart" ui-options="{
@@ -70,6 +70,39 @@
 						</div>
 
 					</div>    
+
+					<div class="col-lg-15 col-md-4 col-xs-12 col-sm-6">
+
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Status</th>
+									<th>Count</th>
+								</tr>
+							</thead>								
+
+							<tr>
+								<td>All idocs</td>
+								<td>{{countAll}} </td>
+							</tr>
+							<tr>
+								<td>
+									<i class='fa fa-check-circle icon-success'/> Synced</td>
+								<td>{{countSynced}}</td>
+							</tr>
+							<tr>
+								<td>
+									<i class='fa fa-exclamation-circle icon-danger'/> Not Synced</td>
+								<td>{{countNotSynced}}</td>
+							</tr>
+							<tr>
+								<td>
+									<i class='fa fa-exclamation-triangle icon-warning'> </i> Pending</td>
+								<td>{{countPending}}</td>
+							</tr>		
+						</table>
+
+					</div> 		
 
 
 					<div class="col-lg-6 col-xs-12 col-sm-12 col-md-6">         
@@ -143,6 +176,14 @@
 														<th data-hide="phone">
                                         Status
 														</th>
+
+														<th data-hide="phone">
+                                        Cause
+														</th>
+														<th data-hide="phone">
+                                        Error Details
+														</th>
+
 													</tr>
 												</thead>
 												<tbody>
@@ -154,6 +195,8 @@
 														<td>
 															<span ng-class="{1 : 'label label-danger', 0 : 'label label-success' } [x.Entry5] " >{{ x.Entry5 == 1 ? "Not Synced" : "Synced" }}</span>
 														</td>
+														<td>{{ x.Entry6 }}</td>
+														<td>{{ x.Entry7 }}</td>
 													</tr>
 
 												</tbody>
@@ -164,38 +207,38 @@
 												</tr>
 												<tr >
 													<td ng-show="loadingStatus" colspan="20" style="text-align:center">
-														  <img src="img/Magnify.gif" >             
-													</td>
-												</tr>
+														<img src="img/Magnify.gif" >             
+														</td>
+													</tr>
 
-											</table>
-											<div>
-												<dir-pagination-controls
+												</table>
+												<div>
+													<dir-pagination-controls
 							   max-size="10"
 							   direction-links="true"
 							   boundary-links="true"
 								>
-													<!-- auto-hide="true" --> 
-												</dir-pagination-controls>
+														<!-- auto-hide="true" --> 
+													</dir-pagination-controls>
+												</div>
 											</div>
-										</div>
 
 
-									</div>    
+										</div>    
+									</div>
+
+
+
 								</div>
-
-
-
 							</div>
 						</div>
-					</div>
-				</section>
+					</section>
+				</div>
 			</div>
 		</div>
+
+
+
+
 	</div>
-
-
-
-
-</div>
 </div>	

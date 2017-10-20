@@ -27,6 +27,12 @@ app.controller('PreviousDayCustomerController', function ($scope, $http, $filter
 	$scope.showDiv = false;
 	$scope.maxDate = new Date();
 	$scope.loadingStatus = true;
+	
+	$scope.countAll = 0;
+	$scope.countSynced = 0;
+	$scope.countNotSynced = 0;
+	$scope.countPending = 0;
+	
 
 	// Post Web CALL
 	$scope.CallWebService = function () {
@@ -50,6 +56,12 @@ app.controller('PreviousDayCustomerController', function ($scope, $http, $filter
 
 				$scope.QueryInsertedRow = jsonsql.query("select * from json where (Entry5=='0')", response.data[0][0]);
 				$scope.insertedRow = $scope.QueryInsertedRow.length;
+				
+				// Count Number By Type
+				$scope.countAll = $scope.mdRecordsArray.length;
+				$scope.countSynced = $scope.QueryInsertedRow.length;
+				$scope.countNotSynced = jsonsql.query("select * from json where (Entry5=='1')", response.data[0][0]).length;
+				$scope.countPending = jsonsql.query("select * from json where (Entry5=='3')", response.data[0][0]).length;
 
 				$scope.recordSynced = parseFloat(($scope.insertedRow / $scope.ExpectedRecords) * 100).toFixed(1);
 				$scope.tofixed2 = parseFloat(($scope.insertedRow / $scope.ExpectedRecords) * 100).toFixed(3);

@@ -169,6 +169,7 @@
 
 
 		$scope.StatusSearch = '';
+		console.log("BEFORE LOAD SO");
 		
 		
 		$scope.serchBySystemSource = function (system) {			

@@ -525,6 +525,7 @@ app.controller('EmergencyOverlapErrorController', function ( $scope , $http ,  $
 		//Reset Filter
 		$scope.filterRush = "";
 		$scope.filterStatus = "";
+		$scope.showLoading = true;
 		
 		
 		
@@ -536,6 +537,7 @@ app.controller('EmergencyOverlapErrorController', function ( $scope , $http ,  $
 		console.log(msgdata);
 		var res = $http.post('http://117.55.209.110:9080/ws/simple/getMoniPricingTool;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgdata).
 			then(function (response) {
+				$scope.showLoading = false;
 				console.log(response.data[0]);
 				$scope.allRecords = response.data[0];
 				$scope.pricingList = response.data[0];
@@ -595,7 +597,7 @@ app.controller('EmergencyOverlapErrorController', function ( $scope , $http ,  $
 
 	$scope.exportData = function () {
 
-		$scope.queryExport = 'SELECT case when Entry6 = \'E\' then \'ERROR\' else Entry1 end as MATNR, case when Entry5 = \'E\' then \'ERROR\' else Entry2 end as CCEJ_CPG , case when Entry4 = \'E\' then \'ERROR\' else Entry3 end as VRKME , case when Entry7 = \'E\' then \'ERROR\' else \'--\' end as SAP ,  Entry18 as Cause , Entry10 as Line_Number , Entry9 as File_Name , Entry11 as Parameter1 , Entry12 as Parameter2 , Entry13 as Parameter3, Entry14 as Parameter4 , Entry8 as Message_Type , Entry15 as Status_Message , Entry16 as Status_Message_Id , Entry17 as Status_Message_Number   INTO XLSX("Report_Pricing_EmergencyOverlap.xlsx",{}) FROM ?';
+		$scope.queryExport = 'SELECT case when Entry6 = \'E\' then \'ERROR\' else Entry1 end as MATNR, case when Entry5 = \'E\' then \'ERROR\' else Entry2 end as CCEJ_CPG , case when Entry4 = \'E\' then \'ERROR\' else Entry3 end as VRKME , case when Entry7 = \'E\' then \'ERROR\' else \'--\' end as SAP ,  Entry18 as Cause , Entry10 as Line_Number , Entry9 as File_Name , Entry11 as Parameter1 , Entry12 as Parameter2 , Entry13 as Parameter3, Entry14 as Parameter4 , Entry8 as Message_Type , Entry15 as Status_Message , Entry16 as Status_Message_Id , Entry17 as Status_Message_Number , Entry19 as TIMESTAMP   INTO XLSX("Report_Pricing_EmergencyOverlap.xlsx",{}) FROM ?';
 
 		console.log($scope.pricingList);
 		alasql($scope.queryExport, [$scope.pricingList]);

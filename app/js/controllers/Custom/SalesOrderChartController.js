@@ -93,10 +93,10 @@
 				$scope.eosOk = jsonsql.query("select * from json where (Entry3=='2' || Entry3=='4' || Entry3=='6' )", $scope.eos).length;
 				$scope.eosError = jsonsql.query("select * from json where (Entry3=='3' || Entry3=='5' )", $scope.eos).length;
 
-				$scope.neos = jsonsql.query("select * from json where (Entry1=='Manual' )", response.data[0]);
-				$scope.neosWarning = jsonsql.query("select * from json where (Entry3=='1' )", $scope.neos).length;
-				$scope.neosOk = jsonsql.query("select * from json where (Entry3=='2' || Entry3=='4' || Entry3=='6' )", $scope.neos).length;
-				$scope.neosError = jsonsql.query("select * from json where (Entry3=='3' || Entry3=='5' )", $scope.neos).length;
+				$scope.neosNormal = jsonsql.query("select * from json where (Entry1=='NEOS_Normal' )", response.data[0]);
+				$scope.neosNormalWarning = jsonsql.query("select * from json where (Entry3=='1' )", $scope.neosNormal).length;
+				$scope.neosNormalOk = jsonsql.query("select * from json where (Entry3=='2' || Entry3=='4' || Entry3=='6' )", $scope.neosNormal).length;
+				$scope.neosNormalError = jsonsql.query("select * from json where (Entry3=='3' || Entry3=='5' )", $scope.neosNormal).length;
 
 
 				/*

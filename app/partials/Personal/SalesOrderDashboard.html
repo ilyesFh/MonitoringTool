@@ -174,19 +174,19 @@
 		<div class="col-md-12 col-sm-12 col-xs-12 padding-right-30 padding-left-20"  >
 			
 			<div class="col-lg-4 col-md-4 col-xs-12 col-sm-6">
-                        <div class="wid-social persoWidget" style="cursor:pointer" ng-click="RedirectToSoStatus('NEOS')" >						
+                        <div class="wid-social persoWidget" style="cursor:pointer" ng-click="RedirectToSoStatus('NEOS_Normal')" >						
 								<i ng-class="{ true : 'material-icons icon-lg icon-danger pull-right' , false : 'material-icons icon-lg icon-success pull-right' } [neosError>0] " style="" >{{  (neosError>0) ? "report_problem" : "check_circle" }}</i>
                             <div class="social-info">
 								<h3 class="bold"> NEOS Normal</h3>
 								</br>
 								<h3 class=" count "> Ok : </h3>
-                                <h3 count-to="{{ neosOk }}" value="0" duration="1" class="number_counter  count "></h3>
+                                <h3 count-to="{{ neosNormalOk }}" value="0" duration="1" class="number_counter  count "></h3>
 								</br>
 								<h3 class=" count "> In Progress : </h3>
-                                <h3 count-to="{{ neosWarning }}" value="0" duration="1" class="number_counter  count "></h3>
+                                <h3 count-to="{{ neosNormalWarning }}" value="0" duration="1" class="number_counter  count "></h3>
 								</br>
                                 <h3 class=" count "> Error : </h3>
-                                <h3 count-to="{{neosError}}" value="0" duration="1" class="number_counter  count "></h3>
+                                <h3 count-to="{{neosNormalError}}" value="0" duration="1" class="number_counter  count "></h3>
                             </div>
                         </div>
         </div>

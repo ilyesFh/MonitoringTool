@@ -43,7 +43,7 @@
 		<div class="col-md-12 col-sm-12 col-xs-12 padding-right-30 padding-left-20">
 			<div class="col-lg-4 col-md-4 col-xs-12 col-sm-6">
                         <div class="wid-social persoWidget" style="cursor:pointer" ng-click="RedirectToSoStatus('SUPERDAIWA')" >						
-								<i ng-class="{ true : 'material-icons icon-lg icon-danger pull-right' , false : 'material-icons icon-lg icon-success pull-right' } [DaiwaError>0] " style="" >{{  (DaiwaError>0) ? "report_problem" : "check_circle" }}</i>
+								<i ng-class=" (DaiwaError>0) ? 'material-icons icon-lg icon-danger pull-right' : ( (DaiwaWarning>0) ? 'material-icons icon-lg icon-warning pull-right' : 'material-icons icon-lg icon-success pull-right') " style="" >{{  (DaiwaError>0) ? "report_problem" : ( (DaiwaWarning>0) ? "report_problem" : "check_circle" ) }}</i>
                             <div class="social-info">
 								<h3 class="bold"> SUPERDAIWA</h3>
 								</br>
@@ -68,7 +68,7 @@
 								-->
 								
 								
-								<i ng-class="{ true : 'material-icons icon-lg icon-danger pull-right' , false : 'material-icons icon-lg icon-success pull-right' } [ebestError>0] " style="" >{{  (ebestError>0) ? "report_problem" :  "check_circle"  }}</i>
+								<i ng-class="(ebestError>0) ? 'material-icons icon-lg icon-danger pull-right' : ( (ebestWarning>0) ? 'material-icons icon-lg icon-warning pull-right' : 'material-icons icon-lg icon-success pull-right') " style="" >{{  (ebestError>0) ? "report_problem" : ( (ebestWarning>0) ? "report_problem" : "check_circle" )  }}</i>
 								
 								
                             <div class="social-info">
@@ -175,7 +175,7 @@
 			
 			<div class="col-lg-4 col-md-4 col-xs-12 col-sm-6">
                         <div class="wid-social persoWidget" style="cursor:pointer" ng-click="RedirectToSoStatus('NEOS_Normal')" >						
-								<i ng-class="{ true : 'material-icons icon-lg icon-danger pull-right' , false : 'material-icons icon-lg icon-success pull-right' } [neosError>0] " style="" >{{  (neosError>0) ? "report_problem" : "check_circle" }}</i>
+								<i ng-class="(neosNormalError>0) ? 'material-icons icon-lg icon-danger pull-right' : ( (neosNormalWarning>0) ? 'material-icons icon-lg icon-warning pull-right' : 'material-icons icon-lg icon-success pull-right') " style="" >{{  (neosNormalError>0) ? "report_problem" : ( (neosNormalWarning>0) ? "report_problem" : "check_circle" ) }}</i>
                             <div class="social-info">
 								<h3 class="bold"> NEOS Normal</h3>
 								</br>

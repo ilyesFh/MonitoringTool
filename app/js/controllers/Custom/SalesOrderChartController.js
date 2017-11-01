@@ -607,6 +607,141 @@ $scope.dtpick = {
   ; 
 
 
+  app.controller('SoByPlant',  function($scope , $http ,  $filter , $timeout , $state , $modal, $log  ) {  
+
+
+       $scope.SystemSelectedDisplay = "All"
+	   $scope.showSelect = true;
+	   $scope.showSourceHeader = false;
+	   
+		$scope.recordsOfToday = [];
+		$scope.selectedSystem = "Select Bolton";
+		$scope.showChart = false;
+		$scope.recordsOfToday;
+
+		$scope.TodayDate = new Date();
+		$scope.refreshedDate;
+		$scope.maxDate = new Date();
+
+
+		$scope.StatusSearch = '';
+		console.log("BEFORE LOAD SO By Plant");
+		
+		$scope.load = function () {
+			
+			
+		console.log("-- Begin Chart");
+		$scope.formattedDate = $filter('date')($scope.TodayDate, "yyyyMMdd");
+		$scope.refreshedDate = $filter('date')($scope.TodayDate, "yyyy/MM/dd HH:mm:ss");
+		console.log($scope.formattedDate);
+
+			    console.log($scope.formattedDate);
+		        var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"SalesOrderOfToday\"  }";		        
+		        console.log(msgdata);
+				console.log($scope.selectedSystem);
+
+		        var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=',msgdata ).
+		        then(function (response) {
+					console.log(response.data[0][0]);
+					//$scope.resultOfToday = jsonsql.query("select * from json where (Entry2=='"+$scope.selectedSystem+"')", response.data[0][0]);
+					console.log($scope.resultOfToday);
+
+
+				
+
+				});
+
+
+	}
+		
+		
+		
+
+
+
+
+		// Calendar
+
+$scope.today = function() {
+    $scope.dt = new Date();
+  };
+  $scope.today();
+
+  $scope.clear = function () {
+    $scope.dt = null;
+  };
+
+  // Disable weekend selection
+  $scope.disabled = function(date, mode) {
+    return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+  };
+
+  $scope.toggleMin = function() {
+    $scope.minDate = $scope.minDate ? null : new Date();
+  };
+  $scope.toggleMin();
+
+$scope.dtpick = {
+        opened: false,
+        opened2: false
+      }
+
+  $scope.open = function($event,type) {
+    $event.preventDefault();
+    $event.stopPropagation();
+
+    $scope.dtpick[type] = true;
+  };
+
+  $scope.dateOptions = {
+    datepickerMode : 'month',
+    startingDay: 1
+  };
+
+  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+  $scope.format = $scope.formats[0];
+
+  var tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  var afterTomorrow = new Date();
+  afterTomorrow.setDate(tomorrow.getDate() + 2);
+  $scope.events =
+    [
+      {
+        date: tomorrow,
+        status: 'full'
+      },
+      {
+        date: afterTomorrow,
+        status: 'partially'
+      }
+    ];
+
+  $scope.getDayClass = function(date, mode) {
+    if (mode === 'day') {
+      var dayToCheck = new Date(date).setHours(0,0,0,0);
+
+      for (var i=0;i<$scope.events.length;i++){
+        var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
+
+        if (dayToCheck === currentDay) {
+          return $scope.events[i].status;
+        }
+      }
+    }
+
+    return '';
+  };
+
+
+		
+
+
+		
+
+
+    });
+  
 
 
     //Random Value

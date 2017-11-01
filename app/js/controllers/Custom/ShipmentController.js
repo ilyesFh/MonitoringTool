@@ -162,7 +162,6 @@ app.controller('ShipmentDetailsController', function ($scope, $http, $filter , $
 				$scope.forCount = response.data[0][0];
 				$scope.allMdRecords = response.data[0][0];
 				$scope.truckStockList = response.data[0][0];
-				
 				//Count
 				$scope.totalNumberOfIdocs = response.data[0][0].length;
 				$scope.rushOrderNumber = (jsonsql.query("select * from json where (Entry5=='Y')", $scope.forCount)).length;
@@ -170,7 +169,7 @@ app.controller('ShipmentDetailsController', function ($scope, $http, $filter , $
 				$scope.sentNumber = (jsonsql.query("select * from json where (Entry6==1)", $scope.forCount)).length;
 				
 				
-
+ 
 			});
 	}
 
@@ -232,6 +231,14 @@ app.controller('ShipmentDetailsController', function ($scope, $http, $filter , $
 		
 		$scope.filterRush = "";
 		$scope.filterStatus = "";
+		
+		$scope.totalNumberOfIdocs = 0;
+		$scope.rushOrderNumber = 0;
+		$scope.notSentNumber = 0;
+		$scope.sentNumber = 0;
+		$scope.truckStockList = [];
+		
+		
 
 		console.log($scope.dt);
 		$scope.formattedDate = $filter('date')($scope.dt, "yyyyMMdd");

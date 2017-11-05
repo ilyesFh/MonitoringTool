@@ -66,19 +66,112 @@
 											</div>
 											<div class="clearfix"/>
 											<br>
-
+												
+												<div class="col-lg-4 col-md-4 col-xs-12 col-sm-6">
 												<div class="btn-group margin-bottom-10 margin-right-15" style="float:left">
 													<label class="btn btn-primary" ng-click="FilterAll()" >All</label>
 													<label class="btn btn-warning" ng-click="FilterCorrection()"  >Corrected</label>
 													<label class="btn btn-success" ng-click="FilterNoCorrection()" >Not Corrected</label>
 												</div>
+												</div>
+												
+												<div class="col-lg-4 col-md-3 col-xs-12 col-sm-6">
+													<select class="form-control input-lg" ng-model="plantSearch" >
+													<option value="">Choose Plant For Filter</option>
+														<option>JW63</option>
+														<option>JW64</option>
+														<option>JW65</option>
+														<option>JW66</option>
+														<option>JW67</option>
+														<option>JW68</option>
+														<option>JW69</option>
+														<option>JW70</option>
+														<option>JW71</option>
+														<option>JW72</option>
+														<option>JW73</option>
+														<option>JW74</option>
+														<option>JW75</option>
+														<option>JW76</option>
+														<option>JW77</option>
+														<option>JW78</option>
+														<option>JW79</option>
+														<option>JW80</option>
+														<option>JW81</option>
+														<option>JW82</option>
+														<option>JW83</option>
+														<option>JW84</option>
+														<option>JW85</option>
+														<option>JW86</option>
+														<option>JW87</option>
+														<option>JW88</option>
+														<option>JW89</option>
+														
+														<option>JWH9</option>
+														<option>JWI1</option>
+														<option>JWJ1</option>
+														<option>JWJ2</option>
+														<option>JWJ3</option>
+														
+														<!--FVEJ -->
+														
+														<option>JF06</option>
+														<option>JF07</option>
+														<option>JF16</option>
+														<option>JF17</option>
+														
+														<option>JF46</option>
+														<option>JF47</option>
+														<option>JF48</option>
+														<option>JF49</option>
+														<option>JF50</option>
+														<option>JF51</option>
+														<option>JF52</option>
+														<option>JF53</option>
+														<option>JF54</option>
+														<option>JF55</option>
+														
+														
+														<option>JFB1</option>
+														<option>JFB6</option>
+														<option>JFB7</option>
+														<option>JFB8</option>
+														<option>JFB9</option>
+														
+														<option>JFBA</option>
+														<option>JFBB</option>
+														<option>JFBC</option>
+														<option>JFBD</option>
+														<option>JFBE</option>
+														<option>JFBF</option>
+														<option>JFBG</option>
+														<option>JFBH</option>
+														<option>JFBI</option>
+														<option>JFBJ</option>
+														<option>JFBK</option>
+														<option>JFBL</option>
+														
+														<option>JWJ4</option>
+														<option>JWJ5</option>
+														<option>JWJ6</option>
+														<option>JWJ7</option>
+														
+														
+														
+														
+														
+														
+														
+													</select>
+												</div>
 
+												<div class="col-lg-4 col-md-4 col-xs-12 col-sm-6">
 												<div class="btn-group margin-bottom-10" style="float:right" >
 													<label class="btn btn-primary" ng-click="FilterAllStatus()" >All</label>
 													<label class="btn btn-success" ng-click="FilterSuccess()"  >Successful</label>
+													<label class="btn btn-warning" ng-click="FilterPending()"  >Pending</label>
 													<label class="btn btn-danger" ng-click="FilterError()" >Error</label>
 												</div>
-
+												</div>
 
 												<div class="clearfix"/>
 												<br>
@@ -152,9 +245,11 @@
 																	<th >
                                         Status
 																	</th>
+																	
 																	<th >
                                         Correction
 																	</th>
+																	
 																	<th >
                                         Error Details
 																	</th>
@@ -166,7 +261,7 @@
 															</thead>
 
 															<tbody>
-																<tr    dir-paginate="x in SettlementList | filter:search | filter:{ Entry10 : filterCorrection } |itemsPerPage:10  "  data-user-id="{{x.Entry1}}">
+																<tr    dir-paginate="x in SettlementList | filter:search | filter:{ Entry3 : plantSearch } | filter:{ Entry10 : filterCorrection } | itemsPerPage:10  "  data-user-id="{{x.Entry1}}">
 																	<td>{{ x.Entry1 }}</td>
 																	<td>{{ x.Entry2 }}</td>
 																	<td>{{ x.Entry3 }}</td>
@@ -174,18 +269,21 @@
 																	<td>{{ x.Entry11 }}</td>
 
 																	<td>
-																		<span ng-class="{'1' : 'label label-danger', '2' : 'label label-success' , 
-															'3' : 'label label-danger' , '4' : 'label label-success'} [x.Entry8] " >
-														{{ (x.Entry8=='1') ? "Boomi Error" : 
+																		<span ng-class="{'1' : 'label label-warning', '2' : 'label label-success' , 
+															'3' : 'label label-danger' , '4' : 'label label-success' , '9' : 'label label-warning' } [x.Entry8] " >
+														{{ (x.Entry8=='1') ? "In progress" : 
 														   (x.Entry8=='2') ? "Idoc Sent" :
 														   (x.Entry8=='3') ? "SAP Error" :
-														   "Processed"
+														   (x.Entry8=='4') ? "Processed" :
+														   "In Queue"
 														   }}
 																		</td>
+																		
 																		<td>
-																			<span ng-class="{ true : 'label label-warning' } [x.Entry10==1] " >
+																			<span ng-class="{ true : 'label label-warning' } [x.Entry10==''] " >
 														{{ (x.Entry10==1) ? "Corrected" : "--" }}
 																			</td>
+																			
 																			<td >{{ x.Entry13 }}</td>
 																			<!--
 														<td>{{ x.Entry8 | date }}</td> -->

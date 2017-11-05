@@ -23,6 +23,7 @@ app.controller('SettlementController', function ($scope, $http, $filter , $state
 	$scope.maxDate = new Date();
 	$scope.HokanFilesCount = 0;
 	
+	
 
 	$scope.load = function () {
 		
@@ -82,12 +83,18 @@ app.controller('SettlementController', function ($scope, $http, $filter , $state
 	//Status Filter
 	$scope.FilterError = function () {
 		$scope.SettlementList = $scope.allRecords;
-		$scope.SettlementList = jsonsql.query("select * from json where (Entry8=='1' || Entry8=='3')", $scope.allRecords);
+		$scope.SettlementList = jsonsql.query("select * from json where ( Entry8=='3')", $scope.allRecords);
 	}
 	
 	$scope.FilterSuccess = function () {
 		$scope.SettlementList = $scope.allRecords;
 		$scope.SettlementList = jsonsql.query("select * from json where (Entry8=='2' || Entry8=='4')", $scope.allRecords);
+	}
+	
+	$scope.FilterPending = function () {
+		console.log("Pending filter");
+		$scope.SettlementList = $scope.allRecords;
+		$scope.SettlementList = jsonsql.query("select * from json where (Entry8=='1' || Entry8=='9')", $scope.allRecords);
 	}
 	
 	$scope.FilterAllStatus = function () {
@@ -291,12 +298,17 @@ app.controller('LoadInboundController', function ($scope, $http, $filter , $stat
 	//Status Filter
 	$scope.FilterError = function () {
 		$scope.SettlementList = $scope.allRecords;
-		$scope.SettlementList = jsonsql.query("select * from json where (Entry5=='1' || Entry5=='3')", $scope.allRecords);
+		$scope.SettlementList = jsonsql.query("select * from json where ( Entry9=='3')", $scope.allRecords);
 	}
 	
 	$scope.FilterSuccess = function () {
 		$scope.SettlementList = $scope.allRecords;
-		$scope.SettlementList = jsonsql.query("select * from json where (Entry5=='2' || Entry5=='4')", $scope.allRecords);
+		$scope.SettlementList = jsonsql.query("select * from json where (Entry9=='2' || Entry9=='4')", $scope.allRecords);
+	}
+	
+	$scope.FilterPending = function () {
+		$scope.SettlementList = $scope.allRecords;
+		$scope.SettlementList = jsonsql.query("select * from json where (Entry9=='1' || Entry9=='9')", $scope.allRecords);
 	}
 	
 	$scope.FilterAllStatus = function () {

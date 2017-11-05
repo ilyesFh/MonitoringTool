@@ -98,7 +98,7 @@ app.controller('TruckStockController', function ($scope, $http, $filter , $state
 				
 				//$scope.yesterday = $scope.TodayDate - 1;
 				//Web Service Call For Map
-				$scope.yesterday = "20170814"
+				$scope.yesterday = "20171104"
 				$scope.formattedDate = $filter('date')($scope.TodayDate, "yyyyMMdd");
 				var msgdata = "{\"Var1\": " + "\"" + $scope.yesterday + "\", \"Prefix\":\"TruckStockMap\"  }";
 				var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgdata).

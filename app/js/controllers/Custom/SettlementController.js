@@ -294,7 +294,7 @@ app.controller('LoadInboundController', function ($scope, $http, $filter , $stat
 	
 	
 	
-
+		/*
 	//Status Filter
 	$scope.FilterError = function () {
 		$scope.SettlementList = $scope.allRecords;
@@ -314,6 +314,8 @@ app.controller('LoadInboundController', function ($scope, $http, $filter , $stat
 	$scope.FilterAllStatus = function () {
 		$scope.SettlementList = $scope.allRecords;
 	}
+	
+	*/
 	
 	
 

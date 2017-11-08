@@ -70,8 +70,8 @@
 												<div class="col-lg-4 col-md-4 col-xs-12 col-sm-6">
 												<div class="btn-group margin-bottom-10 margin-right-15" style="float:left">
 													<label class="btn btn-primary" ng-click="FilterAll()" >All</label>
-													<label class="btn btn-warning" ng-click="FilterCorrection()"  >Corrected</label>
-													<label class="btn btn-success" ng-click="FilterNoCorrection()" >Not Corrected</label>
+													<label class="btn btn-warning" ng-click="FilterCorrection()"  >Correction</label>
+													<label class="btn btn-success" ng-click="FilterNoCorrection()" >Normal</label>
 												</div>
 												</div>
 												
@@ -166,10 +166,22 @@
 
 												<div class="col-lg-4 col-md-4 col-xs-12 col-sm-6">
 												<div class="btn-group margin-bottom-10" style="float:right" >
+												<!--
 													<label class="btn btn-primary" ng-click="FilterAllStatus()" >All</label>
 													<label class="btn btn-success" ng-click="FilterSuccess()"  >Successful</label>
 													<label class="btn btn-warning" ng-click="FilterPending()"  >Pending</label>
 													<label class="btn btn-danger" ng-click="FilterError()" >Error</label>
+													-->
+													
+													<select class="form-control input-lg" ng-model="StatusSearch" >
+														<option value="">Status : All</option>
+														<option value="1" >In Progress</option>
+														<option value="2">Idoc Sent To SAP</option>
+														<option value="3">Error Sending IDoc To SAP</option>
+														<option value="51">Error In SAP</option> 
+														<option value="53">Processed In SAP</option> 
+														<option value="9">Pending In Queue</option>
+													</select>
 												</div>
 												</div>
 
@@ -245,6 +257,9 @@
 																	<th >
                                         Status
 																	</th>
+																	<th >
+                                        Timestamp
+																	</th>
 																	
 																	<th >
                                         Correction
@@ -261,7 +276,7 @@
 															</thead>
 
 															<tbody>
-																<tr    dir-paginate="x in SettlementList | filter:search | filter:{ Entry3 : plantSearch } | filter:{ Entry10 : filterCorrection } | itemsPerPage:10  "  data-user-id="{{x.Entry1}}">
+																<tr    dir-paginate="x in SettlementList | filter:search | filter:{ Entry3 : plantSearch } | filter:{ Entry10 : filterCorrection } | filter:{ Entry8 : StatusSearch } : true| itemsPerPage:10  "  data-user-id="{{x.Entry1}}">
 																	<td>{{ x.Entry1 }}</td>
 																	<td>{{ x.Entry2 }}</td>
 																	<td>{{ x.Entry3 }}</td>
@@ -270,15 +285,18 @@
 
 																	<td>
 																		<span ng-class="{'1' : 'label label-warning', '2' : 'label label-success' , 
-															'3' : 'label label-danger' , '4' : 'label label-success' , '9' : 'label label-warning' } [x.Entry8] " >
+															'3' : 'label label-danger' , '51' : 'label label-danger' , '53' : 'label label-released' , '9' : 'label label-warning' } [x.Entry8] " >
 														{{ (x.Entry8=='1') ? "In progress" : 
 														   (x.Entry8=='2') ? "Idoc Sent" :
-														   (x.Entry8=='3') ? "SAP Error" :
-														   (x.Entry8=='4') ? "Processed" :
+														   (x.Entry8=='3') ? "Error Sending Idoc" :
+														   (x.Entry8=='53') ? "Processed" :
+														   (x.Entry8=='51') ? "Error SAP" :
 														   "In Queue"
 														   }}
 																		</td>
-																		
+																		<td>
+																		{{ x.formattedDate }}
+																		</td>
 																		<td>
 																			<span ng-class="{ true : 'label label-warning' } [x.Entry10==''] " >
 														{{ (x.Entry10==1) ? "Corrected" : "--" }}

@@ -1373,7 +1373,7 @@ angular.module('app')
 					  domain: 'walid-bargaoui.auth0.com',
 					  responseType: 'token id_token',
 					  audience: 'https://walid-bargaoui.auth0.com/userinfo',
-					  redirectUri: 'http://monitoringtest.herokuapp.com/app/#/app/dashboard',
+					  redirectUri: 'http://EJX0001638:Power124@10.139.53.135:8000/eBestDesktopReport/WebContent/index.html#/exportReport',
 					  scope: 'openid'
 					  
 					});

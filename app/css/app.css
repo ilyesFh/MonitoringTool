@@ -5674,6 +5674,10 @@ table.dataTable.no-footer {
     color: #46be8a;
 }
 
+.icon-released {
+    color: #3399FF;
+}
+
 .icon-info {
     color: #26C6DA;
 }

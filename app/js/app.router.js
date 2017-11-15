@@ -1007,6 +1007,27 @@ angular.module('app')
                         }
                     })
 					
+					.state('app.tables.promotion', {
+                        url: '/Promotion',
+                        templateUrl: 'partials/Personal/Promotion.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['js/controllers/Custom/PricingError.js',
+										
+										'countTo',
+                                        'js/controllers/countto.js', 
+                                        'js/controllers/vectormap.js', 
+                                        'js/directives/ui-todowidget.js', 
+                                        'js/controllers/messages-widget.js',
+										'js/controllers/Custom/jsonsql-0.1.js',
+                                        '../bower_components/font-awesome/css/font-awesome.css'
+                                    ]);
+                                }
+                            ]
+                        }
+                    })
+					
 					
 					
 					.state('app.tables.ErrorDetails', {
@@ -1366,19 +1387,7 @@ angular.module('app')
 
                     })
 					
-					
-					// Initialization for the angular-auth0 library
-					angularAuth0Provider.init({
-					  clientID: 'KTigzCtzemcm7Ls737BVe5G-9w2n_DRn',
-					  domain: 'walid-bargaoui.auth0.com',
-					  responseType: 'token id_token',
-					  audience: 'https://walid-bargaoui.auth0.com/userinfo',
-					  redirectUri: 'http://monitoringtest.herokuapp.com/app/#/app/dashboard',
-					  scope: 'openid'
-					  
-					});
-					
-					
+
 					
 					
 					

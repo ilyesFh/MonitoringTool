@@ -3,7 +3,34 @@
 
 
 
-		<div class="r4_counter wid-stats db_box" style="width:30% ;float: right"  >
+		<div class="col-lg-12">
+		<div class="col-md-8 col-sm-8 col-xs-8">
+				<table class="table">
+						<thead>
+							<tr>
+							<th></th>
+							<th></th>
+							<th></th>
+							</tr>
+						</thead>								
+						<tbody>
+							<tr>
+							<td>Total : {{total}}</td>
+							<td><i class='fa fa-exclamation-circle icon-danger'></i> Error Sending To SAP : {{errorSentToSap}} </td>
+							<td><i class='fa fa-check-circle icon-success'></i> Sent To SAP : {{sentTopSap}} </td>
+							</tr>
+							<tr>
+							<td><i class='fa fa-exclamation-triangle icon-warning'></i> Pending : {{pending}}</td>
+							<td><i class='fa fa-exclamation-circle icon-danger'></i> Error In SAP : {{errorInSap}}</td>
+							<td><i class='fa fa-check-circle icon-released'></i> Processed In SAP : {{processed}}</td>
+							</tr>
+								
+						</table>
+		
+		</div>
+		
+		<div class="col-md-4 col-sm-4 col-xs-4">
+			<div class="r4_counter wid-stats db_box"   ><!-- style="width:30% ;float: right" -->
 			<div class='stats-data'>
 
 				<i ng-class="{ true : 'material-icons icon-danger pull-left' , false : 'material-icons icon-success pull-left' } [HokanFilesCount>0] "  >{{  (HokanFilesCount>0) ? "report_problem" : "check_circle" }}</i>
@@ -16,7 +43,11 @@
 				
 				
 			</div>
+			</div>
 		</div>
+		</div>
+	
+		
 		
 		<div class="col-lg-12">
 
@@ -27,7 +58,7 @@
 			<div class="col-lg-12">
 				<section class="box ">
 					<header class="panel_header">
-						<h2 class="title pull-left">Settlement</h2>
+						<h2 class="title pull-left">Settlement Details</h2>
 						<div class="actions panel_actions pull-right">
 							<i class="box_toggle material-icons">expand_more</i>
 
@@ -239,9 +270,7 @@
 														<table class="table table-striped" data-filter="#filter" class="table table-striped">
 															<thead>
 																<tr>
-																	<th data-toggle="true">
-                                        Name
-																	</th>
+																	
 																	<th>
                                         Route
 																	</th>
@@ -258,17 +287,29 @@
                                         Status
 																	</th>
 																	<th >
-                                        Timestamp
+                                        Idoc Num
+																	</th>
+																	<th >
+                                        Received Date
+																	</th>
+																	<th >
+                                        Start Processing
+																	</th>
+																	<th >
+                                        End_Processing
+																	</th>
+																	<th >
+                                        Last Update
 																	</th>
 																	
 																	<th >
                                         Correction
 																	</th>
-																	
+																	<!--
 																	<th >
                                         Error Details
 																	</th>
-
+																-->
 
 
 
@@ -276,8 +317,8 @@
 															</thead>
 
 															<tbody>
-																<tr    dir-paginate="x in SettlementList | filter:search | filter:{ Entry3 : plantSearch } | filter:{ Entry10 : filterCorrection } | filter:{ Entry8 : StatusSearch } : true| itemsPerPage:10  "  data-user-id="{{x.Entry1}}">
-																	<td>{{ x.Entry1 }}</td>
+																<tr    dir-paginate="x in SettlementList | filter:search | filter:{ Entry3 : plantSearch } | filter:{ Entry10 : filterCorrection } | filter: (!!StatusSearch || undefined) && { Entry8 : StatusSearch } : true| itemsPerPage:10  "  data-user-id="{{x.Entry1}}">
+																	
 																	<td>{{ x.Entry2 }}</td>
 																	<td>{{ x.Entry3 }}</td>
 																	<td>{{ x.Entry4 }}</td>
@@ -294,6 +335,16 @@
 														   "In Queue"
 														   }}
 																		</td>
+																		<td>{{ x.Entry15 }}</td>
+																		<td>
+																		{{ x.formattedDate2 }}
+																		</td>
+																		<td>
+																		{{ x.formattedDate3 }}
+																		</td>
+																		<td>
+																		{{ x.formattedDate4 }}
+																		</td>
 																		<td>
 																		{{ x.formattedDate }}
 																		</td>
@@ -302,8 +353,8 @@
 														{{ (x.Entry10==1) ? "Corrected" : "--" }}
 																			</td>
 																			
-																			<td >{{ x.Entry13 }}</td>
-																			<!--
+																			<!--<td >{{ x.Entry13 }}</td>
+																			
 														<td>{{ x.Entry8 | date }}</td> -->
 
 

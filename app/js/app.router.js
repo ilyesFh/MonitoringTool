@@ -1007,6 +1007,27 @@ angular.module('app')
                         }
                     })
 					
+					.state('app.tables.promotion', {
+                        url: '/Promotion',
+                        templateUrl: 'partials/Personal/Promotion.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['js/controllers/Custom/PricingError.js',
+										
+										'countTo',
+                                        'js/controllers/countto.js', 
+                                        'js/controllers/vectormap.js', 
+                                        'js/directives/ui-todowidget.js', 
+                                        'js/controllers/messages-widget.js',
+										'js/controllers/Custom/jsonsql-0.1.js',
+                                        '../bower_components/font-awesome/css/font-awesome.css'
+                                    ]);
+                                }
+                            ]
+                        }
+                    })
+					
 					
 					
 					.state('app.tables.ErrorDetails', {
@@ -1384,7 +1405,7 @@ angular.module('app')
 					  domain: 'sapui5.auth0.com',
 					  responseType: 'token id_token',
 					  audience: 'https://sapui5.auth0.com/userinfo',
-					  redirectUri: 'http://EJX0001638:Power124@10.139.53.135:8000/eBestDesktopReport/WebContent/index.html',
+					  redirectUri: 'http://EJX0001638:Power124@10.139.53.135:8000/eBestDesktopReport/WebContent/',
 					  scope: 'openid'
 					});
 					

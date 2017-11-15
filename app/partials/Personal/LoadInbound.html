@@ -239,9 +239,7 @@
 														<table class="table table-striped" data-filter="#filter" class="table table-striped">
 															<thead>
 																<tr>
-																	<th data-toggle="true">
-                                        Name
-																	</th>
+																	
 																	<th>
                                         Route
 																	</th>
@@ -257,8 +255,20 @@
 																	<th >
                                         Status
 																	</th>
-																	<th>
-                                        Timestamp
+																	<th >
+                                        Idoc Num
+																	</th>
+																	<th >
+                                        Received Date
+																	</th>
+																	<th >
+                                        Start Processing
+																	</th>
+																	<th >
+                                        End_Processing
+																	</th>
+																	<th >
+                                        Last Update
 																	</th>
 																	<th >
                                         Correction
@@ -273,11 +283,12 @@
 
 															<tbody>
 																<tr dir-paginate="x in SettlementList | filter:search | filter:{ Entry10 : filterCorrection } | filter:{ Entry2 : plantSearch } | filter:{ Entry9 : StatusSearch } : true | itemsPerPage:10  "  data-user-id="{{x.Entry1}}">
-																	<td>{{ x.Entry1 }}</td>
+																	
 																	<td>{{ x.Entry3 }}</td>
 																	<td>{{ x.Entry2 }}</td>
 																	<td>{{ x.Entry4 }}</td>
 																	<td>{{ x.Entry11 }}</td>
+																	
 																	
 
 																	<td>
@@ -291,6 +302,16 @@
 														   (x.Entry9=='51') ? "Error SAP" :
 														   "In Queue"
 														   }}
+																		</td>
+																		<td>{{ x.Entry15 }}</td>
+																		<td>
+																		{{ x.formattedDate2 }}
+																		</td>
+																		<td>
+																		{{ x.formattedDate3 }}
+																		</td>
+																		<td>
+																		{{ x.formattedDate4 }}
 																		</td>
 																		<td>
 																		{{ x.formattedDate }}

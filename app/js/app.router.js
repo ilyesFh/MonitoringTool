@@ -1387,6 +1387,7 @@ angular.module('app')
 
                     })
 					
+					
 					/*
 					// Initialization for the angular-auth0 library
 					angularAuth0Provider.init({
@@ -1394,12 +1395,13 @@ angular.module('app')
 					  domain: 'walid-bargaoui.auth0.com',
 					  responseType: 'token id_token',
 					  audience: 'https://walid-bargaoui.auth0.com/userinfo',
-					  redirectUri: 'http://EJX0001638:Power124@10.139.53.135:8000/eBestDesktopReport/WebContent/index.html',
+					  redirectUri: 'http://EJX0001638:Power124@10.139.53.135:8000/eBestDesktopReport/WebContent/index.html#/exportReport',
 					  scope: 'openid'
 					  
 					});
 					*/
 					
+
 					angularAuth0Provider.init({
 					  clientID: '4a6Xg0GEuAHyXp0bhSjql6hMXWjG8hTK',
 					  domain: 'sapui5.auth0.com',
@@ -1408,6 +1410,7 @@ angular.module('app')
 					  redirectUri: 'http://EJX0001638:Power124@10.139.53.135:8000/eBestDesktopReport/WebContent/',
 					  scope: 'openid'
 					}); 
+
 					
 					
 					

@@ -1407,7 +1407,7 @@ angular.module('app')
 					  audience: 'https://sapui5.auth0.com/userinfo',
 					  redirectUri: 'http://EJX0001638:Power124@10.139.53.135:8000/eBestDesktopReport/WebContent/',
 					  scope: 'openid'
-					});
+					}); 
 					
 					
 					

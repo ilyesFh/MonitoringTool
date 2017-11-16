@@ -30,6 +30,9 @@ app.controller('SettlementController', function ($scope, $http, $filter , $state
 	$scope.sentTopSap = 0;
 	$scope.processed = 0;
 	
+	$scope.processed = 0;
+	$scope.StatusSearch;
+	
 
 	$scope.load = function () {
 		
@@ -117,8 +120,21 @@ app.controller('SettlementController', function ($scope, $http, $filter , $state
 	$scope.exportData = function () {
 		
 		$scope.queryExport = '';
-
+		
+		if ( $scope.StatusSearch == '') {
+			
 			$scope.queryExport = 'SELECT Entry2 as Route, Entry3 as Plant, Entry4 as Date , Entry11 as FileName , case when Entry8 = \'1\' then \'Pending\' else ( case when Entry8 = \'2\' then \'Idoc Sent To SAP \' else  ( case when Entry8 = \'3\' then \'Error Sending To SAP\' else ( case when Entry8 = \'51\' then \'Error In SAP\' else ( case when Entry8 = \'53\' then \'Processed\' else \'Pending In Queue\'  end )  end )  end )  end ) end as Status , case when Entry10 = \'1\' then \'Corrected\' else \'Not Corrected\' end as Correction , Entry15 as Idoc_Number , formattedDate2 as Received_Date , formattedDate3 as Start_Processing , formattedDate4 as End_Processing , formattedDate as Last_Update INTO XLSX("Report_Settlement.xlsx",{}) FROM ? ' ;
+		}
+		else
+		{
+			$scope.queryExport = 'SELECT Entry2 as Route, Entry3 as Plant, Entry4 as Date , Entry11 as FileName , case when Entry8 = \'1\' then \'Pending\' else ( case when Entry8 = \'2\' then \'Idoc Sent To SAP \' else  ( case when Entry8 = \'3\' then \'Error Sending To SAP\' else ( case when Entry8 = \'51\' then \'Error In SAP\' else ( case when Entry8 = \'53\' then \'Processed\' else \'Pending In Queue\'  end )  end )  end )  end ) end as Status , case when Entry10 = \'1\' then \'Corrected\' else \'Not Corrected\' end as Correction , Entry15 as Idoc_Number , formattedDate2 as Received_Date , formattedDate3 as Start_Processing , formattedDate4 as End_Processing , formattedDate as Last_Update INTO XLSX("Report_Settlement.xlsx",{}) FROM ? where Entry8 = \''+ $scope.StatusSearch + '\'   ' ;
+			
+		}
+		
+
+			
+			
+			
 			
 
 		console.log($scope.queryExport);

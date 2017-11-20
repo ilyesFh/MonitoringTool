@@ -33,7 +33,13 @@ app.controller('SettlementController', function ($scope, $http, $filter , $state
 	$scope.processed = 0;
 	$scope.StatusSearch;
 	
-
+	
+	$scope.filterStatusFunction = function (param) {
+		$scope.StatusSearch = param;
+		console.log($scope.StatusSearch);
+	}
+	
+	
 	$scope.load = function () {
 		
 		//Reset Filter
@@ -116,6 +122,8 @@ app.controller('SettlementController', function ($scope, $http, $filter , $state
 	}
 	
 	
+	
+	
 
 	$scope.exportData = function () {
 		
@@ -140,6 +148,8 @@ app.controller('SettlementController', function ($scope, $http, $filter , $state
 		console.log($scope.queryExport);
 		alasql($scope.queryExport, [$scope.SettlementList]);
 	};
+	
+	
 	
 	
 	$scope.getdate = function () {

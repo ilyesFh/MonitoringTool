@@ -33,14 +33,14 @@
 						</thead>								
 						<tbody>
 							<tr>
-							<td ng-model="StatusSearch" >Total : {{total}}</td>
-							<td><i class='fa fa-exclamation-circle icon-danger'></i> Error Sending To SAP : {{errorSentToSap}} </td>
-							<td><i class='fa fa-check-circle icon-success'></i> Sent To SAP : {{sentTopSap}} </td>
+							<td ng-click="filterStatusFunction()" style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" >Total : {{total}}</td>
+							<td ng-click="filterStatusFunction('3')"  style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" ><i class='fa fa-exclamation-circle icon-danger'></i> Error Sending To SAP : {{errorSentToSap}} </td>
+							<td ng-click="filterStatusFunction('2')" style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" ><i class='fa fa-check-circle icon-success'></i> Sent To SAP : {{sentTopSap}} </td>
 							</tr>
 							<tr>
-							<td><i class='fa fa-exclamation-triangle icon-warning'></i> Pending : {{pending}}</td>
-							<td><i class='fa fa-exclamation-circle icon-danger'></i> Error In SAP : {{errorInSap}}</td>
-							<td><i class='fa fa-check-circle icon-released'></i> Processed In SAP : {{processed}}</td>
+							<td ng-click="filterStatusFunction('1')" style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" ><i class='fa fa-exclamation-triangle icon-warning' ></i> Pending : {{pending}}</td>
+							<td ng-click="filterStatusFunction('51')" style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" ><i class='fa fa-exclamation-circle icon-danger'></i> Error In SAP : {{errorInSap}}</td>
+							<td ng-click="filterStatusFunction('53')" style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" ><i class='fa fa-check-circle icon-released'></i> Processed In SAP : {{processed}}</td>
 							</tr>
 								
 						</table>

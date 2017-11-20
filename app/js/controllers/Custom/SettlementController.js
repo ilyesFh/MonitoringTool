@@ -65,7 +65,7 @@ app.controller('SettlementController', function ($scope, $http, $filter , $state
 				$scope.allRecords = response.data[0][0];
 				$scope.SettlementList = response.data[0][0];
 				$scope.total = $scope.allRecords.length;
-				$scope.pending = jsonsql.query("select * from json where ( Entry8=='1')", $scope.allRecords).length;
+				$scope.pending = jsonsql.query("select * from json where ( Entry8=='1'  || Entry8=='9' )", $scope.allRecords).length;
 				$scope.errorSentToSap = jsonsql.query("select * from json where ( Entry8=='3')", $scope.allRecords).length;
 				$scope.errorInSap = jsonsql.query("select * from json where ( Entry8=='51')", $scope.allRecords).length;
 				$scope.sentTopSap = jsonsql.query("select * from json where ( Entry8=='2')", $scope.allRecords).length;

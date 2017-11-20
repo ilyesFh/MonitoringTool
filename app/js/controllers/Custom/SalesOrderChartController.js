@@ -159,6 +159,8 @@
 		$scope.TodayDate = new Date();
 		$scope.refreshedDate;
 		$scope.maxDate = new Date();
+		
+		$scope.showLoading = true;
 
 		$scope.st1 = 0
 		$scope.st2 = 0
@@ -210,6 +212,7 @@
 					
 					//Check if we have param or not
 					if($state.params.id != "") {
+						$scope.showLoading = false;
 						console.log("Param = " + $state.params.id);
 						$scope.recordsOfToday = jsonsql.query("select * from json where (Entry14=='"+$state.params.id+"')", response.data[0][0]);
 						$scope.allRecords = response.data[0][0];
@@ -217,6 +220,7 @@
 					}
 					
 					else {
+						$scope.showLoading = false;
 					$scope.recordsOfToday = response.data[0][0] ; 
 					
 					}
@@ -316,6 +320,7 @@
 		$scope.changeDate = function () {
 
 		console.log("-- Begin Chart");
+		$scope.showLoading = true;
 		$scope.formattedDate = $filter('date')($scope.dt, "yyyyMMdd");
 		console.log($scope.formattedDate);
 
@@ -327,7 +332,7 @@
 		        var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=',msgdata ).
 		        then(function (response) {
 					console.log(response.data[0][0]);
-					
+					$scope.showLoading = false;
 					//Check if we have param or not
 					if($state.params.id != "") {
 						console.log("Param = " + $state.params.id);

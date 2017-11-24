@@ -17,7 +17,7 @@ app.config(['$httpProvider', function ($httpProvider) {
 
 
 
-app.controller('SettlementController', function ($scope, $http, $filter , $state) {
+app.controller('SettlementController', function ($scope, $http, $filter , $interval ,$state) {
 
 	$scope.TodayDate = new Date();
 	$scope.maxDate = new Date();
@@ -33,6 +33,31 @@ app.controller('SettlementController', function ($scope, $http, $filter , $state
 	$scope.processed = 0;
 	$scope.StatusSearch;
 	
+	$scope.counter = 1;
+	$scope.refreshedDate;
+	
+	
+	
+	$scope.countProgressBar = function() {
+		++$scope.counter;
+
+		if ( $scope.counter == 100)
+		{ $scope.counter = 0; }
+
+	}
+	
+	
+
+
+
+			$scope.$on('$destroy',function(){
+				$interval.cancel($scope.intrvl);
+			});
+
+			$scope.$on('$destroy',function(){
+				$interval.cancel($scope.intrvl2);
+			});
+	
 	
 	$scope.filterStatusFunction = function (param) {
 		$scope.StatusSearch = param;
@@ -47,8 +72,10 @@ app.controller('SettlementController', function ($scope, $http, $filter , $state
 		$scope.filterStatus = "";
 		$scope.SettlementList = [];
 		console.log($scope.SettlementList.length);
-		
+		$scope.TodayDate = new Date();
 		$scope.formattedDate = $filter('date')($scope.TodayDate, "yyyyMMdd");
+		$scope.refreshedDate = $filter('date')($scope.TodayDate, "yyyy/MM/dd HH:mm:ss");
+		console.log($scope.refreshedDate);
 		
 		//get Hokan Files
 		var msgHokan = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"HokanFiles\"  }";
@@ -71,7 +98,9 @@ app.controller('SettlementController', function ($scope, $http, $filter , $state
 				$scope.allRecords = response.data[0][0];
 				$scope.SettlementList = response.data[0][0];
 				$scope.total = $scope.allRecords.length;
-				$scope.pending = jsonsql.query("select * from json where ( Entry8=='1'  || Entry8=='9' )", $scope.allRecords).length;
+				$scope.inProgress = jsonsql.query("select * from json where ( Entry8=='1' )", $scope.allRecords).length;
+				$scope.pendingInQueue = jsonsql.query("select * from json where ( Entry8=='9' )", $scope.allRecords).length;
+				$scope.pendingInBoomi = jsonsql.query("select * from json where ( Entry8=='E' )", $scope.allRecords).length;
 				$scope.errorSentToSap = jsonsql.query("select * from json where ( Entry8=='3')", $scope.allRecords).length;
 				$scope.errorInSap = jsonsql.query("select * from json where ( Entry8=='51')", $scope.allRecords).length;
 				$scope.sentTopSap = jsonsql.query("select * from json where ( Entry8=='2')", $scope.allRecords).length;
@@ -140,10 +169,6 @@ app.controller('SettlementController', function ($scope, $http, $filter , $state
 		}
 		
 
-			
-			
-			
-			
 
 		console.log($scope.queryExport);
 		alasql($scope.queryExport, [$scope.SettlementList]);
@@ -180,7 +205,9 @@ app.controller('SettlementController', function ($scope, $http, $filter , $state
 				$scope.allRecords = response.data[0][0];
 				$scope.SettlementList = response.data[0][0];
 				$scope.total = $scope.allRecords.length;
-				$scope.pending = jsonsql.query("select * from json where ( Entry8=='1')", $scope.allRecords).length;
+				$scope.inProgress = jsonsql.query("select * from json where ( Entry8=='1' )", $scope.allRecords).length;
+				$scope.pendingInQueue = jsonsql.query("select * from json where ( Entry8=='9' )", $scope.allRecords).length;
+				$scope.pendingInBoomi = jsonsql.query("select * from json where ( Entry8=='E' )", $scope.allRecords).length;
 				$scope.errorSentToSap = jsonsql.query("select * from json where ( Entry8=='3')", $scope.allRecords).length;
 				$scope.errorInSap = jsonsql.query("select * from json where ( Entry8=='51')", $scope.allRecords).length;
 				$scope.sentTopSap = jsonsql.query("select * from json where ( Entry8=='2')", $scope.allRecords).length;
@@ -194,6 +221,9 @@ app.controller('SettlementController', function ($scope, $http, $filter , $state
 		
 	}
 	
+	
+	$scope.intrvl = $interval($scope.load , 120000);
+	$scope.intrvl2 = $interval($scope.countProgressBar , 1200);
 	
 
 	// Calendar
@@ -486,4 +516,25 @@ $scope.dtpick = {
   };
 	
 
+});
+
+
+app.controller('settlementControllerCorrection', function($scope , $http ,  $filter , $timeout , $state , $log ) {
+	
+
+	
+    $scope.ResetSettlement = function() {
+		console.log("Call Reset");
+		$scope.XmlSettlement = "<settlement_update><fileName>"+$scope.fieldFileName+"</fileName><reason>"+$scope.fieldReason+"</reason></settlement_update>"
+		console.log($scope.XmlSettlement);
+		
+		var msgdata = $scope.XmlSettlement;
+		var res = $http.post('http://117.55.209.110:9080/ws/simple/getSettlement;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgdata).
+			then(function (response) {
+				console.log(success);
+
+			});
+		
+      
+    }
 });

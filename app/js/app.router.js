@@ -1331,6 +1331,18 @@ angular.module('app')
                         }
                     })
 					
+					.state('app.settlementCorrection', {
+                        url: '/Settlement_Correction',
+                        templateUrl: 'partials/Personal/SettlementCorrection.html',
+                        resolve: {
+                            deps: ['uiLoad',
+                                function(uiLoad) {
+                                    return uiLoad.load('js/controllers/Custom/SettlementController.js');
+                                }
+                            ]
+                        }
+                    })
+					
 					
 					
 					

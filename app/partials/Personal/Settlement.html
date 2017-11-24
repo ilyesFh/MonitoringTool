@@ -38,9 +38,15 @@
 							<td ng-click="filterStatusFunction('2')" style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" ><i class='fa fa-check-circle icon-success'></i> Sent To SAP : {{sentTopSap}} </td>
 							</tr>
 							<tr>
-							<td ng-click="filterStatusFunction('1')" style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" ><i class='fa fa-exclamation-triangle icon-warning' ></i> Pending : {{pending}}</td>
+							 <td  ></td> 
 							<td ng-click="filterStatusFunction('51')" style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" ><i class='fa fa-exclamation-circle icon-danger'></i> Error In SAP : {{errorInSap}}</td>
 							<td ng-click="filterStatusFunction('53')" style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" ><i class='fa fa-check-circle icon-released'></i> Processed In SAP : {{processed}}</td>
+							</tr>
+							
+							<tr>
+							<td ng-click="filterStatusFunction('1')" style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" ><i class='fa fa-exclamation-triangle icon-warning' ></i> In Progress : {{inProgress}}</td>
+							<td ng-click="filterStatusFunction('9')" style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" ><i class='fa fa-exclamation-triangle icon-warning'></i> Pending In Queue : {{pendingInQueue}}</td>
+							<td ng-click="filterStatusFunction('E')" style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';" ><i class='fa fa-exclamation-triangle icon-warning'></i> Pending In Boomi : {{pendingInBoomi}}</td>
 							</tr>
 								
 						</table>
@@ -56,7 +62,7 @@
 				<i ng-class="{ true : 'material-icons icon-danger pull-left' , false : 'material-icons icon-success pull-left' } [HokanFilesCount>0] "  >{{  (HokanFilesCount>0) ? "report_problem" : "check_circle" }}</i>
 				
 				<div class="stats">
-					<h3>{{HokanFilesCount}} files</h3>
+					<h3>{{HokanFilesCount}} Files</h3>
 					<span> Not Received From Hokan</span>
 					
 				</div>
@@ -64,6 +70,26 @@
 				
 			</div>
 			</div>
+			
+			<div class="col-md-4 col-sm-4 col-xs-4">
+			
+			
+			
+			</div>
+			
+			
+            <div class="content-body padding-bottom-20">
+                
+				
+					<h3 style="text-align:center" >Last Update {{ refreshedDate }} </h3>
+					<uib-progressbar value="counter" class="progress-striped active" value="dynamic" type="info">Next Refresh...   </uib-progressbar>
+						
+                    
+                    
+            </div>
+            
+			
+			
 		</div>
 		</div>
 	
@@ -232,6 +258,7 @@
 														<option value="51">Error In SAP</option> 
 														<option value="53">Processed In SAP</option> 
 														<option value="9">Pending In Queue</option>
+														<option value="E">Pending In Boomi</option>
 													</select>
 												</div>
 												</div>
@@ -346,13 +373,14 @@
 
 																	<td>
 																		<span ng-class="{'1' : 'label label-warning', '2' : 'label label-success' , 
-															'3' : 'label label-danger' , '51' : 'label label-danger' , '53' : 'label label-released' , '9' : 'label label-warning' } [x.Entry8] " >
+															'3' : 'label label-danger' , '51' : 'label label-danger' , '53' : 'label label-released' , '9' : 'label label-warning' , 'E' : 'label label-warning' } [x.Entry8] " >
 														{{ (x.Entry8=='1') ? "In progress" : 
 														   (x.Entry8=='2') ? "Idoc Sent" :
 														   (x.Entry8=='3') ? "Error Sending Idoc" :
 														   (x.Entry8=='53') ? "Processed" :
 														   (x.Entry8=='51') ? "Error SAP" :
-														   "In Queue"
+														   (x.Entry8=='9') ? "Pending In queue" :
+														   "Pending In Boomi"
 														   }}
 																		</td>
 																		<td>{{ x.Entry15 }}</td>

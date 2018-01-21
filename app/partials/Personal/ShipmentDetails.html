@@ -1,6 +1,10 @@
 <div class='content-wrapper' ng-init="app.settings.pagetitle = 'Shipment Details';">
 	<div class="col-lg-12" ng-controller="ShipmentDetailsController" ng-init='load()' >
 
+			<div class="text-center" ng-show="showLoading">
+			<i class="fa fa-spinner fa-pulse fa-3x"></i>
+			</div>
+	
 		<div class="col-md-12 col-sm-12 col-xs-12 padding-right-30 padding-left-20">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 padding-right-0 padding-left-0">
                     <div class="r4_counter wid-stats db_box">
@@ -360,6 +364,11 @@
 																	<th >
                                         Type
 																	</th>
+																	<!--
+																	<th >
+                                        Last Update
+																	</th>
+																	-->
 																	<th >
                                         Status
 																	</th>
@@ -385,11 +394,15 @@
 																	<td>{{ x.Entry9 }}</td>
 																	<td>{{ x.Entry10 }}</td>
 																	<td>{{ x.Entry11 }}</td>
+																	
 
 																	<td>
 																		<span ng-class="{false : 'label label-warning', true : 'label label-success' } [x.Entry5=='N'] " >
 														{{ (x.Entry5=='N') ? "Normal Order" : "Rush Order" }}
 																		</td>
+																		
+																		<!-- <td>{{ x.formattedDate }}</td> -->
+																		
 																		<td>
 																			<span ng-class="{false : 'label label-danger', true : 'label label-success' } [x.Entry6==1] " >
 														{{ (x.Entry6=='1') ? "Sent" : "Not Sent" }}

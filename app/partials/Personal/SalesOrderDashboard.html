@@ -194,37 +194,37 @@
 			
 			
 			<div class="col-lg-4 col-md-4 col-xs-12 col-sm-6">
-                        <div class="wid-social persoWidget" style="cursor:pointer" ng-click="RedirectToSoStatus('NEOS')" >						
-								<i ng-class="{ true : 'material-icons icon-lg icon-danger pull-right' , false : 'material-icons icon-lg icon-success pull-right' } [neosError>0] " style="" >{{  (neosError>0) ? "report_problem" : "check_circle" }}</i>
+                        <div class="wid-social persoWidget" style="cursor:pointer" ng-click="RedirectToSoStatus('NEOS_JDC_Sales')" >						
+								<i ng-class="(neosJDCSales_Error>0) ? 'material-icons icon-lg icon-danger pull-right' : ( (neosJDCSales_Warning>0) ? 'material-icons icon-lg icon-warning pull-right' : 'material-icons icon-lg icon-success pull-right') " style="" >{{  (neosJDCSales_Error>0) ? "report_problem" : ( (neosJDCSales_Warning>0) ? "report_problem" : "check_circle" ) }}</i>
                             <div class="social-info">
 								<h3 class="bold"> NEOS JDC Sales</h3>
 								</br>
 								<h3 class=" count "> Ok : </h3>
-                                <h3 count-to="{{ neosOk }}" value="0" duration="1" class="number_counter  count "></h3>
+                                <h3 count-to="{{ neosJDCSales_Ok }}" value="0" duration="1" class="number_counter  count "></h3>
 								</br>
 								<h3 class=" count "> In Progress : </h3>
-                                <h3 count-to="{{ neosWarning }}" value="0" duration="1" class="number_counter  count "></h3>
+                                <h3 count-to="{{ neosJDCSales_Warning }}" value="0" duration="1" class="number_counter  count "></h3>
 								</br>
                                 <h3 class=" count "> Error : </h3>
-                                <h3 count-to="{{neosError}}" value="0" duration="1" class="number_counter  count "></h3>
+                                <h3 count-to="{{neosJDCSales_Error}}" value="0" duration="1" class="number_counter  count "></h3>
                             </div>
                         </div>
         </div>
 		
 			<div class="col-lg-4 col-md-4 col-xs-12 col-sm-6">
-                        <div class="wid-social persoWidget" style="cursor:pointer" ng-click="RedirectToSoStatus('NEOS')" >						
-								<i ng-class="{ true : 'material-icons icon-lg icon-danger pull-right' , false : 'material-icons icon-lg icon-success pull-right' } [neosError>0] " style="" >{{  (neosError>0) ? "report_problem" : "check_circle" }}</i>
+                        <div class="wid-social persoWidget" style="cursor:pointer" ng-click="RedirectToSoStatus('NEOS_JDC_Through')" >						
+								<i ng-class="(neosJDCThrough_Error>0) ? 'material-icons icon-lg icon-danger pull-right' : ( (neosJDCThrough_Warning>0) ? 'material-icons icon-lg icon-warning pull-right' : 'material-icons icon-lg icon-success pull-right') " style="" >{{  (neosJDCThrough_Error>0) ? "report_problem" : ( (neosJDCThrough_Warning>0) ? "report_problem" : "check_circle" ) }}</i>
                             <div class="social-info">
 								<h3 class="bold"> NEOS JDC Through</h3>
 								</br>
 								<h3 class=" count "> Ok : </h3>
-                                <h3 count-to="{{ neosOk }}" value="0" duration="1" class="number_counter  count "></h3>
+                                <h3 count-to="{{ neosJDCThrough_Ok }}" value="0" duration="1" class="number_counter  count "></h3>
 								</br>
 								<h3 class=" count "> In Progress : </h3>
-                                <h3 count-to="{{ neosWarning }}" value="0" duration="1" class="number_counter  count "></h3>
+                                <h3 count-to="{{ neosJDCThrough_Warning }}" value="0" duration="1" class="number_counter  count "></h3>
 								</br>
                                 <h3 class=" count "> Error : </h3>
-                                <h3 count-to="{{neosError}}" value="0" duration="1" class="number_counter  count "></h3>
+                                <h3 count-to="{{neosJDCThrough_Error}}" value="0" duration="1" class="number_counter  count "></h3>
                             </div>
                         </div>
         </div>

@@ -98,6 +98,17 @@
 				$scope.neosNormalWarning = jsonsql.query("select * from json where (Entry3=='1' )", $scope.neosNormal).length;
 				$scope.neosNormalOk = jsonsql.query("select * from json where (Entry3=='2' || Entry3=='4' || Entry3=='6' )", $scope.neosNormal).length;
 				$scope.neosNormalError = jsonsql.query("select * from json where (Entry3=='3' || Entry3=='5' )", $scope.neosNormal).length;
+				
+				$scope.neosJDCSales_Normal = jsonsql.query("select * from json where (Entry1=='NEOS_JDC_Sales' )", response.data[0]);
+				$scope.neosJDCSales_Warning = jsonsql.query("select * from json where (Entry3=='1' )", $scope.neosJDCSales_Normal).length;
+				$scope.neosJDCSales_Ok = jsonsql.query("select * from json where (Entry3=='2' || Entry3=='4' || Entry3=='6' )", $scope.neosJDCSales_Normal).length;
+				$scope.neosJDCSales_Error = jsonsql.query("select * from json where (Entry3=='3' || Entry3=='5' )", $scope.neosJDCSales_Normal).length;
+				
+				$scope.neosJDCThrough_Normal = jsonsql.query("select * from json where (Entry1=='NEOS_JDC_Through' )", response.data[0]);
+				$scope.neosJDCThrough_Warning = jsonsql.query("select * from json where (Entry3=='1' )", $scope.neosJDCThrough_Normal).length;
+				$scope.neosJDCThrough_Ok = jsonsql.query("select * from json where (Entry3=='2' || Entry3=='4' || Entry3=='6' )", $scope.neosJDCThrough_Normal).length;
+				$scope.neosJDCThrough_Error = jsonsql.query("select * from json where (Entry3=='3' || Entry3=='5' )", $scope.neosJDCThrough_Normal).length;
+
 
 
 				/*

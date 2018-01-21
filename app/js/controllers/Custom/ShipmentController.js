@@ -142,6 +142,8 @@ app.controller('ShipmentDetailsController', function ($scope, $http, $filter , $
 		lineWidth: 20,
 		lineCap: 'circle'
 	};
+	
+	$scope.showLoading = true;
 
 	$scope.load = function () {
 		
@@ -158,7 +160,7 @@ app.controller('ShipmentDetailsController', function ($scope, $http, $filter , $
 		var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgdata).
 			then(function (response) {
 				console.log(response.data[0][0]);
-
+				$scope.showLoading = false;
 				$scope.forCount = response.data[0][0];
 				$scope.allMdRecords = response.data[0][0];
 				$scope.truckStockList = response.data[0][0];
@@ -231,6 +233,7 @@ app.controller('ShipmentDetailsController', function ($scope, $http, $filter , $
 		
 		$scope.filterRush = "";
 		$scope.filterStatus = "";
+		$scope.showLoading = true;
 		
 		$scope.totalNumberOfIdocs = 0;
 		$scope.rushOrderNumber = 0;
@@ -248,7 +251,7 @@ app.controller('ShipmentDetailsController', function ($scope, $http, $filter , $
 		var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgdata).
 			then(function (response) {
 				console.log(response.data[0][0]);
-
+				$scope.showLoading = false;
 				$scope.forCount = response.data[0][0];
 				$scope.allMdRecords = response.data[0][0];
 				$scope.truckStockList = response.data[0][0];

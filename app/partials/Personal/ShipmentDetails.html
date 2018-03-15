@@ -259,7 +259,7 @@
 														
 													</select>
 												</div>
-												
+												<!--
 												<div class="col-lg-4 col-md-3 col-xs-12 col-sm-6">
 												<div class="btn-group margin-bottom-10" style="float:right" >
 													<label class="btn btn-primary" ng-click="FilterAllStatus()" >All</label>
@@ -267,6 +267,17 @@
 													<label class="btn btn-danger" ng-click="FilterOnlyNotSent()" >Not Sent</label>
 												</div>
 												</div>
+												-->
+												<div class="col-lg-4 col-md-3 col-xs-12 col-sm-6">
+												<select class="form-control input-lg" ng-model="StatusSearch" >
+													<option value="">Status</option>
+														<option value="0">Not Sent Yet</option>
+														<option value="1">Sent to NH</option>
+														<option value="2">Received in NH</option>
+														<option value="3">Processed in NH</option>
+														<option value="4">Error in NH</option>
+													</select>
+													</div>
 
 												<div class="clearfix"/>
 												<br>
@@ -381,7 +392,7 @@
 
 
 															<tbody>
-																<tr    dir-paginate="x in truckStockList | filter:search | filter:plantSearch | filter:{ Entry5 : filterRush } | filter:{ Entry6 : filterStatus } |itemsPerPage:10  "  data-user-id="{{x.Entry1}}">
+																<tr    dir-paginate="x in truckStockList | filter:search | filter:plantSearch | filter:{ Entry6 : StatusSearch } | filter:{ Entry5 : filterRush } | filter:{ Entry6 : filterStatus } |itemsPerPage:10  "  data-user-id="{{x.Entry1}}">
 																	<td>{{ x.Entry1 }}</td>
 																	<!-- <td>{{ x.Entry2 }}</td> -->
 																	<td>{{ x.Entry3 }}</td>
@@ -404,8 +415,15 @@
 																		<!-- <td>{{ x.formattedDate }}</td> -->
 																		
 																		<td>
-																			<span ng-class="{false : 'label label-danger', true : 'label label-success' } [x.Entry6==1] " >
-														{{ (x.Entry6=='1') ? "Sent" : "Not Sent" }}
+																			<span ng-class="{0 : 'label label-warning', 1 : 'label label-success', 2 : 'label label-success' , 3 : 'label label-success' , 4 : 'label label-danger'  } [x.Entry6] " >
+														{{ (x.Entry6=='0') ? "Not Sent" : 
+															((x.Entry6=='1') ? "Sent" : 
+															 ( (x.Entry6=='2') ? "Received" :
+															 ((x.Entry6=='3') ? "Processed" :
+															 "Error" )
+															 )
+															)
+															}}
 																			</td>
 																			<!--
 														<td>{{ x.Entry8 | date }}</td> -->

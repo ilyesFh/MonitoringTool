@@ -134,6 +134,7 @@ app.controller('ShipmentDetailsController', function ($scope, $http, $filter , $
 	$scope.TodayDate = new Date();
 	$scope.maxDate = new Date();
 	
+	
 
 	$scope.options = {
 		animate: false,

@@ -134,7 +134,6 @@ app.controller('ShipmentDetailsController', function ($scope, $http, $filter , $
 	$scope.TodayDate = new Date();
 	$scope.maxDate = new Date();
 	
-	
 
 	$scope.options = {
 		animate: false,
@@ -170,6 +169,7 @@ app.controller('ShipmentDetailsController', function ($scope, $http, $filter , $
 				$scope.rushOrderNumber = (jsonsql.query("select * from json where (Entry5=='Y')", $scope.forCount)).length;
 				$scope.notSentNumber = (jsonsql.query("select * from json where (Entry6==0 || Entry6==4)", $scope.forCount)).length;
 				$scope.sentNumber = (jsonsql.query("select * from json where (Entry6==1 || Entry6==2 || Entry6==3)", $scope.forCount)).length;
+				$scope.sentError = (jsonsql.query("select * from json where (Entry6==4 )", $scope.forCount)).length;
 				console.log("Sent = " + $scope.sentNumber);
 				
 				
@@ -261,8 +261,9 @@ app.controller('ShipmentDetailsController', function ($scope, $http, $filter , $
 				//Count
 				$scope.totalNumberOfIdocs = response.data[0][0].length;
 				$scope.rushOrderNumber = (jsonsql.query("select * from json where (Entry5=='Y')", $scope.forCount)).length;
-				$scope.notSentNumber = (jsonsql.query("select * from json where (Entry6==0)", $scope.forCount)).length;
-				$scope.sentNumber = (jsonsql.query("select * from json where (Entry6==1)", $scope.forCount)).length;
+				$scope.notSentNumber = (jsonsql.query("select * from json where (Entry6==0 || Entry6==4)", $scope.forCount)).length;
+				$scope.sentNumber = (jsonsql.query("select * from json where (Entry6==1 || Entry6==2 || Entry6==3)", $scope.forCount)).length;
+				$scope.sentError = (jsonsql.query("select * from json where (Entry6==4 )", $scope.forCount)).length;
 				
 
 			});

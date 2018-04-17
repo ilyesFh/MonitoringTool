@@ -134,6 +134,12 @@ app.controller('ShipmentDetailsController', function ($scope, $http, $filter , $
 	$scope.TodayDate = new Date();
 	$scope.maxDate = new Date();
 	
+	$scope.TokyoPlant = '';
+	$scope.SendaiPlant = 'JWF4JF77JWF5JFBMJWF6JFBNJWF7JFBOJWF8JFBPJWF9JFBQJWG1JFBRJWH3JWG2JFBSJWG3JFBTJWG4JFBUJWG5JFBVJWG6JFBWJWG7JFBXJWG8JFBYJWG9JFBZJWH1JFC0JWH2JFC1JFC2JFC3JFC4JWJ8JWJ9JWJAJWJBJWJC';
+	
+	$scope.tokyoCount = 0;
+	$scope.sendaiCount = 0;
+	
 
 	$scope.options = {
 		animate: false,
@@ -151,6 +157,8 @@ app.controller('ShipmentDetailsController', function ($scope, $http, $filter , $
 		$scope.filterRush = "";
 		$scope.filterStatus = "";
 		
+		$scope.ShipmentList;
+		
 		console.log("load event detected!");
 		$scope.formattedDate = $filter('date')($scope.TodayDate, "yyyyMMdd");
 		//$scope.formattedDate = 201705;
@@ -159,11 +167,23 @@ app.controller('ShipmentDetailsController', function ($scope, $http, $filter , $
 		console.log(msgdata);
 		var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgdata).
 			then(function (response) {
-				console.log(response.data[0][0]);
+				
 				$scope.showLoading = false;
 				$scope.forCount = response.data[0][0];
 				$scope.allMdRecords = response.data[0][0];
 				$scope.truckStockList = response.data[0][0];
+				
+				
+				
+				for (i = 0; i < $scope.allMdRecords.length ; i++) {
+					if( $scope.SendaiPlant.indexOf($scope.allMdRecords[i].Entry12) != -1 )
+					{
+					$scope.allMdRecords[i].Entry14 = 'Sendai'
+					}
+				}
+				
+				console.log($scope.allMdRecords);
+				
 				//Count
 				$scope.totalNumberOfIdocs = response.data[0][0].length;
 				$scope.rushOrderNumber = (jsonsql.query("select * from json where (Entry5=='Y')", $scope.forCount)).length;
@@ -172,6 +192,10 @@ app.controller('ShipmentDetailsController', function ($scope, $http, $filter , $
 				$scope.sentError = (jsonsql.query("select * from json where (Entry6==4 )", $scope.forCount)).length;
 				console.log("Sent = " + $scope.sentNumber);
 				
+				
+				$scope.sendaiCount = $scope.allMdRecords[0].Entry15;
+				$scope.tokyoCount = $scope.totalNumberOfIdocs - $scope.sendaiCount
+				//console.log( $scope.tokyoCount +" "+ $scope.sendaiCount);
 				
  
 			});
@@ -243,6 +267,10 @@ app.controller('ShipmentDetailsController', function ($scope, $http, $filter , $
 		$scope.sentNumber = 0;
 		$scope.truckStockList = [];
 		
+		$scope.sendaiCount = 0;
+		$scope.tokyoCount = 0;
+		
+		
 		
 
 		console.log($scope.dt);
@@ -252,11 +280,18 @@ app.controller('ShipmentDetailsController', function ($scope, $http, $filter , $
 		console.log(msgdata);
 		var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgdata).
 			then(function (response) {
-				console.log(response.data[0][0]);
+				
 				$scope.showLoading = false;
 				$scope.forCount = response.data[0][0];
 				$scope.allMdRecords = response.data[0][0];
 				$scope.truckStockList = response.data[0][0];
+				
+				for (i = 0; i < $scope.allMdRecords.length ; i++) {
+					if( $scope.SendaiPlant.indexOf($scope.allMdRecords[i].Entry12) != -1 )
+					{
+					$scope.allMdRecords[i].Entry14 = 'Sendai'
+					}
+				}
 				
 				//Count
 				$scope.totalNumberOfIdocs = response.data[0][0].length;
@@ -265,6 +300,8 @@ app.controller('ShipmentDetailsController', function ($scope, $http, $filter , $
 				$scope.sentNumber = (jsonsql.query("select * from json where (Entry6==1 || Entry6==2 || Entry6==3)", $scope.forCount)).length;
 				$scope.sentError = (jsonsql.query("select * from json where (Entry6==4 )", $scope.forCount)).length;
 				
+				$scope.sendaiCount = $scope.allMdRecords[0].Entry15;
+				$scope.tokyoCount = $scope.totalNumberOfIdocs - $scope.sendaiCount
 
 			});
 		

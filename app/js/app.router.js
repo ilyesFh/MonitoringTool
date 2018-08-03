@@ -944,6 +944,90 @@ angular.module('app')
                         }
                     })
 					
+					.state('app.tables.priceValidationRSW4', {
+                        url: '/PriceValidationRS_WAVE4',
+                        templateUrl: 'partials/Personal/PriceValidation_RS_W4.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['js/controllers/Custom/PricingMDController.js',
+										
+										'countTo',
+                                        'js/controllers/countto.js', 
+                                        'js/controllers/vectormap.js', 
+                                        'js/directives/ui-todowidget.js', 
+                                        'js/controllers/messages-widget.js',
+										'js/controllers/Custom/jsonsql-0.1.js',
+                                        '../bower_components/font-awesome/css/font-awesome.css'
+                                    ]);
+                                }
+                            ]
+                        }
+                    })
+					
+					.state('app.tables.priceValidationFS', {
+                        url: '/PriceValidationFS',
+                        templateUrl: 'partials/Personal/PriceValidation FS.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['js/controllers/Custom/PricingMDController.js',
+										
+										'countTo',
+                                        'js/controllers/countto.js', 
+                                        'js/controllers/vectormap.js', 
+                                        'js/directives/ui-todowidget.js', 
+                                        'js/controllers/messages-widget.js',
+										'js/controllers/Custom/jsonsql-0.1.js',
+                                        '../bower_components/font-awesome/css/font-awesome.css'
+                                    ]);
+                                }
+                            ]
+                        }
+                    })
+					
+					.state('app.tables.logHistory', {
+                        url: '/Logs',
+                        templateUrl: 'partials/Personal/LogHistory.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['js/controllers/Custom/LogHistoryController.js',
+										
+										'countTo',
+                                        'js/controllers/countto.js', 
+                                        'js/controllers/vectormap.js', 
+                                        'js/directives/ui-todowidget.js', 
+                                        'js/controllers/messages-widget.js',
+										'js/controllers/Custom/jsonsql-0.1.js',
+                                        '../bower_components/font-awesome/css/font-awesome.css'
+                                    ]);
+                                }
+                            ]
+                        }
+                    })
+					
+					.state('app.tables.a624Check', {
+                        url: '/a624Check',
+                        templateUrl: 'partials/Personal/A624Check.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['js/controllers/Custom/a624Controller.js',
+										
+										'countTo',
+                                        'js/controllers/countto.js', 
+                                        'js/controllers/vectormap.js', 
+                                        'js/directives/ui-todowidget.js', 
+                                        'js/controllers/messages-widget.js',
+										'js/controllers/Custom/jsonsql-0.1.js',
+                                        '../bower_components/font-awesome/css/font-awesome.css'
+                                    ]);
+                                }
+                            ]
+                        }
+                    })
+					
 					.state('app.tables.GuardRrail', {
                         url: '/Guardrail',
                         templateUrl: 'partials/Personal/GuardrailPricing.html',

@@ -1,5 +1,5 @@
-<div class='content-wrapper' ng-init="app.settings.pagetitle = 'Price Validation';">
-    <div class="col-lg-12 " ng-controller="PriceValidationController" ng-init='load()' >
+<div class='content-wrapper' ng-init="app.settings.pagetitle = 'Price Validation FS (Wave 3)';">
+    <div class="col-lg-12 " ng-controller="PriceValidationFSController" ng-init='load()' >
         
 					
 					
@@ -33,7 +33,7 @@
                             <i class="material-icons icon-warning pull-left">warning</i>
                             <div class="stats">
                                 <h3 count-to="{{errorSapCount}}" value="0" duration="1" class="number_counter"></h3>
-                                <span>Missing SAP Info</span>
+                                <span>SAP Error</span>
                             </div>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                 </div>
                
             </div>
-			
+			<!--
 			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 padding-right-30 padding-left-20">
 
 		<div class="clearfix"/>
@@ -62,7 +62,7 @@
 							
 							<tr>
 							<td> <h4><span class="label label-success" >No-EOS Matching </span> : {{noEosMatchingCount}} </h4></td>
-							<
+							
 							</tr>
 							
 							
@@ -70,6 +70,7 @@
 						</table>
          
 		</div>
+		-->
 		
 		
 					<div class="text-center" ng-show="showLoading">
@@ -146,11 +147,11 @@
                                     <th data-toggle="true">
                                        Transaction Id
                                     </th>
-                                    <th>
-                                        Item No
-                                    </th>
 									<th>
                                         Delivery Date
+                                    </th>
+									<th>
+                                        Company Code
                                     </th>
 									<th>
                                         Sold_To JS
@@ -171,21 +172,26 @@
 									<th >
                                         Material C1
                                     </th>
+									
 									<th >
-                                        Sales Unit JS
+                                        Set_No
                                     </th>
 									<th >
-                                        Sales Unit C1
+                                        Money_Type
                                     </th>
-									<th >
-                                        Customer Type
-                                    </th>
+									
+									
 									<th >
                                         Unit Price JS
                                     </th>
                                     <th >
                                         Unit Price C1
                                     </th>
+									
+									<th >
+                                        Type
+                                    </th>
+									
                                     <th>
                                         Status
                                     </th>
@@ -193,24 +199,29 @@
                             </thead>
                             <tbody>
                                 <tr dir-paginate="x in mdRecordsArray| filter: filterText | filter:{ Entry5 : filterResult }|itemsPerPage:10 " >
-                                    <td>{{ x.Entry17 }}</td>
-									<td>{{ x.Entry6 }}</td>
-									<td>{{ x.Entry5 }}</td>
-									<td>{{ x.Entry15 }}</td>
+                                    <td>{{ x.Entry19 }}</td>
+									<td>{{ x.Entry3 }}</td>
+									<td>{{ x.Entry2 }}</td>
 									<td>{{ x.Entry14 }}</td>
 									<td>{{ x.Entry13 }}</td>
+									
 									<td>{{ x.Entry12 }}</td>
-									<td>{{ x.Entry10 }}</td>
-									<td>{{ x.Entry9 }}</td>
-									<td>{{ x.Entry19 }}</td>
 									<td>{{ x.Entry11 }}</td>
 									
-									<td>{{ x.Entry4 }}</td>
-									<td>{{ x.Entry8 }}</td>
 									<td>{{ x.Entry7 }}</td>
-									<td width="15%" ><span ng-class="{3 : 'label label-danger', 2 : 'label label-success' , E : 'label label-warning'  } [x.Entry16] " >{{ x.Entry16 == 3 ? "Not Match" : 
-									x.Entry16 == 2 ? "Match" :
-									x.Entry16 == 0 ? "BT Error" :
+									<td>{{ x.Entry6 }}</td>
+									
+									<td>{{ x.Entry17 }}</td>
+									<td>{{ x.Entry23 }}</td>
+									
+									<td>{{ x.Entry5 }}</td>
+									<td>{{ x.Entry4 }}</td>
+									
+									<td>{{ x.Entry20 }}</td>
+									
+									<td width="15%" ><span ng-class="{3 : 'label label-danger', 2 : 'label label-success' , 4 : 'label label-warning'  } [x.Entry15] " >{{ x.Entry15 == 3 ? "Not Match" : 
+									x.Entry15 == 2 ? "Match" :
+									x.Entry15 == 0 ? "BT Error" :
 									"SAP Error"					}}</span>
 									
 									</td>

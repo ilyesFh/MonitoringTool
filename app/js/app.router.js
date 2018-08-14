@@ -944,6 +944,27 @@ angular.module('app')
                         }
                     })
 					
+					.state('app.tables.priceValidationMikone', {
+                        url: '/PriceValidation_Mikone',
+                        templateUrl: 'partials/Personal/PriceValidation_RS_Other.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['js/controllers/Custom/PricingMDController.js',
+										
+										'countTo',
+                                        'js/controllers/countto.js', 
+                                        'js/controllers/vectormap.js', 
+                                        'js/directives/ui-todowidget.js', 
+                                        'js/controllers/messages-widget.js',
+										'js/controllers/Custom/jsonsql-0.1.js',
+                                        '../bower_components/font-awesome/css/font-awesome.css'
+                                    ]);
+                                }
+                            ]
+                        }
+                    })
+					
 					.state('app.tables.priceValidationRSW4', {
                         url: '/PriceValidationRS_WAVE4',
                         templateUrl: 'partials/Personal/PriceValidation_RS_W4.html',

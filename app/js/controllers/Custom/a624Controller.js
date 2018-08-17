@@ -8,6 +8,8 @@ app.controller('A624Controller', function ( $scope , $http ,  $filter , $timeout
 	
 	$scope.pricingList;
 	$scope.allRecords;
+	
+	$scope.fileList;
 
 	$scope.options = {
 		animate: false,
@@ -22,6 +24,7 @@ app.controller('A624Controller', function ( $scope , $http ,  $filter , $timeout
 		//Reset Filter
 		$scope.filterRush = "";
 		$scope.filterStatus = "";
+		$scope.fileUsedState = false;
 		
 		
 		
@@ -29,6 +32,17 @@ app.controller('A624Controller', function ( $scope , $http ,  $filter , $timeout
 		$scope.formattedDate = $filter('date')($scope.TodayDate, "yyyyMMdd");
 		//$scope.formattedDate = 201705;
 		console.log($scope.formattedDate);
+		
+		var msgdataa624files = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"A624_Files\"  }";
+		var resulta624Check = $http.post('http://117.55.209.110:9080/ws/simple/getMoniPricingTool;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgdataa624files).
+			then(function (response) {
+				console.log(response.data[0]);
+				$scope.fileList = response.data[0];
+
+			});
+			
+			
+		
 		var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"A624\"  }";
 		console.log(msgdata);
 		var res = $http.post('http://117.55.209.110:9080/ws/simple/getMoniPricingTool;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgdata).
@@ -36,6 +50,9 @@ app.controller('A624Controller', function ( $scope , $http ,  $filter , $timeout
 				console.log(response.data[0]);
 				$scope.allRecords = response.data[0];
 				$scope.pricingList = response.data[0];
+				
+				
+				
 				
 				/*count For each Type
 				$scope.matnrCount = (jsonsql.query("select * from json where (Entry6=='E')", $scope.allRecords)).length;
@@ -97,7 +114,7 @@ app.controller('A624Controller', function ( $scope , $http ,  $filter , $timeout
 
 	$scope.exportData = function () {
 
-		$scope.queryExport = 'SELECT Entry1 as MANDT,Entry2 as Kappl,Entry3 as kschl,Entry4 as vkorg,Entry5 as vtweg,Entry6 as ccej_cpg,Entry7 as matnr,Entry8 as vrkme,Entry9 as kfrst,Entry10 as formatDateWithoutTime2,formatDateWithoutTime as datab,Entry12 as kbstat,Entry13 as knumh,formattedDate as Date  INTO XLSX("Report_Not_Synched_A624.xlsx",{}) FROM ?';
+		$scope.queryExport = 'SELECT Entry1 as MANDT,Entry2 as Kappl,Entry3 as kschl,Entry4 as vkorg,Entry5 as vtweg,Entry6 as ccej_cpg,Entry7 as matnr,Entry8 as vrkme,Entry9 as kfrst,Entry10 as formatDateWithoutTime2,formatDateWithoutTime as datab,Entry12 as kbstat,Entry13 as knumh,Entry14 as Filename ,formattedDate as Date  INTO XLSX("Report_Not_Synched_A624.xlsx",{}) FROM ?';
 		
 		console.log($scope.pricingList);
 		alasql($scope.queryExport, [$scope.pricingList]);

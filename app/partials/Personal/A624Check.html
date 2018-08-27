@@ -34,7 +34,7 @@
 								<tr    dir-paginate="x in fileList | itemsPerPage:10  "  >
 								<td><i class='fa fa-check-circle icon-success fa-2x'></i></td>
 								<td>{{ x.Entry1 }}</td>
-								<td> {{ x.Entry3 }}  {{ x.Entry4 }}</td>
+								<td> From <b>{{ x.Entry4 }}</b> To <b>{{ x.Entry3 }}</b> </td>
 								</tr>
 							</tbody>
 								
@@ -86,10 +86,11 @@
 
 								<div class="content-body padding-bottom-0">
 									<div class="row">
-										
+										<!--
 											<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12"  >
 											<h3>Data compare  : {{formattedDate}} </h3>
 											</div>
+											-->
 										
 											<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" ng-show="fileUsedState" >
 											Text ...
@@ -99,7 +100,7 @@
 											<br>
 											
 											<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-											<input type="text" class="form-control" placeholder="Search">
+											<input type="text" ng-model="search" class="form-control" placeholder="Search"> 
 											</div>
 											
 											<!--
@@ -186,10 +187,11 @@
 																	<th>
 																	Filename
 																	</th>
-																	
+																	<!--
 																	<th>
 																	Date
 																	</th>
+																	-->
 
 
 																</tr>
@@ -214,7 +216,7 @@
 																		
 																		<td>{{ x.Entry13 }}</td>
 																		<td>{{ x.Entry14 }}</td>
-																		<td>{{ x.formattedDate }}</td>
+																		<!-- <td>{{ x.formattedDate }}</td> -->
 																
 																		
 																		</td>
@@ -233,10 +235,10 @@
 
 															<div>
 																<dir-pagination-controls
-							   max-size="10"
-							   direction-links="true"
-							   boundary-links="true"
-								 >
+																	   max-size="15"
+																	   direction-links="true"
+																	   boundary-links="true"
+																		 >
 																</dir-pagination-controls>
 
 															</div>

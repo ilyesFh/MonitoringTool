@@ -26,43 +26,30 @@ app.controller('A624Controller', function ( $scope , $http ,  $filter , $timeout
 		$scope.filterStatus = "";
 		$scope.fileUsedState = false;
 		
-		
-		
 		console.log("load event detected!");
 		$scope.formattedDate = $filter('date')($scope.TodayDate, "yyyyMMdd");
-		//$scope.formattedDate = 201705;
 		console.log($scope.formattedDate);
 		
+		
 		var msgdataa624files = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"A624_Files\"  }";
-		var resulta624Check = $http.post('http://117.55.209.110:9080/ws/simple/getMoniPricingTool;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgdataa624files).
-			then(function (response) {
+				var resulta624Check = $http.post('http://117.55.209.110:9080/ws/simple/getMoniPricingTool;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgdataa624files).
+				then(function (response) {
 				console.log(response.data[0]);
 				$scope.fileList = response.data[0];
+				
+				var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"A624\"  }";
+				console.log(msgdata);
+				var res = $http.post('http://117.55.209.110:9080/ws/simple/getMoniPricingTool;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgdata).
+					then(function (response) {
+						console.log(response.data[0]);
+						$scope.pricingList = response.data[0];
 
-			});
-			
+					});
+
+			});	
 			
 		
-		var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"A624\"  }";
-		console.log(msgdata);
-		var res = $http.post('http://117.55.209.110:9080/ws/simple/getMoniPricingTool;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgdata).
-			then(function (response) {
-				console.log(response.data[0]);
-				$scope.allRecords = response.data[0];
-				$scope.pricingList = response.data[0];
-				
-				
-				
-				
-				/*count For each Type
-				$scope.matnrCount = (jsonsql.query("select * from json where (Entry6=='E')", $scope.allRecords)).length;
-				$scope.cpgCount = (jsonsql.query("select * from json where (Entry5=='E')", $scope.allRecords)).length;
-				$scope.sapCount = (jsonsql.query("select * from json where (Entry9=='E')", $scope.allRecords)).length;
-				$scope.caseCount = (jsonsql.query("select * from json where (Entry7=='E')", $scope.allRecords)).length;
-				$scope.looseCount = (jsonsql.query("select * from json where (Entry8=='E')", $scope.allRecords)).length;
-				*/
-
-			});
+		
 	}
 	
 	// Filter By Type Error
@@ -124,33 +111,7 @@ app.controller('A624Controller', function ( $scope , $http ,  $filter , $timeout
 	
 	$scope.getMonth = function () {
 		
-		//Reset Filter
-		$scope.filterRush = "";
-		$scope.filterStatus = "";
 		
-		
-		
-		console.log("load event detected!");
-		$scope.formattedDate = $filter('date')($scope.TodayDate, "yyyyMMdd");
-		//$scope.formattedDate = 201705;
-		console.log($scope.formattedDate);
-		var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"A624\"  }";
-		console.log(msgdata);
-		var res = $http.post('http://117.55.209.110:9080/ws/simple/getMoniPricingTool;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgdata).
-			then(function (response) {
-				console.log(response.data[0]);
-				$scope.allRecords = response.data[0];
-				$scope.pricingList = response.data[0];
-				
-				/*count For each Type
-				$scope.matnrCount = (jsonsql.query("select * from json where (Entry6=='E')", $scope.allRecords)).length;
-				$scope.cpgCount = (jsonsql.query("select * from json where (Entry5=='E')", $scope.allRecords)).length;
-				$scope.sapCount = (jsonsql.query("select * from json where (Entry9=='E')", $scope.allRecords)).length;
-				$scope.caseCount = (jsonsql.query("select * from json where (Entry7=='E')", $scope.allRecords)).length;
-				$scope.looseCount = (jsonsql.query("select * from json where (Entry8=='E')", $scope.allRecords)).length;
-				*/
-
-			});
 		
 	}
 	

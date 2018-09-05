@@ -708,7 +708,7 @@ app.controller('PriceValidationFSController', function ($scope, $http, $filter ,
 
 	$scope.exportData = function () {
 
-		$scope.queryExport = 'SELECT Entry19 as Transaction_Id , Entry3 as Delivery_Date , Entry2 as Company_Code , Entry14 as Sold_To_JS,  Entry13 as Sold_To_C1, Entry12 as Ship_To_JS , Entry11 as Ship_To_C1 , Entry7 as Material_JS , Entry6 as Material_C1, Entry17 as Set_No , Entry23 as Money_Type , Entry5 as Unit_Price_JS , Entry4 as Unit_Price_C1 , Entry20 as Type ,    case when Entry15 = "2" then \'Price Match\' else ( case when Entry15 = "3" then \'Price Not Match \' else ( case when Entry15 = "4" then \'SAP Error \' else \'Bridge Table Error\' end) end ) end as Status  INTO XLSX("Report_Price_Validation_FS.xlsx",{}) FROM ?';
+		$scope.queryExport = 'SELECT Entry19 as Transaction_Id , Entry3 as Delivery_Date , Entry2 as Company_Code , Entry14 as Sold_To_JS,  Entry13 as Sold_To_C1, Entry12 as Ship_To_JS , Entry11 as Ship_To_C1 , Entry7 as Material_JS , Entry6 as Material_C1, Entry17 as Set_No , Entry23 as Money_Type , Entry5 as Unit_Price_JS , Entry4 as Unit_Price_C1 , Entry24 as FS_Delivery_Place_Code , Entry25 as FS_Settle_Indicator , Entry20 as Type ,  case when Entry15 = "2" then \'Price Match\' else ( case when Entry15 = "3" then \'Price Not Match \' else ( case when Entry15 = "4" then \'SAP Error \' else \'Bridge Table Error\' end) end ) end as Status  INTO XLSX("Report_Price_Validation_FS.xlsx",{}) FROM ?';
 
 		console.log($scope.queryExport);
 		alasql($scope.queryExport, [$scope.mdRecordsArray]);

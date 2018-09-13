@@ -1180,7 +1180,7 @@ angular.module('app')
                     })
 					
 					.state('app.tables.customerFlatFiles', {
-                        url: '/Customer_Flat_File',
+                        url: '/Customer_Flat_File_To_MySql',
                         templateUrl: 'partials/Personal/CustomerFlatFile.html',
                         resolve: {
                             deps: ['$ocLazyLoad',

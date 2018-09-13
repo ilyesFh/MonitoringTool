@@ -1179,6 +1179,47 @@ angular.module('app')
                         }
                     })
 					
+					.state('app.tables.customerFlatFiles', {
+                        url: '/Customer_Flat_File',
+                        templateUrl: 'partials/Personal/CustomerFlatFile.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['js/controllers/Custom/CustomerMDController.js',
+										
+										'countTo',
+                                        'js/controllers/countto.js', 
+                                        'js/controllers/vectormap.js', 
+                                        'js/directives/ui-todowidget.js', 
+                                        'js/controllers/messages-widget.js',
+										'js/controllers/Custom/jsonsql-0.1.js',
+                                        '../bower_components/font-awesome/css/font-awesome.css'
+                                    ]);
+                                }
+                            ]
+                        }
+                    })
+					.state('app.tables.customerFlatFilesGeneration', {
+                        url: '/Customer_Flat_File_Generation',
+                        templateUrl: 'partials/Personal/Customer_SAP_To_FlatFile.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['js/controllers/Custom/CustomerMDController.js',
+										
+										'countTo',
+                                        'js/controllers/countto.js', 
+                                        'js/controllers/vectormap.js', 
+                                        'js/directives/ui-todowidget.js', 
+                                        'js/controllers/messages-widget.js',
+										'js/controllers/Custom/jsonsql-0.1.js',
+                                        '../bower_components/font-awesome/css/font-awesome.css'
+                                    ]);
+                                }
+                            ]
+                        }
+                    })
+					
 					
 					
 					

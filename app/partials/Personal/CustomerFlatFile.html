@@ -1,0 +1,327 @@
+<div class='content-wrapper' ng-init="app.settings.pagetitle = 'Customer Master Flat Files';">
+	<div class="col-lg-12" ng-controller="CustomerFlatFileController" ng-init='load()' >
+
+
+		
+		
+	
+           
+					
+					
+            
+	
+		<div class="col-lg-12">
+		<div class="col-md-12 col-sm-12 col-xs-12">
+		
+			<section class="box ">
+            <header class="panel_header">
+                <h2 class="title pull-left">Today's Recevied Customer</h2>
+                <div class="actions panel_actions pull-right">
+                    <i class="box_toggle material-icons">expand_more</i>
+                    
+                </div>
+            </header>
+			
+			 <div class="content-body  padding-top-0">
+				<table class="table table-striped">
+							<thead>
+								<tr>
+								<th data-toggle="true">
+								Table Name
+								</th>
+								<th data-toggle="true">
+								Records Count
+								</th>
+								<th data-toggle="true">
+								Table Name
+								</th>
+								<th data-toggle="true">
+								Records Count
+								</th>
+								</tr>
+							</thead>
+							
+							<tbody>
+							<tr>
+								<td> Total</td>
+								<td>{{CustomerCount.Entry1}}</td>
+								<td> ADRC</td>
+								<td>{{CustomerCount.Entry2}}</td>
+							</tr>
+							<tr>
+								<td> KNVP</td>
+								<td>{{CustomerCount.Entry3}}</td>
+								<td> KNVV</td>
+								<td>{{CustomerCount.Entry4}}</td>
+							</tr>
+							
+							<tr>
+								<td> KNA1</td>
+								<td>{{CustomerCount.Entry5}}</td>
+								<td> KNB1</td>
+								<td>{{CustomerCount.Entry6}}</td>
+							</tr>
+							
+							<tr>
+								<td> KNBK</td>
+								<td>{{CustomerCount.Entry7}}</td>
+								<td> KNVA</td>
+								<td>{{CustomerCount.Entry8}}</td>
+							</tr>
+							
+							<tr>
+								<td> KNVI</td>
+								<td>{{CustomerCount.Entry9}}</td>
+								<td> KNVK</td>
+								<td>{{CustomerCount.Entry10}}</td>
+							</tr>
+							
+							
+							</tbody>
+								
+						</table>
+						</div>
+			 
+        </section>
+		
+		</div>
+		
+		</div>
+	
+		
+		
+		<div class="col-lg-12">
+
+
+
+
+
+			<div class="col-lg-12">
+				<section class="box ">
+					<header class="panel_header">
+						<h2 class="title pull-left">Not Synced Customer</h2>
+						<div class="actions panel_actions pull-right">
+							<i class="box_toggle material-icons">expand_more</i>
+
+						</div>
+					</header>
+
+
+
+					<div class="content-body padding-bottom-15">
+						<div class="row">
+
+
+							<label class="form-label" for="field-1">Select Date</label>
+							<div style="width:10%" class="input-group" >
+
+								<input type="text" class="form-control datepicker" max-date="maxDate" datepicker-popup="yyyy/MM/dd" ng-model="dt" is-open="dtpick.opened"  ng-required="true" close-text="Close" ng-click="open($event,'opened')" 
+								ng-change="getdate()" />
+								<span class="input-group-addon" ng-click="open($event,'opened')">
+									<i class="fa fa-calendar" style="color: #999;"/>
+								</span>
+							</div>
+
+
+
+
+							<div class="col-md-12 col-sm-12 col-xs-12">
+
+								<div class="content-body padding-bottom-0">
+									<div class="row">
+
+										<div class="col-md-9 col-sm-9 col-xs-9">
+											<input type="text" ng-model="search" class="form-control" placeholder="Search"> 
+										</div>
+										<div class="col-md-3 col-sm-3 col-xs-3">
+										<a class="btn btn-circle btn-lg pull-right btn-success" ng-click="exportData()" >CSV    <i class='fa fa-file-excel-o icon-4x' /></a>
+										</div>										
+											
+											
+											
+											<div class="clearfix"/>
+											<br>
+												
+												
+												
+												
+
+												<div class="col-lg-4 col-md-4 col-xs-12 col-sm-6">
+												<div class="btn-group margin-bottom-10"  >
+												<!--
+													<label class="btn btn-primary" ng-click="FilterAllStatus()" >All</label>
+													<label class="btn btn-success" ng-click="FilterSuccess()"  >Successful</label>
+													<label class="btn btn-warning" ng-click="FilterPending()"  >Pending</label>
+													<label class="btn btn-danger" ng-click="FilterError()" >Error</label>
+													-->
+													
+													<select class="form-control input-lg" ng-model="TableNameSearch" >
+														<option value="">All Tables</option>
+														<option value="ADRC" >ADRC</option>
+														<option value="KNVP">KNVP</option>
+														<option value="KNVV">KNVV</option>
+														<option value="KNA1">KNA1</option> 
+														<option value="KNB1">KNB1</option> 
+														<option value="KNBK">KNBK</option>
+														<option value="KNVA">KNVA</option>
+														<option value="KNVI">KNVI</option>
+														<option value="KNVK">KNVK</option>
+													</select>
+												</div>
+												</div>
+
+												<div class="clearfix"/>
+												<br>
+
+													
+
+													<div class="col-md-12 col-sm-12 col-xs-12 table-responsive">
+
+														<!--
+						<table class="table table-striped" ui-jq="footable" data-filter="#filter" data-page-size="10" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th data-toggle="true">
+                                        Interface Name
+                                    </th>
+                                    <th>
+                                        Records in MYSQL
+                                    </th>
+                                    <th data-hide="phone,tablet">
+                                        File Count
+                                    </th>
+                                    <th data-hide="phone">
+                                        Status
+                                    </th>
+                                </tr>
+                            </thead>
+							
+                            
+							<tbody>
+                                <tr  ng-repeat="x in mdRecordsArray " >
+                                    <td>{{ x.Entry1 }}</td>
+									<td>{{ x.Entry2 }}</td>
+									<td>{{ x.Entry3 }}</td>
+									<td><span ng-class="{false : 'label label-danger', true : 'label label-success' } [x.Entry2==x.Entry3] " >{{ (x.Entry2!=x.Entry3) ? "Not Synced" : "Synced" }}</span></td>
+
+									
+                                </tr>
+                                </tr>
+                                
+                            </tbody>
+							
+                            <tfoot class="hide-if-no-paging">
+                                <tr>
+                                    <td colspan="10" class="text-center">
+                                        <ul class="pagination"></ul>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+						-->
+
+														<table class="table table-striped" data-filter="#filter" class="table table-striped">
+															<thead>
+																<tr>
+																<th>
+                                        
+																	</th>
+																	
+																	<th>
+                                        File Name
+																	</th>
+																	<th >
+                                        Table Name
+																	</th>
+																	<th >
+                                        Key 1 (Mandt)
+																	</th>
+																	<th >
+                                        Key 2 (Kunnr)
+																	</th>
+																	<th >
+                                        Key 3
+																	</th>
+																	<th >
+                                        Key 4
+																	</th>
+																	<th >
+                                        Key 5
+																	</th>
+																	<th >
+                                        Key 6
+																	</th>
+																	<th >
+                                        Key 7
+																	</th>
+																	<th >
+                                        TimeStamp
+																	</th>
+																	
+																	
+
+
+
+																</tr>
+															</thead>
+
+															<tbody>
+																<tr    dir-paginate="x in allRecords | filter:search | filter:{ Entry2 : TableNameSearch } | itemsPerPage:10  "  data-user-id="{{x.Entry1}}">
+																	
+																	<td><i class='fa fa-exclamation-circle icon-danger fa-2x'></i></td>
+																	<td>{{ x.Entry1 }}</td>
+																	<td>{{ x.Entry2 }}</td>
+																	<td>{{ x.Entry4 }}</td>
+																	<td>{{ x.Entry5 }}</td>
+																	<td>{{ x.Entry6 }}</td>
+																	<td>{{ x.Entry7 }}</td>
+																	<td>{{ x.Entry8 }}</td>
+																	<td>{{ x.Entry9 }}</td>
+																	<td>{{ x.Entry10 }}</td>
+																		<td>
+																		{{ x.formattedDate }}
+																		</td>
+																		
+																		</tr>
+																		<tr >
+																			<td ng-show="allRecords.length == 0" colspan="20" style="text-align:center">
+														   No Data             
+																			</td>
+																		</tr>
+
+																	</tbody>
+
+
+																</table>
+
+																<div>
+																	<dir-pagination-controls
+																		   max-size="10"
+																		   direction-links="true"
+																		   boundary-links="true"
+																			 >
+																	</dir-pagination-controls>
+
+																</div>
+															</div>
+
+
+
+														</div>    
+													</div>
+
+
+
+												</div>
+											</div>
+										</div>
+									</section>
+								</div>
+							</div>
+						</div>
+
+
+
+
+					</div>
+				</div>	

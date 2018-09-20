@@ -86,8 +86,9 @@ app.controller('TruckStockController', function ($scope, $http, $filter , $state
 	$scope.load = function () {
 		console.log("load event detected!");
 		$scope.formattedDate = $filter('date')($scope.TodayDate, "yyyyMM");
-		//$scope.formattedDate = 201705;
+		$scope.formattedDate = 201805;
 		console.log($scope.formattedDate);
+		/*
 		var msgdata = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"TruckStock\"  }";
 		console.log(msgdata);
 		var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msgdata).
@@ -95,8 +96,13 @@ app.controller('TruckStockController', function ($scope, $http, $filter , $state
 				console.log(response.data[0][0]);
 				$scope.allMdRecords = response.data[0][0];
 				$scope.truckStockList = response.data[0][0];
-				
-				//$scope.yesterday = $scope.TodayDate - 1;
+
+
+			});
+			*/
+			
+			
+			//$scope.yesterday = $scope.TodayDate - 1;
 				//Web Service Call For Map
 				$scope.yesterday = "20171115"
 				$scope.formattedDate = $filter('date')($scope.TodayDate, "yyyyMMdd");
@@ -107,9 +113,12 @@ app.controller('TruckStockController', function ($scope, $http, $filter , $state
 					$scope.markers = response.data[0];
 					
 					});
-
-			});
+			
+			
+			
 	}
+	
+	
 
 
 		// Post Web CALL

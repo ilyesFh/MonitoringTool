@@ -141,6 +141,8 @@ app.controller('ShipmentDetailsController', function ($scope, $http, $filter , $
 	
 	$scope.tokyoCount = 0;
 	$scope.sendaiCount = 0;
+	$scope.toneCount = 0;
+	$scope.mikuneCount = 0;
 	
 
 	$scope.options = {
@@ -184,6 +186,20 @@ app.controller('ShipmentDetailsController', function ($scope, $http, $filter , $
 					}
 				}
 				
+				for (i = 0; i < $scope.allMdRecords.length ; i++) {
+					if( $scope.TonePlant.indexOf($scope.allMdRecords[i].Entry12) != -1 )
+					{
+					$scope.allMdRecords[i].Entry14 = 'Tone'
+					}
+				}
+				
+				for (i = 0; i < $scope.allMdRecords.length ; i++) {
+					if( $scope.MikuniPlant.indexOf($scope.allMdRecords[i].Entry12) != -1 )
+					{
+					$scope.allMdRecords[i].Entry14 = 'Mikuni'
+					}
+				}
+				
 				console.log($scope.allMdRecords);
 				
 				//Count
@@ -196,7 +212,10 @@ app.controller('ShipmentDetailsController', function ($scope, $http, $filter , $
 				
 				
 				$scope.sendaiCount = $scope.allMdRecords[0].Entry15;
-				$scope.tokyoCount = $scope.totalNumberOfIdocs - $scope.sendaiCount
+				$scope.toneCount = $scope.allMdRecords[0].Entry16;
+				$scope.mikuneCount = $scope.allMdRecords[0].Entry17;
+				$scope.tokyoCount = $scope.totalNumberOfIdocs - (Number($scope.sendaiCount) + Number($scope.toneCount) + Number($scope.mikuneCount) )
+
 				//console.log( $scope.tokyoCount +" "+ $scope.sendaiCount);
 				
  

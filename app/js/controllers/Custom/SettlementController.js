@@ -31,7 +31,7 @@ app.controller('SettlementController', function ($scope, $http, $filter , $inter
 	$scope.processed = 0;
 	
 	$scope.processed = 0;
-	$scope.StatusSearch;
+	$scope.StatusSearch = '';
 	
 	$scope.counter = 1;
 	$scope.refreshedDate;
@@ -160,11 +160,13 @@ app.controller('SettlementController', function ($scope, $http, $filter , $inter
 		
 		if ( $scope.StatusSearch == '') {
 			
-			$scope.queryExport = 'SELECT Entry2 as Route, Entry3 as Plant, Entry4 as Date , Entry11 as FileName , case when Entry8 = \'1\' then \'Pending\' else ( case when Entry8 = \'2\' then \'Idoc Sent To SAP \' else  ( case when Entry8 = \'3\' then \'Error Sending To SAP\' else ( case when Entry8 = \'51\' then \'Error In SAP\' else ( case when Entry8 = \'53\' then \'Processed\' else \'Pending In Queue\'  end )  end )  end )  end ) end as Status , case when Entry10 = \'1\' then \'Corrected\' else \'Not Corrected\' end as Correction , Entry15 as Idoc_Number , formattedDate2 as Received_Date , formattedDate3 as Start_Processing , formattedDate4 as End_Processing , formattedDate as Last_Update INTO XLSX("Report_Settlement.xlsx",{}) FROM ? ' ;
+			console.log("Normal filters");
+			$scope.queryExport = 'SELECT Entry2 as Route, Entry3 as Plant, Entry4 as Date , Entry11 as FileName , case when Entry8 = \'1\' then \'Pending\' else ( case when Entry8 = \'2\' then \'Idoc Sent To SAP \' else  ( case when Entry8 = \'3\' then \'Error Sending To SAP\' else ( case when Entry8 = \'51\' then \'Error In SAP\' else ( case when Entry8 = \'53\' then \'Processed\' else \'Pending In Queue\'  end )  end )  end )  end ) end as Status , case when Entry10 = \'1\' then \'Corrected\' else \'Not Corrected\' end as Correction , Entry15 as Idoc_Number , formattedDate2 as Received_Date , formattedDate3 as Start_Processing , formattedDate4 as End_Processing , formattedDate as Last_Update , Entry13 as Settlement_Error INTO XLSX("Report_Settlement.xlsx",{}) FROM ? ' ;
 		}
 		else
 		{
-			$scope.queryExport = 'SELECT Entry2 as Route, Entry3 as Plant, Entry4 as Date , Entry11 as FileName , case when Entry8 = \'1\' then \'Pending\' else ( case when Entry8 = \'2\' then \'Idoc Sent To SAP \' else  ( case when Entry8 = \'3\' then \'Error Sending To SAP\' else ( case when Entry8 = \'51\' then \'Error In SAP\' else ( case when Entry8 = \'53\' then \'Processed\' else \'Pending In Queue\'  end )  end )  end )  end ) end as Status , case when Entry10 = \'1\' then \'Corrected\' else \'Not Corrected\' end as Correction , Entry15 as Idoc_Number , formattedDate2 as Received_Date , formattedDate3 as Start_Processing , formattedDate4 as End_Processing , formattedDate as Last_Update INTO XLSX("Report_Settlement.xlsx",{}) FROM ? where Entry8 = \''+ $scope.StatusSearch + '\'   ' ;
+			console.log("advanced filters");
+			$scope.queryExport = 'SELECT Entry2 as Route, Entry3 as Plant, Entry4 as Date , Entry11 as FileName , case when Entry8 = \'1\' then \'Pending\' else ( case when Entry8 = \'2\' then \'Idoc Sent To SAP \' else  ( case when Entry8 = \'3\' then \'Error Sending To SAP\' else ( case when Entry8 = \'51\' then \'Error In SAP\' else ( case when Entry8 = \'53\' then \'Processed\' else \'Pending In Queue\'  end )  end )  end )  end ) end as Status , case when Entry10 = \'1\' then \'Corrected\' else \'Not Corrected\' end as Correction , Entry15 as Idoc_Number , formattedDate2 as Received_Date , formattedDate3 as Start_Processing , formattedDate4 as End_Processing , formattedDate as Last_Update, Entry13 as Settlement_Error INTO XLSX("Report_Settlement.xlsx",{}) FROM ? where Entry8 = \''+ $scope.StatusSearch + '\'   ' ;
 			
 		}
 		
@@ -395,10 +397,15 @@ app.controller('LoadInboundController', function ($scope, $http, $filter , $stat
 		
 		$scope.queryExport = '';
 		if($scope.filterCorrection == '')
+		{
+			console.log("Normal filters");
 			$scope.queryExport = 'SELECT Entry1 as Name, Entry2 as Route, Entry3 as Plant, Entry4 as Date , Entry7 as FileName , case when Entry5 = \'1\' then \'Boomi Error\' else ( case when Entry5 = \'2\' then \'idoc Sent\' else  ( case when Entry5 = \'3\' then \'SAP Error\' else \'Processed\'  end )  end ) end as Type , case when Entry6 = \'1\' then \'Corrected\' else \'Not Corrected\' end as Status INTO XLSX("Report_Settlement.xlsx",{}) FROM ?';
+		}
 		else
+		{
+			console.log("Correction filters");
 			$scope.queryExport = 'SELECT Entry1 as Name, Entry2 as Route, Entry3 as Plant, Entry4 as Date , Entry7 as FileName , case when Entry5 = \'1\' then \'Boomi Error\' else ( case when Entry5 = \'2\' then \'idoc Sent\' else  ( case when Entry5 = \'3\' then \'SAP Error\' else \'Processed\'  end )  end ) end as Type , case when Entry6 = \'1\' then \'Corrected\' else \'Not Corrected\' end as Status INTO XLSX("Report_Settlement.xlsx",{}) FROM ? where Entry6 = \'' + $scope.filterCorrection + '\'' ;
-			
+		}	
 
 		console.log($scope.queryExport);
 		alasql($scope.queryExport, [$scope.SettlementList]);

@@ -115,9 +115,9 @@ app.controller('ShipmentController', function($scope, $http, $filter ) {
 				 
 				 $scope.queryExport = '';
 			if($scope.filterResult == '')
-				$scope.queryExport = 'SELECT Entry1 as IDoc_Number, Entry2 as Sales_Order_Number, Entry3 as Line_Item_Count, Entry4 as Slip_Number , Entry7 as Delivery_Date , case when Entry5 = \'N\' then \'Normal Order\' else \'Rush Order\' end as Type , case when Entry6 = \'1\' then \'Sent\' else \'Not Sent\' end as Status INTO XLSX("Report_Shipment.xlsx",{}) FROM ?';
+				$scope.queryExport = 'SELECT Entry2 as IDoc_Number, Entry3 as IDoc_Type, Entry1 as Date, case when Entry5 = \'0\' then \'Synced\' else \'Not Synced\' end as Status INTO XLSX("Report_Proforma.xlsx",{}) FROM ?';
 			else
-				$scope.queryExport = 'SELECT Entry2 as IDoc_Number, Entry3 as IDoc_Type, Entry1 as Date, case when Entry5 = \'0\' then \'Synced\' else \'Not Synced\' end as Status INTO XLSX("Report_Filtered.xlsx",{}) FROM ? where Entry5 = \''+$scope.filterResult+'\'';
+				$scope.queryExport = 'SELECT Entry2 as IDoc_Number, Entry3 as IDoc_Type, Entry1 as Date, case when Entry5 = \'0\' then \'Synced\' else \'Not Synced\' end as Status INTO XLSX("Report_Proforma_Filtered.xlsx",{}) FROM ? where Entry5 = \''+$scope.filterResult+'\'';
 		  
 				 
 				 console.log($scope.queryExport);
@@ -269,7 +269,7 @@ app.controller('ShipmentDetailsController', function ($scope, $http, $filter , $
 
 	$scope.exportData = function () {
 
-		$scope.queryExport = 'SELECT Entry1 as IDoc_Number, Entry11 as Sales_Order_Number, Entry4 as Proformat_Number , Entry3 as Line_Item_Count , Entry7 as Delivery_Date , Entry12 as Plant, Entry13 as Route_Code , Entry8 as CMCRC_PLNT, Entry9 as CMCRC_RT, Entry10 as Driver , case when Entry5 = \'N\' then \'Normal Order\' else \'Rush Order\' end as Type , case when Entry6 = \'1\' then \'Sent\' else \'Not Sent\' end as Status INTO XLSX("Report_Shipment.xlsx",{}) FROM ?';
+		$scope.queryExport = 'SELECT Entry1 as IDoc_Number, Entry11 as Sales_Order_Number, Entry4 as Proformat_Number , Entry3 as Line_Item_Count , Entry7 as Delivery_Date , Entry12 as Plant, Entry13 as Route_Code , Entry8 as CMCRC_PLNT, Entry9 as CMCRC_RT, Entry10 as Driver , case when Entry5 = \'N\' then \'Normal Order\' else \'Rush Order\' end as Type , case when Entry6 = \'0\' then \'Not Sent\' else ( case when Entry6 = \'1\' then \'Sent\' else (case when Entry6 = \'2\' then \'Received\' else(case when Entry6 = \'3\' then \'Processed\' else \'Error\' end) end) end ) end as Status  INTO XLSX("Report_Shipment.xlsx",{}) FROM ?';
 
 		console.log($scope.queryExport);
 		alasql($scope.queryExport, [$scope.truckStockList]);

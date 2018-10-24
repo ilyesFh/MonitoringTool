@@ -21,6 +21,7 @@ app.controller('getDataProductionController', function ($scope, $http, $filter ,
 
 	$scope.TodayDate = new Date();
 	$scope.maxDate = new Date();
+	$scope.StatusSearch == '';
 
 	$scope.load = function () {
 		
@@ -60,32 +61,6 @@ app.controller('getDataProductionController', function ($scope, $http, $filter ,
 	}
 	
 	
-	
-
-	//Status Filter
-	$scope.FilterError = function () {
-		$scope.SettlementList = $scope.allRecords;
-		$scope.SettlementList = jsonsql.query("select * from json where ( Entry8=='3')", $scope.allRecords);
-	}
-	
-	$scope.FilterSuccess = function () {
-		$scope.SettlementList = $scope.allRecords;
-		$scope.SettlementList = jsonsql.query("select * from json where (Entry8=='2' || Entry8=='4')", $scope.allRecords);
-	}
-	
-	$scope.FilterPending = function () {
-		console.log("Pending filter");
-		$scope.SettlementList = $scope.allRecords;
-		$scope.SettlementList = jsonsql.query("select * from json where (Entry8=='1' || Entry8=='9')", $scope.allRecords);
-	}
-	
-	$scope.FilterAllStatus = function () {
-		$scope.SettlementList = $scope.allRecords;
-	}
-	
-	
-	
-	
 
 	$scope.exportData = function () {
 		
@@ -94,7 +69,7 @@ app.controller('getDataProductionController', function ($scope, $http, $filter ,
 		if ( $scope.StatusSearch == '') {
 			
 			console.log("Normal filters");
-			$scope.queryExport = 'SELECT Entry2 as Route, Entry3 as Plant, Entry4 as Date , Entry11 as FileName , case when Entry8 = \'1\' then \'Pending\' else ( case when Entry8 = \'2\' then \'Idoc Sent To SAP \' else  ( case when Entry8 = \'3\' then \'Error Sending To SAP\' else ( case when Entry8 = \'51\' then \'Error In SAP\' else ( case when Entry8 = \'53\' then \'Processed\' else \'Pending In Queue\'  end )  end )  end )  end ) end as Status , case when Entry10 = \'1\' then \'Corrected\' else \'Not Corrected\' end as Correction , Entry15 as Idoc_Number , formattedDate2 as Received_Date , formattedDate3 as Start_Processing , formattedDate4 as End_Processing , formattedDate as Last_Update , Entry13 as Settlement_Error INTO XLSX("Report_Settlement.xlsx",{}) FROM ? ' ;
+			$scope.queryExport = 'SELECT Entry1 as Filename, formattedDate as Received_At, Entry3 as Processing_Date , formattedDate2 as TimeStamp , case when Entry2 = \'1\' then \'Processed\' else (\'Pending\') end as Status INTO XLSX("Report_GetDataProduction.xlsx",{}) FROM ? ' ;
 		}
 		else
 		{
@@ -106,7 +81,7 @@ app.controller('getDataProductionController', function ($scope, $http, $filter ,
 
 
 		console.log($scope.queryExport);
-		alasql($scope.queryExport, [$scope.SettlementList]);
+		alasql($scope.queryExport, [$scope.getList]);
 	};
 	
 	

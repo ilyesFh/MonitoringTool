@@ -51,14 +51,17 @@
 								<div class="content-body padding-bottom-0">
 									<div class="row">
 
-										<div class="col-md-9 col-sm-12 col-xs-12">
-
-
+										<div class="col-md-8 col-sm-12 col-xs-12">
 											<input type="text" ng-model="search" class="form-control" placeholder="Search"> 
-
-											</div>
+										</div>
 											
-											
+										<div class="col-md-4 col-sm-12 col-xs-12">
+													<select class="form-control input-lg" ng-model="StatusSearch" >
+														<option value="">Status : All</option>
+														<option value='0' >In Progress</option>
+														<option value="1" >Processed</option>
+													</select>
+										</div>	
 												
 												
 												
@@ -141,7 +144,7 @@
 															</thead>
 
 															<tbody>
-																<tr    dir-paginate="x in getList | filter:search | itemsPerPage:10  "  data-user-id="{{x.Entry1}}">
+																<tr    dir-paginate="x in getList | filter:search | filter:{ Entry2 : StatusSearch } | itemsPerPage:10  "  data-user-id="{{x.Entry1}}">
 																	
 																	<td>{{ x.Entry1 }}</td>
 																	<td>{{ x.formattedDate }}</td>
@@ -149,9 +152,9 @@
 																	
 																	
 																	<td>
-																		 <span ng-class="{'1' : 'label label-success', '' : 'label label-warning'  } [x.Entry2]  " >
+																		 <span ng-class=" (x.Entry2=='1') ? 'label label-success' : 'label label-warning'   " >
 														{{ (x.Entry2=='1') ? "Processed" : 
-														   "Not Processed Boomi"
+														   "Not Processed"
 														   }}
 																		</td>
 																	

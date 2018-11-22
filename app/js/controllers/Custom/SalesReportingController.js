@@ -17,7 +17,7 @@ app.config(['$httpProvider', function ($httpProvider) {
 
 
 
-app.controller('getDataProductionController', function ($scope, $http, $filter , $interval ,$state) {
+app.controller('salesReportingController', function ($scope, $http, $filter , $interval ,$state) {
 
 	$scope.TodayDate = new Date();
 	$scope.maxDate = new Date();
@@ -32,7 +32,7 @@ app.controller('getDataProductionController', function ($scope, $http, $filter ,
 		$scope.formattedDate = $filter('date')($scope.TodayDate, "yyyyMMdd");
 		console.log($scope.formattedDate);
 		
-		var msg = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"getDataProduction\"  }";
+		var msg = "{\"Var1\": " + "\"" + $scope.formattedDate + "\", \"Prefix\":\"getSalesOrder\"  }";
 		console.log(msg);
 		var res = $http.post('http://117.55.209.110:9080/ws/simple/getMysqlTest;boomi_auth=YXZheGlhLTlGQ0pJRjo3ZDA1NzAwZC1mODM1LTQ4NTUtOThjNC03OWFlMTc1OGRkYWI=', msg).
 			then(function (response) {
@@ -43,22 +43,6 @@ app.controller('getDataProductionController', function ($scope, $http, $filter ,
 			});
 	}
 
-
-
-	$scope.filterCorrection = '';
-
-	// correction Filter
-	$scope.FilterCorrection = function () {
-		$scope.filterCorrection = "1";
-	}
-	
-	$scope.FilterNoCorrection = function () {
-		$scope.filterCorrection = "0";
-	}
-	
-	$scope.FilterAll = function () {
-		$scope.filterCorrection = '';
-	}
 	
 	
 
@@ -88,6 +72,7 @@ app.controller('getDataProductionController', function ($scope, $http, $filter ,
 	
 	
 	
+	/*
 	$scope.getdate = function () {
 
 	    
@@ -108,7 +93,7 @@ app.controller('getDataProductionController', function ($scope, $http, $filter ,
 		
 		
 	}
-	
+	*/
 	
 	
 	

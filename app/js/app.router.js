@@ -1027,6 +1027,27 @@ angular.module('app')
                             ]
                         }
                     })
+
+					.state('app.tables.salesReporting', {
+                        url: '/Sales_Reporting',
+                        templateUrl: 'partials/Personal/SalesReporting.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['js/controllers/Custom/SalesReportingController.js',
+										
+										'countTo',
+                                        'js/controllers/countto.js', 
+                                        'js/controllers/vectormap.js', 
+                                        'js/directives/ui-todowidget.js', 
+                                        'js/controllers/messages-widget.js',
+										'js/controllers/Custom/jsonsql-0.1.js',
+                                        '../bower_components/font-awesome/css/font-awesome.css'
+                                    ]);
+                                }
+                            ]
+                        }
+                    })
 					
 					.state('app.tables.LogGetDataProduction', {
                         url: '/getDataProduction',
@@ -1049,6 +1070,8 @@ angular.module('app')
                         }
                     })
 					
+					
+					
 					.state('app.tables.a624Check', {
                         url: '/a624Check',
                         templateUrl: 'partials/Personal/A624Check.html',
@@ -1056,6 +1079,48 @@ angular.module('app')
                             deps: ['$ocLazyLoad',
                                 function($ocLazyLoad) {
                                     return $ocLazyLoad.load(['js/controllers/Custom/a624Controller.js',
+										
+										'countTo',
+                                        'js/controllers/countto.js', 
+                                        'js/controllers/vectormap.js', 
+                                        'js/directives/ui-todowidget.js', 
+                                        'js/controllers/messages-widget.js',
+										'js/controllers/Custom/jsonsql-0.1.js',
+                                        '../bower_components/font-awesome/css/font-awesome.css'
+                                    ]);
+                                }
+                            ]
+                        }
+                    })
+					
+					.state('app.tables.commission', {
+                        url: '/Commission_Check',
+                        templateUrl: 'partials/Personal/Pricing_Commission.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['js/controllers/Custom/CommissionController.js',
+										
+										'countTo',
+                                        'js/controllers/countto.js', 
+                                        'js/controllers/vectormap.js', 
+                                        'js/directives/ui-todowidget.js', 
+                                        'js/controllers/messages-widget.js',
+										'js/controllers/Custom/jsonsql-0.1.js',
+                                        '../bower_components/font-awesome/css/font-awesome.css'
+                                    ]);
+                                }
+                            ]
+                        }
+                    })
+					
+					.state('app.tables.FSCommissionFile', {
+                        url: '/FS_Commission_File',
+                        templateUrl: 'partials/Personal/Pricing_FS_Commission_File.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['js/controllers/Custom/CommissionController.js',
 										
 										'countTo',
                                         'js/controllers/countto.js', 
